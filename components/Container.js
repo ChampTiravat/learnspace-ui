@@ -2,7 +2,7 @@ import styled, { injectGlobal } from "styled-components";
 
 // Normalize the global style
 injectGlobal`
-    @import url('https://fonts.googleapis.com/css?family=Kanit');
+    @import url('https://fonts.googleapis.com/css?family=Kanit:300,400,500'); 
 
     * {
         box-sizing: border-box;
