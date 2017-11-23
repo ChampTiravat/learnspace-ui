@@ -30,6 +30,9 @@ export const Body = styled.div`
   padding: 0.9em;
   margin: 0 auto;
   text-align: left;
+  font-size: 1em;
+  font-weight: 300;
+  font-color: ${({ theme }) => theme.textColor};
 `;
 
 export default Card;
