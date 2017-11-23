@@ -10,7 +10,7 @@ import defaultTheme from "../../themes/default";
 const UnAuthenticatedLayout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <Container>
-      <NavigationBar>Navbar</NavigationBar>
+      <NavigationBar isLoggedIn={false}>Navbar</NavigationBar>
       {children}
     </Container>
   </ThemeProvider>
