@@ -28,7 +28,7 @@ const Container = styled.div`
   max-width: 1400px;
   width: 100%;
   height: auto;
-  background-color: #f5f5f5;
+  background: #f5f5f5;
 `;
 
 export default Container;

@@ -6,9 +6,10 @@ import NavigationBar from "../components/NavigationBar";
 /**
  * @desc Use this Layout when user is not authorized
  */
-export const UnAuthenticatedLayout = () => (
+export const UnAuthenticatedLayout = ({ children }) => (
   <Container>
     <NavigationBar>Navbar</NavigationBar>
+    {children}
   </Container>
 );
 
