@@ -1,7 +1,7 @@
 import React from "react";
 
-import { UnAuthenticatedLayout } from "../components/Layout";
-import Card, { Header, Body, Footer } from "../components/Card";
+import UnAuthenticatedLayout from "../core/components/UnAuthenticatedLayout";
+import Card, { Header, Body, Footer } from "../core/components/Card";
 
 class LoginPage extends React.Component {
   render() {

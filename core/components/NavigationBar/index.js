@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Container from "../components/Container";
+import Container from "../Container";
 
 const Navbar = styled.nav`
   position: fixed;
