@@ -1,16 +1,19 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
 import Container from "./Container";
 import NavigationBar from "../components/NavigationBar";
+import defaultTheme from "../themes/default";
 
 /**
  * @desc Use this Layout when user is not authorized
  */
 export const UnAuthenticatedLayout = ({ children }) => (
-  <Container>
-    <NavigationBar>Navbar</NavigationBar>
-    {children}
-  </Container>
+  <ThemeProvider theme={defaultTheme}>
+    <Container>
+      <NavigationBar>Navbar</NavigationBar>
+      {children}
+    </Container>
+  </ThemeProvider>
 );
 
 /**
