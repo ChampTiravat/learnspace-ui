@@ -1,12 +1,19 @@
 import React from "react";
 
 import { UnAuthenticatedLayout } from "../components/Layout";
+import Card, { Header, Body, Footer } from "../components/Card";
 
 class LoginPage extends React.Component {
   render() {
     return (
       <UnAuthenticatedLayout>
-        <h1>Login page</h1>
+        <Card>
+          <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
+          <Body>asdasdddddddddddddddd</Body>
+          <Footer>
+            <button>ปิด</button>
+          </Footer>
+        </Card>
       </UnAuthenticatedLayout>
     );
   }
