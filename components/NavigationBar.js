@@ -10,6 +10,7 @@ const Navbar = styled.nav`
   left: 0;
   top: 0;
   background-color: #3b90f9;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
 `;
 
 const NavbarContainer = styled.div`
@@ -21,18 +22,19 @@ const NavbarContainer = styled.div`
   max-width: 1400px;
   width: 100%;
   height: auto;
-  //background-color: red;
 `;
 
 const LogoTab = styled.div`
   display: inline-block;
   color: #fff;
-  //background-color: pink;
   width: 50%;
   a {
     background-color: #3a82ea;
     display: inline-block;
     padding: 0.5em 1em;
+    h1 {
+      font-weight: 500;
+    }
   }
   h2 {
     display: inline-block;
@@ -44,7 +46,6 @@ const LogoTab = styled.div`
 
 const ButtonsTab = styled.div`
   display: inline-block;
-  //background-color: green;
   padding-right: 1em;
   text-align: right;
   width: 50%;
@@ -55,11 +56,19 @@ const ButtonsTab = styled.div`
     list-style: none;
     li {
       display: inline-block;
-      padding: 0;
+      padding: 0.4em;
       margin: 0;
       a {
-        padding: 0.4em;
         color: #fff;
+        padding: 0.3em 0.5em;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 300;
+        &:hover {
+          background-color: #fff;
+          color: #3b90f9;
+          cursor: pointer;
+        }
       }
     }
   }
