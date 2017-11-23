@@ -2,8 +2,11 @@ import styled, { injectGlobal } from "styled-components";
 
 // Normalize the global style
 injectGlobal`
+    @import url('https://fonts.googleapis.com/css?family=Kanit');
+
     * {
         box-sizing: border-box;
+        font-family: kanit;
     }
 
     html, body {
