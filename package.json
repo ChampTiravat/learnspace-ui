@@ -1,0 +1,38 @@
+{
+  "name": "learnspace-ui",
+  "version": "1.0.0",
+  "description": "graphql client with react and NEXT.js",
+  "main": "./pages/index.js",
+  "author": "<tiravat2016@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "node ./server.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.0.0",
+    "apollo-client": "^2.0.1",
+    "apollo-link": "^1.0.0",
+    "apollo-link-context": "^1.0.0",
+    "apollo-link-http": "^1.1.0",
+    "apollo-link-ws": "^1.0.0",
+    "apollo-utilities": "^1.0.1",
+    "express": "^4.16.2",
+    "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
+    "jwt-decode": "^2.2.0",
+    "next": "^4.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-apollo": "^2.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "styled-components": "^2.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
