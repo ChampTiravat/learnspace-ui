@@ -20,8 +20,8 @@ injectGlobal`
 `;
 
 const Container = styled.div`
-  padding-top: 0;
-  padding-bottom: 2em;
+  padding-top: 1.3em;
+  padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   margin: 0 auto;
