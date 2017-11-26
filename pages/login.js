@@ -5,13 +5,14 @@ import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import LoginCard from "../core/components/LoginCard";
+import withData from "../core/withData";
 
 class LoginPage extends React.Component {
   render() {
     return (
       <UnAuthenticatedLayout>
         <Wallpaper pageName="login">
-          <NavigationBar />
+          <NavigationBar isLoggedIn={false} />
           <Container transparent>
             <LoginCard />
           </Container>
@@ -21,4 +22,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default withData(LoginPage);
