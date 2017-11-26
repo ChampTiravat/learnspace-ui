@@ -8,10 +8,8 @@ export default styled.div`
     background-color: #3a82ea;
     display: inline-block;
     padding: 0.5em 1em;
-    text-decoration: none;
-    color: inherit;
     h1 {
-      font-weight: 400;
+      font-weight: 500;
     }
   }
   h2 {
