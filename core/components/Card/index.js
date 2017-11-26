@@ -1,16 +1,38 @@
-import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
+/**
+ * @name Card
+ * @desc Card component (default width is 500px width)
+ * @prop marginTop : top margin
+ * @prop marginBottom : bottom margin
+ * @prop marginLeft : left margin
+ * @prop marginRight : right margin
+ * @prop small : display a small card (400px width)
+ * @prop large : display a large card (700px width)
+ */
 const Card = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: ${p => (p.large && "700px") || (p.small ? "400px" : "500px")};
   height: auto;
   background-color: #fff;
-  margin: 0 auto;
+  margin-top: ${p => p.marginTop || "0"};
+  margin-bottom: ${p => p.marginBottom || "0"};
+  margin-left: ${p => p.marginLeft || "auto"};
+  margin-right: ${p => p.marginRight || "auto"};
   padding: 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 7px;
 `;
+
+Card.propTypes = {
+  marginTop: PropTypes.string,
+  marginBottom: PropTypes.string,
+  marginLeft: PropTypes.string,
+  marginRight: PropTypes.string,
+  small: PropTypes.string,
+  large: PropTypes.string
+};
 
 export const Header = styled.div`
   padding: 1.2em;
