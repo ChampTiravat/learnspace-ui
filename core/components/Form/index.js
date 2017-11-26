@@ -27,6 +27,7 @@ export const Input = styled.input`
  * @desc Input label, used to display the users what information they have to provide
  */
 export const InputLabel = styled.label`
+  font-family: "Kanit";
   font-size: 1em;
   font-weight: 400;
   color: ${p => p.theme.primaryColor};

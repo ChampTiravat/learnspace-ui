@@ -38,6 +38,7 @@ export const Header = styled.div`
   padding: 1.2em;
   margin: 0 auto;
   text-align: center;
+  font-family: "Kanit";
   font-size: 1em;
   font-weight: 400;
   color: ${p => p.theme.primaryColor};

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
 import { InputField } from "../Form";
+import Button from "../Button";
 
 const submitHandler = value => {
   console.table(value);
@@ -17,7 +18,9 @@ const LoginForm = ({ handleSubmit }) => (
       component={InputField}
       type="password"
     />
-    <button>Login</button>
+    <Button fluidWidth textCenter>
+      เข้าสู่ระบบ
+    </Button>
   </form>
 );
 
