@@ -9,8 +9,9 @@ const Wallpaper = styled.div`
   margin: 0;
   with: 100%;
   height: 100vh;
-  background-image: url("/static/images/background/${p =>
-    p.pageName}-background.jpg");
+  /* background-image: url("/static/images/background/${p =>
+    p.pageName}-background.jpg"); */
+  background-color: #3a82ea;
   background-size: cover;
   background-repeat: no-repeat;
 `;
