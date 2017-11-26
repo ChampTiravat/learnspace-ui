@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 /**
  * @name Button
@@ -28,5 +29,19 @@ const Button = styled.button`
   border-radius: ${p => p.theme.borderRadius};
   background-color: ${p => p.theme.primaryColor};
 `;
+
+Button.propTypes = {
+  fluidWidth: PropTypes.bool,
+  fluidHeight: PropTypes.bool,
+  default: PropTypes.bool,
+  primary: PropTypes.bool,
+  info: PropTypes.bool,
+  success: PropTypes.bool,
+  warning: PropTypes.bool,
+  danger: PropTypes.bool,
+  textCenter: PropTypes.bool,
+  textRight: PropTypes.bool,
+  textLeft: PropTypes.bool
+};
 
 export default Button;
