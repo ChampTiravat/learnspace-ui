@@ -20,10 +20,18 @@ export default styled.div`
         border-radius: 5px;
         font-size: 1.1em;
         font-weight: 300;
+        text-decoration: none;
         &:hover {
           background-color: #fff;
           color: #3b90f9;
           cursor: pointer;
+        }
+        a {
+          color: #fff;
+          padding: 0.3em 0.5em;
+          border-radius: 5px;
+          font-size: 1.1em;
+          font-weight: 300;
         }
       }
     }
