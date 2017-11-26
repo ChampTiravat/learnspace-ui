@@ -1,6 +1,8 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
 import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+
+import { InputField } from "../Form";
 
 const submitHandler = value => {
   console.table(value);
@@ -8,17 +10,13 @@ const submitHandler = value => {
 
 const LoginForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit(submitHandler)}>
-    <div>
-      <label>Email</label>
-      <br />
-      <Field name="email" component="input" type="text" />
-    </div>
-    <div>
-      <label>Password</label>
-      <br />
-      <Field name="password" component="input" type="password" />
-    </div>
-    <br />
+    <Field name="email" label="อีเมลล์" component={InputField} type="email" />
+    <Field
+      name="password"
+      label="พาสเวิร์ด"
+      component={InputField}
+      type="password"
+    />
     <button>Login</button>
   </form>
 );
