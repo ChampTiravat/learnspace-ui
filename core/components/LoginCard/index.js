@@ -4,7 +4,7 @@ import Card, { Header, Body } from "../Card";
 import LoginForm from "../LoginForm";
 
 const LoginCard = () => (
-  <Card marginTop="5em">
+  <Card small marginTop="5em">
     <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
     <Body>
       <LoginForm />
