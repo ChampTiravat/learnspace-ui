@@ -2,14 +2,12 @@
  * @name UI
  * @desc Provide URI path of the UI
  */
-export default {
-  LANDING_PAGE: ``,
-  HOME_PAGE: `/`,
-  LOGIN_PAGE: `/login`,
-  REGISTER_PAGE: `/register`,
-  DASHBOARD_PAGE: `/dashboard`,
-  POST_PAGE: `/post`,
-  PROFILE_PAGE: `/profile`,
-  CLASSROOM_PAGE: `/classroom`,
-  CLASSROOM_CHAT_PAGE: `/classroom/chat/`
-};
+export const LANDING_PAGE = ``;
+export const HOME_PAGE = `/`;
+export const LOGIN_PAGE = `/login`;
+export const REGISTER_PAGE = `/register`;
+export const DASHBOARD_PAGE = `/dashboard`;
+export const POST_PAGE = `/post`;
+export const PROFILE_PAGE = `/profile`;
+export const CLASSROOM_PAGE = `/classroom`;
+export const CLASSROOM_CHAT_PAGE = `/classroom/chat/`;
