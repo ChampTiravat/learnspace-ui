@@ -30,8 +30,8 @@ Card.propTypes = {
   marginBottom: PropTypes.string,
   marginLeft: PropTypes.string,
   marginRight: PropTypes.string,
-  small: PropTypes.string,
-  large: PropTypes.string
+  small: PropTypes.bool,
+  large: PropTypes.bool
 };
 
 export const Header = styled.div`
