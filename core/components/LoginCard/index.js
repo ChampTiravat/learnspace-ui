@@ -2,7 +2,7 @@ import React from "react";
 import Card, { Header, Body, Footer } from "../Card";
 
 const LoginCard = () => (
-  <Card>
+  <Card marginTop="5em">
     <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
     <Body>
       If child is and tag and doesn't have a href attribute we specify it so
