@@ -11,7 +11,8 @@ const Wallpaper = styled.div`
   height: 100vh;
   background-image: url("/static/images/background/${p =>
     p.pageName}-background.jpg");
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export default Wallpaper;
