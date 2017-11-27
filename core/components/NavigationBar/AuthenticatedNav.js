@@ -7,7 +7,8 @@ import Navbar from "./Navbar";
 import NavbarContainer from "./NavbarContainer";
 import LogoTab from "./LogoTab";
 import ButtonsTab from "./ButtonsTab";
-import { Input } from "../Form";
+import Button from "../Button";
+import { Form, Input } from "../Form";
 import { HOME_PAGE } from "../../constants/endpoints/ui";
 
 /**
@@ -16,16 +17,17 @@ import { HOME_PAGE } from "../../constants/endpoints/ui";
 export default () => (
   <Navbar>
     <NavbarContainer>
-      <LogoTab>
+      <LogoTab authenticated>
         <Link href={HOME_PAGE} prefetch>
           <a>
             <h1>LEARNSPACE</h1>
           </a>
         </Link>
-        <form>
-          <Input type="text" />
-        </form>
       </LogoTab>
+      <Form>
+        <Input inline type="text" />
+        <Button textCenter>ค้นหา</Button>
+      </Form>
       <ButtonsTab>
         <ul>
           <li>
