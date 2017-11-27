@@ -103,7 +103,7 @@ const SearchBar = styled.input`
   border: none;
   border-radius: 5px;
   padding: 0.4em;
-  margin: 0 1em;
+  margin: 0 0 0 0.5em;
   font-size: 1em;
   font-family: "Arial";
   font-weight: 300;
@@ -114,7 +114,7 @@ const SearchBar = styled.input`
 const SearchTab = () => (
   <Form onSubmit={e => e.preventDefault() && alert("Searching")}>
     <SearchBar type="text" name="navbar_search" />
-    <button>ค้นหา</button>
+    <Button>ค้นหา</Button>
   </Form>
 );
 
