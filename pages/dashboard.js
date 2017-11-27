@@ -13,13 +13,6 @@ class DashboardPage extends React.Component {
         <NavigationBar isLoggedIn={true} />
         <Container>
           <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
-          <h1>dashboard</h1>
         </Container>
       </AuthenticatedLayout>
     );
