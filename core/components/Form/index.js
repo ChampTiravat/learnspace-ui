@@ -25,7 +25,7 @@ export const Input = styled.input`
   border: none;
   border-radius: ${p => p.theme.borderRadius};
   padding: 0.6em;
-  margin: 0.5em auto;
+  margin: 0 auto;
   font-size: 1em;
   font-family: "Arial";
   font-weight: 300;
