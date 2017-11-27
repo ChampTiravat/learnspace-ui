@@ -29,7 +29,7 @@ export const Input = styled.input`
   font-size: 1em;
   font-family: "Arial";
   font-weight: 300;
-  font-color: ${p => p.theme.textColor};
+  color: ${p => p.theme.textColor};
   background-color: ${p => p.theme.textInputBackgroundColor};
 `;
 
