@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default styled.div`
   display: inline-block;
   color: #fff;
-  width: 50%;
+  width: ${p => (p.authenticated ? "15%" : "50%")};
   a {
     background-color: #3a82ea;
     display: inline-block;
