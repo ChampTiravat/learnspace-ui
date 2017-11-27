@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Link from "next/link";
 
-import Button from "../Button";
 import { Form, Input } from "../Form";
 import {
   HOME_PAGE,
@@ -111,10 +110,20 @@ const SearchBar = styled.input`
   background-color: #f3f3f3;
 `;
 
+const SearchButton = styled.button`
+  background: #fff;
+  color: #3b90f9;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3em 1em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+`;
+
 const SearchTab = () => (
   <Form onSubmit={e => e.preventDefault() && alert("Searching")}>
     <SearchBar type="text" name="navbar_search" />
-    <Button>ค้นหา</Button>
+    <SearchButton>ค้นหา</SearchButton>
   </Form>
 );
 
