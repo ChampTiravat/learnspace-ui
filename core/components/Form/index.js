@@ -4,13 +4,24 @@ import { Field } from "redux-form";
 import styled from "styled-components";
 
 /**
+ * @name Form
+ * @desc Form elements container
+ */
+export const Form = styled.form`
+  display: inline;
+  padding: 0;
+  margin: 0;
+`;
+
+/**
  *  @name Input
  *  @desc Form Input
  *  @param : defalt HTML attr(s)
+ *  @param inline : display the input as an inlined element
  */
 export const Input = styled.input`
-  display: block;
-  width: 100%;
+  display: ${p => (p.inline ? "inline-block" : "block")};
+  width: ${p => (p.inline ? "auto" : "100%")};
   border: none;
   border-radius: ${p => p.theme.borderRadius};
   padding: 0.6em;
