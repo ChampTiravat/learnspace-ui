@@ -11,6 +11,17 @@ import Button from "../Button";
 import { Form, Input } from "../Form";
 import { HOME_PAGE } from "../../constants/endpoints/ui";
 
+const SearchForm = styled.form`
+  display: inline-block;
+`;
+
+const SearchPanel = () => (
+  <SearchForm>
+    <Input type="text" />
+    <Button textCenter>ค้นหา</Button>
+  </SearchForm>
+);
+
 /**
  * @desc Use this component when user is already authenticated
  */
@@ -24,10 +35,7 @@ export default () => (
           </a>
         </Link>
       </LogoTab>
-      <Form>
-        <Input inline type="text" />
-        <Button textCenter>ค้นหา</Button>
-      </Form>
+      <SearchForm />
       <ButtonsTab>
         <ul>
           <li>
