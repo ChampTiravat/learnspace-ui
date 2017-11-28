@@ -107,7 +107,7 @@ const SearchBar = styled.input`
   font-family: "Arial";
   font-weight: 300;
   color: ${p => p.theme.textColor};
-  background-color: #fff;
+  background-color: #f3f3f3;
 `;
 
 const SearchButton = styled.button`
