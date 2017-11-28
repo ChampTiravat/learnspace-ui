@@ -36,6 +36,8 @@ const ActivityPanel = styled.div`
   height: 60px;
   background-color: #fff;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 `;
 
 class DashboardPage extends React.Component {
