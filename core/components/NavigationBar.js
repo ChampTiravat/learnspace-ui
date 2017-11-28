@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Link from "next/link";
 
-import { Form, Input } from "../Form";
+import { Form, Input } from "./Form";
 import {
   HOME_PAGE,
   REGISTER_PAGE,
   LOGIN_PAGE,
   DASHBOARD_PAGE
-} from "../../constants/endpoints/ui";
+} from "../constants/endpoints/ui";
 
 const Navbar = styled.nav`
   position: fixed;

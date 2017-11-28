@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 
-import defaultTheme from "../../themes/default";
+import defaultTheme from "../themes/default";
 
 /**
  * @desc Use this Layout when user is not authorized

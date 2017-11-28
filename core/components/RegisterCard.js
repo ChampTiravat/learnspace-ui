@@ -1,7 +1,7 @@
 import React from "react";
 
-import Card, { Header, Body } from "../Card";
-import RegisterForm from "../RegisterForm";
+import Card, { Header, Body } from "./Card";
+import RegisterForm from "./RegisterForm";
 
 const RegisterCard = () => (
   <Card small marginTop="5em">

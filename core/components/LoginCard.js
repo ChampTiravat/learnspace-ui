@@ -1,7 +1,7 @@
 import React from "react";
 
-import Card, { Header, Body } from "../Card";
-import LoginForm from "../LoginForm";
+import Card, { Header, Body } from "./Card";
+import LoginForm from "./LoginForm";
 
 const LoginCard = () => (
   <Card small marginTop="5em">
