@@ -9,24 +9,13 @@ import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import ActivityPanel from "../core/components/ActivityPanel";
 import NotificationPanel from "../core/components/NotificationPanel";
+import ClassroomsList from "../core/components/ClassroomsList";
 import withData from "../core/withData";
 
 const Panel = styled.div`
   display: inline-block;
   width: ${p => p.width}%;
   height: 100%;
-`;
-
-const ClassroomProfilePic = styled.div`
-  padding: 1.5em;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #c8c8c8;
-  position: absolute;
-  margin-top: -7.5em;
-  margin-left: 34em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
 class DashboardPage extends React.Component {
@@ -77,51 +66,7 @@ class DashboardPage extends React.Component {
                 </p>
               </div>
             </Card>
-            <div
-              style={{
-                marginTop: "1.5em",
-                overflowY: "scroll",
-                height: "500px"
-              }}
-            >
-              <Card
-                large
-                marginBottom="1em"
-                padding="4em"
-                style={{ position: "relative" }}
-              >
-                <div>
-                  <h3>Introduction to AI</h3>
-                  <p>ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก</p>
-                </div>
-                <ClassroomProfilePic />
-              </Card>
-
-              <Card
-                large
-                marginBottom="1em"
-                padding="4em"
-                style={{ position: "relative" }}
-              >
-                <div>
-                  <h3>Introduction to AI</h3>
-                  <p>ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก</p>
-                </div>
-                <ClassroomProfilePic />
-              </Card>
-              <Card
-                large
-                marginBottom="1em"
-                padding="4em"
-                style={{ position: "relative" }}
-              >
-                <div>
-                  <h3>Introduction to AI</h3>
-                  <p>ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก</p>
-                </div>
-                <ClassroomProfilePic />
-              </Card>
-            </div>
+            <ClassroomsList />
           </Panel>
           <ActivityPanel />
         </Container>
