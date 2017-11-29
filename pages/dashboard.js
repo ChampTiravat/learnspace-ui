@@ -18,6 +18,30 @@ const Panel = styled.div`
   height: 100%;
 `;
 
+const PageHeadingPanel = ({ child }) => (
+  <Card fluidWidth textCenter padding="2em">
+    <div
+      style={{
+        width: "100px",
+        height: "100px",
+        backgroundColor: "#333",
+        display: "inline-block",
+        marginRight: "1em"
+      }}
+    />
+    <div
+      style={{
+        width: "500px",
+        display: "inline-block",
+        textAlign: "left"
+      }}
+    >
+      <h2>คุณสามารถดูการแจ้งเตือนและสิ่งที่เกิดขึ้นได้ที่นี่</h2>
+      <p>ศูนย์รวมการแจ้งเตือนต่างๆของห้องเรียนที่คุณได้สร้างหรือเข้าร่วม</p>
+    </div>
+  </Card>
+);
+
 class DashboardPage extends React.Component {
   render() {
     return [
@@ -43,29 +67,7 @@ class DashboardPage extends React.Component {
               marginBottom: "6em"
             }}
           >
-            <Card fluidWidth textCenter padding="2em">
-              <div
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  backgroundColor: "#333",
-                  display: "inline-block",
-                  marginRight: "1em"
-                }}
-              />
-              <div
-                style={{
-                  width: "500px",
-                  display: "inline-block",
-                  textAlign: "left"
-                }}
-              >
-                <h2>คุณสามารถดูการแจ้งเตือนและสิ่งที่เกิดขึ้นได้ที่นี่</h2>
-                <p>
-                  ศูนย์รวมการแจ้งเตือนต่างๆของห้องเรียนที่คุณได้สร้างหรือเข้าร่วม
-                </p>
-              </div>
-            </Card>
+            <PageHeadingPanel />
             <ClassroomsList />
           </Panel>
           <ActivityPanel />
