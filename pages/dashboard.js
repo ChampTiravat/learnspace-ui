@@ -8,6 +8,7 @@ import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import ActivityPanel from "../core/components/ActivityPanel";
+import NotificationPanel from "../core/components/NotificationPanel";
 import withData from "../core/withData";
 
 const Panel = styled.div`
@@ -40,29 +41,10 @@ class DashboardPage extends React.Component {
           <Panel
             width="40"
             style={{
-              backgroundColor: "",
               float: "left"
             }}
           >
-            <Card style={{ height: "60%" }}>
-              <Header>การแจ้งเตือน</Header>
-              <Body style={{ height: "580px", overflowY: "scroll" }}>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-                <Card padding="1em">dasdasdasd</Card>
-              </Body>
-            </Card>
+            <NotificationPanel />
           </Panel>
           <Panel
             width="60"
