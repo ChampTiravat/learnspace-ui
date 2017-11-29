@@ -7,8 +7,8 @@ const ClassroomProfilePic = styled.div`
   border-radius: 50%;
   background-color: #c8c8c8;
   position: absolute;
-  margin-top: -7.5em;
-  margin-left: 34em;
+  margin-top: -8em;
+  margin-left: 31em;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
