@@ -7,6 +7,7 @@ import Card, { Header, Body } from "../core/components/Card";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
+import ActivityPanel from "../core/components/ActivityPanel";
 import withData from "../core/withData";
 
 const Panel = styled.div`
@@ -25,19 +26,6 @@ const ClassroomProfilePic = styled.div`
   margin-top: -7.5em;
   margin-left: 34em;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-`;
-
-const ActivityPanel = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 60px;
-  background-color: #fff;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
 `;
 
 class DashboardPage extends React.Component {
