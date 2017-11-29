@@ -1,4 +1,4 @@
-import styled from "react";
+import styled from "styled-components";
 
 /**
  * @name ActivityPanel
