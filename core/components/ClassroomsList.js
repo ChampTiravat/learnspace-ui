@@ -36,6 +36,12 @@ const ClassroomListItemLabel = styled.div`
   }
 `;
 
+const ClassroomsListWrapper = styled.div`
+  height: ${p => p.height || "600px"};
+  margin-top: 1.5em;
+  overflow-y: scroll;
+`;
+
 const ClassroomListItem = ({ name, desc }) => (
   <ClassroomListItemWrapper>
     <ClassroomListItemCard>
@@ -48,14 +54,8 @@ const ClassroomListItem = ({ name, desc }) => (
   </ClassroomListItemWrapper>
 );
 
-const ClassroomsList = () => (
-  <div
-    style={{
-      marginTop: "1.5em",
-      overflowY: "scroll",
-      height: "500px"
-    }}
-  >
+const ClassroomsList = ({ height }) => (
+  <ClassroomsListWrapper height={height}>
     <ClassroomListItem
       name="Introduction to Artificial Inteligence"
       desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
@@ -72,7 +72,7 @@ const ClassroomsList = () => (
       name="Introduction to AI"
       desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
     />
-  </div>
+  </ClassroomsListWrapper>
 );
 
 export default ClassroomsList;

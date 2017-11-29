@@ -61,7 +61,7 @@ const DashboardPage = () => [
       </Panel>
       <Panel right width="60">
         <PageHeadingPanel />
-        <ClassroomsList />
+        <ClassroomsList height="500px" />
       </Panel>
       <ActivityPanel />
     </Container>

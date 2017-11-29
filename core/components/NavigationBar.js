@@ -8,7 +8,8 @@ import {
   HOME_PAGE,
   REGISTER_PAGE,
   LOGIN_PAGE,
-  DASHBOARD_PAGE
+  DASHBOARD_PAGE,
+  PROFILE_PAGE
 } from "../constants/endpoints/ui";
 
 const Navbar = styled.nav`
@@ -145,8 +146,8 @@ const AuthenticatedNav = () => (
       <SearchTab />
       <ButtonsTab>
         <NavbarLinksContainer>
-          <NavbarLinkButton url={HOME_PAGE} label="หน้าหลัก" />
-          <NavbarLinkButton url={HOME_PAGE} label="โปรไฟล์" />
+          <NavbarLinkButton url={DASHBOARD_PAGE} label="หน้าหลัก" />
+          <NavbarLinkButton url={PROFILE_PAGE} label="โปรไฟล์" />
           <NavbarLinkButton url={HOME_PAGE} label="ห้องเรียนของฉัน" />
           <NavbarLinkButton url={HOME_PAGE} label="การแจ้งเตือน" />
           <NavbarLinkButton url={HOME_PAGE} label="ออกจากระบบ" />
