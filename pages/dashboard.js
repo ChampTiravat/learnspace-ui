@@ -59,14 +59,7 @@ class DashboardPage extends React.Component {
           >
             <NotificationPanel />
           </Panel>
-          <Panel
-            width="60"
-            style={{
-              backgroundColor: "",
-              height: "70%",
-              marginBottom: "6em"
-            }}
-          >
+          <Panel width="60">
             <PageHeadingPanel />
             <ClassroomsList />
           </Panel>
