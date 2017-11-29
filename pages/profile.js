@@ -40,6 +40,7 @@ const ProfileInfoDetails = styled.div`
     color: #777;
     font-size: 1.1em;
     font-weight: 400;
+    margin-bottom: 0.3em;
   }
 `;
 
