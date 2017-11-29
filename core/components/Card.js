@@ -60,6 +60,10 @@ export const Footer = styled.div`
   border-bottom-left-radius: 7px;
 `;
 
+/**
+ * @param overflowY : set the CSS overflow property on Y axis
+ * @param height : custom height
+ */
 export const Body = styled.div`
   padding: 0.9em;
   margin: 0 auto;
@@ -67,6 +71,8 @@ export const Body = styled.div`
   font-size: 1em;
   font-weight: 300;
   font-color: ${({ theme }) => theme.textColor};
+  height: ${p => p.height || "auto"};
+  overflow-y: ${p => p.overflowY || "auto"};
 `;
 
 export default Card;
