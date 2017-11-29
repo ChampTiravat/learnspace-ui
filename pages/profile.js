@@ -78,7 +78,7 @@ const ProfilePage = () => [
         <ProfileInfoPanel />
       </Panel>
       <Panel right width="60">
-        <ClassroomsList />
+        <ClassroomsList height="700px" />
       </Panel>
       <ActivityPanel />
     </Container>
