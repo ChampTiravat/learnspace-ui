@@ -5,7 +5,7 @@ import styled from "styled-components";
  * @prop transparent : if this prop exist, the background will be transparent
  */
 const Container = styled.div`
-  padding-top: 3.3em;
+  padding-top: 3em;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;

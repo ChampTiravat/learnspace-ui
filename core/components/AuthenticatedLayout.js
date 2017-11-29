@@ -7,6 +7,10 @@ import defaultTheme from "../themes/default";
 /**
  * @desc Use this Layout when user is authorized
  */
-const AuthenticatedLayout = ({ children }) => <Container>{children}</Container>;
+const AuthenticatedLayout = ({ children }) => (
+  <ThemeProvider theme={defaultTheme}>
+    <Container>{children}</Container>
+  </ThemeProvider>
+);
 
 export default AuthenticatedLayout;

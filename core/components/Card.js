@@ -8,21 +8,27 @@ import PropTypes from "prop-types";
  * @prop marginBottom : bottom margin
  * @prop marginLeft : left margin
  * @prop marginRight : right margin
+ * @prop padding : Padding on every sides
  * @prop small : display a small card (400px width)
  * @prop large : display a large card (700px width)
+ * @prop fluidWidth : Expand the width to match it's parent component
+ * @prop textCenter : align text to the center
  */
 const Card = styled.div`
   width: 100%;
-  max-width: ${p => (p.large && "700px") || (p.small ? "400px" : "500px")};
+  max-width: ${p =>
+    (p.large && "700px") ||
+    (p.small ? "400px" : p.fluidWidth ? "100%" : "500px")};
   height: auto;
   background-color: #fff;
   margin-top: ${p => p.marginTop || "0"};
   margin-bottom: ${p => p.marginBottom || "0"};
   margin-left: ${p => p.marginLeft || "auto"};
   margin-right: ${p => p.marginRight || "auto"};
-  padding: 0;
+  padding: ${p => p.padding || "0"};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 7px;
+  text-align: ${p => (p.textCenter ? "center" : "left")};
 `;
 
 Card.propTypes = {

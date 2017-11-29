@@ -107,7 +107,7 @@ const SearchBar = styled.input`
   font-family: "Arial";
   font-weight: 300;
   color: ${p => p.theme.textColor};
-  background-color: #f3f3f3;
+  background-color: #fff;
 `;
 
 const SearchButton = styled.button`
@@ -122,7 +122,11 @@ const SearchButton = styled.button`
 
 const SearchTab = () => (
   <Form onSubmit={e => e.preventDefault() && alert("Searching")}>
-    <SearchBar type="text" name="navbar_search" />
+    <SearchBar
+      type="text"
+      name="navbar_search"
+      placeholder="ค้นหาทุกอย่างได้จากที่นี่"
+    />
     <SearchButton>ค้นหา</SearchButton>
   </Form>
 );
