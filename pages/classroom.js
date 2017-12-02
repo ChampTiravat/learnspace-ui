@@ -11,6 +11,7 @@ import ClassroomsList from "../core/components/ClassroomsList";
 import Panel from "../core/components/Panel";
 import ActivityPanel from "../core/components/ActivityPanel";
 import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
+import PostsList from "../core/components/PostsList";
 import withData from "../core/withData";
 
 const ClassroomHeaderPanel = Card.extend`
@@ -80,8 +81,8 @@ class ClassroomPage extends React.Component {
           <ClassroomNameHeading>{this.props.className}</ClassroomNameHeading>
           <Seperator />
           <ClassroomBreifInfo>
-            จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน
-            <span>5 </span>การสอบ <span>2</span>
+            จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
+            <span>5</span> การสอบ <span>2</span>
           </ClassroomBreifInfo>
         </ClassroomHeaderPanel>
         <Container style={{ marginTop: "10em" }}>
@@ -109,7 +110,7 @@ class ClassroomPage extends React.Component {
             </ProfileInfoPanel>
           </Panel>
           <Panel right style={{ height: "850px" }} width="60">
-            <ClassroomsList height="700px" />
+            <PostsList height="700px" />
           </Panel>
           <ActivityPanel />
         </Container>
