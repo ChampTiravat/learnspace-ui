@@ -10,58 +10,63 @@ import Container from "../core/components/Container";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Panel from "../core/components/Panel";
 import ActivityPanel from "../core/components/ActivityPanel";
+import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
+import PostsList from "../core/components/PostsList";
 import withData from "../core/withData";
 
-const ProfileInfoPanelCard = Card.extend`
-  margin: 1.5em auto 0 auto;
-  height: 650px;
-  max-width: 480px;
-`;
-
-const ProfileImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 250px;
-  background-color: #cbcbcb;
-`;
-
-const ProfileInfoContainer = styled.div`
-  padding: 3.5em 2em;
+const ClassroomHeaderPanel = Card.extend`
+  position: absolute;
+  left: 0;
+  max-width: 100%;
+  padding: 2em;
   text-align: center;
 `;
 
-const ProfileInfoDetails = styled.div`
-  margin-bottom: 2em;
-  h1 {
-    color: ${p => p.theme.primaryColor};
-    font-weight: 400;
-  }
-  h4 {
-    color: #777;
-    font-size: 1.1em;
-    font-weight: 400;
-    margin-bottom: 0.3em;
-  }
+const ClassroomNameHeading = styled.h1`
+  color: ${p => p.theme.primaryColor};
+  font-size: 1.7em;
+  font-weight: 400;
 `;
 
 const Seperator = styled.div`
-  width: 40%;
+  width: 30%;
   height: 2px;
   background-color: ${p => p.theme.primaryColor};
   margin: 1em auto;
 `;
 
-const ProfileInfoPanel = () => (
-  <ProfileInfoPanelCard>
-    <ProfileImage />
-  </ProfileInfoPanelCard>
-);
+const ClassroomCourseInfoContainer = styled.div`
+  width: 100%;
+  padding: 3em;
+`;
+
+const ClassroomCourseInfoHeading = styled.h2`
+  color: ${p => p.theme.primaryColor};
+  font-weight: 400;
+`;
+
+const CourseOutline = styled.ul``;
+
+const CourseOutlineItem = styled.li`
+  color: #777;
+  font-size: 1.1em;
+  font-weight: 300;
+`;
+
+const ClassroomBreifInfo = styled.p`
+  color: #777;
+  font-size: 1.1em;
+  font-weight: 300;
+  span {
+    color: ${p => p.theme.primaryColor};
+    font-weight: 400;
+  }
+`;
 
 class ClassroomPage extends React.Component {
-  static getInitialProps = async ({ query: { id } }) => {
-    console.log(id);
+  static async getInitialProps({ query: { id } }) {
     return { classId: id, className: "Introduction to Computer Science" };
-  };
+  }
 
   componentDidMount = () => console.log(this.props.classId);
 
@@ -72,16 +77,40 @@ class ClassroomPage extends React.Component {
       </Head>,
       <AuthenticatedLayout>
         <NavigationBar isLoggedIn={true} />
-        <Card
-          style={{ position: "absolute", left: "0", maxWidth: "100%" }}
-          padding="4.5em"
-        />
-        <Container style={{ marginTop: "7.5em" }}>
+        <ClassroomHeaderPanel>
+          <ClassroomNameHeading>{this.props.className}</ClassroomNameHeading>
+          <Seperator />
+          <ClassroomBreifInfo>
+            จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
+            <span>5</span> การสอบ <span>2</span>
+          </ClassroomBreifInfo>
+        </ClassroomHeaderPanel>
+        <Container style={{ marginTop: "10em" }}>
           <Panel left width="40">
-            <ProfileInfoPanel />
+            <ProfileInfoPanel>
+              <ClassroomCourseInfoContainer>
+                <ClassroomCourseInfoHeading>
+                  รายละเอียดหลักสูตร
+                </ClassroomCourseInfoHeading>
+                <CourseOutline>
+                  <CourseOutlineItem>Explain course outline</CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Calculus and Analytic Geometry
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Getting started with Python programming
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Data Structures and Algorithms
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>Final Project</CourseOutlineItem>
+                  <CourseOutlineItem>Examination</CourseOutlineItem>
+                </CourseOutline>
+              </ClassroomCourseInfoContainer>
+            </ProfileInfoPanel>
           </Panel>
           <Panel right style={{ height: "850px" }} width="60">
-            <ClassroomsList height="700px" />
+            <PostsList height="700px" />
           </Panel>
           <ActivityPanel />
         </Container>
