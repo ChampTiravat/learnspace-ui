@@ -62,7 +62,7 @@ class ClassroomPage extends React.Component {
           <ClassroomNameHeading>{this.props.className}</ClassroomNameHeading>
           <Seperator />
           <ClassroomBreifInfo>
-            จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
+            จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน
             <span>5 </span>การสอบ <span>2</span>
           </ClassroomBreifInfo>
         </ClassroomHeaderPanel>
