@@ -34,6 +34,24 @@ const Seperator = styled.div`
   margin: 1em auto;
 `;
 
+const ClassroomCourseInfoContainer = styled.div`
+  width: 100%;
+  padding: 3em;
+`;
+
+const ClassroomCourseInfoHeading = styled.h2`
+  color: ${p => p.theme.primaryColor};
+  font-weight: 400;
+`;
+
+const CourseOutline = styled.ul``;
+
+const CourseOutlineItem = styled.li`
+  color: #777;
+  font-size: 1.1em;
+  font-weight: 300;
+`;
+
 const ClassroomBreifInfo = styled.p`
   color: #777;
   font-size: 1.1em;
@@ -68,7 +86,27 @@ class ClassroomPage extends React.Component {
         </ClassroomHeaderPanel>
         <Container style={{ marginTop: "10em" }}>
           <Panel left width="40">
-            <ProfileInfoPanel />
+            <ProfileInfoPanel>
+              <ClassroomCourseInfoContainer>
+                <ClassroomCourseInfoHeading>
+                  รายละเอียดหลักสูตร
+                </ClassroomCourseInfoHeading>
+                <CourseOutline>
+                  <CourseOutlineItem>Explain course outline</CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Calculus and Analytic Geometry
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Getting started with Python programming
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>
+                    Data Structures and Algorithms
+                  </CourseOutlineItem>
+                  <CourseOutlineItem>Final Project</CourseOutlineItem>
+                  <CourseOutlineItem>Examination</CourseOutlineItem>
+                </CourseOutline>
+              </ClassroomCourseInfoContainer>
+            </ProfileInfoPanel>
           </Panel>
           <Panel right style={{ height: "850px" }} width="60">
             <ClassroomsList height="700px" />
