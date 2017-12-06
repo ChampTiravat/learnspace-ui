@@ -9,7 +9,6 @@ import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";
 import PostContent from "../core/components/PostContent";
 import Container from "../core/components/Container";
-import Panel from "../core/components/Panel";
 import withData from "../core/withData";
 
 const PostPage = () => [
@@ -19,12 +18,8 @@ const PostPage = () => [
   <AuthenticatedLayout>
     <NavigationBar isLoggedIn={true} />
     <Container>
-      <Panel left width="60">
-        <PostContent />
-      </Panel>
-      <Panel right style={{ position: "fixed", marginLeft: "2em" }}>
-        <PostCommentsPanel />
-      </Panel>
+      <PostContent />
+      <PostCommentsPanel />
       <ActivityPanel />
     </Container>
   </AuthenticatedLayout>
