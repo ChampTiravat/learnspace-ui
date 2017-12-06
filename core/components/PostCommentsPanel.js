@@ -9,7 +9,7 @@ const CommentPanelCard = Card.extend`
   width: 900px;
   height: 700px;
   padding-bottom: 4em;
-  margin-bottom: 6.5em;
+  margin-bottom: 2em;
 `;
 
 const CommentCreatorPic = styled.img`
