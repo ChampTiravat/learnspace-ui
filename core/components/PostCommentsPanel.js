@@ -48,41 +48,61 @@ const ReplyButton = styled.button`
 const CommentCard = Card.extend`
   box-shadow: none;
   padding: 1em 1em 1.8em 1em;
+  margin-bottom: 0.5em;
+  &:hover {
+    background: #f5f5f5;
+  }
 `;
 
-const CommentItem = ({ creator, content }) => (
+const CommentItem = ({ creator, content, isReply }) => (
   <CommentCard>
     <CommentCreatorPic />
     <CommentInfo>
       <CreatorName>{creator}</CreatorName>
       <CommentBody>{content}</CommentBody>
-      <ReplyButton>ตอบกลับ</ReplyButton>
+      {!isReply ? <ReplyButton>ตอบกลับ</ReplyButton> : null}
     </CommentInfo>
   </CommentCard>
+);
+
+const CommentWrapper = styled.div``;
+
+const SubCommentsWrapper = styled.ul`
+  list-style: none;
+`;
+
+const Comment = ({ creator, content }) => (
+  <CommentWrapper>
+    <CommentItem creator={creator} content={content} />
+    <SubCommentsWrapper>
+      <CommentItem isReply creator={creator} content={content} />
+      <CommentItem isReply creator={creator} content={content} />
+      <CommentItem isReply creator={creator} content={content} />
+    </SubCommentsWrapper>
+  </CommentWrapper>
 );
 
 const PostCommentsPanel = () => (
   <CommentPanelCard>
     <Header>ความคิดเห็น</Header>
     <Body overflowY="scroll" height="650px">
-      <CommentItem
+      <Comment
         creator="Tony Stark"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
       />
-      <CommentItem
+      <Comment
         creator="Steve Rogers"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
       />
-      <CommentItem
+      <Comment
         creator="Chris Evans"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
       />
-
-      <CommentItem
+      <Comment
         creator="Tony Stark"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
       />
-      <CommentItem
+      <Comment
         creator="Chris Evans"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
       />
