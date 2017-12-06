@@ -3,7 +3,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import Card from "../core/components/Card";
+import Card, { Header, Body } from "../core/components/Card";
 import { PrimaryButton } from "../core/components/Button";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
@@ -11,6 +11,7 @@ import ClassroomsList from "../core/components/ClassroomsList";
 import Panel from "../core/components/Panel";
 import ActivityPanel from "../core/components/ActivityPanel";
 import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
+import ChatroomModal from "../core/components/ChatroomModal";
 import PostsList from "../core/components/PostsList";
 import withData from "../core/withData";
 
@@ -75,6 +76,10 @@ class ClassroomPage extends React.Component {
       <Head>
         <title>{this.props.className} | LEARNSPACE</title>
       </Head>,
+      <ChatroomModal>
+        <Header>Some Modal</Header>
+        <Body>Some Modal</Body>
+      </ChatroomModal>,
       <AuthenticatedLayout>
         <NavigationBar isLoggedIn={true} />
         <ClassroomHeaderPanel>
