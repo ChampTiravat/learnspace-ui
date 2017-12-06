@@ -8,7 +8,7 @@ const PostWrapper = Card.extend`
   max-width: 100%;
   padding: 5em 3em;
   height: auto;
-  margin-bottom: 6em;
+  margin-bottom: 2em;
   font-size: 1.2em;
   color: #555;
   text-align: left;
@@ -52,7 +52,7 @@ class PostContent extends React.Component {
         https://jwt.io/
         <br />
         <ImageFigure
-          width="100%"
+          width="900px"
           height="400px"
           src="/static/images/background/login-background.jpg"
         />

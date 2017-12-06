@@ -5,8 +5,11 @@ import Card, { Header, Body, Footer } from "./Card";
 import { PrimaryButton } from "./Button";
 
 const CommentPanelCard = Card.extend`
-  height: 750px;
-  padding-bottom: 2em;
+  max-width: 100%;
+  width: 900px;
+  height: 700px;
+  padding-bottom: 4em;
+  margin-bottom: 6.5em;
 `;
 
 const CommentCreatorPic = styled.img`
@@ -49,6 +52,8 @@ const CommentCard = Card.extend`
   box-shadow: none;
   padding: 1em 1em 1.8em 1em;
   margin-bottom: 0.5em;
+  width: 100%;
+  max-width: 100%;
   &:hover {
     background: #f5f5f5;
   }
@@ -69,6 +74,7 @@ const CommentWrapper = styled.div``;
 
 const SubCommentsWrapper = styled.ul`
   list-style: none;
+  padding-left: 5em;
 `;
 
 const Comment = ({ creator, content }) => (
@@ -85,7 +91,7 @@ const Comment = ({ creator, content }) => (
 const PostCommentsPanel = () => (
   <CommentPanelCard>
     <Header>ความคิดเห็น</Header>
-    <Body overflowY="scroll" height="650px">
+    <Body overflowY="scroll" height="600px">
       <Comment
         creator="Tony Stark"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"
