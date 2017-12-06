@@ -3,7 +3,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import NotificationPanel from "../core/components/NotificationPanel";
+import PostCommentsPanel from "../core/components/PostCommentsPanel";
 import Card, { Header, Body } from "../core/components/Card";
 import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";
@@ -31,7 +31,7 @@ const PostPage = () => [
         </Card>
       </Panel>
       <Panel right style={{ position: "fixed", marginLeft: "2em" }}>
-        <NotificationPanel />
+        <PostCommentsPanel />
       </Panel>
       <ActivityPanel />
     </Container>
