@@ -3,11 +3,11 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import NotificationPanel from "../core/components/NotificationPanel";
 import Card, { Header, Body } from "../core/components/Card";
 import NavigationBar from "../core/components/NavigationBar";
-import Container from "../core/components/Container";
 import ActivityPanel from "../core/components/ActivityPanel";
-import NotificationPanel from "../core/components/NotificationPanel";
+import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";
 import withData from "../core/withData";
 
