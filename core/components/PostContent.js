@@ -14,6 +14,17 @@ const PostWrapper = Card.extend`
   text-align: left;
 `;
 
+const ImageFigure = styled.img`
+  display: block;
+  width: ${p => p.width || "100%"};
+  height: ${p => p.height || auto};
+  max-width: 100%;
+  background-color: #ddd;
+  margin: 2em auto;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+`;
+
 class PostContent extends React.Component {
   render() {
     return (
@@ -40,6 +51,11 @@ class PostContent extends React.Component {
         เช่น รหัสผ่าน สามารถอ่านรายละเอียดเพิ่มเติมเกี่ยวกับ JWT ได้ที่
         https://jwt.io/
         <br />
+        <ImageFigure
+          width="100%"
+          height="400px"
+          src="/static/images/background/login-background.jpg"
+        />
         <br />
         ช่วง หลัง ๆ มานี้ Token-based Authentication ถูกนำมาใช้แทน Cookie-based
         กันบ้างแล้ว ข้อดีคือเราเขียน code ครั้งเดียวสามารถใช้ได้กับทั้ง Web App
