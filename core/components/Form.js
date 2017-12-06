@@ -34,6 +34,26 @@ export const Input = styled.input`
 `;
 
 /**
+ *  @name TextArea
+ *  @desc Form Input
+ *  @param : defalt HTML attr(s)
+ *  @param inline : display the input as an inlined element
+ */
+export const TextArea = styled.textarea`
+  display: ${p => (p.inline ? "inline-block" : "block")};
+  width: ${p => (p.inline ? "auto" : "100%")};
+  border: none;
+  border-radius: ${p => p.theme.borderRadius};
+  padding: 0.6em;
+  margin: 0 auto;
+  font-size: 1em;
+  font-family: "Arial";
+  font-weight: 300;
+  color: ${p => p.theme.textColor};
+  background-color: ${p => p.theme.textInputBackgroundColor};
+`;
+
+/**
  * @name InputLabel
  * @desc Input label, used to display the users what information they have to provide
  */

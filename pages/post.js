@@ -1,0 +1,40 @@
+import React from "react";
+import Head from "next/head";
+import styled from "styled-components";
+
+import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import PostCommentsPanel from "../core/components/PostCommentsPanel";
+import CommentMessageBox from "../core/components/CommentMessageBox";
+import Card, { Header, Body } from "../core/components/Card";
+import NavigationBar from "../core/components/NavigationBar";
+import ActivityPanel from "../core/components/ActivityPanel";
+import PostContent from "../core/components/PostContent";
+import Container from "../core/components/Container";
+import withData from "../core/withData";
+
+const CommentMessageBoxCard = Card.extend`
+  max-width: 900px;
+  margin-bottom: 6em;
+`;
+
+const PostPage = () => [
+  <Head>
+    <title>Introduction to Artificial Intelligence | LEARNSPACE</title>
+  </Head>,
+  <AuthenticatedLayout>
+    <NavigationBar isLoggedIn={true} />
+    <Container>
+      <PostContent />
+      <PostCommentsPanel />
+      <CommentMessageBoxCard>
+        <Header>แสดงความคิดเห็นของคุณ</Header>
+        <Body>
+          <CommentMessageBox />
+        </Body>
+      </CommentMessageBoxCard>
+      <ActivityPanel />
+    </Container>
+  </AuthenticatedLayout>
+];
+
+export default withData(PostPage);

@@ -148,8 +148,6 @@ const AuthenticatedNav = () => (
         <NavbarLinksContainer>
           <NavbarLinkButton url={DASHBOARD_PAGE} label="หน้าหลัก" />
           <NavbarLinkButton url={PROFILE_PAGE} label="โปรไฟล์" />
-          <NavbarLinkButton url={HOME_PAGE} label="ห้องเรียนของฉัน" />
-          <NavbarLinkButton url={HOME_PAGE} label="การแจ้งเตือน" />
           <NavbarLinkButton url={HOME_PAGE} label="ออกจากระบบ" />
         </NavbarLinksContainer>
       </ButtonsTab>

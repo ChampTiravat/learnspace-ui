@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import Card from "./Card";
 
@@ -9,6 +10,7 @@ const ClassroomListItemWrapper = styled.div`
   padding-right: 2em;
   padding-left: 4em;
   text-align: center;
+  cursor: pointer;
 `;
 
 const ClassroomListItemCard = Card.extend`
@@ -43,14 +45,16 @@ const ClassroomsListWrapper = styled.div`
 `;
 
 const ClassroomListItem = ({ name, desc }) => (
-  <ClassroomListItemWrapper>
-    <ClassroomListItemCard>
-      <ClassroomListItemLabel>
-        <h3>{name}</h3>
-        <p>{desc}</p>
-      </ClassroomListItemLabel>
-    </ClassroomListItemCard>
-  </ClassroomListItemWrapper>
+  <Link href="/post" prefetch>
+    <ClassroomListItemWrapper>
+      <ClassroomListItemCard>
+        <ClassroomListItemLabel>
+          <h3>{name}</h3>
+          <p>{desc}</p>
+        </ClassroomListItemLabel>
+      </ClassroomListItemCard>
+    </ClassroomListItemWrapper>
+  </Link>
 );
 
 const PostsList = ({ height }) => (

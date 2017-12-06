@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import Card from "./Card";
 import ClassroomProfilePic from "./ClassroomProfilePic";
@@ -11,6 +12,7 @@ const ClassroomListItemWrapper = styled.div`
   padding-right: 2em;
   padding-left: 4em;
   text-align: center;
+  cursor: pointer;
 `;
 
 const ClassroomListItemCard = Card.extend`
@@ -42,16 +44,19 @@ const ClassroomsListWrapper = styled.div`
   overflow-y: scroll;
 `;
 
+// use @param 'name' to specify the URI of the classroom
 const ClassroomListItem = ({ name, desc }) => (
-  <ClassroomListItemWrapper>
-    <ClassroomListItemCard>
-      <ClassroomListItemLabel>
-        <h3>{name}</h3>
-        <p>{desc}</p>
-      </ClassroomListItemLabel>
-      <ClassroomProfilePic />
-    </ClassroomListItemCard>
-  </ClassroomListItemWrapper>
+  <Link href="/classroom" prefetch>
+    <ClassroomListItemWrapper>
+      <ClassroomListItemCard>
+        <ClassroomListItemLabel>
+          <h3>{name}</h3>
+          <p>{desc}</p>
+        </ClassroomListItemLabel>
+        <ClassroomProfilePic />
+      </ClassroomListItemCard>
+    </ClassroomListItemWrapper>
+  </Link>
 );
 
 const ClassroomsList = ({ height }) => (
