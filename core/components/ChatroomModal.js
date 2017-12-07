@@ -20,9 +20,11 @@ const NotificationOriginPic = styled.img`
   border-radius: 50%;
   background-color: #ccc;
   margin-right: 1.5em;
+  margin-top: 0.5em;
 `;
 
 const NotificationInfo = styled.div`
+  padding-left: 5em;
   h4 {
     color: ${p => p.theme.primaryColor};
     font-weight: 500;
@@ -32,15 +34,16 @@ const NotificationInfo = styled.div`
   p {
     margin: 0;
     color: #777;
+    font-family: arial;
   }
 `;
 
 const NotificationCard = Card.extend`
+  display: inline-block;
   box-shadow: none;
   padding: 1em 1em 1.8em 1em;
-  background: red;
-  max-width: 400px;
-  position: absolute;
+  max-width: 450px;
+  margin-bottom: 1em;
 `;
 
 const NotificationItem = ({ origin, content }) => (
@@ -55,19 +58,41 @@ const NotificationItem = ({ origin, content }) => (
 
 const ChatroomModal = () => (
   <ModalBackground show={true}>
-    <Card style={{ marginTop: "5em", height: "500px", maxWidth: "1000px" }}>
+    <Card
+      style={{
+        marginTop: "5em",
+        height: "600px",
+        maxWidth: "100%",
+        width: "1000px"
+      }}
+    >
       <Header>แชทรวม</Header>
-      <Body style={{ overflowY: "scroll", height: "400px" }}>
-        {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((n, i) => (
-          <NotificationItem
-            key={i}
-            origin="tiravat"
-            content="ฟหกฟหกฟหกฟหกฟหกฟหมกนาฟดรกหาดสฟมดยำดใยฟหกใดยสกฟหยกสฟหดสกฟหยดสกหฟดสยกหสดยกหสฟดยสกหยดสหยฟสดยกหสดยสกหฟยดสกหยฟดสกหยฟดสกหยดสหกด"
-          />
-        ))}
+      <Body
+        style={{ overflowY: "scroll", height: "520px", background: "#eee" }}
+      >
+        {[0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0].map(
+          (n, i) =>
+            n === 1 ? (
+              <div style={{ textAlign: "right" }}>
+                <NotificationItem
+                  key={i}
+                  origin="tiravat"
+                  content="ฟหกฟหกฟหกฟหกฟหกฟหมกนาฟดรกหาดสฟมดยำดใยฟหกใดยสกฟหยกสฟหดสกฟหยดสกหฟดสยกหสดยกหสฟดยสกหยดสหยฟสดยกหสดยสกหฟยดสกหยฟดสกหยฟดสกหยดสหกด"
+                />
+              </div>
+            ) : (
+              <div style={{ textAlign: "left" }}>
+                <NotificationItem
+                  key={i}
+                  origin="tiravat"
+                  content="ฟหกฟหกฟหกฟหกฟหกฟหมกนาฟดรกหาดสฟมดยำดใยฟหกใดยสกฟหยกสฟหดสกฟหยดสกหฟดสยกหสดยกหสฟดยสกหยดสหยฟสดยกหสดยสกหฟยดสกหยฟดสกหยฟดสกหยดสหกด"
+                />
+              </div>
+            )
+        )}
       </Body>
     </Card>
-    <Card large style={{ width: "700px", margin: "1em auto" }}>
+    <Card style={{ maxWidth: "100%", width: "1000px", margin: "1em auto" }}>
       <Body>
         <Form>
           <TextArea
