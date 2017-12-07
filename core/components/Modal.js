@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Card from "./Card";
 
-const ModalBackground = styled.div`
+export const ModalBackground = styled.div`
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -11,16 +11,9 @@ const ModalBackground = styled.div`
   left: 0;
   z-index: 88;
   background-color: rgba(0, 0, 0, 0.4);
+  display: ${p => (p.show ? "block" : "none")};
 `;
 
-const ModalPanel = Card.extend`
+export const ModalPanel = Card.extend`
   margin: 6em auto;
 `;
-
-const Modal = props => (
-  <ModalBackground>
-    <ModalPanel {...props}>{props.children}</ModalPanel>
-  </ModalBackground>
-);
-
-export default Modal;

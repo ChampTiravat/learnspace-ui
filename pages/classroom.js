@@ -76,11 +76,11 @@ class ClassroomPage extends React.Component {
       <Head>
         <title>{this.props.className} | LEARNSPACE</title>
       </Head>,
-      <ChatroomModal>
-        <Header>Some Modal</Header>
-        <Body>Some Modal</Body>
-      </ChatroomModal>,
       <AuthenticatedLayout>
+        <ChatroomModal>
+          <Header>Some Modal</Header>
+          <Body>Some Modal</Body>
+        </ChatroomModal>
         <NavigationBar isLoggedIn={true} />
         <ClassroomHeaderPanel>
           <ClassroomNameHeading>{this.props.className}</ClassroomNameHeading>
