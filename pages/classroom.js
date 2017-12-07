@@ -11,7 +11,6 @@ import ClassroomsList from "../core/components/ClassroomsList";
 import Panel from "../core/components/Panel";
 import ActivityPanel from "../core/components/ActivityPanel";
 import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
-import ChatroomModal from "../core/components/ChatroomModal";
 import PostsList from "../core/components/PostsList";
 import withData from "../core/withData";
 
@@ -77,10 +76,6 @@ class ClassroomPage extends React.Component {
         <title>{this.props.className} | LEARNSPACE</title>
       </Head>,
       <AuthenticatedLayout>
-        <ChatroomModal>
-          <Header>Some Modal</Header>
-          <Body>Some Modal</Body>
-        </ChatroomModal>
         <NavigationBar isLoggedIn={true} />
         <ClassroomHeaderPanel>
           <ClassroomNameHeading>{this.props.className}</ClassroomNameHeading>
