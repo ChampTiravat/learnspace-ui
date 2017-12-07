@@ -12,6 +12,7 @@ export const ModalBackground = styled.div`
   z-index: 88;
   background-color: rgba(0, 0, 0, 0.4);
   display: ${p => (p.show ? "block" : "none")};
+  overflow-y: auto;
 `;
 
 export const ModalPanel = Card.extend`
