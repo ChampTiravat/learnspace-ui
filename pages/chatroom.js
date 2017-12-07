@@ -9,7 +9,7 @@ import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";
-import NotificationPanel from "../core/components/NotificationPanel";
+import UserConnectionStatusPanel from "../core/components/UserConnectionStatusPanel";
 import ActivityPanel from "../core/components/ActivityPanel";
 
 const NotificationPanelCard = Card.extend`
@@ -73,7 +73,7 @@ const ChatroomModal = () => [
     <NavigationBar isLoggedIn={true} />
     <Container>
       <Panel left width="40">
-        <NotificationPanel />
+        <UserConnectionStatusPanel />
       </Panel>
       <Panel right width="60">
         <Card
