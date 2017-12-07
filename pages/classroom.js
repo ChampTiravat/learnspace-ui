@@ -1,9 +1,10 @@
 import React from "react";
+import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import Card from "../core/components/Card";
+import Card, { Header, Body } from "../core/components/Card";
 import { PrimaryButton } from "../core/components/Button";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
@@ -37,7 +38,7 @@ const Seperator = styled.div`
 
 const ClassroomCourseInfoContainer = styled.div`
   width: 100%;
-  padding: 3em;
+  padding: 3em 3em 1em 3em;
 `;
 
 const ClassroomCourseInfoHeading = styled.h2`
@@ -61,6 +62,11 @@ const ClassroomBreifInfo = styled.p`
     color: ${p => p.theme.primaryColor};
     font-weight: 400;
   }
+`;
+
+const ClassroomPanelButtonsGroup = styled.div`
+  text-align: center;
+  margin: 1em auto;
 `;
 
 class ClassroomPage extends React.Component {
@@ -107,6 +113,11 @@ class ClassroomPage extends React.Component {
                   <CourseOutlineItem>Examination</CourseOutlineItem>
                 </CourseOutline>
               </ClassroomCourseInfoContainer>
+              <ClassroomPanelButtonsGroup>
+                <Link href="/chatroom" prefetch>
+                  <PrimaryButton>ห้องแชท</PrimaryButton>
+                </Link>
+              </ClassroomPanelButtonsGroup>
             </ProfileInfoPanel>
           </Panel>
           <Panel right style={{ height: "850px" }} width="60">
