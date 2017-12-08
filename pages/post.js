@@ -5,7 +5,7 @@ import styled from "styled-components";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import PostCommentsPanel from "../core/components/PostCommentsPanel";
 import CommentMessageBox from "../core/components/CommentMessageBox";
-import { CommentMessageBox } from "../core/components/PostPage";
+import { CommentMessageBoxCard } from "../core/components/PostPage";
 import Card, { Header, Body } from "../core/components/Card";
 import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";

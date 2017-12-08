@@ -1,4 +1,4 @@
-import Card from "../core/components/Card";
+import Card from "./Card";
 
 /**
  * @desc Components related in /post(pages/post.js)
