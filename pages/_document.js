@@ -25,7 +25,7 @@ injectGlobal`
     h1,h2,h3,h4,h5,h6 { margin: 0; }
 `;
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   render() {
     const sheet = new ServerStyleSheet();
     const main = sheet.collectStyles(<Main />);
@@ -49,3 +49,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;
