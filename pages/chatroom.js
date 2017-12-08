@@ -23,7 +23,6 @@ const ChatroomModal = () => [
       <Panel right width="60">
         <ChatMessagesPanel />
       </Panel>
-      <ActivityPanel />
     </Container>
   </AuthenticatedLayout>
 ];

@@ -28,7 +28,6 @@ const DashboardPage = () => [
         <PageHeadingPanel />
         <ClassroomsList height="500px" />
       </Panel>
-      <ActivityPanel />
     </Container>
   </AuthenticatedLayout>
 ];

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
@@ -44,7 +45,14 @@ const ProfilePage = () => [
       <Panel right width="60">
         <ClassroomsList height="700px" />
       </Panel>
-      <ActivityPanel />
+      <ActivityPanel>
+        <Link>
+          <a>สร้างห้องเรียนใหม่</a>
+        </Link>
+        <Link>
+          <a>แก้ไขข้อมูลผู้ใช้งาน</a>
+        </Link>
+      </ActivityPanel>
     </Container>
   </AuthenticatedLayout>
 ];

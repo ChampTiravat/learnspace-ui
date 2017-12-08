@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
@@ -28,7 +29,14 @@ const PostPage = () => [
           <CommentMessageBox />
         </Body>
       </CommentMessageBoxCard>
-      <ActivityPanel />
+      <ActivityPanel>
+        <Link>
+          <a>แก้ไขเนื้อหาโพส</a>
+        </Link>
+        <Link>
+          <a>ลบโพส</a>
+        </Link>
+      </ActivityPanel>
     </Container>
   </AuthenticatedLayout>
 ];

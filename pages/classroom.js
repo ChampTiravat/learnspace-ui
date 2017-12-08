@@ -80,7 +80,23 @@ class ClassroomPage extends React.Component {
           <Panel right style={{ height: "850px" }} width="60">
             <PostsList height="700px" />
           </Panel>
-          <ActivityPanel />
+          <ActivityPanel>
+            <Link>
+              <a>สร้างโพสใหม่</a>
+            </Link>
+            <Link>
+              <a>เพิ่มการสอบ</a>
+            </Link>
+            <Link>
+              <a>แก้ไขข้อมูลห้องเรียน</a>
+            </Link>
+            <Link>
+              <a>สมาชิก</a>
+            </Link>
+            <Link>
+              <a>คำขอเข้าร่วม</a>
+            </Link>
+          </ActivityPanel>
         </Container>
       </AuthenticatedLayout>
     ];
