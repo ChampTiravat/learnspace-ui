@@ -25,6 +25,7 @@ import {
   ClassroomBreifInfo,
   ClassroomPanelButtonsGroup
 } from "../core/components/ClassroomPage";
+import { CLASSROOM_CHATROOM_PAGE } from "../core/constants/endpoints/ui";
 
 class ClassroomPage extends React.Component {
   static async getInitialProps({ query: { id } }) {
@@ -71,7 +72,7 @@ class ClassroomPage extends React.Component {
                 </CourseOutline>
               </ClassroomCourseInfoContainer>
               <ClassroomPanelButtonsGroup>
-                <Link href="/chatroom" prefetch>
+                <Link href={CLASSROOM_CHATROOM_PAGE} prefetch>
                   <PrimaryButton>ห้องแชท</PrimaryButton>
                 </Link>
               </ClassroomPanelButtonsGroup>
