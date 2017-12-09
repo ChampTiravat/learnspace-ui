@@ -21,6 +21,7 @@ const ActivityPanel = styled.div`
     padding: 0 1em;
     color: #777;
     cursor: pointer;
+    text-decoration: none;
     &:hover {
       color: ${p => p.theme.primaryColor};
     }
