@@ -31,5 +31,5 @@ EditProfileForm.propTypes = {
 };
 
 export default reduxForm({
-  form: "login"
+  form: "edit_profile"
 })(EditProfileForm);
