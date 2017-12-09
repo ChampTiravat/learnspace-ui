@@ -43,6 +43,12 @@ const ChatMessageCard = Card.extend`
   }
 `;
 
+/**
+ * @name ChatMessage
+ * @desc User's chatmessage item
+ * @prop creator : message's creator
+ * @prop content : message content
+ */
 const ChatMessage = ({ creator, content }) => (
   <ChatMessageCard>
     <ChatMessageCreatorPic />

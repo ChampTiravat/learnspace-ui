@@ -98,3 +98,16 @@ InputField.prototype = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 };
+
+export const TextAreaField = ({
+  input,
+  type,
+  label,
+  meta: { touched, error }
+}) => (
+  <InputGroup>
+    <InputLabel>{label}</InputLabel>
+    <TextArea {...input} />
+    {touched && error && <span className="error">{error}</span>}
+  </InputGroup>
+);

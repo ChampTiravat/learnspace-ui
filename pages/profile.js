@@ -1,44 +1,28 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
 
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import Card from "../core/components/Card";
-import { PrimaryButton } from "../core/components/Button";
-import NavigationBar from "../core/components/NavigationBar";
-import Container from "../core/components/Container";
-import ClassroomsList from "../core/components/ClassroomsList";
-import Panel from "../core/components/Panel";
-import ActivityPanel from "../core/components/ActivityPanel";
 import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
+import ClassroomsList from "../core/components/ClassroomsList";
+import NavigationBar from "../core/components/NavigationBar";
+import ActivityPanel from "../core/components/ActivityPanel";
+import { PrimaryButton } from "../core/components/Button";
+import Container from "../core/components/Container";
+import Panel from "../core/components/Panel";
 import withData from "../core/withData";
-
-const ProfileInfoContainer = styled.div`
-  padding: 3.5em 2em;
-  text-align: center;
-`;
-
-const ProfileInfoDetails = styled.div`
-  margin-bottom: 2em;
-`;
-
-const UserFullName = styled.h1`
-  color: ${p => p.theme.primaryColor};
-  font-weight: 400;
-`;
-const UserInfoItem = styled.h4`
-  color: #777;
-  font-size: 1.1em;
-  font-weight: 400;
-  margin-bottom: 0.3em;
-`;
-
-const Seperator = styled.div`
-  width: 40%;
-  height: 2px;
-  background-color: ${p => p.theme.primaryColor};
-  margin: 1em auto;
-`;
+import {
+  ProfileInfoContainer,
+  ProfileInfoDetails,
+  UserFullName,
+  UserInfoItem,
+  Seperator
+} from "../core/components/ProfilePage";
+import {
+  CREATE_CLASSROOM_PAGE,
+  EDIT_PROFILE_PAGE
+} from "../core/constants/endpoints/ui";
 
 const ProfilePage = () => [
   <Head>
@@ -65,7 +49,14 @@ const ProfilePage = () => [
       <Panel right width="60">
         <ClassroomsList height="700px" />
       </Panel>
-      <ActivityPanel />
+      <ActivityPanel>
+        <Link href={CREATE_CLASSROOM_PAGE} prefetch>
+          <a>สร้างห้องเรียนใหม่</a>
+        </Link>
+        <Link href={EDIT_PROFILE_PAGE} prefetch>
+          <a>แก้ไขข้อมูลผู้ใช้งาน</a>
+        </Link>
+      </ActivityPanel>
     </Container>
   </AuthenticatedLayout>
 ];

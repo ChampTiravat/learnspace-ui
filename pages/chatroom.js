@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Head from "next/head";
 
+import UserConnectionStatusPanel from "../core/components/UserConnectionStatusPanel";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import ChatMessagesPanel from "../core/components/ChatMessagesPanel";
+import ActivityPanel from "../core/components/ActivityPanel";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";
-import UserConnectionStatusPanel from "../core/components/UserConnectionStatusPanel";
-import ChatMessagesPanel from "../core/components/ChatMessagesPanel";
-import ActivityPanel from "../core/components/ActivityPanel";
 
 const ChatroomModal = () => [
   <Head>
@@ -23,7 +23,6 @@ const ChatroomModal = () => [
       <Panel right width="60">
         <ChatMessagesPanel />
       </Panel>
-      <ActivityPanel />
     </Container>
   </AuthenticatedLayout>
 ];
