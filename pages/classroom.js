@@ -25,7 +25,10 @@ import {
   ClassroomBreifInfo,
   ClassroomPanelButtonsGroup
 } from "../core/components/ClassroomPage";
-import { CLASSROOM_CHATROOM_PAGE } from "../core/constants/endpoints/ui";
+import {
+  EDIT_CLASSROOM_PAGE,
+  CLASSROOM_CHATROOM_PAGE
+} from "../core/constants/endpoints/ui";
 
 class ClassroomPage extends React.Component {
   static async getInitialProps({ query: { id } }) {
@@ -88,7 +91,7 @@ class ClassroomPage extends React.Component {
             <Link>
               <a>เพิ่มการสอบ</a>
             </Link>
-            <Link>
+            <Link href={EDIT_CLASSROOM_PAGE} prefetch>
               <a>แก้ไขข้อมูลห้องเรียน</a>
             </Link>
             <Link>
