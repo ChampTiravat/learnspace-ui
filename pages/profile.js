@@ -19,7 +19,10 @@ import {
   UserInfoItem,
   Seperator
 } from "../core/components/ProfilePage";
-import { EDIT_PROFILE_PAGE } from "../core/constants/endpoints/ui";
+import {
+  CREATE_CLASSROOM_PAGE,
+  EDIT_PROFILE_PAGE
+} from "../core/constants/endpoints/ui";
 
 const ProfilePage = () => [
   <Head>
@@ -47,7 +50,7 @@ const ProfilePage = () => [
         <ClassroomsList height="700px" />
       </Panel>
       <ActivityPanel>
-        <Link>
+        <Link href={CREATE_CLASSROOM_PAGE} prefetch>
           <a>สร้างห้องเรียนใหม่</a>
         </Link>
         <Link href={EDIT_PROFILE_PAGE} prefetch>
