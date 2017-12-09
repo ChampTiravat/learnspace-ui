@@ -19,6 +19,7 @@ import {
   UserInfoItem,
   Seperator
 } from "../core/components/ProfilePage";
+import { EDIT_PROFILE_PAGE } from "../core/constants/endpoints/ui";
 
 const ProfilePage = () => [
   <Head>
@@ -49,7 +50,7 @@ const ProfilePage = () => [
         <Link>
           <a>สร้างห้องเรียนใหม่</a>
         </Link>
-        <Link>
+        <Link href={EDIT_PROFILE_PAGE} prefetch>
           <a>แก้ไขข้อมูลผู้ใช้งาน</a>
         </Link>
       </ActivityPanel>
