@@ -26,6 +26,7 @@ import {
   ClassroomPanelButtonsGroup
 } from "../core/components/ClassroomPage";
 import {
+  CREATE_POST_PAGE,
   EDIT_CLASSROOM_PAGE,
   CLASSROOM_CHATROOM_PAGE
 } from "../core/constants/endpoints/ui";
@@ -85,7 +86,7 @@ class ClassroomPage extends React.Component {
             <PostsList height="700px" />
           </Panel>
           <ActivityPanel>
-            <Link>
+            <Link href={CREATE_POST_PAGE} prefetch>
               <a>สร้างโพสใหม่</a>
             </Link>
             <Link>
