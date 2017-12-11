@@ -108,4 +108,4 @@ class ClassroomPage extends React.Component {
   }
 }
 
-export default ClassroomPage;
+export default withData(ClassroomPage);

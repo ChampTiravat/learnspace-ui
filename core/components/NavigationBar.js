@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 import { Form, Input } from "./Form";
+import SearchTab from "./SearchTab";
 import {
   HOME_PAGE,
   REGISTER_PAGE,
@@ -94,41 +95,6 @@ const NavbarLinkButton = ({ url, label }) => (
       <a>{label}</a>
     </Link>
   </NavbarLink>
-);
-
-const SearchBar = styled.input`
-  display: inline;
-  width: 400px;
-  height: auto;
-  border: none;
-  border-radius: 5px;
-  padding: 0.4em 1em;
-  margin: 0 0 0 0.5em;
-  font-size: 1em;
-  font-weight: 300;
-  color: ${p => p.theme.textColor};
-  background-color: #fff;
-`;
-
-const SearchButton = styled.button`
-  background: #fff;
-  color: #3b90f9;
-  border: none;
-  border-radius: 5px;
-  padding: 0.3em 1em;
-  margin-left: 0.5em;
-  font-size: 0.9em;
-`;
-
-const SearchTab = () => (
-  <Form onSubmit={e => e.preventDefault() && alert("Searching")}>
-    <SearchBar
-      type="text"
-      name="navbar_search"
-      placeholder="ค้นหาทุกอย่างได้จากที่นี่"
-    />
-    <SearchButton>ค้นหา</SearchButton>
-  </Form>
 );
 
 /**
