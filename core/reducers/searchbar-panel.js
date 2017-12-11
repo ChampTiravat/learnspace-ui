@@ -3,6 +3,9 @@ import {
   HIDE_SEARCHBAR_PANEL
 } from "../constants/actions/searchbar-panel";
 
+/**
+ * @desc Toggle navbar seach result panel. Depending on this reducer's state
+ */
 export default (state = false, action) => {
   switch (action.type) {
     case SHOW_SEARCHBAR_PANEL:
