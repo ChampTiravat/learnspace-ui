@@ -14,6 +14,11 @@ export const DefaultButton = styled.button`
   width: ${p => (p.fluidWidth ? "100%" : "auto")};
   height: ${p => (p.fluidHeight ? "100%" : "auto")};
   padding: 0.4em 1em;
+  margin: ${p => p.margin || "0"};
+  margin-top: ${p => p.marginTop || "0"};
+  margin-bottom: ${p => p.marginBottom || "0"};
+  margin-left: ${p => p.marginLeft || "0"};
+  margin-right: ${p => p.marginRight || "0"};
   border: none;
   color: #777;
   cursor: pointer;

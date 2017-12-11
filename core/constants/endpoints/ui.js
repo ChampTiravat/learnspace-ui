@@ -8,6 +8,7 @@ export const LOGIN_PAGE = `/login`;
 export const REGISTER_PAGE = `/register`;
 export const DASHBOARD_PAGE = `/dashboard`;
 export const POST_PAGE = `/post`;
+export const CREATE_POST_PAGE = `/create_post`;
 export const PROFILE_PAGE = `/profile`;
 export const EDIT_PROFILE_PAGE = `/edit_profile`;
 export const CLASSROOM_PAGE = `/classroom`;

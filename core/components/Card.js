@@ -19,7 +19,7 @@ const Card = styled.div`
   max-width: ${p =>
     (p.large && "700px") ||
     (p.small ? "400px" : p.fluidWidth ? "100%" : "500px")};
-  height: auto;
+  height: ${p => p.height || "auto"};
   background-color: #fff;
   margin-top: ${p => p.marginTop || "0"};
   margin-bottom: ${p => p.marginBottom || "0"};

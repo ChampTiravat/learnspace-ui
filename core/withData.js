@@ -34,7 +34,7 @@ export default ComposedComponent => {
       // and extract the resulting data
       if (!process.browser) {
         const apollo = initApollo();
-        const redux = initRedux(apollo);
+        const redux = initRedux();
         // Provide the `url` prop data in case a GraphQL query uses it
         const url = { query: ctx.query, pathname: ctx.pathname };
 
@@ -47,29 +47,18 @@ export default ComposedComponent => {
               </Provider>
             </ApolloProvider>
           );
-        } catch (error) {
-          // Prevent Apollo Client GraphQL errors from crashing SSR.
-          // Handle them in components via the data.error prop:
-          // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
-        }
-        // getDataFromTree does not call componentWillUnmount
-        // head side effect therefore need to be cleared manually
+        } catch (error) {}
+
         Head.rewind();
 
         // Extract query data from the store
         const state = redux.getState();
-        // console.log(state);
 
-        // No need to include other initial Redux state because when it
-        // initialises on the client-side it'll create it again anyway
-        /*
-        serverState = {
-          apollo: {
-            // Only include the Apollo data state
-            data: state.apollo.data
-          }
-        };
-        */
+        // serverState = {
+        //   apollo: {
+        //     data: state.apollo.data
+        //   }
+        // };
       }
 
       return {
@@ -81,13 +70,11 @@ export default ComposedComponent => {
     constructor(props) {
       super(props);
       this.apollo = initApollo();
-      this.redux = initRedux(this.apollo, this.props.serverState);
+      this.redux = initRedux(this.props.serverState);
     }
 
     render() {
       return (
-        // No need to use the Redux Provider
-        // because Apollo sets up the store for us
         <ApolloProvider client={this.apollo}>
           <Provider store={this.redux}>
             <ComposedComponent {...this.props} />
