@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Card from "../Card";
 
 /**
- * @name SearchResultPanel
- * @desc Navbar search result panel showing the result as a vertical list items
+ *  @name SearchResultPanel
+ *  @desc Navbar search result panel to display the search results as a list of items
+ *  @param show : the state of navbar search result panel apearence
  */
 const SearchResultPanel = Card.extend`
   display: ${p => (p.show ? "block" : "none")};

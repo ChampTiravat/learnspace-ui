@@ -17,12 +17,12 @@ import {
 } from "../../actions/searchbar-panel-actions";
 
 /**
- * @name SearchTab
- * @desc Navbar Search Tab including Search Form, Searchbox, Form Button
- * @param isSearchPanelShowing : the state of search result panel appearence
- * @param showSearchPanel : show the search result panel
- * @param hideSearchPanel : hide the search result panel
- * @param handleSubmit : Redux-Form's helper
+ *  @name SearchResultPanel
+ *  @desc Navbar search result panel to display the search results as a list of items
+ *  @param isSearchPanelShowing : the state of navbar search result panel apearence
+ *  @param showSearchPanel : show the navbar search panel
+ *  @param hideSearchPanel : hide the navbar search panel
+ *  @param handleSubmit : Redux-Form's defualt form submition helper
  */
 class SearchTab extends React.Component {
   showSearchPanel = () => {
@@ -31,13 +31,10 @@ class SearchTab extends React.Component {
       showSearchPanel,
       hideSearchPanel
     } = this.props;
-
-    return isSearchPanelShowing ? hideSearchPanel() : showSearchPanel();
+    isSearchPanelShowing ? hideSearchPanel() : showSearchPanel();
   };
 
-  submitHandler = value => {
-    console.table(value);
-  };
+  submitHandler = value => console.table(value);
 
   render() {
     const { isSearchPanelShowing, handleSubmit } = this.props;
@@ -46,9 +43,9 @@ class SearchTab extends React.Component {
         <div style={{ display: "inline-block" }}>
           <Field
             isSearchPanelShowing={isSearchPanelShowing}
-            placeholder="ค้นหาทุกอย่างได้จากที่นี่"
             onFocus={this.showSearchPanel}
             component={SearchField}
+            placeholder="ค้นหาทุกอย่างได้จากที่นี่"
             name="navbar_search"
             type="text"
           />
@@ -62,8 +59,8 @@ class SearchTab extends React.Component {
 
 SearchTab.propTypes = {
   isSearchPanelShowing: PropTypes.bool.isRequired,
-  showSearchPanel: PropTypes.bool.isRequired,
-  hideSearchPanel: PropTypes.bool.isRequired,
+  showSearchPanel: PropTypes.func.isRequired,
+  hideSearchPanel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
 
@@ -77,6 +74,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default compose(
-  reduxForm({ form: "navbar_search" }),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps),
+  reduxForm({ form: "navbar_search" })
 )(SearchTab);

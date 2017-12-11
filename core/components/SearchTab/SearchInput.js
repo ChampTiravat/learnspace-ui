@@ -2,9 +2,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 /**
- * @name SearchInput
- * @desc Navbar Search Input
- * @prop isSearchPanelShowing : current state of navbar search result panel
+ *  @name SearchInput
+ *  @desc Navbar Search Input
+ *  @param isSearchPanelShowing : the state of navbar search result panel
  */
 const SearchInput = styled.input`
   display: inline;
