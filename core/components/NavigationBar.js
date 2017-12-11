@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 import { Form, Input } from "./Form";
-import SearchTab from "./SearchTab";
+import SearchTab from "./SearchTab/SearchTab";
 import {
   HOME_PAGE,
   REGISTER_PAGE,

@@ -9,22 +9,27 @@ import ActivityPanel from "../core/components/ActivityPanel";
 import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";
+import withData from "../core/withData";
 
-const ChatroomModal = () => [
-  <Head>
-    <title>ห้องแชท | LEARNSPACE</title>
-  </Head>,
-  <AuthenticatedLayout>
-    <NavigationBar isLoggedIn={true} />
-    <Container>
-      <Panel left width="40">
-        <UserConnectionStatusPanel />
-      </Panel>
-      <Panel right width="60">
-        <ChatMessagesPanel />
-      </Panel>
-    </Container>
-  </AuthenticatedLayout>
-];
+class ChatroomPage extends React.Component {
+  render() {
+    return [
+      <Head>
+        <title>ห้องแชท | LEARNSPACE</title>
+      </Head>,
+      <AuthenticatedLayout>
+        <NavigationBar isLoggedIn={true} />
+        <Container>
+          <Panel left width="40">
+            <UserConnectionStatusPanel />
+          </Panel>
+          <Panel right width="60">
+            <ChatMessagesPanel />
+          </Panel>
+        </Container>
+      </AuthenticatedLayout>
+    ];
+  }
+}
 
-export default ChatroomModal;
+export default withData(ChatroomPage);

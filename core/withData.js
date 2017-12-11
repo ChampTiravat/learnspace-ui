@@ -54,11 +54,11 @@ export default ComposedComponent => {
         // Extract query data from the store
         const state = redux.getState();
 
-        serverState = {
-          apollo: {
-            data: state.apollo.data
-          }
-        };
+        // serverState = {
+        //   apollo: {
+        //     data: state.apollo.data
+        //   }
+        // };
       }
 
       return {
