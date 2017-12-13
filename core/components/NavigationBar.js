@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Form, Input } from "./Form";
 import SearchTab from "./SearchTab/SearchTab";
+import { LightButton } from "./Button";
 import {
   HOME_PAGE,
   REGISTER_PAGE,
@@ -113,7 +114,9 @@ const AuthenticatedNav = () => (
         <NavbarLinksContainer>
           <NavbarLinkButton url={DASHBOARD_PAGE} label="หน้าหลัก" />
           <NavbarLinkButton url={PROFILE_PAGE} label="โปรไฟล์" />
-          <NavbarLinkButton url={HOME_PAGE} label="ออกจากระบบ" />
+          <Link href={HOME_PAGE}>
+            <LightButton>ออกจากระบบ</LightButton>
+          </Link>
         </NavbarLinksContainer>
       </ButtonsTab>
     </NavbarContainer>
