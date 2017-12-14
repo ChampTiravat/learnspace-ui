@@ -55,7 +55,7 @@ export const Header = styled.div`
 export const Footer = styled.div`
   padding: 0.9em;
   margin: 0 auto;
-  text-align: left;
+  text-align: ${p => (p.textCenter ? "center" : "left")};
   border-bottom-right-radius: 7px;
   border-bottom-left-radius: 7px;
 `;

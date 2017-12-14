@@ -5,6 +5,8 @@ import Link from "next/link";
 
 import { Form, Input } from "./Form";
 import SearchTab from "./SearchTab/SearchTab";
+import { LightButton } from "./Button";
+import { InfoBadge } from "./Badge";
 import {
   HOME_PAGE,
   REGISTER_PAGE,
@@ -72,11 +74,11 @@ const NavbarLinksContainer = styled.ul`
 
 const NavbarLink = styled.li`
   display: inline-block;
-  padding: 0.4em;
+  padding: 0.4em 0.7em;
   margin: 0;
   a {
     color: #fff;
-    padding: 0.3em 0.5em;
+    padding: 0.3em 0.7em;
     border-radius: 5px;
     font-size: 1.1em;
     font-weight: 300;
@@ -89,10 +91,13 @@ const NavbarLink = styled.li`
   }
 `;
 
-const NavbarLinkButton = ({ url, label }) => (
+const NavbarLinkButton = ({ url, label, hasBadge }) => (
   <NavbarLink>
     <Link href={url} prefetch>
-      <a>{label}</a>
+      <a>
+        {label}
+        {hasBadge ? <InfoBadge>5</InfoBadge> : null}
+      </a>
     </Link>
   </NavbarLink>
 );
@@ -113,7 +118,15 @@ const AuthenticatedNav = () => (
         <NavbarLinksContainer>
           <NavbarLinkButton url={DASHBOARD_PAGE} label="หน้าหลัก" />
           <NavbarLinkButton url={PROFILE_PAGE} label="โปรไฟล์" />
-          <NavbarLinkButton url={HOME_PAGE} label="ออกจากระบบ" />
+          <NavbarLinkButton url={DASHBOARD_PAGE} hasBadge label="แชท" />
+          <NavbarLinkButton
+            url={DASHBOARD_PAGE}
+            hasBadge
+            label="การแจ้งเตือน"
+          />
+          <Link href={HOME_PAGE}>
+            <LightButton>ออกจากระบบ</LightButton>
+          </Link>
         </NavbarLinksContainer>
       </ButtonsTab>
     </NavbarContainer>
