@@ -9,7 +9,6 @@ import ClassroomPreview from "../core/components/ClassroomPreview";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Card, { Header, Body } from "../core/components/Card";
 import ActivityPanel from "../core/components/ActivityPanel";
-import NavigationBar from "../core/components/NavigationBar";
 import { PrimaryButton } from "../core/components/Button";
 import Container from "../core/components/Container";
 import PostsList from "../core/components/PostsList";
@@ -51,7 +50,6 @@ class ClassroomPage extends React.Component {
             <title>{this.props.className} | LEARNSPACE</title>
           </Head>,
           <AuthenticatedLayout>
-            <NavigationBar isLoggedIn={true} />
             <ClassroomHeaderPanel>
               <ClassroomNameHeading>
                 {this.props.className}
@@ -72,7 +70,6 @@ class ClassroomPage extends React.Component {
             <title>{this.props.className} | LEARNSPACE</title>
           </Head>,
           <AuthenticatedLayout>
-            <NavigationBar isLoggedIn={true} />
             <ClassroomHeaderPanel>
               <ClassroomNameHeading>
                 {this.props.className}

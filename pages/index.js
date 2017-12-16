@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import UnAuthenticatedLayout from "../core/components/UnAuthenticatedLayout";
-import NavigationBar from "../core/components/NavigationBar";
+import NavigationBar from "../core/components/NavigationBar/NavigationBar";
 
 const IndexPage = () => [
   <Head>

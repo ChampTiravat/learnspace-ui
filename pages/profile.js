@@ -6,7 +6,6 @@ import styled from "styled-components";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
 import ClassroomsList from "../core/components/ClassroomsList";
-import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";
 import { PrimaryButton } from "../core/components/Button";
 import Container from "../core/components/Container";
@@ -29,7 +28,6 @@ const ProfilePage = () => [
     <title>tiravat thaisubvorakul | LEARNSPACE</title>
   </Head>,
   <AuthenticatedLayout>
-    <NavigationBar isLoggedIn={true} />
     <Container>
       <Panel left width="40">
         <ProfileInfoPanel>

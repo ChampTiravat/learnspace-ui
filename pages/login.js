@@ -1,7 +1,7 @@
 import React from "react";
 
 import UnAuthenticatedLayout from "../core/components/UnAuthenticatedLayout";
-import NavigationBar from "../core/components/NavigationBar";
+import NavigationBar from "../core/components/NavigationBar/NavigationBar";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import LoginCard from "../core/components/LoginCard";

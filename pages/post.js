@@ -12,7 +12,6 @@ import { PrimaryButton, LightButton } from "../core/components/Button";
 import PostCommentsPanel from "../core/components/PostCommentsPanel";
 import CommentMessageBox from "../core/components/CommentMessageBox";
 import Card, { Header, Body, Footer } from "../core/components/Card";
-import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";
 import PostContent from "../core/components/PostContent";
 import Container from "../core/components/Container";
@@ -30,7 +29,6 @@ const PostPage = ({ showPostRMModal }) => {
       <title>Introduction to Artificial Intelligence | LEARNSPACE</title>
     </Head>,
     <AuthenticatedLayout>
-      <NavigationBar isLoggedIn={true} />
       <ClassroomHeaderPanel>
         <ClassroomNameHeading>Fundamental of Chemistry</ClassroomNameHeading>
         <Seperator />

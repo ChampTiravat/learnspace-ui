@@ -8,7 +8,6 @@ import SearchHeaderPanel from "../core/components/SearchPage/SearchHeaderPanel";
 import UserResultGroup from "../core/components/SearchPage/UserResultGroup";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import SearchPanel from "../core/components/SearchPage/SearchPanel";
-import NavigationBar from "../core/components/NavigationBar";
 import Container from "../core/components/Container";
 import withData from "../core/withData";
 
@@ -23,7 +22,6 @@ class SearchPage extends React.Component {
         <title>ผลการค้นหา "{query}" | LEARNSPACE</title>
       </Head>,
       <AuthenticatedLayout>
-        <NavigationBar isLoggedIn={true} />
         <SearchHeaderPanel searchQuery={query} />
         <Container style={{ padding: "0", marginTop: "10em" }}>
           <SearchPanel />
