@@ -2,14 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
-import Navbar from "./Navbar";
-import NavbarContainer from "./NavbarContainer";
-import LogoTab from "./LogoTab";
-import SearchTab from "../SearchTab/SearchTab";
-import ButtonsTab from "./ButtonsTab";
 import NavbarLinksContainer from "./NavbarLinksContainer";
-import NavbarLinkButton from "./NavbarLinkButton";
+import NavbarContainer from "./NavbarContainer";
+import SearchTab from "../SearchTab/SearchTab";
 import { LightButton } from "../Button";
+import ButtonsTab from "./ButtonsTab";
+import NavbarLink from "./NavbarLink";
+import { InfoBadge } from "../Badge";
+import LogoTab from "./LogoTab";
+import Navbar from "./Navbar";
 import {
   HOME_PAGE,
   DASHBOARD_PAGE,
@@ -30,17 +31,33 @@ const AuthenticatedNav = () => (
       <SearchTab />
       <ButtonsTab>
         <NavbarLinksContainer>
-          <NavbarLinkButton url={DASHBOARD_PAGE} label="หน้าหลัก" />
-          <NavbarLinkButton url={PROFILE_PAGE} label="โปรไฟล์" />
-          <NavbarLinkButton url={DASHBOARD_PAGE} hasBadge label="แชท" />
-          <NavbarLinkButton
-            url={DASHBOARD_PAGE}
-            hasBadge
-            label="การแจ้งเตือน"
-          />
-          <Link href={HOME_PAGE}>
+          <NavbarLink>
+            <Link href={DASHBOARD_PAGE} prefetch>
+              <a>หน้าหลัก</a>
+            </Link>
+          </NavbarLink>
+          <NavbarLink>
+            <Link href={PROFILE_PAGE} prefetch>
+              <a>โปรไฟล์</a>
+            </Link>
+          </NavbarLink>
+          <NavbarLink>
+            <Link href={PROFILE_PAGE} prefetch>
+              <a>
+                แชท
+                <InfoBadge>12</InfoBadge>
+              </a>
+            </Link>
+          </NavbarLink>
+          <NavbarLink>
+            <a>
+              การแจ้งเตือน
+              <InfoBadge>5</InfoBadge>
+            </a>
+          </NavbarLink>
+          <NavbarLink>
             <LightButton>ออกจากระบบ</LightButton>
-          </Link>
+          </NavbarLink>
         </NavbarLinksContainer>
       </ButtonsTab>
     </NavbarContainer>
