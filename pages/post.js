@@ -13,6 +13,12 @@ import ActivityPanel from "../core/components/ActivityPanel";
 import PostContent from "../core/components/PostContent";
 import Container from "../core/components/Container";
 import withData from "../core/withData";
+import {
+  ClassroomHeaderPanel,
+  ClassroomNameHeading,
+  Seperator,
+  ClassroomBreifInfo
+} from "../core/components/ClassroomPage";
 
 const PostPage = () => [
   <Head>
@@ -20,7 +26,15 @@ const PostPage = () => [
   </Head>,
   <AuthenticatedLayout>
     <NavigationBar isLoggedIn={true} />
-    <Container>
+    <ClassroomHeaderPanel>
+      <ClassroomNameHeading>Fundamental of Chemistry</ClassroomNameHeading>
+      <Seperator />
+      <ClassroomBreifInfo>
+        จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
+        <span>5</span> การสอบ <span>2</span>
+      </ClassroomBreifInfo>
+    </ClassroomHeaderPanel>
+    <Container style={{ marginTop: "11.5em" }}>
       <PostContent />
       <PostCommentsPanel />
       <CommentMessageBoxCard>
