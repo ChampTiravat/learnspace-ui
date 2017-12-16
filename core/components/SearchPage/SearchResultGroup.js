@@ -13,8 +13,8 @@ const SearchResultGroup = ({ children, header }) => (
   <Card fluidWidth marginBottom="3em">
     <Header>{header}</Header>
     <Body
+      height="590px"
       style={{
-        height: "590px",
         textAlign: "center"
       }}
     >
