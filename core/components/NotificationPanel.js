@@ -37,7 +37,7 @@ const NotificationCard = Card.extend`
   padding: 1em 1em 1.8em 1em;
 `;
 
-const NotificationItem = ({ origin, content }) => (
+export const NotificationItem = ({ origin, content }) => (
   <NotificationCard>
     <NotificationOriginPic />
     <NotificationInfo>
