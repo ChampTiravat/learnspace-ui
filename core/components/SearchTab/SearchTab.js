@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Router from "next/router";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { compose } from "react-apollo";
 
+import { SEARCH_RESULT_PAGE } from "../../constants/endpoints/ui";
 import SearchResultPanel from "./SearchResultPanel";
 import Card, { Body, Footer } from "../Card";
 import { ModalBackground } from "../Modal";
@@ -34,7 +36,10 @@ class SearchTab extends React.Component {
     isSearchPanelShowing ? hideSearchPanel() : showSearchPanel();
   };
 
-  submitHandler = value => console.table(value);
+  submitHandler = value => {
+    this.props.hideSearchPanel();
+    Router.push(SEARCH_RESULT_PAGE);
+  };
 
   render() {
     const { isSearchPanelShowing, handleSubmit } = this.props;
