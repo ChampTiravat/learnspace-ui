@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { connect } from "react-redux";
 
+import { showNotificationModal } from "../../actions/notification-modal-actions";
 import NavbarLinksContainer from "./NavbarLinksContainer";
 import NavbarContainer from "./NavbarContainer";
 import SearchTab from "../SearchTab/SearchTab";
@@ -20,7 +22,7 @@ import {
 /**
  * @desc Use this component when user is authenticated
  */
-const AuthenticatedNav = () => (
+const AuthenticatedNav = ({ showNotificationModal }) => (
   <Navbar>
     <NavbarContainer>
       <LogoTab authenticated>
@@ -50,7 +52,7 @@ const AuthenticatedNav = () => (
             </Link>
           </NavbarLink>
           <NavbarLink>
-            <a>
+            <a onClick={() => showNotificationModal()}>
               การแจ้งเตือน
               <InfoBadge>5</InfoBadge>
             </a>
@@ -64,4 +66,8 @@ const AuthenticatedNav = () => (
   </Navbar>
 );
 
-export default AuthenticatedNav;
+const mapDispatchToProps = dispatch => ({
+  showNotificationModal: () => dispatch(showNotificationModal())
+});
+
+export default connect(null, mapDispatchToProps)(AuthenticatedNav);
