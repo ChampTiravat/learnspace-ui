@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card, { Header, Body } from "./Card";
+import Card, { Header, Body } from "../Card";
 import LoginForm from "./LoginForm";
 
 const LoginCard = () => (
