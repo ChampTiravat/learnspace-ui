@@ -30,7 +30,7 @@ import {
   CLASSROOM_PAGE
 } from "../core/constants/endpoints/ui";
 
-class ClassroomPage extends React.Component {
+class ClassroomJoinRequestPage extends React.Component {
   state = {
     isMember: 1
   };
@@ -87,4 +87,4 @@ class ClassroomPage extends React.Component {
   }
 }
 
-export default withData(ClassroomPage);
+export default withData(ClassroomJoinRequestPage);
