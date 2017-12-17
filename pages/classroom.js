@@ -1,7 +1,5 @@
 import React from "react";
-import Link from "next/link";
 import Head from "next/head";
-import styled from "styled-components";
 
 import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomActivityPanel";
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
