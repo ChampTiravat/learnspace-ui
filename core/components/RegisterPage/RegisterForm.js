@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
-import { InputField, InputLabel, InputGroup } from "./Form";
-import { PrimaryButton } from "./Button";
+import { InputField, InputLabel, InputGroup } from "../Form";
+import { PrimaryButton } from "../Button";
 
 const submitHandler = value => {
   console.table(value);

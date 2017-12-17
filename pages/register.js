@@ -1,7 +1,7 @@
 import React from "react";
 
 import UnAuthenticatedLayout from "../core/components/UnAuthenticatedLayout";
-import RegisterCard from "../core/components/RegisterCard";
+import RegisterCard from "../core/components/RegisterPage/RegisterCard";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import withData from "../core/withData";
