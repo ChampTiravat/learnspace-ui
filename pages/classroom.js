@@ -30,7 +30,8 @@ import {
   EDIT_CLASSROOM_PAGE,
   CLASSROOM_CHATROOM_PAGE,
   CLASSROOM_PAGE,
-  CLASSROOM_JOIN_REQUEST_PAGE
+  CLASSROOM_JOIN_REQUEST_PAGE,
+  CLASSROOM_MEMBER_PAGE
 } from "../core/constants/endpoints/ui";
 
 class ClassroomPage extends React.Component {
@@ -126,10 +127,10 @@ class ClassroomPage extends React.Component {
                 <Link href={EDIT_CLASSROOM_PAGE} prefetch>
                   <a>แก้ไขข้อมูลห้องเรียน</a>
                 </Link>
-                <Link>
+                <Link href={CLASSROOM_MEMBER_PAGE} prefetch>
                   <a>สมาชิก</a>
                 </Link>
-                <Link href={CLASSROOM_JOIN_REQUEST_PAGE}>
+                <Link href={CLASSROOM_JOIN_REQUEST_PAGE} prefetch>
                   <a>คำขอเข้าร่วม</a>
                 </Link>
               </ActivityPanel>
