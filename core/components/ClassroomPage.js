@@ -5,7 +5,6 @@ import Card from "./Card";
 /**
  * @desc Components related in /classroom(pages/classroom.js)
  */
-
 export const ClassroomHeaderPanel = Card.extend`
   position: absolute;
   left: 0;
