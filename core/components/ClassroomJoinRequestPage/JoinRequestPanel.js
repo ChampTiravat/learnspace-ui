@@ -2,38 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import FullContainerCard from "../FullContainerCard";
-import UserResult from "../SearchPage/SearchResultTypes/UserResult";
-import ResultTitle from "../SearchPage/ResultTitle";
+import UserRequestItem from "./UserRequestItem";
+import UserTitle from "./UserTitle";
 
 /**
  * @name JoinRequestPanel
- * @desc Based component for result group
- * @prop header : a text to describe or naming the group of the containing results
- * @prop children : A search results
+ * @desc A Card component, displaying a user who already sent a join request to a particular classroom
  */
 const JoinRequestPanel = () => (
-  <FullContainerCard header="ผู้ใช้งาน">
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
-    <UserResult>
-      <ResultTitle>Tony Stark</ResultTitle>
-    </UserResult>
+  <FullContainerCard marginTop="2em" marginBottom="7em" header="คำขอเข้าร่วม">
+    {[0, 0, 0, 0, 0, 0, 0, 0].map(e => (
+      <UserRequestItem key={(e += 1)}>
+        <UserTitle>Tony Stark</UserTitle>
+      </UserRequestItem>
+    ))}
   </FullContainerCard>
 );
 
