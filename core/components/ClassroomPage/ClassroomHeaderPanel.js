@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Link from "next/link";
 import styled from "styled-components";
 
+import { CLASSROOM_PAGE } from "../../constants/endpoints/ui";
 import Card from "../Card";
 
 const ClassroomHeaderCard = Card.extend`
@@ -16,6 +18,7 @@ const ClassroomNameHeading = styled.h1`
   color: ${p => p.theme.primaryColor};
   font-size: 1.7em;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 const Seperator = styled.div`
@@ -43,7 +46,9 @@ const ClassroomBreifInfo = styled.p`
  */
 const ClassroomHeaderPanel = ({ classroomID, classroomName }) => (
   <ClassroomHeaderCard>
-    <ClassroomNameHeading>{classroomName}</ClassroomNameHeading>
+    <Link href={CLASSROOM_PAGE} prefetch>
+      <ClassroomNameHeading>{classroomName}</ClassroomNameHeading>
+    </Link>
     <Seperator />
     <ClassroomBreifInfo>
       จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}

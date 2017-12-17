@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import ActivityPanel from "../ActivityPanel";
 import {
+  CLASSROOM_CHATROOM_PAGE,
   CREATE_POST_PAGE,
   EDIT_CLASSROOM_PAGE,
   CLASSROOM_MEMBER_PAGE,
@@ -15,6 +16,9 @@ import {
  */
 const ClassroomActivityPanel = () => (
   <ActivityPanel>
+    <Link href={CLASSROOM_CHATROOM_PAGE} prefetch>
+      <a>ห้องแชท</a>
+    </Link>
     <Link href={CREATE_POST_PAGE} prefetch>
       <a>สร้างโพสใหม่</a>
     </Link>

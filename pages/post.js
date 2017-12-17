@@ -16,47 +16,48 @@ import ActivityPanel from "../core/components/ActivityPanel";
 import PostContent from "../core/components/PostContent";
 import Container from "../core/components/Container";
 import withData from "../core/withData";
-import {
-  ClassroomHeaderPanel,
-  ClassroomNameHeading,
-  Seperator,
-  ClassroomBreifInfo
-} from "../core/components/ClassroomPage";
+import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
 
-const PostPage = ({ showPostRMModal }) => {
-  return [
-    <Head>
-      <title>Introduction to Artificial Intelligence | LEARNSPACE</title>
-    </Head>,
-    <AuthenticatedLayout>
-      <ClassroomHeaderPanel>
-        <ClassroomNameHeading>Fundamental of Chemistry</ClassroomNameHeading>
-        <Seperator />
-        <ClassroomBreifInfo>
-          จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
-          <span>5</span> การสอบ <span>2</span>
-        </ClassroomBreifInfo>
-      </ClassroomHeaderPanel>
-      <Container style={{ marginTop: "11.5em" }}>
-        <PostContent />
-        <PostCommentsPanel />
-        <CommentMessageBoxCard>
-          <Header>แสดงความคิดเห็นของคุณ</Header>
-          <Body>
-            <CommentMessageBox />
-          </Body>
-        </CommentMessageBoxCard>
-        <ActivityPanel>
-          <Link>
-            <a>แก้ไขเนื้อหาโพส</a>
-          </Link>
-          <a onClick={() => showPostRMModal()}>ลบโพส</a>
-        </ActivityPanel>
-        <PostRemovalConfirmationModal />
-      </Container>
-    </AuthenticatedLayout>
-  ];
-};
+class PostPage extends React.Component {
+  static async getInitialProps() {
+    return {
+      classroomID: "1",
+      classroomName: "Introduction to Computer Science"
+    };
+  }
+
+  render() {
+    const { showPostRMModal, classroomID, classroomName } = this.props;
+    return [
+      <Head>
+        <title>Introduction to Artificial Intelligence | LEARNSPACE</title>
+      </Head>,
+      <AuthenticatedLayout>
+        <ClassroomHeaderPanel
+          classroomID={classroomID}
+          classroomName={classroomName}
+        />
+        <Container marginTop="11.5em">
+          <PostContent />
+          <PostCommentsPanel />
+          <CommentMessageBoxCard>
+            <Header>แสดงความคิดเห็นของคุณ</Header>
+            <Body>
+              <CommentMessageBox />
+            </Body>
+          </CommentMessageBoxCard>
+          <ActivityPanel>
+            <Link>
+              <a>แก้ไขเนื้อหาโพส</a>
+            </Link>
+            <a onClick={() => showPostRMModal()}>ลบโพส</a>
+          </ActivityPanel>
+          <PostRemovalConfirmationModal />
+        </Container>
+      </AuthenticatedLayout>
+    ];
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   showPostRMModal: () => dispatch(showPostRemovalConfirmationModal())
