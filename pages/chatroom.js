@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Head from "next/head";
 
 import UserConnectionStatusPanel from "../core/components/UserConnectionStatusPanel";
-import NavigationBar from "../core/components/NavigationBar/NavigationBar";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import ChatMessagesPanel from "../core/components/ChatMessagesPanel";
 import ActivityPanel from "../core/components/ActivityPanel";
