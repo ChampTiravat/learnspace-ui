@@ -9,11 +9,12 @@ import PropTypes from "prop-types";
  * @param textCenter : Center the text (use this by default)
  * @param textRight : Align the text to the right
  * @param textLeft : Align the text to the left
+ * @param rounded : 50% radius so the button would looks like a circle
  */
 export const DefaultButton = styled.button`
   width: ${p => (p.fluidWidth ? "100%" : "auto")};
   height: ${p => (p.fluidHeight ? "100%" : "auto")};
-  padding: 0.4em 1em;
+  padding: ${p => (p.rounded ? "0.5em 1em" : "0.4em 1em")};
   margin: ${p => p.margin || "0"};
   margin-top: ${p => p.marginTop || "0"};
   margin-bottom: ${p => p.marginBottom || "0"};
@@ -26,7 +27,7 @@ export const DefaultButton = styled.button`
   font-weight: 300;
   text-align: ${p =>
     p.textCenter ? "center" : p.textRight ? "right" : "left"};
-  border-radius: ${p => p.theme.borderRadius};
+  border-radius: ${p => (p.rounded ? "50%" : p.theme.borderRadius)};
 `;
 
 /**
