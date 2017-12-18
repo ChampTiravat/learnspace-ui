@@ -7,7 +7,6 @@ import NotificationPanel from "../core/components/NotificationPanel";
 import { PageHeadingPanel } from "../core/components/DashboardPage";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Card, { Header, Body } from "../core/components/Card";
-import NavigationBar from "../core/components/NavigationBar";
 import ActivityPanel from "../core/components/ActivityPanel";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
@@ -19,7 +18,6 @@ const DashboardPage = () => [
     <title>หน้าหลัก | LEARNSPACE</title>
   </Head>,
   <AuthenticatedLayout>
-    <NavigationBar isLoggedIn={true} />
     <Container>
       <Panel left width="40">
         <NotificationPanel />

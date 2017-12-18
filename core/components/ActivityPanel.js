@@ -9,7 +9,7 @@ const ActivityPanel = styled.div`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
+  width: 100%;
   padding: 1em 1em;
   background-color: #fff;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);

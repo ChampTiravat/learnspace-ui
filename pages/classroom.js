@@ -1,139 +1,90 @@
 import React from "react";
-import Link from "next/link";
 import Head from "next/head";
-import styled from "styled-components";
 
+import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomActivityPanel";
+import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
+import ClassroomInfoPanel from "../core/components/ClassroomPage/ClassroomInfoPanel";
+import ClassroomPreview from "../core/components/ClassroomPage/ClassroomPreview";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import ProfileInfoPanel from "../core/components/ProfileInfoPanel";
-import ClassroomPreview from "../core/components/ClassroomPreview";
 import ClassroomsList from "../core/components/ClassroomsList";
-import Card, { Header, Body } from "../core/components/Card";
-import ActivityPanel from "../core/components/ActivityPanel";
-import NavigationBar from "../core/components/NavigationBar";
-import { PrimaryButton } from "../core/components/Button";
 import Container from "../core/components/Container";
 import PostsList from "../core/components/PostsList";
 import Panel from "../core/components/Panel";
 import withData from "../core/withData";
-import {
-  ClassroomHeaderPanel,
-  ClassroomNameHeading,
-  Seperator,
-  ClassroomCourseInfoContainer,
-  ClassroomCourseInfoHeading,
-  CourseOutline,
-  CourseOutlineItem,
-  ClassroomBreifInfo,
-  ClassroomPanelButtonsGroup
-} from "../core/components/ClassroomPage";
-import {
-  CREATE_POST_PAGE,
-  EDIT_CLASSROOM_PAGE,
-  CLASSROOM_CHATROOM_PAGE
-} from "../core/constants/endpoints/ui";
 
 class ClassroomPage extends React.Component {
-  state = {
-    isMember: true
-  };
-
   static async getInitialProps({ query: { id } }) {
-    return { classId: id, className: "Introduction to Computer Science" };
+    return {
+      isMember: 1,
+      classroomID: id,
+      classroomName: "Introduction to Computer Science",
+      subject: "วิทยาการคอมพิวเตอร์เบื้องต้น",
+      instructor: "Alan Turing",
+      description: `แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
+        แพรหลายอยู ห  ลายสิบป สสารทั้งหลายประกอบดวยอนุภาคที่เล็กที่สุด
+        จนกระทั่งตอมา
+        วิทยาศาสตรไดเจริญกาวหนาขึ้นและเกิดทฤษฎีอะตอมขึ้นมาในป ค.ศ.1808
+        จากแนวความคิด ของจอหน ดาลตัน ผูเสนอจุดเริ่มตนของเคมียุคใหม
+        สมมติฐานเกี ย ่ วกับธรรมชาติของสสารท ดาลตัน ไดเสนอคือแบบจําลองอะตอม
+        เปนที่ยอมรับและสนับสนุนจากนักวิทยาศาสตรในสมัย นั้น
+        โดยทฤษฎีอะตอมของดาลตันไดกลาวไววา 1. สสารทุกชนิดประกอบดวยอะตอม
+        ซึ่งเปนหนวยที่เล็กที่สุด ไมสามารถ แบงแยก ไมอาจสรางขึ้นหรือทําลายได
+        2. ธาตุประกอบดวยอนุภาคที เ ่ รียกวาอะตอม อะตอมของธาตุชนิดเดียวกันม
+        ลักษณะเหมือนกัน คือ มีมวล ขนาด และสมบัติทางเคมีเหมือนกัน
+        และแตกตางจากอะตอม ของธาตุชนิดอื่น 3.
+        สารประกอบเกิดจากการรวมตัวของอะตอมของธาตุตั้งแต 2 ชนิดขึ้นไป มา
+        รวมตัวกันดวยสัดสวนอะตอมที่คงที่และเปนเลขจํานวนเต็มหรือเศษสวนอยางงาย
+        4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
+        เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม`
+    };
   }
 
-  componentDidMount = () => console.log(this.props.classId);
-
   render() {
-    const { isMember } = this.state;
+    const {
+      isMember,
+      classroomName,
+      classroomID,
+      subject,
+      description,
+      instructor
+    } = this.props;
     return !isMember
       ? [
           <Head>
-            <title>{this.props.className} | LEARNSPACE</title>
+            <title>{classroomName} | LEARNSPACE</title>
           </Head>,
           <AuthenticatedLayout>
-            <NavigationBar isLoggedIn={true} />
-            <ClassroomHeaderPanel>
-              <ClassroomNameHeading>
-                {this.props.className}
-              </ClassroomNameHeading>
-              <Seperator />
-              <ClassroomBreifInfo>
-                จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
-                <span>5</span> การสอบ <span>2</span>
-              </ClassroomBreifInfo>
-            </ClassroomHeaderPanel>
-            <Container style={{ marginTop: "10em" }}>
-              <ClassroomPreview />
+            <ClassroomHeaderPanel
+              classroomID={classroomID}
+              classroomName={classroomName}
+            />
+            <Container marginTop="10em">
+              <ClassroomPreview
+                classroomID={classroomID}
+                subject={subject}
+                instructor={instructor}
+                description={description}
+              />
             </Container>
           </AuthenticatedLayout>
         ]
       : [
           <Head>
-            <title>{this.props.className} | LEARNSPACE</title>
+            <title>{classroomName} | LEARNSPACE</title>
           </Head>,
           <AuthenticatedLayout>
-            <NavigationBar isLoggedIn={true} />
-            <ClassroomHeaderPanel>
-              <ClassroomNameHeading>
-                {this.props.className}
-              </ClassroomNameHeading>
-              <Seperator />
-              <ClassroomBreifInfo>
-                จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
-                <span>5</span> การสอบ <span>2</span>
-              </ClassroomBreifInfo>
-            </ClassroomHeaderPanel>
-            <Container style={{ marginTop: "10em" }}>
+            <ClassroomHeaderPanel
+              classroomID={classroomID}
+              classroomName={classroomName}
+            />
+            <Container marginTop="10em">
               <Panel left width="40">
-                <ProfileInfoPanel>
-                  <ClassroomCourseInfoContainer>
-                    <ClassroomCourseInfoHeading>
-                      รายละเอียดหลักสูตร
-                    </ClassroomCourseInfoHeading>
-                    <CourseOutline>
-                      <CourseOutlineItem>
-                        Explain course outline
-                      </CourseOutlineItem>
-                      <CourseOutlineItem>
-                        Calculus and Analytic Geometry
-                      </CourseOutlineItem>
-                      <CourseOutlineItem>
-                        Getting started with Python programming
-                      </CourseOutlineItem>
-                      <CourseOutlineItem>
-                        Data Structures and Algorithms
-                      </CourseOutlineItem>
-                      <CourseOutlineItem>Final Project</CourseOutlineItem>
-                      <CourseOutlineItem>Examination</CourseOutlineItem>
-                    </CourseOutline>
-                  </ClassroomCourseInfoContainer>
-                  <ClassroomPanelButtonsGroup>
-                    <Link href={CLASSROOM_CHATROOM_PAGE} prefetch>
-                      <PrimaryButton>ห้องแชท</PrimaryButton>
-                    </Link>
-                  </ClassroomPanelButtonsGroup>
-                </ProfileInfoPanel>
+                <ClassroomInfoPanel />
               </Panel>
-              <Panel right style={{ height: "850px" }} width="60">
+              <Panel right height="850px" width="60">
                 <PostsList height="700px" />
               </Panel>
-              <ActivityPanel>
-                <Link href={CREATE_POST_PAGE} prefetch>
-                  <a>สร้างโพสใหม่</a>
-                </Link>
-                <Link>
-                  <a>เพิ่มการสอบ</a>
-                </Link>
-                <Link href={EDIT_CLASSROOM_PAGE} prefetch>
-                  <a>แก้ไขข้อมูลห้องเรียน</a>
-                </Link>
-                <Link>
-                  <a>สมาชิก</a>
-                </Link>
-                <Link>
-                  <a>คำขอเข้าร่วม</a>
-                </Link>
-              </ActivityPanel>
+              <ClassroomActivityPanel />
             </Container>
           </AuthenticatedLayout>
         ];

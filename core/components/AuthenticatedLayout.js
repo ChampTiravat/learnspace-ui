@@ -1,15 +1,20 @@
 import styled, { ThemeProvider } from "styled-components";
 
+import NotificationModal from "./NotificationModal";
 import defaultTheme from "../themes/default";
-import NavigationBar from "./NavigationBar";
 import Container from "./Container";
+import AuthenticatedNav from "./NavigationBar/AuthenticatedNav";
 
 /**
  * @desc Use this Layout when user is authorized
  */
 const AuthenticatedLayout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
-    <Container>{children}</Container>
+    <Container>
+      <AuthenticatedNav />
+      <NotificationModal />
+      {children}
+    </Container>
   </ThemeProvider>
 );
 
