@@ -1,7 +1,7 @@
 import React from "react";
 
-import { SuccessButton, DangerButton } from "../../Button";
-import Card, { Body, Footer } from "../../Card";
+import { SuccessButton, DangerButton } from "../../../Button";
+import Card, { Body, Footer } from "../../../Card";
 
 /**
  * @name Table

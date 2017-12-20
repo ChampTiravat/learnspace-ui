@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import { LightButton, SuccessButton, DangerButton } from "../../Button";
-import Card, { Body, Footer } from "../../Card";
+import { LightButton, SuccessButton, DangerButton } from "../../../Button";
+import Card, { Body, Footer } from "../../../Card";
 
 /**
- * @name Image
- * @desc Display a normal image
+ * @name SlideShow
+ * @desc Display a set of images as a slideshow with a specific timing
  */
-const Image = () => (
+const SlideShow = () => (
   <Card fluidWidth marginBottom="2em">
     <Body>
       <div
@@ -31,4 +31,4 @@ const Image = () => (
   </Card>
 );
 
-export default Image;
+export default SlideShow;

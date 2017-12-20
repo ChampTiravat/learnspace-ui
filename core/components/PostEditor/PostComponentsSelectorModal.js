@@ -8,6 +8,8 @@ import Card, { Header, Body, Footer } from "../Card";
 import PostComponentItem from "./PostComponentItem";
 import { DangerButton } from "../Button";
 
+import { showAddPostComponentModal } from "../../actions/post-editor-actions";
+
 /**
  * @name PostComponentsSelectorModal
  * @desc Showing a modal displaying post's components
@@ -18,22 +20,41 @@ class PostComponentsSelectorModal extends React.Component {
   render() {
     const {
       isPostComponentsSelectorModalShowing,
-      hideThisPostComponentsSelectorModal
+      hideThisPostComponentsSelectorModal,
+      showAddPostComponentModal
     } = this.props;
     return (
       <ModalBackground show={isPostComponentsSelectorModalShowing}>
         <ModalPanel large>
           <Header>เลือกส่วนประกอบที่ต้องการ</Header>
           <Body height="470px" style={{ textAlign: "center" }}>
-            <PostComponentItem>หัวข้อเรื่อง</PostComponentItem>
-            <PostComponentItem>หัวข้อย่อย</PostComponentItem>
-            <PostComponentItem>ย่อหน้า</PostComponentItem>
-            <PostComponentItem>รุปภาพ</PostComponentItem>
-            <PostComponentItem>วิดีโอ</PostComponentItem>
-            <PostComponentItem>แผนที่</PostComponentItem>
-            <PostComponentItem>ตาราง</PostComponentItem>
-            <PostComponentItem>สไลด์รูปภาพ</PostComponentItem>
-            <PostComponentItem>ไฟล์แนบ</PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              หัวข้อเรื่อง
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              หัวข้อย่อย
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              ย่อหน้า
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              รุปภาพ
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              วิดีโอ
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              แผนที่
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              ตาราง
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              สไลด์รูปภาพ
+            </PostComponentItem>
+            <PostComponentItem onClick={showAddPostComponentModal}>
+              ไฟล์แนบ
+            </PostComponentItem>
           </Body>
           <Footer>
             <DangerButton
@@ -51,7 +72,8 @@ class PostComponentsSelectorModal extends React.Component {
 
 PostComponentsSelectorModal.propTypes = {
   isPostComponentsSelectorModalShowing: PropTypes.bool.isRequired,
-  hideThisPostComponentsSelectorModal: PropTypes.func.isRequired
+  hideThisPostComponentsSelectorModal: PropTypes.func.isRequired,
+  showAddPostComponentModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -61,7 +83,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   hideThisPostComponentsSelectorModal: () =>
-    dispatch(hidePostComponentsSelectorModal())
+    dispatch(hidePostComponentsSelectorModal()),
+  showAddPostComponentModal: () => dispatch(showAddPostComponentModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

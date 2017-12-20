@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostComponentSelectorModal from "./PostComponentsSelectorModal";
+import AddPostComponentModal from "./AddPostComponentModal";
 import PostContentEditor from "./PostContentEditor";
 
 /**
@@ -10,7 +11,11 @@ import PostContentEditor from "./PostContentEditor";
  */
 class PostEditor extends React.Component {
   render() {
-    return [<PostComponentSelectorModal />, <PostContentEditor />];
+    return [
+      <AddPostComponentModal />,
+      <PostComponentSelectorModal />,
+      <PostContentEditor />
+    ];
   }
 }
 

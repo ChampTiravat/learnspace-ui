@@ -15,6 +15,10 @@ const EmptyFieldWrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 200ms ease-in;
+  &:hover {
+    border: 2px solid ${p => p.theme.PRIMARY_COLOR};
+  }
   h3 {
     color: ${p => p.theme.PRIMARY_COLOR};
     font-weight: 400;

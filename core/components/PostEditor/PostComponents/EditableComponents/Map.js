@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { SuccessButton, DangerButton } from "../../Button";
-import Card, { Body, Footer } from "../../Card";
+import { SuccessButton, DangerButton } from "../../../Button";
+import Card, { Body, Footer } from "../../../Card";
 
 /**
  * @name Map
