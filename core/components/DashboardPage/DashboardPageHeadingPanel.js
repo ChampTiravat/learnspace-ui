@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Card from "./Card";
-
-/**
- * @desc Components related in /dashboard(pages/dashboard.js)
- */
+import Card from "../Card";
 
 const DashboardPageHeading = styled.div`
   width: 550px;
@@ -33,7 +29,11 @@ const DashboardPageHeadingIcon = styled.img`
   width: 110px;
 `;
 
-export const PageHeadingPanel = ({ child }) => (
+/**
+ * @name DashboardPageHeadingPanel
+ * @desc Display/remind users about something or introducing new feature(s)
+ */
+const DashboardPageHeadingPanel = ({ child }) => (
   <Card fluidWidth textCenter padding="1.5em 1em">
     <DashboardPageHeadingIcon src="/static/images/mascots/charcter.svg" />
     <DashboardPageHeading>
@@ -42,3 +42,5 @@ export const PageHeadingPanel = ({ child }) => (
     </DashboardPageHeading>
   </Card>
 );
+
+export default DashboardPageHeadingPanel;

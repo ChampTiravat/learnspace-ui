@@ -2,9 +2,9 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 
+import DashboardPageHeadingPanel from "../core/components/DashboardPage/DashboardPageHeadingPanel";
 import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import NotificationPanel from "../core/components/NotificationPanel";
-import { PageHeadingPanel } from "../core/components/DashboardPage";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Card, { Header, Body } from "../core/components/Card";
 import ActivityPanel from "../core/components/ActivityPanel";
@@ -23,7 +23,7 @@ const DashboardPage = () => [
         <NotificationPanel />
       </Panel>
       <Panel right width="60">
-        <PageHeadingPanel />
+        <DashboardPageHeadingPanel />
         <ClassroomsList height="500px" />
       </Panel>
     </Container>
