@@ -1,15 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import Head from "next/head";
 import Router from "next/router";
 
+import UserConnectionStatusPanel from "../core/components/ChatroomPage/UserConnectionStatusPanel";
 import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomActivityPanel";
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
-import UserConnectionStatusPanel from "../core/components/UserConnectionStatusPanel";
+import ChatMessagesPanel from "../core/components/ChatroomPage/ChatMessagesPanel";
 import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
-import ChatMessagesPanel from "../core/components/ChatMessagesPanel";
 import { CLASSROOM_PAGE } from "../core/constants/endpoints/ui";
-import ActivityPanel from "../core/components/ActivityPanel";
 import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";
 import withData from "../core/withData";
@@ -29,7 +27,7 @@ class ChatroomPage extends React.Component {
       ? Router.push(CLASSROOM_PAGE)
       : [
           <Head>
-            <title>ห้องแชท | LEARNSPACE</title>
+            <title>ห้องแชท - {classroomName} | LEARNSPACE</title>
           </Head>,
           <AuthenticatedLayout>
             <ClassroomHeaderPanel

@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Card, { Header, Body, Footer } from "./Card";
+import Card from "../Card";
 
 const ChatMessageCreatorPic = styled.img`
   display: inline-block;
@@ -58,5 +59,10 @@ const ChatMessage = ({ creator, content }) => (
     </ChatMessageInfo>
   </ChatMessageCard>
 );
+
+ChatMessage.propTypes = {
+  creator: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
+};
 
 export default ChatMessage;

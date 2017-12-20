@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Card, { Header, Body, Footer } from "../Card";
+import { PrimaryButton } from "../Button";
+import { Form, TextArea } from "../Form";
 import ChatMessage from "./ChatMessage";
-import Card, { Header, Body, Footer } from "./Card";
-import { Form, TextArea } from "./Form";
-import { PrimaryButton } from "./Button";
 
 const ChatMessagesPanelWrapper = Card.extend`
   height: auto;
@@ -16,6 +17,14 @@ const MessageWrapper = styled.div`
   text-align: ${p => (p.isMine ? "right" : "left")};
 `;
 
+/**
+ * @name ChatMessageIndicator
+ * @desc Determine wether to intent the message to the left or the right depending on which message is belong the the current user or not
+ * @prop creator : Owner of the particular message
+ * @prop content : Chat message body
+ * @prop isBelongsToCurrentUser : Does this message belong the the current user?
+ * @prop id : Chatmessage ID
+ */
 const ChatMessageIndicator = ({
   creator,
   content,
@@ -32,6 +41,17 @@ const ChatMessageIndicator = ({
     </MessageWrapper>
   );
 
+ChatMessageIndicator.propTypes = {
+  creator: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  isBelongsToCurrentUser: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired
+};
+
+/**
+ * @name ChatMessagesPanel
+ * @desc Display chat messages and a form to send a new message
+ */
 const ChatMessagesPanel = () => (
   <ChatMessagesPanelWrapper>
     <Header>ห้องแชท</Header>
@@ -41,6 +61,8 @@ const ChatMessagesPanel = () => (
           creator="tiravat"
           content="ฟหกฟหกฟหกฟหกฟหกฟหมกนาฟดรกหาดสฟมดยำดใยฟหกใดยสกฟฟดสกหยดสหกด"
           isBelongsToCurrentUser={n}
+          id={i}
+          key={i}
         />
       ))}
     </Body>
