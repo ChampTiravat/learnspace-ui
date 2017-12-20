@@ -10,7 +10,7 @@ import PostContentEditor from "./PostContentEditor";
  */
 class PostEditor extends React.Component {
   render() {
-    return [<PostComponentSelectorModal show={true} />, <PostContentEditor />];
+    return [<PostComponentSelectorModal />, <PostContentEditor />];
   }
 }
 
