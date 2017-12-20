@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 
 import PostRemovalConfirmationModal from "../core/components/PostPage/PostRemovalConfirmationModal";
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import CommentMessageBox from "../core/components/PostPage/CommentMessageBox";
 import PostActivityPanel from "../core/components/PostPage/PostActivityPanel";
 import PostCommentsPanel from "../core/components/PostPage/PostCommentsPanel";
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import PostContent from "../core/components/PostContent";
 import Container from "../core/components/Container";
 import withData from "../core/withData";

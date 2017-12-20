@@ -1,9 +1,10 @@
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
-import NotificationModal from "./NotificationModal";
-import defaultTheme from "../themes/default";
-import Container from "./Container";
-import AuthenticatedNav from "./NavigationBar/AuthenticatedNav";
+import AuthenticatedNav from "../NavigationBar/AuthenticatedNav";
+import NotificationModal from "../NotificationModal";
+import defaultTheme from "../../themes/default";
+import Container from "../Container";
 
 /**
  * @desc Use this Layout when user is authorized

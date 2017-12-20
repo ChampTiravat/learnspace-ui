@@ -5,7 +5,7 @@ import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomAc
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
 import ClassroomInfoPanel from "../core/components/ClassroomPage/ClassroomInfoPanel";
 import ClassroomPreview from "../core/components/ClassroomPage/ClassroomPreview";
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Container from "../core/components/Container";
 import PostsList from "../core/components/PostsList";

@@ -2,8 +2,8 @@ import React from "react";
 import Head from "next/head";
 
 import ProfileActivityPanel from "../core/components/ProfilePage/ProfileActivityPanel";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import ProfileInfoPanel from "../core/components/ProfilePage/ProfileInfoPanel";
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import ClassroomsList from "../core/components/ClassroomsList";
 import Container from "../core/components/Container";
 import Panel from "../core/components/Panel";

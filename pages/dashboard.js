@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import NotificationPanel from "../core/components/NotificationPanel";
 import { PageHeadingPanel } from "../core/components/DashboardPage";
 import ClassroomsList from "../core/components/ClassroomsList";
