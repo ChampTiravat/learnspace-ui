@@ -6,7 +6,7 @@ import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import withData from "../core/withData";
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
   render() {
     return (
       <UnAuthenticatedLayout>

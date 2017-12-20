@@ -10,7 +10,7 @@ import { CLASSROOM_PAGE } from "../core/constants/endpoints/ui";
 import Container from "../core/components/Container";
 import withData from "../core/withData";
 
-class EditProfilePage extends React.Component {
+class EditClassroomPage extends React.Component {
   static async getInitialProps() {
     return {
       isMember: 1,

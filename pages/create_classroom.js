@@ -6,7 +6,7 @@ import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";
 import withData from "../core/withData";
 
-const EditProfilePage = () => (
+const CreateClassroomPage = () => (
   <AuthenticatedLayout>
     <Container transparent>
       <CreateClassroomCard />
