@@ -41,4 +41,4 @@ class EditClassroomPage extends React.Component {
   }
 }
 
-export default withData(EditProfilePage);
+export default withData(EditClassroomPage);
