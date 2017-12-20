@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import SetTitleCard from "./PostComponents/EditableComponents/SetPostTitleCard";
-// import SlideShow from "./PostComponents/EditableComponents/SlideShow";
-// import Heading from "./PostComponents/EditableComponents/Heading";
-// import Table from "./PostComponents/EditableComponents/Table";
-// import Image from "./PostComponents/EditableComponents/Image";
-// import BasedComponent from "./PostComponents/BasedComponent";
-// import Map from "./PostComponents/EditableComponents/Map";
+import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import EmptyField from "./PostComponents/EmptyField";
 import Card from "../Card";
 import {
+  SUB_HEADING,
   SLIDE_SHOW,
+  ATTACHMENT,
   PARAGRAPH,
   HEADING,
   TABLE,
@@ -23,30 +19,12 @@ import {
 class PostContentEditor extends React.Component {
   state = {
     receipe: [
-      /*
-        {
-                   id:  string,
-                 name:  string,
-              content:  string,
-            isEditing:  bool
-        }
-      */
+      /*{id: string, name: string, content: string, isEditing: bool}*/
     ]
   };
 
   renderContentFromReceipe = () => {
     const { receipe } = this.state;
-
-    const pairComponents = {
-      [SLIDE_SHOW]: {},
-      [PARAGRAPH]: {},
-      [HEADING]: {},
-      [TABLE]: {},
-      [IMAGE]: {},
-      [VIDEO]: {},
-      [MAP]: {}
-    };
-
     return receipe.length > 0
       ? receipe.map((component, i) => {
           if (component === null) {

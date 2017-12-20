@@ -27,9 +27,12 @@ export const hidePostComponentsSelectorModal = () => ({
  * @desc return TRUE, in order to show the add post component modal
  * @return object
  */
-export const showAddPostComponentModal = () => ({
+export const showAddPostComponentModal = type => ({
   type: SHOW_ADD_POST_COMPONENT_MODAL,
-  payload: true
+  payload: {
+    isShowing: true,
+    type
+  }
 });
 
 /**

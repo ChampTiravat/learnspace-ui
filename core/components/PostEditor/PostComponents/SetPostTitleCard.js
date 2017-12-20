@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Form, InputGroup, Input, InputLabel } from "../../../Form";
-import Card from "../../../Card";
+import { Form, InputGroup, Input, InputLabel } from "../../Form";
+import Card from "../../Card";
 
 /**
  * @name SetPostTitleCard

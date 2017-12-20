@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { hideAddPostComponentModal } from "../../actions/post-editor-actions";
 import SlideShow from "./PostComponents/EditableComponents/SlideShow";
+import { SuccessButton, DangerButton, LightButton } from "../Button";
 import Heading from "./PostComponents/EditableComponents/Heading";
-import Table from "./PostComponents/EditableComponents/Table";
 import Image from "./PostComponents/EditableComponents/Image";
-import BasedComponent from "./PostComponents/BasedComponent";
+import Table from "./PostComponents/EditableComponents/Table";
 import Map from "./PostComponents/EditableComponents/Map";
-import { SuccessButton, DangerButton } from "../Button";
 import { ModalBackground, ModalPanel } from "../Modal";
-import { Header, Body, Footer } from "../Card";
+import Card, { Header, Body, Footer } from "../Card";
+import { Form, Input, InputLabel } from "../Form";
 import {
+  SUB_HEADING,
   SLIDE_SHOW,
+  ATTACHMENT,
   PARAGRAPH,
   HEADING,
   TABLE,
@@ -21,15 +24,13 @@ import {
   MAP
 } from "../../constants/post-content/components";
 
-import { hideAddPostComponentModal } from "../../actions/post-editor-actions";
-
 class AddPostComponentModal extends React.Component {
   renderComponentToAdd = type => {
     switch (type) {
       case SLIDE_SHOW:
         return <SlideShow />;
       case PARAGRAPH:
-        return "";
+        return <Heading />;
       case HEADING:
         return <Heading />;
       case TABLE:
@@ -37,25 +38,51 @@ class AddPostComponentModal extends React.Component {
       case IMAGE:
         return <Image />;
       case VIDEO:
-        return "";
+        return <Image />;
       case MAP:
         return <Map />;
     }
   };
 
+  renderModalTitleDependsOnComponentType = type => {
+    switch (type) {
+      case SLIDE_SHOW:
+        return "สไลด์รูปภาพ";
+      case PARAGRAPH:
+        return "ย่อหน้า";
+      case HEADING:
+        return "หัวข้อเรื่อง";
+      case TABLE:
+        return "ตาราง";
+      case IMAGE:
+        return "รูปภาพ";
+      case VIDEO:
+        return "วิดีโอ";
+      case MAP:
+        return "แผนที่";
+    }
+  };
+
   render() {
     const {
-      type = HEADING,
-      isAddPostComponentModalShowing,
-      hideAddPostComponentModal
+      AddPostComponentModal,
+      hideAddPostComponentModal,
+      type
     } = this.props;
     return (
-      <ModalBackground show={isAddPostComponentModalShowing}>
-        <ModalPanel large>
-          <Header>รูปภาพ</Header>
-          {this.renderComponentToAdd(type)}
+      <ModalBackground
+        style={{ zIndex: "100" }}
+        show={AddPostComponentModal.isShowing}
+      >
+        <ModalPanel style={{ maxWidth: "900px" }}>
+          <Header>
+            {this.renderModalTitleDependsOnComponentType(
+              AddPostComponentModal.type
+            )}
+          </Header>
+          <Body>{this.renderComponentToAdd(AddPostComponentModal.type)}</Body>
           <Footer>
-            <SuccessButton>เสร็จสิ้น</SuccessButton>
+            <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
             <DangerButton onClick={hideAddPostComponentModal}>
               ยกเลิก
             </DangerButton>
@@ -67,11 +94,12 @@ class AddPostComponentModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAddPostComponentModalShowing: state.isAddPostComponentModalShowing
+  AddPostComponentModal: state.isAddPostComponentModalShowing
 });
-const mapDispatchToProps = dispatch => {
-  hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal());
-};
+
+const mapDispatchToProps = dispatch => ({
+  hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   AddPostComponentModal

@@ -3,12 +3,22 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { hidePostComponentsSelectorModal } from "../../actions/post-editor-actions";
+import { showAddPostComponentModal } from "../../actions/post-editor-actions";
 import { ModalBackground, ModalPanel } from "../Modal";
 import Card, { Header, Body, Footer } from "../Card";
 import PostComponentItem from "./PostComponentItem";
 import { DangerButton } from "../Button";
-
-import { showAddPostComponentModal } from "../../actions/post-editor-actions";
+import {
+  SUB_HEADING,
+  SLIDE_SHOW,
+  ATTACHMENT,
+  PARAGRAPH,
+  HEADING,
+  TABLE,
+  IMAGE,
+  VIDEO,
+  MAP
+} from "../../constants/post-content/components";
 
 /**
  * @name PostComponentsSelectorModal
@@ -28,31 +38,41 @@ class PostComponentsSelectorModal extends React.Component {
         <ModalPanel large>
           <Header>เลือกส่วนประกอบที่ต้องการ</Header>
           <Body height="470px" style={{ textAlign: "center" }}>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(HEADING)}
+            >
               หัวข้อเรื่อง
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(HEADING)}
+            >
               หัวข้อย่อย
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(PARAGRAPH)}
+            >
               ย่อหน้า
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem onClick={() => showAddPostComponentModal(IMAGE)}>
               รุปภาพ
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem onClick={() => showAddPostComponentModal(VIDEO)}>
               วิดีโอ
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem onClick={() => showAddPostComponentModal(MAP)}>
               แผนที่
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem onClick={() => showAddPostComponentModal(TABLE)}>
               ตาราง
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(SLIDE_SHOW)}
+            >
               สไลด์รูปภาพ
             </PostComponentItem>
-            <PostComponentItem onClick={showAddPostComponentModal}>
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(HEADING)}
+            >
               ไฟล์แนบ
             </PostComponentItem>
           </Body>
@@ -84,7 +104,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   hideThisPostComponentsSelectorModal: () =>
     dispatch(hidePostComponentsSelectorModal()),
-  showAddPostComponentModal: () => dispatch(showAddPostComponentModal())
+  showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
