@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Card from "./Card";
+import Card from "../Card";
 
 const PostWrapper = Card.extend`
   width: 100%;
@@ -25,6 +25,10 @@ const ImageFigure = styled.img`
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 `;
 
+/**
+ * @name PostContent
+ * @desc Display post content
+ */
 class PostContent extends React.Component {
   render() {
     return (

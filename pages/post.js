@@ -7,11 +7,7 @@ import { connect } from "react-redux";
 import PostRemovalConfirmationModal from "../core/components/PostPage/PostRemovalConfirmationModal";
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
 import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
-import CommentMessageBox from "../core/components/PostPage/CommentMessageBox";
-import PostActivityPanel from "../core/components/PostPage/PostActivityPanel";
-import PostCommentsPanel from "../core/components/PostPage/PostCommentsPanel";
-import PostContent from "../core/components/PostContent";
-import Container from "../core/components/Container";
+import PostViewer from "../core/components/PostPage/PostViewer";
 import withData from "../core/withData";
 
 class PostPage extends React.Component {
@@ -33,13 +29,7 @@ class PostPage extends React.Component {
           classroomID={classroomID}
           classroomName={classroomName}
         />
-        <Container marginTop="11.5em">
-          <PostContent />
-          <PostCommentsPanel />
-          <CommentMessageBox />
-          <PostActivityPanel />
-          <PostRemovalConfirmationModal />
-        </Container>
+        <PostViewer />
       </AuthenticatedLayout>
     ];
   }
