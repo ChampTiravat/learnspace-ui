@@ -14,4 +14,4 @@ const CreateClassroomPage = () => (
   </AuthenticatedLayout>
 );
 
-export default withData(EditProfilePage);
+export default withData(CreateClassroomPage);

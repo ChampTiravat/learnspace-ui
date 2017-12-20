@@ -20,4 +20,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default withData(LoginPage);
+export default withData(RegisterPage);
