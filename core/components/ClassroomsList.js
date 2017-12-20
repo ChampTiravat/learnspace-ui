@@ -25,7 +25,7 @@ const ClassroomListItemCard = Card.extend`
 const ClassroomListItemLabel = styled.div`
   width: 470px;
   h3 {
-    color: ${p => p.theme.primaryColor};
+    color: ${p => p.theme.PRIMARY_COLOR};
     font-weight: 400;
     font-size: 1.3em;
     margin-bottom: 1em;

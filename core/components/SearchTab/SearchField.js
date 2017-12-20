@@ -6,11 +6,11 @@ import SearchInput from "./SearchInput";
 /**
  *  @name SearchField
  *  @desc Custom redux-form Field component
- *  @param isSearchPanelShowing : the state of navbar search result panel
- *  @param placeholder : form's placeholder
- *  @param type : type of HTML element(text,password, etc)
- *  @param input : default from redux-form
- *  @param meta : default from redux-form
+ *  @prop isSearchPanelShowing : the state of navbar search result panel
+ *  @prop placeholder : form's placeholder
+ *  @prop type : type of HTML element(text,password, etc)
+ *  @prop input : default from redux-form
+ *  @prop meta : default from redux-form
  */
 const SearchField = ({ isSearchPanelShowing, placeholder, input, type }) => (
   <SearchInput

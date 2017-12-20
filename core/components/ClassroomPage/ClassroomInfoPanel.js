@@ -26,7 +26,7 @@ const ClassroomCourseInfoContainer = styled.div`
 `;
 
 const ClassroomCourseInfoHeading = styled.h2`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 400;
 `;
 

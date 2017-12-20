@@ -19,7 +19,7 @@ const SearchHeaderPanelWrapper = Card.extend`
 `;
 
 const SearchQuery = styled.h1`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-size: 1.7em;
   font-weight: 400;
   cursor: pointer;

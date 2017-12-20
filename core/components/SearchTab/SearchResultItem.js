@@ -9,7 +9,7 @@ import styled from "styled-components";
  */
 const SearchResultItemWrapper = styled.div`
   padding: 1em 0;
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 400;
   font-size: 1.2em;
   cursor: pointer;

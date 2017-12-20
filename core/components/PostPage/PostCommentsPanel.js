@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Card, { Header, Body, Footer } from "../Card";
@@ -18,6 +19,12 @@ const CommentPanelCard = Card.extend`
   margin-bottom: 2em;
 `;
 
+/**
+ * @name Comment
+ * @desc Display user comment with it's sub-comment(s)
+ * @prop creator : Comment's creator
+ * @prop content : Comment message body
+ */
 const Comment = ({ creator, content }) => (
   <div>
     <PostCommentItem creator={creator} content={content} />
@@ -29,6 +36,15 @@ const Comment = ({ creator, content }) => (
   </div>
 );
 
+Comment.propTypes = {
+  creator: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
+};
+
+/**
+ * @name PostCommentsPanel
+ * @desc Display multiple comments of a particular post
+ */
 const PostCommentsPanel = () => (
   <CommentPanelCard>
     <Header>ความคิดเห็น</Header>

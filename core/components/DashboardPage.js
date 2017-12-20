@@ -18,7 +18,7 @@ const DashboardPageHeading = styled.div`
   h2 {
     font-weight: 400;
     font-size: 1.7em;
-    color: ${p => p.theme.primaryColor};
+    color: ${p => p.theme.PRIMARY_COLOR};
     margin-bottom: 0;
   }
   p {

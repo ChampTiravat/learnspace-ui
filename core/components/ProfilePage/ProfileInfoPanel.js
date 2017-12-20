@@ -8,7 +8,7 @@ import Card from "../Card";
 const Seperator = styled.div`
   width: 40%;
   height: 2px;
-  background-color: ${p => p.theme.primaryColor};
+  background-color: ${p => p.theme.PRIMARY_COLOR};
   margin: 1em auto;
 `;
 
@@ -20,7 +20,7 @@ const UserInfoItem = styled.h4`
 `;
 
 const UserFullName = styled.h1`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 400;
 `;
 

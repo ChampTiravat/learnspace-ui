@@ -8,7 +8,7 @@ import Card, { Footer, Body } from "../Card";
 /**
  *  @name SearchResultCardWrapper
  *  @desc A presentational component for Navbar search result panel
- *  @param show : the state of navbar search result panel apearence
+ *  @prop show : the state of navbar search result panel apearence
  */
 const SearchResultCardWrapper = Card.extend`
   display: ${p => (p.show ? "block" : "none")};
@@ -27,7 +27,7 @@ const SearchResultCardWrapper = Card.extend`
  *  @desc A button links to full search result(s) page
  */
 const MoreSearchResultLink = styled.a`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-size: 1em;
   font-weight: 400;
   cursor: pointer;

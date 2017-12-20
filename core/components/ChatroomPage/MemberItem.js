@@ -21,7 +21,7 @@ const UserConnectionStatusPic = styled.img`
 `;
 
 const Username = styled.h4`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 500;
   font-size: 1.1em;
   margin-bottom: 0;

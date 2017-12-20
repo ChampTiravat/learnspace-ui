@@ -1,8 +1,8 @@
 import React from "react";
 
-import Card, { Body, Footer } from "../../Card";
-import { Form, Input, InputLabel } from "../../Form";
 import { SuccessButton, DangerButton } from "../../Button";
+import { Form, Input, InputLabel } from "../../Form";
+import Card, { Body, Footer } from "../../Card";
 
 /**
  * @name Heading

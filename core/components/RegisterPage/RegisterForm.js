@@ -9,6 +9,11 @@ const submitHandler = value => {
   console.table(value);
 };
 
+/**
+ * @name RegisterForm
+ * @desc A form to register a new user account
+ * @prop [REDUX] handleSubmit : redux-form's form submition handler function
+ */
 const RegisterForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit(submitHandler)}>
     <Field name="email" label="อีเมลล์" component={InputField} type="email" />

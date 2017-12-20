@@ -23,7 +23,7 @@ const ActivityPanel = styled.div`
     cursor: pointer;
     text-decoration: none;
     &:hover {
-      color: ${p => p.theme.primaryColor};
+      color: ${p => p.theme.PRIMARY_COLOR};
     }
   }
 `;

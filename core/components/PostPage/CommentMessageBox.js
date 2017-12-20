@@ -10,6 +10,10 @@ const CommentMessageBoxCard = Card.extend`
   margin-bottom: 6em;
 `;
 
+/**
+ * @name CommentMessageBox
+ * @desc Send a new message to a particular post
+ */
 const CommentMessageBox = () => (
   <CommentMessageBoxCard>
     <Header>แสดงความคิดเห็นของคุณ</Header>

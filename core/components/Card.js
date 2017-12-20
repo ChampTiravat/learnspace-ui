@@ -47,7 +47,7 @@ export const Header = styled.div`
   font-family: "Kanit";
   font-size: 1em;
   font-weight: 400;
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
 `;
@@ -70,7 +70,7 @@ export const Body = styled.div`
   text-align: left;
   font-size: 1em;
   font-weight: 300;
-  font-color: ${({ theme }) => theme.textColor};
+  font-color: ${({ theme }) => theme.TEXT_COLOR};
   height: ${p => p.height || "auto"};
   overflow-y: ${p => p.overflowY || "auto"};
 `;

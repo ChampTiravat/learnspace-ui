@@ -10,7 +10,7 @@ const PostComponentItem = styled.div`
   text-align: center;
   font-size: 1.4em;
   font-weight: 400;
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   cursor: pointer;
   &:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);

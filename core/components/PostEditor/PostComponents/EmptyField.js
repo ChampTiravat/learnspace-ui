@@ -9,14 +9,14 @@ const EmptyFieldWrapper = styled.div`
   width: 100%;
   height: 200px;
   background-color: transparent;
-  border: 2px dashed ${p => p.theme.primaryColor};
+  border: 2px dashed ${p => p.theme.PRIMARY_COLOR};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   h3 {
-    color: ${p => p.theme.primaryColor};
+    color: ${p => p.theme.PRIMARY_COLOR};
     font-weight: 400;
     font-size: 1.5em;
   }

@@ -1,8 +1,8 @@
 export default {
-  primaryColor: "#3b90f9",
-  fontColorLight: "#fff",
-  backgroundColor: "#f5f5f5",
-  textColor: "#777",
-  textInputBackgroundColor: "#F3F3F3",
-  borderRadius: "5px"
+  PRIMARY_COLOR: "#3b90f9",
+  FONT_COLOR_LIGHT: "#fff",
+  BACKGROUND_COLOR: "#f5f5f5",
+  TEXT_COLOR: "#777",
+  TEXT_INPUT_BACKGROUND_COLOR: "#F3F3F3",
+  BORDER_RADIUS: "5px"
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Card from "../Card";
@@ -20,7 +21,7 @@ const CommentInfo = styled.div`
 `;
 
 const CreatorName = styled.h4`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 500;
   font-size: 1.1em;
   margin-bottom: 0;
@@ -31,7 +32,7 @@ const CommentBody = styled.p`
   font-size: 1em;
 `;
 const ReplyButton = styled.button`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   background: transparent;
   border: none;
   font-size: 0.9em;
@@ -50,6 +51,13 @@ const CommentCard = Card.extend`
   }
 `;
 
+/**
+ * @name CommentItem
+ * @desc Post's comment item
+ * @prop creator : Comment's creator
+ * @prop content : Comment message
+ * @prop isReply : Does this comment a sub-comment of another?
+ */
 const CommentItem = ({ creator, content, isReply }) => (
   <CommentCard>
     <CommentCreatorPic />
@@ -60,5 +68,11 @@ const CommentItem = ({ creator, content, isReply }) => (
     </CommentInfo>
   </CommentCard>
 );
+
+CommentItem.propTypes = {
+  creator: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  isReply: PropTypes.bool.isRequired
+};
 
 export default CommentItem;
