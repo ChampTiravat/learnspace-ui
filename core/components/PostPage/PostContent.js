@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import PostContentWrapper from "./PostContentWrapper";
+import SubHeading from "./RenderedComponents/SubHeading";
 import Paragraph from "./RenderedComponents/Paragraph";
+import PostContentWrapper from "./PostContentWrapper";
 import Heading from "./RenderedComponents/Heading";
 import Image from "./RenderedComponents/Image";
 import Table from "./RenderedComponents/Table";
+import List from "./RenderedComponents/List";
 
 /**
  * @name PostContent
@@ -16,6 +18,7 @@ class PostContent extends React.Component {
     return (
       <PostContentWrapper>
         <Heading>โครงสร้างของอตอม</Heading>
+        <SubHeading>ลักษณะของอตอมในอดีต</SubHeading>
         <Paragraph>
           แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
           แพรหลายอยู ห  ลายสิบป สสารทั้งหลายประกอบดวยอนุภาคที่เล็กที่สุด
@@ -34,7 +37,20 @@ class PostContent extends React.Component {
           4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
           เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม
         </Paragraph>
+        <List description="สิ่งที่ควรรู้เกี่ยวกับอตอม">
+          <li>
+            สสารทุกชนิดประกอบดวยอะตอม ซึ่งเปนหนวยที่เล็กที่สุด
+            ไมสามารถแบงแยก ไมอาจสรางขึ้นหรือทําลายได
+          </li>
+          <li>
+            ธาตุประกอบดวยอนุภาคที่เรียกวาอะตอม อะตอมของธาตุชนิดเดียวกันม
+            ลักษณะเหมือนกัน คือ มีมวล ขนาด และสมบัติทางเคมีเหมือนกัน
+            และแตกตางจากอะตอม ของธาตุชนิดอื่น
+          </li>
+          <li>สารประกอบเกิดจากการรวมตัวของอะตอมของธาตุตั้งแต 2 ชนิดขึ้นไป</li>
+        </List>
         <Image />
+        <SubHeading>การแผ่พลังงานของ Electron</SubHeading>
         <Paragraph>
           ในป 1913 นักฟสิกสชาวเดนมารกชื่อ นีล บอหร (Niels Bohr)
           เปนผูหนึ่ง
