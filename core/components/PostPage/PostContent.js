@@ -34,7 +34,6 @@ class PostContent extends React.Component {
           4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
           เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม
         </Paragraph>
-        {/* <Image src="/static/images/background/login-background.jpg" /> */}
         <Image />
         <Paragraph>
           ในป 1913 นักฟสิกสชาวเดนมารกชื่อ นีล บอหร (Niels Bohr)
@@ -60,7 +59,10 @@ class PostContent extends React.Component {
           อาจเห็นเปนเสนสวางที่ไมตอเนื อ ่ ง และอาจมีความถี่อื่นๆ
           อีกที่ตามองไม เห็น
         </Paragraph>
-        <Table>
+        <Table
+          name="รายชื่อที่เกี่ยวข้อง"
+          description="รายชื่อผู้ที่เกี่ยวข้องกับการดำเนินการในโครงงาน"
+        >
           <thead>
             <tr>
               <th>ลำดับ</th>

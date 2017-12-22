@@ -2,6 +2,24 @@ import styled from "styled-components";
 
 const TableWrapper = styled.div`
   width: 100%;
+  margin-top: 2em;
+  h1 {
+    color: ${p => p.theme.PRIMARY_COLOR};
+    font-size: 1.3em;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  p {
+    display: block;
+    color: #777;
+    font-size: 0.8em;
+    font-weight: 400;
+    font-family: "Calibri";
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
   table {
     width: 100%;
     background-color: #fff;
@@ -47,8 +65,10 @@ const TableWrapper = styled.div`
  * @name Table
  * @desc Display a data as a grid
  */
-const Table = ({ children }) => (
+const Table = ({ children, description, name }) => (
   <TableWrapper>
+    <h1>{name}</h1>
+    <p>{description}</p>
     <table>{children}</table>
   </TableWrapper>
 );
