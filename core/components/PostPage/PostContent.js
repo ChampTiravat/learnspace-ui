@@ -1,18 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Card from "../Card";
-
-const PostWrapper = Card.extend`
-  width: 100%;
-  max-width: 100%;
-  padding: 5em 3em;
-  height: auto;
-  margin-bottom: 2em;
-  font-size: 1.2em;
-  color: #555;
-  text-align: left;
-`;
+import PostContentWrapper from "./PostContentWrapper";
+import Heading from "./RenderedComponents/Heading";
 
 const ImageFigure = styled.img`
   display: block;
@@ -32,8 +22,8 @@ const ImageFigure = styled.img`
 class PostContent extends React.Component {
   render() {
     return (
-      <PostWrapper>
-        <h1>โครงสร้างของอตอม</h1>
+      <PostContentWrapper>
+        <Heading>โครงสร้างของอตอม</Heading>
         แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
         แพรหลายอยู ห  ลายสิบป สสารทั้งหลายประกอบดวยอนุภาคที่เล็กที่สุด
         จนกระทั่งตอมา
@@ -78,7 +68,7 @@ class PostContent extends React.Component {
         หรือสถานะพื น ้ จะแผคลื่นแมเหล็กไฟฟา ออกมา
         อาจเห็นเปนเสนสวางที่ไมตอเนื อ ่ ง และอาจมีความถี่อื่นๆ
         อีกที่ตามองไม เห็น
-      </PostWrapper>
+      </PostContentWrapper>
     );
   }
 }
