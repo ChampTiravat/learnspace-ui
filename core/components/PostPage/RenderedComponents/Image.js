@@ -1,26 +1,18 @@
-import React from "react";
 import styled from "styled-components";
-
-import { LightButton, SuccessButton, DangerButton } from "../../../Button";
-import Card, { Body, Footer } from "../../../Card";
 
 /**
  * @name Image
  * @desc Display a normal image
  */
-const Image = () => (
-  <div
-    style={{
-      height: "250px",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#ddd"
-    }}
-  >
-    <LightButton>เลือกรูปภาพ</LightButton>
-  </div>
-);
+const Image = styled.img`
+  display: block;
+  width: 100%;
+  height: 600px;
+  max-width: 100%;
+  background-color: #ddd;
+  margin: 2em auto;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+`;
 
 export default Image;

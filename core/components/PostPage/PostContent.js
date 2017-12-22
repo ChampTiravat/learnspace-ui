@@ -4,17 +4,8 @@ import styled from "styled-components";
 import PostContentWrapper from "./PostContentWrapper";
 import Paragraph from "./RenderedComponents/Paragraph";
 import Heading from "./RenderedComponents/Heading";
-
-const ImageFigure = styled.img`
-  display: block;
-  width: ${p => p.width || "100%"};
-  height: ${p => p.height || auto};
-  max-width: 100%;
-  background-color: #ddd;
-  margin: 2em auto;
-  border: none;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-`;
+import Image from "./RenderedComponents/Image";
+import Table from "./RenderedComponents/Table";
 
 /**
  * @name PostContent
@@ -43,11 +34,7 @@ class PostContent extends React.Component {
           4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
           เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม
         </Paragraph>
-        <ImageFigure
-          width="900px"
-          height="400px"
-          src="/static/images/background/login-background.jpg"
-        />
+        <Image src="/static/images/background/login-background.jpg" />
         <Paragraph>
           ในป 1913 นักฟสิกสชาวเดนมารกชื่อ นีล บอหร (Niels Bohr)
           เปนผูหนึ่ง
