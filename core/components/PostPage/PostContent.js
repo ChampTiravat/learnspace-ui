@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import SubHeading from "./RenderedComponents/SubHeading";
+import Attachment from "./RenderedComponents/Attachment";
 import Paragraph from "./RenderedComponents/Paragraph";
 import PostContentWrapper from "./PostContentWrapper";
 import Heading from "./RenderedComponents/Heading";
@@ -98,6 +99,14 @@ class PostContent extends React.Component {
             ))}
           </tbody>
         </Table>
+        <div style={{ textAlign: "center" }}>
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
+        </div>
       </PostContentWrapper>
     );
   }
