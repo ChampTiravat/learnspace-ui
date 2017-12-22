@@ -6,9 +6,10 @@ const TableWrapper = styled.div`
   h1 {
     color: ${p => p.theme.PRIMARY_COLOR};
     font-size: 1.3em;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 0;
+    display: block;
   }
   p {
     display: block;
