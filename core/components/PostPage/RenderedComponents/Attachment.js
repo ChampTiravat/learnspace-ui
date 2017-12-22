@@ -44,7 +44,7 @@ const FileImage = styled.img`
  */
 const Attachment = ({ filename, size, type }) => (
   <AttachmentCard>
-    <FileImage src={image} />
+    <FileImage src={""} />
     <FileInfoWrapper>
       <FileInfo>
         File name: <span>{filename}</span>
