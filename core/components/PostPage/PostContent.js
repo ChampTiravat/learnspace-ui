@@ -9,6 +9,7 @@ import PostContentWrapper from "./PostContentWrapper";
 import Heading from "./RenderedComponents/Heading";
 import Image from "./RenderedComponents/Image";
 import Table from "./RenderedComponents/Table";
+import Video from "./RenderedComponents/Video";
 import List from "./RenderedComponents/List";
 import Map from "./RenderedComponents/Map";
 
@@ -21,6 +22,7 @@ class PostContent extends React.Component {
     return (
       <PostContentWrapper>
         <Heading>โครงสร้างของอตอม</Heading>
+        <Video />
         <SubHeading>ลักษณะของอตอมในอดีต</SubHeading>
         <Paragraph>
           แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
