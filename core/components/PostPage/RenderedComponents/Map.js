@@ -1,26 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-import { SuccessButton, DangerButton } from "../../../Button";
-import Card, { Body, Footer } from "../../../Card";
+const MapWrapper = styled.div`
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #ddd;
+    }
+`;
 
 /**
  * @name Map
  * @desc Display a map from Google Map with a specific location, detemined by a post creator
  */
-const Map = () => (
-  <div
-    style={{
-      height: "250px",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#ddd"
-    }}
-  >
-    Map
-  </div>
-);
+const Map = () => <MapWrapper>Map</MapWrapper>;
 
 export default Map;

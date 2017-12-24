@@ -10,6 +10,7 @@ import Heading from "./RenderedComponents/Heading";
 import Image from "./RenderedComponents/Image";
 import Table from "./RenderedComponents/Table";
 import List from "./RenderedComponents/List";
+import Map from "./RenderedComponents/Map";
 
 /**
  * @name PostContent
@@ -178,6 +179,7 @@ class PostContent extends React.Component {
           อาจเห็นเปนเสนสวางที่ไมตอเนื อ ่ ง และอาจมีความถี่อื่นๆ
           อีกที่ตามองไม เห็น
         </Paragraph>
+        <Map />
         <div style={{ textAlign: "center" }}>
           <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
           <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
