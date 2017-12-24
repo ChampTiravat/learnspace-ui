@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const SlideshowWrapper = styled.div`
@@ -47,17 +48,13 @@ const Image = styled.img`
 /**
  * @name Slideshow
  * @desc Display a set of images as a slideshow with a specific timing
+ * @prop images : images to render
  */
 class Slideshow extends React.Component {
   state = {
-    totalImages: 0,
-    currentImage: 0,
-    lastImage: 0,
-    images: [
-      <Image descr="image #1 is a very nice image" />,
-      <Image descr="image #1 is a very beautiful image" />,
-      <Image descr="image #3 is a very great image" />
-    ]
+    totalImages: this.props.images.length,
+    lastImage: this.props.images.length - 1,
+    currentImage: 0
   };
 
   toPrevImage = () => {
@@ -87,12 +84,13 @@ class Slideshow extends React.Component {
   };
 
   renderCurrentImage = () => {
-    const { currentImage, images } = this.state;
+    const { currentImage } = this.state;
+    const { images } = this.props;
     if (images.length === 0) {
       return null;
     }
-    const ImageToRender = images[currentImage];
-    return ImageToRender;
+    const imageToRender = images.find((image, i) => i === currentImage);
+    return <Image src={imageToRender.url} alt={imageToRender.alt} />;
   };
 
   render() {
@@ -105,5 +103,9 @@ class Slideshow extends React.Component {
     );
   }
 }
+
+Slideshow.propTypes = {
+  images: PropTypes.array
+};
 
 export default Slideshow;

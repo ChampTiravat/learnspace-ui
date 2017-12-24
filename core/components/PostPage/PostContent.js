@@ -124,7 +124,14 @@ class PostContent extends React.Component {
           อาจเห็นเปนเสนสวางที่ไมตอเนื อ ่ ง และอาจมีความถี่อื่นๆ
           อีกที่ตามองไม เห็น
         </Paragraph>
-        <Slideshow />
+        <Slideshow
+          images={[
+            { url: "http://image1", alt: "alt for image #1" },
+            { url: "http://image2", alt: "alt for image #2" },
+            { url: "http://image3", alt: "alt for image #3" },
+            { url: "http://image4", alt: "alt for image #4" }
+          ]}
+        />
         <SubHeading>การแผ่พลังงานของ Electron</SubHeading>
         <Paragraph>
           ในป 1913 นักฟสิกสชาวเดนมารกชื่อ นีล บอหร (Niels Bohr)
@@ -172,10 +179,6 @@ class PostContent extends React.Component {
           อีกที่ตามองไม เห็น
         </Paragraph>
         <div style={{ textAlign: "center" }}>
-          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
-          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
-          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
-          <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
           <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
           <Attachment filename="very-hard-homework.pdf" size="300" type="PDF" />
         </div>
