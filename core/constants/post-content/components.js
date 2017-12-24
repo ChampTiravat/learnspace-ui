@@ -11,3 +11,4 @@ export const TABLE = "TABLE";
 export const IMAGE = "IMAGE";
 export const VIDEO = "VIDEO";
 export const MAP = "MAP";
+export const LIST = "LIST";
