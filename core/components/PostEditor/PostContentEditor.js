@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
+import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
 import Card from "../Card";
 import {
@@ -17,59 +19,20 @@ import {
 } from "../../constants/post-content/components";
 
 class PostContentEditor extends React.Component {
-  state = {
-    receipe: [
-      /*{id: string, name: string, content: string, isEditing: bool}*/
-    ]
-  };
-
   renderContentFromReceipe = () => {
-    const { receipe } = this.state;
+    const { receipe } = this.props;
     return receipe.length > 0
       ? receipe.map((component, i) => {
-          if (component === null) {
-            return null;
-          }
-          return (
-            <BasedComponent
-              removeFunc={() => this.removeReceipe(component.name)}
-              SuccesFunc={() => alert("saved")}
-              editFunc={() => alert("edit")}
-              isEditing={component.isEditing}
-              type={component.name}
-              text={component.name}
-              id={component.name}
-            />
+          return !component ? null : (
+            <div order={component.order}>
+              <h4>{component.type}</h4>
+            </div>
           );
         })
       : null;
   };
 
-  removeReceipe = async i => {
-    await this.setState(prevState => ({
-      receipe: prevState.receipe.reduce((prevItem, nextItem) => {
-        if (nextItem.id === i) {
-          nextItem = null;
-        }
-        prevItem.concat(nextItem);
-        return prevItem.filter(item => item !== null);
-      }, [])
-    }));
-  };
-
-  addReceipe = (type, content) => {
-    this.setState(prevState => ({
-      receipe: prevState.receipe.concat({
-        isEditing: false,
-        content: content,
-        name: type,
-        id: type
-      })
-    }));
-  };
-
   render() {
-    console.table(this.state.receipe);
     return (
       <div>
         <SetTitleCard />
@@ -82,4 +45,10 @@ class PostContentEditor extends React.Component {
   }
 }
 
-export default PostContentEditor;
+const mapStateToProps = state => ({
+  receipe: state.editingPostReceipe
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostContentEditor);
