@@ -19,7 +19,7 @@ const PrimaryInfoItem = styled.div`
 
 const Topic = styled.h2`
   font-weight: 400;
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-size: 1.6em;
 `;
 

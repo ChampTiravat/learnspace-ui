@@ -21,10 +21,10 @@ import {
 /**
  *  @name SearchResultPanel
  *  @desc Navbar search result panel to display the search results as a list of items
- *  @param isSearchPanelShowing : the state of navbar search result panel apearence
- *  @param showSearchPanel : show the navbar search panel
- *  @param hideSearchPanel : hide the navbar search panel
- *  @param handleSubmit : Redux-Form's defualt form submition helper
+ *  @prop [REDUX] isSearchPanelShowing : the state of navbar search result panel apearence
+ *  @prop [REDUX] showSearchPanel : show the navbar search panel
+ *  @prop [REDUX] hideSearchPanel : hide the navbar search panel
+ *  @prop [REDUX] handleSubmit : Redux-Form's defualt form submition helper
  */
 class SearchTab extends React.Component {
   showSearchPanel = () => {

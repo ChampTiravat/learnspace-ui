@@ -4,9 +4,9 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import ClassroomResultGroup from "../core/components/SearchPage/ClassroomResultGroup";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import SearchHeaderPanel from "../core/components/SearchPage/SearchHeaderPanel";
 import UserResultGroup from "../core/components/SearchPage/UserResultGroup";
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
 import SearchPanel from "../core/components/SearchPage/SearchPanel";
 import Container from "../core/components/Container";
 import withData from "../core/withData";

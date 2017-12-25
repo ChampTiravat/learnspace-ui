@@ -1,7 +1,7 @@
 import React from "react";
 
-import Card, { Header, Body } from "../Card";
 import EditProfileForm from "./EditProfileForm";
+import Card, { Header, Body } from "../Card";
 
 const EditProfileCard = () => (
   <Card small marginTop="5em">

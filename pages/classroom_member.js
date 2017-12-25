@@ -5,7 +5,7 @@ import Router from "next/router";
 import ClassroomMemberPanel from "../core/components/ClassroomMemberPage/ClassroomMemberPanel";
 import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomActivityPanel";
 import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
-import AuthenticatedLayout from "../core/components/AuthenticatedLayout";
+import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
 import { CLASSROOM_PAGE } from "../core/constants/endpoints/ui";
 import Container from "../core/components/Container";
 import PostsList from "../core/components/PostsList";

@@ -27,7 +27,7 @@ export const DefaultButton = styled.button`
   font-weight: 300;
   text-align: ${p =>
     p.textCenter ? "center" : p.textRight ? "right" : "left"};
-  border-radius: ${p => (p.rounded ? "50%" : p.theme.borderRadius)};
+  border-radius: ${p => (p.rounded ? "50%" : p.theme.BORDER_RADIUS)};
 `;
 
 /**

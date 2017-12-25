@@ -1,6 +1,6 @@
 import React from "react";
 
-import UnAuthenticatedLayout from "../core/components/UnAuthenticatedLayout";
+import UnAuthenticatedLayout from "../core/components/Layout/UnAuthenticatedLayout";
 import LoginCard from "../core/components/LoginPage/LoginCard";
 import Container from "../core/components/Container";
 import Wallpaper from "../core/components/Wallpaper";

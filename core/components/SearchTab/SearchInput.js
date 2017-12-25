@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 /**
  *  @name SearchInput
  *  @desc Navbar Search Input
- *  @param isSearchPanelShowing : the state of navbar search result panel
+ *  @prop isSearchPanelShowing : the state of navbar search result panel
  */
 const SearchInput = styled.input`
   display: inline;
@@ -16,7 +16,7 @@ const SearchInput = styled.input`
   margin: 0 0.5em 0 0.5em;
   font-size: 1em;
   font-weight: 300;
-  color: ${p => p.theme.textColor};
+  color: ${p => p.theme.TEXT_COLOR};
   background-color: #fff;
   border-bottom-left-radius: ${p => (p.isSearchPanelShowing ? "0" : "5px")};
   border-bottom-right-radius: ${p => (p.isSearchPanelShowing ? "0" : "5px")};

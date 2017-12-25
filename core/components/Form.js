@@ -23,14 +23,14 @@ export const Input = styled.input`
   display: ${p => (p.inline ? "inline-block" : "block")};
   width: ${p => (p.inline ? "auto" : "100%")};
   border: none;
-  border-radius: ${p => p.theme.borderRadius};
+  border-radius: ${p => p.theme.BORDER_RADIUS};
   padding: 0.6em;
   margin: 0 auto;
   font-size: 1em;
   font-family: "Arial";
   font-weight: 300;
-  color: ${p => p.theme.textColor};
-  background-color: ${p => p.theme.textInputBackgroundColor};
+  color: ${p => p.theme.TEXT_COLOR};
+  background-color: ${p => p.theme.TEXT_INPUT_BACKGROUND_COLOR};
 `;
 
 /**
@@ -43,14 +43,14 @@ export const TextArea = styled.textarea`
   display: ${p => (p.inline ? "inline-block" : "block")};
   width: ${p => (p.inline ? "auto" : "100%")};
   border: none;
-  border-radius: ${p => p.theme.borderRadius};
+  border-radius: ${p => p.theme.BORDER_RADIUS};
   padding: 0.6em;
   margin: 0 auto;
   font-size: 1em;
   font-family: "Arial";
   font-weight: 300;
-  color: ${p => p.theme.textColor};
-  background-color: ${p => p.theme.textInputBackgroundColor};
+  color: ${p => p.theme.TEXT_COLOR};
+  background-color: ${p => p.theme.TEXT_INPUT_BACKGROUND_COLOR};
 `;
 
 /**
@@ -61,7 +61,7 @@ export const InputLabel = styled.label`
   font-family: "Kanit";
   font-size: 1em;
   font-weight: 400;
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
 `;
 
 /**

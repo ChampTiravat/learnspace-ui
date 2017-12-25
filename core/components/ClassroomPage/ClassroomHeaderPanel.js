@@ -15,7 +15,7 @@ const ClassroomHeaderCard = Card.extend`
 `;
 
 const ClassroomNameHeading = styled.h1`
-  color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.PRIMARY_COLOR};
   font-size: 1.7em;
   font-weight: 400;
   cursor: pointer;
@@ -24,7 +24,7 @@ const ClassroomNameHeading = styled.h1`
 const Seperator = styled.div`
   width: 30%;
   height: 2px;
-  background-color: ${p => p.theme.primaryColor};
+  background-color: ${p => p.theme.PRIMARY_COLOR};
   margin: 1em auto;
 `;
 
@@ -33,7 +33,7 @@ const ClassroomBreifInfo = styled.p`
   font-size: 1.1em;
   font-weight: 300;
   span {
-    color: ${p => p.theme.primaryColor};
+    color: ${p => p.theme.PRIMARY_COLOR};
     font-weight: 400;
   }
 `;

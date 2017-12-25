@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Card, { Header, Body, Footer } from "../Card";
 import { SuccessButton, DangerButton } from "../Button";
+import Card, { Header, Body, Footer } from "../Card";
 
 const UserRequestItemCard = Card.extend`
   margin-left: 1.5em;
