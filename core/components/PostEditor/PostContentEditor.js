@@ -2,6 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import SubHeading from "../PostPage/RenderedComponents/SubHeading";
+import Attachment from "../PostPage/RenderedComponents/Attachment";
+import Paragraph from "../PostPage/RenderedComponents/Paragraph";
+import Slideshow from "../PostPage/RenderedComponents/Slideshow";
+import Heading from "../PostPage/RenderedComponents/Heading";
+import Video from "../PostPage/RenderedComponents/Video";
+import Table from "../PostPage/RenderedComponents/Table";
+import Image from "../PostPage/RenderedComponents/Image";
+import List from "../PostPage/RenderedComponents/List";
+import Map from "../PostPage/RenderedComponents/Map";
+
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
@@ -15,7 +26,8 @@ import {
   TABLE,
   IMAGE,
   VIDEO,
-  MAP
+  MAP,
+  LIST
 } from "../../constants/post-content/components";
 
 class PostContentEditor extends React.Component {
@@ -26,15 +38,83 @@ class PostContentEditor extends React.Component {
   renderContentFromReceipe = () => {
     const { receipe } = this.props;
     console.table(receipe); // DEBUGGING
-    return receipe.length > 0
-      ? receipe.map((component, i) => {
-          return !component ? null : (
-            <div order={component.order}>
-              <h4>{component.type}</h4>
-            </div>
+    // return receipe.length > 0
+    //   ? receipe.map((component, i) => {
+    //       return !component ? null : (
+    //         <div order={component.order}>
+    //           <h4>{component.type}</h4>
+    //         </div>
+    //       );
+    //     })
+    //   : null;
+    return receipe.map(component => {
+      switch (component.type) {
+        case HEADING:
+          return <Heading key={component.order}>{component.data}</Heading>;
+        case VIDEO:
+          return <Video key={component.order} />;
+        case SUB_HEADING:
+          return (
+            <SubHeading key={component.order}>{component.data}</SubHeading>
           );
-        })
-      : null;
+        case PARAGRAPH:
+          return <Paragraph key={component.order}>{component.data}</Paragraph>;
+        case LIST:
+          return (
+            <List
+              description={component.data.description}
+              key={component.order}
+            >
+              {component.data.items.map((item, i) => <li key={i}>{item}</li>)}
+            </List>
+          );
+        case IMAGE:
+          return (
+            <Image
+              key={component.order}
+              src={component.data.url}
+              alt={component.data.alt}
+            />
+          );
+        case TABLE:
+          return (
+            <Table
+              name={component.data.meta.name}
+              description={component.data.meta.description}
+            >
+              <thead>
+                <tr>
+                  {component.data.head.map((columnName, i) => (
+                    <th key={i}>{columnName}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {component.data.body.map((dataRow, i) => (
+                  <tr key={i}>
+                    {dataRow.map((data, i) => <td key={i}>{data}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          );
+        case SLIDE_SHOW:
+          return <Slideshow key={component.order} images={component.data} />;
+        case MAP:
+          return <Map key={component.order} />;
+        case ATTACHMENT:
+          return (
+            <Attachment
+              key={component.order}
+              filename={component.data.filename}
+              size={component.data.size}
+              type={component.data.type}
+            />
+          );
+        default:
+          return null;
+      }
+    });
   };
 
   render() {
