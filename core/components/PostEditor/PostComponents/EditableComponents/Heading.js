@@ -9,7 +9,7 @@ import Card, { Body, Footer } from "../../../Card";
  * @desc Display a heading text, used to remind readers the topic which thay are currently reading
  */
 const Heading = () => (
-  <Form>
+  <Form onSubmit={e => e.preventDefault() & alert("Hello")}>
     <Input type="text" />
   </Form>
 );

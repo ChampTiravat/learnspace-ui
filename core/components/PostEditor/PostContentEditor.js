@@ -19,8 +19,13 @@ import {
 } from "../../constants/post-content/components";
 
 class PostContentEditor extends React.Component {
+  shouldComponentUpdate(nextProp) {
+    return this.props.receipe !== nextProp.receipe;
+  }
+
   renderContentFromReceipe = () => {
     const { receipe } = this.props;
+    console.table(receipe); // DEBUGGING
     return receipe.length > 0
       ? receipe.map((component, i) => {
           return !component ? null : (
