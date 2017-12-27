@@ -52,13 +52,13 @@ class AddPostComponentModal extends React.Component {
       >
         <ModalPanel style={{ maxWidth: "900px" }}>
           <AddPostComponentDetailForm
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
+            order={receipe.length}
             type={AddPostComponentModal.type}
+            addNewPostComponent={addNewPostComponent}
+            hideAddPostComponentModal={hideAddPostComponentModal}
             renderModalTitleDependsOnComponentType={
               this.renderModalTitleDependsOnComponentType
             }
-            order={receipe.length}
           />
         </ModalPanel>
       </ModalBackground>

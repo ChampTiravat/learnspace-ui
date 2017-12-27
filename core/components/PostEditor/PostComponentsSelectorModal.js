@@ -17,6 +17,7 @@ import {
   TABLE,
   IMAGE,
   VIDEO,
+  LIST,
   MAP
 } from "../../constants/post-content/components";
 
@@ -44,7 +45,7 @@ class PostComponentsSelectorModal extends React.Component {
               หัวข้อเรื่อง
             </PostComponentItem>
             <PostComponentItem
-              onClick={() => showAddPostComponentModal(HEADING)}
+              onClick={() => showAddPostComponentModal(SUB_HEADING)}
             >
               หัวข้อย่อย
             </PostComponentItem>
@@ -71,9 +72,12 @@ class PostComponentsSelectorModal extends React.Component {
               สไลด์รูปภาพ
             </PostComponentItem>
             <PostComponentItem
-              onClick={() => showAddPostComponentModal(HEADING)}
+              onClick={() => showAddPostComponentModal(ATTACHMENT)}
             >
               ไฟล์แนบ
+            </PostComponentItem>
+            <PostComponentItem onClick={() => showAddPostComponentModal(LIST)}>
+              รายการ
             </PostComponentItem>
           </Body>
           <Footer>
