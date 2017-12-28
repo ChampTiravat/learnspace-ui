@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Attachment from "../PostComponents/EditableComponents/Attachment";
 import SubHeading from "../PostComponents/EditableComponents/SubHeading";
 import Paragraph from "../PostComponents/EditableComponents/Paragraph";
+import Slideshow from "../PostComponents/EditableComponents/Slideshow";
 import Heading from "../PostComponents/EditableComponents/Heading";
 import Image from "../PostComponents/EditableComponents/Image";
 import Video from "../PostComponents/EditableComponents/Video";
@@ -154,7 +155,7 @@ class addPostComponentDetailForm extends React.Component {
 
   /**
    * @name mapComponentDataHandler
-   * @desc Append the <Video /> component to the 'receipe'
+   * @desc Append the <Map /> component to the 'receipe'
    * @param { location } : A location specified to send to Google Map API
    */
   mapComponentDataHandler = ({ location }) => {
@@ -178,7 +179,7 @@ class addPostComponentDetailForm extends React.Component {
 
   /**
    * @name attachmentComponentDataHandler
-   * @desc Append the <Video /> component to the 'receipe'
+   * @desc Append the <Attachment /> component to the 'receipe'
    * @param { filename } : The name of the uploaded file
    * @param { size } : Size of the file(KBs)
    * @param { type } : Type of the file(PDF,DOCX, TXT, JPG, etc)
@@ -195,6 +196,34 @@ class addPostComponentDetailForm extends React.Component {
 
     addNewPostComponent({
       data: { filename, type: "PDF", size: "100" },
+      order,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
+   * @name slideshowComponentDataHandler
+   * @desc Append the <Slideshow /> component to the 'receipe'
+   * @param { slide_image_url } : URL of the image(if the image is available online)
+   * @param { slide_image_alt } : A breif information about the image
+   */
+  slideshowComponentDataHandler = ({
+    slideshow_image_url,
+    slideshow_image_alt
+  }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (!slideshow_image_url && slideshow_image_url !== "") return;
+
+    addNewPostComponent({
+      data: [{ url: slideshow_image_url, alt: slideshow_image_alt }],
       order,
       type
     });
@@ -223,7 +252,13 @@ class addPostComponentDetailForm extends React.Component {
           />
         );
       case SLIDE_SHOW:
-        return null;
+        return (
+          <Slideshow
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.slideshowComponentDataHandler}
+          />
+        );
       case ATTACHMENT:
         return (
           <Attachment
