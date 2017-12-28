@@ -1,7 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import SubHeading from "../PostComponents/EditableComponents/SubHeading";
 import Heading from "../PostComponents/EditableComponents/Heading";
+import {
+  SUB_HEADING,
+  SLIDE_SHOW,
+  ATTACHMENT,
+  PARAGRAPH,
+  HEADING,
+  TABLE,
+  IMAGE,
+  VIDEO,
+  LIST,
+  MAP
+} from "../../../constants/post-content/components";
 
 /**
  * @name addPostComponentDetailForm
@@ -13,37 +26,97 @@ import Heading from "../PostComponents/EditableComponents/Heading";
  * @prop type: Type of the component which about to be added
  */
 class addPostComponentDetailForm extends React.Component {
-  HeadingComponentDataHandler = ({ heading_text }) => {
+  /**
+   * @name headingComponentDataHandler
+   * @desc Append the <Heading /> component to the 'receipe'
+   * @param { heading_text } : text to display inside the heading component
+   */
+  headingComponentDataHandler = ({ heading_text }) => {
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
       order,
       type
     } = this.props;
-    // Append the component to the post
     addNewPostComponent({
       data: heading_text,
       order,
       type
     });
-    // Close the modal
     hideAddPostComponentModal();
   };
 
-  render() {
+  /**
+   * @name subHeadingComponentDataHandler
+   * @desc Append the <SubHeading /> component to the 'receipe'
+   * @param { sub_heading_text } : text to display inside the sub-heading component
+   */
+  subHeadingComponentDataHandler = ({ sub_heading_text }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+    addNewPostComponent({
+      data: sub_heading_text,
+      order,
+      type
+    });
+    hideAddPostComponentModal();
+  };
+
+  /**
+   * @name renderSelectedComponent
+   * @desc Render the selected component which user intended to add to the 'receipe'
+   * @return React Component corresponding to the selected component
+   */
+  renderSelectedComponent = () => {
     const {
       renderModalTitleDependsOnComponentType,
       hideAddPostComponentModal,
       type
     } = this.props;
+    switch (type) {
+      case SUB_HEADING:
+        return (
+          <SubHeading
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.subHeadingComponentDataHandler}
+          />
+        );
+      case SLIDE_SHOW:
+        return null;
+      case ATTACHMENT:
+        return null;
+      case PARAGRAPH:
+        return null;
+      case HEADING:
+        return (
+          <Heading
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.headingComponentDataHandler}
+          />
+        );
+      case TABLE:
+        return null;
+      case IMAGE:
+        return null;
+      case VIDEO:
+        return null;
+      case LIST:
+        return null;
+      case MAP:
+        return null;
+      default:
+        return null;
+    }
+  };
 
-    return (
-      <Heading
-        headerText={renderModalTitleDependsOnComponentType(type)}
-        hideAddPostComponentModal={hideAddPostComponentModal}
-        submitHandlerFunc={this.HeadingComponentDataHandler}
-      />
-    );
+  render() {
+    return this.renderSelectedComponent();
   }
 }
 

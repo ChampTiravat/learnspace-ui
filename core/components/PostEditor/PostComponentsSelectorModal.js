@@ -44,7 +44,7 @@ class PostComponentsSelectorModal extends React.Component {
               name="หัวข้อเรื่อง"
             />
             <PostComponentItem
-              onClick={() => showAddPostComponentModal(SUB_HEDING)}
+              onClick={() => showAddPostComponentModal(SUB_HEADING)}
               name="หัวข้อย่อย"
             />
             <PostComponentItem
