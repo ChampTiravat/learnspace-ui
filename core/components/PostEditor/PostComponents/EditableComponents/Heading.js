@@ -4,7 +4,7 @@ import { reduxForm, Field } from "redux-form";
 
 import { SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
-import { Form } from "../../../Form";
+import { Form, InputField } from "../../../Form";
 
 /**
  * @name Heading
@@ -24,7 +24,7 @@ const Heading = ({
     <Header>{headerText}</Header>
     <Form onSubmit={handleSubmit(submitHandlerFunc)}>
       <Body>
-        <Field name="heading_text" component="input" type="text" />
+        <Field name="heading_text" component={InputField} type="text" />
       </Body>
       <Footer>
         <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
