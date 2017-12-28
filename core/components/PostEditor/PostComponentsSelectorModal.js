@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { hidePostComponentsSelectorModal } from "../../actions/post-editor-actions";
 import { showAddPostComponentModal } from "../../actions/post-editor-actions";
 import { ModalBackground, ModalPanel } from "../Modal";
-import Card, { Header, Body, Footer } from "../Card";
 import PostComponentItem from "./PostComponentItem";
+import { Header, Body, Footer } from "../Card";
 import { DangerButton } from "../Button";
 import {
   SUB_HEADING,
