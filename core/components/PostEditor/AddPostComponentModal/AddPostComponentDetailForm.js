@@ -39,11 +39,15 @@ class addPostComponentDetailForm extends React.Component {
       order,
       type
     } = this.props;
+
+    if (!heading_text && heading_text !== "") return;
+
     addNewPostComponent({
       data: heading_text,
       order,
       type
     });
+
     hideAddPostComponentModal();
   };
 
@@ -59,11 +63,15 @@ class addPostComponentDetailForm extends React.Component {
       order,
       type
     } = this.props;
+
+    if (!sub_heading_text && sub_heading_text !== "") return;
+
     addNewPostComponent({
       data: sub_heading_text,
       order,
       type
     });
+
     hideAddPostComponentModal();
   };
 
@@ -79,11 +87,15 @@ class addPostComponentDetailForm extends React.Component {
       order,
       type
     } = this.props;
+
+    if (!paragraph_text && paragraph_text !== "") return;
+
     addNewPostComponent({
       data: paragraph_text,
       order,
       type
     });
+
     hideAddPostComponentModal();
   };
 
