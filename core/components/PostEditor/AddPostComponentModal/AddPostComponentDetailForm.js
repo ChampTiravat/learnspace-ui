@@ -8,6 +8,7 @@ import Slideshow from "../PostComponents/EditableComponents/Slideshow";
 import Heading from "../PostComponents/EditableComponents/Heading";
 import Image from "../PostComponents/EditableComponents/Image";
 import Video from "../PostComponents/EditableComponents/Video";
+import List from "../PostComponents/EditableComponents/List";
 import Map from "../PostComponents/EditableComponents/Map";
 import {
   SUB_HEADING,
@@ -232,6 +233,36 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
+   * @name listComponentDataHandler
+   * @desc Append the <List /> component to the 'receipe'
+   * @param { description } : Describe what is presenting in the list
+   * @param { items[string] } : Array of list items
+   */
+  listComponentDataHandler = ({ description, items = ["test1", "test2"] }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (
+      !description &&
+      description !== "" &&
+      (items.length && items.length > 0)
+    )
+      return;
+
+    addNewPostComponent({
+      data: { description, items },
+      order,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
    * @name renderSelectedComponent
    * @desc Render the selected component which user intended to add to the 'receipe'
    * @return React Component corresponding to the selected component
@@ -302,7 +333,13 @@ class addPostComponentDetailForm extends React.Component {
           />
         );
       case LIST:
-        return null;
+        return (
+          <List
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.listComponentDataHandler}
+          />
+        );
       case MAP:
         return (
           <Map

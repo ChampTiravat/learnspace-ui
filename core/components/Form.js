@@ -84,11 +84,12 @@ export const InputField = ({
   input,
   type,
   label,
+  placeholder,
   meta: { touched, error }
 }) => (
   <InputGroup>
     <InputLabel>{label}</InputLabel>
-    <Input {...input} type={type} />
+    <Input placeholder={placeholder} {...input} type={type} />
     {touched && error && <span className="error">{error}</span>}
   </InputGroup>
 );
@@ -96,7 +97,8 @@ export const InputField = ({
 InputField.prototype = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string
 };
 
 export const TextAreaField = ({
