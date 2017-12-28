@@ -23,8 +23,8 @@ const PostComponentItemWrapper = styled.div`
  * @desc Used to display a available component which can be added to the post
  * @prop name : The name of the component
  */
-const PostComponentItem = ({ name }) => (
-  <PostComponentItemWrapper>{name}</PostComponentItemWrapper>
+const PostComponentItem = props => (
+  <PostComponentItemWrapper {...props}>{props.name}</PostComponentItemWrapper>
 );
 
 PostComponentItem.propTypes = {
