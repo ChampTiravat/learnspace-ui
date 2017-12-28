@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SubHeading from "../PostComponents/EditableComponents/SubHeading";
 import Paragraph from "../PostComponents/EditableComponents/Paragraph";
 import Heading from "../PostComponents/EditableComponents/Heading";
+import Image from "../PostComponents/EditableComponents/Image";
 import {
   SUB_HEADING,
   SLIDE_SHOW,
@@ -78,7 +79,7 @@ class addPostComponentDetailForm extends React.Component {
   /**
    * @name paragraphComponentDataHandler
    * @desc Append the <Paragraph /> component to the 'receipe'
-   * @param { sub_heading_text } : text to display inside the sub-heading component
+   * @param { paragraph_text } : text to display inside the sub-heading component
    */
   paragraphComponentDataHandler = ({ paragraph_text }) => {
     const {
@@ -92,6 +93,30 @@ class addPostComponentDetailForm extends React.Component {
 
     addNewPostComponent({
       data: paragraph_text,
+      order,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
+   * @name imageComponentDataHandler
+   * @desc Append the <Paragraph /> component to the 'receipe'
+   * @param { image_url, image_alt } : text to display inside the sub-heading component
+   */
+  imageComponentDataHandler = ({ image_url, image_alt }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (!image_url && image_url !== "") return;
+
+    addNewPostComponent({
+      data: { url: image_url, alt: image_alt || image_url },
       order,
       type
     });
@@ -142,7 +167,13 @@ class addPostComponentDetailForm extends React.Component {
       case TABLE:
         return null;
       case IMAGE:
-        return null;
+        return (
+          <Image
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.imageComponentDataHandler}
+          />
+        );
       case VIDEO:
         return null;
       case LIST:
