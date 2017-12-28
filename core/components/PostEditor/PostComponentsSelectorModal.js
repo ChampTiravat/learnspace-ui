@@ -41,44 +41,45 @@ class PostComponentsSelectorModal extends React.Component {
           <Body height="470px" style={{ textAlign: "center" }}>
             <PostComponentItem
               onClick={() => showAddPostComponentModal(HEADING)}
-            >
-              หัวข้อเรื่อง
-            </PostComponentItem>
+              name="หัวข้อเรื่อง"
+            />
             <PostComponentItem
-              onClick={() => showAddPostComponentModal(SUB_HEADING)}
-            >
-              หัวข้อย่อย
-            </PostComponentItem>
+              onClick={() => showAddPostComponentModal(SUB_HEDING)}
+              name="หัวข้อย่อย"
+            />
             <PostComponentItem
               onClick={() => showAddPostComponentModal(PARAGRAPH)}
-            >
-              ย่อหน้า
-            </PostComponentItem>
-            <PostComponentItem onClick={() => showAddPostComponentModal(IMAGE)}>
-              รุปภาพ
-            </PostComponentItem>
-            <PostComponentItem onClick={() => showAddPostComponentModal(VIDEO)}>
-              วิดีโอ
-            </PostComponentItem>
-            <PostComponentItem onClick={() => showAddPostComponentModal(MAP)}>
-              แผนที่
-            </PostComponentItem>
-            <PostComponentItem onClick={() => showAddPostComponentModal(TABLE)}>
-              ตาราง
-            </PostComponentItem>
+              name="ย่อหน้า"
+            />
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(IMAGE)}
+              name="รุปภาพ"
+            />
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(VIDEO)}
+              name="วิดีโอ"
+            />
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(MAP)}
+              name="แผนที่"
+            />
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(TABLE)}
+              name="ตาราง"
+            />
+
             <PostComponentItem
               onClick={() => showAddPostComponentModal(SLIDE_SHOW)}
-            >
-              สไลด์รูปภาพ
-            </PostComponentItem>
+              name="สไลด์รูปภาพ"
+            />
             <PostComponentItem
               onClick={() => showAddPostComponentModal(ATTACHMENT)}
-            >
-              ไฟล์แนบ
-            </PostComponentItem>
-            <PostComponentItem onClick={() => showAddPostComponentModal(LIST)}>
-              รายการ
-            </PostComponentItem>
+              name="ไฟล์แนบ"
+            />
+            <PostComponentItem
+              onClick={() => showAddPostComponentModal(LIST)}
+              name="รายการ"
+            />
           </Body>
           <Footer>
             <DangerButton
