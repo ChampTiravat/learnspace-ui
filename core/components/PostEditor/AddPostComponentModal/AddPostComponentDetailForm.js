@@ -1,63 +1,58 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import PropTypes from "prop-types";
 
-import { SuccessButton, DangerButton, LightButton } from "../../Button";
-import SlideShow from "../PostComponents/EditableComponents/SlideShow";
-// import Heading from "../PostComponents/EditableComponents/Heading";
-import Image from "../PostComponents/EditableComponents/Image";
-import Table from "../PostComponents/EditableComponents/Table";
-import Map from "../PostComponents/EditableComponents/Map";
-import Card, { Header, Body, Footer } from "../../Card";
-import { Form, Input, InputLabel } from "../../Form";
+import Heading from "../PostComponents/EditableComponents/Heading";
 
-const HeadingForm = reduxForm({ form: "heading_component_data" })(
-  ({ submitHandlerFunc, handleSubmit }) => (
-    <Form onSubmit={handleSubmit(submitHandlerFunc)}>
-      <Field name="heading_text" component="input" type="text" />
-    </Form>
-  )
-);
-
+/**
+ * @name addPostComponentDetailForm
+ * @desc Display a form to enter a essential data for individial post component type
+ * @prop renderModalTitleDependsOnComponentType: f() used to render a corresponding header text for an individial component
+ * @prop hideAddPostComponentModal: f() used to hide 'AddPostComponentModal' when component is added
+ * @prop addNewPostComponent: f() to add the current component to the 'receipe'
+ * @prop order: Rendering order of the current component
+ * @prop type: Type of the component which about to be added
+ */
 class addPostComponentDetailForm extends React.Component {
-  HeadingDataHandler = val => {
-    console.log(val);
+  HeadingComponentDataHandler = ({ heading_text }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+    // Append the component to the post
+    addNewPostComponent({
+      data: heading_text,
+      order,
+      type
+    });
+    // Close the modal
+    hideAddPostComponentModal();
   };
 
   render() {
     const {
-      type,
-      order,
       renderModalTitleDependsOnComponentType,
-      addNewPostComponent,
-      hideAddPostComponentModal
+      hideAddPostComponentModal,
+      type
     } = this.props;
 
     return (
-      <div>
-        <Header>{renderModalTitleDependsOnComponentType(type)}</Header>
-        <Body>
-          <HeadingForm submitHandlerFunc={this.HeadingDataHandler} />
-        </Body>
-        <Footer>
-          <SuccessButton
-            marginRight="0.5em"
-            onClick={() =>
-              addNewPostComponent({
-                order,
-                type,
-                data: "DEFAULT DATA"
-              })
-            }
-          >
-            เสร็จสิ้น
-          </SuccessButton>
-          <DangerButton onClick={hideAddPostComponentModal}>
-            ยกเลิก
-          </DangerButton>
-        </Footer>
-      </div>
+      <Heading
+        headerText={renderModalTitleDependsOnComponentType(type)}
+        hideAddPostComponentModal={hideAddPostComponentModal}
+        submitHandlerFunc={this.HeadingComponentDataHandler}
+      />
     );
   }
 }
+
+addPostComponentDetailForm.propTypes = {
+  renderModalTitleDependsOnComponentType: PropTypes.func.isRequired,
+  hideAddPostComponentModal: PropTypes.func.isRequired,
+  addNewPostComponent: PropTypes.func.isRequired,
+  order: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired
+};
 
 export default addPostComponentDetailForm;
