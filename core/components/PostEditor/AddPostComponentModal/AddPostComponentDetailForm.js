@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Attachment from "../PostComponents/EditableComponents/Attachment";
 import SubHeading from "../PostComponents/EditableComponents/SubHeading";
 import Paragraph from "../PostComponents/EditableComponents/Paragraph";
 import Heading from "../PostComponents/EditableComponents/Heading";
@@ -176,6 +177,32 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
+   * @name attachmentComponentDataHandler
+   * @desc Append the <Video /> component to the 'receipe'
+   * @param { filename } : The name of the uploaded file
+   * @param { size } : Size of the file(KBs)
+   * @param { type } : Type of the file(PDF,DOCX, TXT, JPG, etc)
+   */
+  attachmentComponentDataHandler = ({ filename }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (!filename && filename !== "") return;
+
+    addNewPostComponent({
+      data: { filename, type: "PDF", size: "100" },
+      order,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
    * @name renderSelectedComponent
    * @desc Render the selected component which user intended to add to the 'receipe'
    * @return React Component corresponding to the selected component
@@ -198,7 +225,13 @@ class addPostComponentDetailForm extends React.Component {
       case SLIDE_SHOW:
         return null;
       case ATTACHMENT:
-        return null;
+        return (
+          <Attachment
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.attachmentComponentDataHandler}
+          />
+        );
       case PARAGRAPH:
         return (
           <Paragraph
