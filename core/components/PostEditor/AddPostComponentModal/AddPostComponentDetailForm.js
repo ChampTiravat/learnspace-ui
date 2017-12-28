@@ -6,6 +6,7 @@ import Paragraph from "../PostComponents/EditableComponents/Paragraph";
 import Heading from "../PostComponents/EditableComponents/Heading";
 import Image from "../PostComponents/EditableComponents/Image";
 import Video from "../PostComponents/EditableComponents/Video";
+import Map from "../PostComponents/EditableComponents/Map";
 import {
   SUB_HEADING,
   SLIDE_SHOW,
@@ -151,6 +152,30 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
+   * @name mapComponentDataHandler
+   * @desc Append the <Video /> component to the 'receipe'
+   * @param { location } : A location specified to send to Google Map API
+   */
+  mapComponentDataHandler = ({ location }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (!location && location !== "") return;
+
+    addNewPostComponent({
+      data: { location },
+      order,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
    * @name renderSelectedComponent
    * @desc Render the selected component which user intended to add to the 'receipe'
    * @return React Component corresponding to the selected component
@@ -211,7 +236,13 @@ class addPostComponentDetailForm extends React.Component {
       case LIST:
         return null;
       case MAP:
-        return null;
+        return (
+          <Map
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.mapComponentDataHandler}
+          />
+        );
       default:
         return null;
     }
