@@ -39,8 +39,22 @@ class Table extends React.Component {
   state = {
     meta: { name: "", description: "" },
     head: ["ชื่อจริง", "นามสกุล", "อายุ"],
-    body: [{ id: "1", items: ["Tony", "Stark", "39"] }]
+    body: []
   };
+
+  /**
+   * @name addRowItem
+   * @desc f() to add a new row item to the table
+   */
+  addRowItem = () =>
+    this.setState(prevState => ({
+      body: prevState.body.concat([
+        {
+          id: Math.ceil((Math.random() + (1 + Math.random())) * 100),
+          items: ["Tony", "Stark", "39"]
+        }
+      ])
+    }));
 
   /**
    * @name removeRowItem
@@ -53,27 +67,30 @@ class Table extends React.Component {
     }));
 
   /**
-   * @name addRowItem
-   * @desc f() to add a new row item to the table
+   * @name addColumnItem
+   * @desc f() to add a new column item to the table
    */
-  addRowItem = () => {
-    this.setState(prevState => ({
-      body: prevState.body.concat([
-        {
-          id: Math.ceil((Math.random() + (1 + Math.random())) * 100),
-          items: ["Tony", "Stark", "39"]
-        }
-      ])
+  addColumnItem = () =>
+    this.setState(({ head }) => ({
+      head: head.concat("new column")
     }));
-  };
+
+  /**
+   * @name removeColumnItem
+   * @desc f() to remove one particular column from the table, specifying by row ID
+   * @param columnToRemove : An indentification of the column which will be removed
+   */
+  removeColumnItem = columnToRemove =>
+    this.setState(({ head }) => ({
+      head: head.filter(columnItem => columnItem !== columnToRemove)
+    }));
 
   /**
    * @name renderRows
    * @desc f() to render a rows corresponding to the number of the current rows at the time
    */
-  renderRows = () => {
-    console.table(this.state.body);
-    return this.state.body.map((rowItem, i) => (
+  renderRows = () =>
+    this.state.body.map((rowItem, i) => (
       <tr key={i + 1}>
         <td>{i + 1}</td>
         {rowItem.items.map((row, j) => <td key={j}>{row}</td>)}
@@ -84,7 +101,6 @@ class Table extends React.Component {
         </td>
       </tr>
     ));
-  };
 
   /**
    * @name renderColumns
@@ -95,11 +111,14 @@ class Table extends React.Component {
       <th>ลำดับ</th>
       {this.state.head.map((column, i) => (
         <th>
-          {column} <RemoveItemButton>-</RemoveItemButton>
+          {column}
+          <RemoveItemButton onClick={() => this.removeColumnItem(column)}>
+            -
+          </RemoveItemButton>
         </th>
       ))}
       <th>
-        <AddItemButton>+</AddItemButton>
+        <AddItemButton onClick={this.addColumnItem}>+</AddItemButton>
       </th>
     </tr>
   );
