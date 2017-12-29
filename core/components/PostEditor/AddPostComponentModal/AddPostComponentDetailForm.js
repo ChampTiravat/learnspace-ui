@@ -238,7 +238,12 @@ class addPostComponentDetailForm extends React.Component {
    * @param { description } : Describe what is presenting in the list
    * @param { items[string] } : Array of list items
    */
-  listComponentDataHandler = ({ description, items = ["test1", "test2"] }) => {
+  listComponentDataHandler = values => {
+    const { metadata, description } = values;
+    const items = Object.values(values).filter((item, i) => i !== 0);
+    const data = { description, items };
+    console.log(metadata);
+
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
@@ -250,12 +255,13 @@ class addPostComponentDetailForm extends React.Component {
       !description &&
       description !== "" &&
       (items.length && items.length > 0)
-    )
+    ) {
       return;
+    }
 
     addNewPostComponent({
-      data: { description, items },
       order,
+      data,
       type
     });
 

@@ -1,8 +1,16 @@
+import styled, { keyframes } from "styled-components";
+
 export default {
   PRIMARY_COLOR: "#3b90f9",
   FONT_COLOR_LIGHT: "#fff",
   BACKGROUND_COLOR: "#f5f5f5",
   TEXT_COLOR: "#777",
   TEXT_INPUT_BACKGROUND_COLOR: "#F3F3F3",
-  BORDER_RADIUS: "5px"
+  BORDER_RADIUS: "5px",
+
+  // Animations
+  SHOW_FROM_TOP: keyframes`
+    from { transform: translateY(-1em); }
+      to { transform: translateY(1);    }
+  `
 };
