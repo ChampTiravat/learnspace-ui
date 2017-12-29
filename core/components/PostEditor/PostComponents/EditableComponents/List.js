@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import { reduxForm, Field } from "redux-form";
-import { connect } from "react-redux";
-import { compose } from "react-apollo";
 
 import { PrimaryButton, SuccessButton, DangerButton } from "../../../Button";
 import { Form, InputField, TextAreaField } from "../../../Form";
@@ -55,7 +53,6 @@ class List extends React.Component {
     ));
 
   render() {
-    console.log(this.props.form);
     const {
       hideAddPostComponentModal,
       submitHandlerFunc,
@@ -98,7 +95,4 @@ List.propTypes = {
   headerText: PropTypes.string.isRequired
 };
 
-export default compose(
-  reduxForm({ form: "list_component_data" }),
-  connect(state => ({ form: state.form }), null)
-)(List);
+export default reduxForm({ form: "list_component_data" })(List);
