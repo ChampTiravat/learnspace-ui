@@ -7,6 +7,7 @@ import Paragraph from "../PostComponents/EditableComponents/Paragraph";
 import Slideshow from "../PostComponents/EditableComponents/Slideshow";
 import Heading from "../PostComponents/EditableComponents/Heading";
 import Image from "../PostComponents/EditableComponents/Image";
+import Table from "../PostComponents/EditableComponents/Table";
 import Video from "../PostComponents/EditableComponents/Video";
 import List from "../PostComponents/EditableComponents/List";
 import Map from "../PostComponents/EditableComponents/Map";
@@ -269,6 +270,43 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
+   * @name tableComponentDataHandler
+   * @desc Append the <Table /> component to the 'receipe'
+   * @param { description } : Describe what is presenting in the list
+   * @param { items[string] } : Array of list items
+   */
+  tableComponentDataHandler = values => {
+    // const { metadata, description } = values;
+    // const items = Object.values(values).filter((item, i) => i !== 0);
+    // const data = { description, items };
+    // console.log(metadata);
+    return;
+
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order,
+      type
+    } = this.props;
+
+    if (
+      !description &&
+      description !== "" &&
+      (items.length && items.length > 0)
+    ) {
+      return;
+    }
+
+    addNewPostComponent({
+      order,
+      data,
+      type
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  /**
    * @name renderSelectedComponent
    * @desc Render the selected component which user intended to add to the 'receipe'
    * @return React Component corresponding to the selected component
@@ -321,7 +359,13 @@ class addPostComponentDetailForm extends React.Component {
           />
         );
       case TABLE:
-        return null;
+        return (
+          <Table
+            headerText={renderModalTitleDependsOnComponentType(type)}
+            hideAddPostComponentModal={hideAddPostComponentModal}
+            submitHandlerFunc={this.tableComponentDataHandler}
+          />
+        );
       case IMAGE:
         return (
           <Image

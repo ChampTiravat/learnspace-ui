@@ -50,7 +50,7 @@ class AddPostComponentModal extends React.Component {
         style={{ zIndex: "100" }}
         show={AddPostComponentModal.isShowing}
       >
-        <ModalPanel style={{ maxWidth: "900px" }}>
+        <ModalPanel style={{ maxWidth: "1200px" }}>
           <AddPostComponentDetailForm
             order={receipe.length}
             type={AddPostComponentModal.type}
