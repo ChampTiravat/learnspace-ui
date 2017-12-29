@@ -35,7 +35,7 @@ export const DefaultButton = styled.button`
  * @desc Alternative to PrimaryButton when placing on the dark background
  */
 export const LightButton = DefaultButton.extend`
-  color: #3b90f9;
+  color: ${p => p.theme.PRIMARY_COLOR};
   background-color: #fff;
 `;
 
@@ -44,7 +44,7 @@ export const LightButton = DefaultButton.extend`
  * @desc Primary style (for general purposes)
  */
 export const PrimaryButton = DefaultButton.extend`
-  background-color: #3b90f9;
+  background-color: ${p => p.theme.PRIMARY_COLOR};
   color: #fff;
 `;
 
@@ -54,7 +54,7 @@ export const PrimaryButton = DefaultButton.extend`
  */
 export const InfoButton = DefaultButton.extend`
   color: #fff;
-  background-color: #4dd0e1;
+  background-color: ${p => p.theme.INFO_COLOR};
 `;
 
 /**
@@ -63,7 +63,7 @@ export const InfoButton = DefaultButton.extend`
  */
 export const SuccessButton = DefaultButton.extend`
   color: #fff;
-  background-color: #4db6ac;
+  background-color: ${p => p.theme.SUCCESS_COLOR};
 `;
 
 /**
@@ -72,7 +72,7 @@ export const SuccessButton = DefaultButton.extend`
  */
 export const WarningButton = DefaultButton.extend`
   color: #fff;
-  background-color: #ffb74d;
+  background-color: ${p => p.theme.WARNING_COLOR};
 `;
 
 /**
@@ -81,7 +81,7 @@ export const WarningButton = DefaultButton.extend`
  */
 export const DangerButton = DefaultButton.extend`
   color: #fff;
-  background-color: #e57373;
+  background-color: ${p => p.theme.DANGER_COLOR};
 `;
 
 DefaultButton.propTypes = {
