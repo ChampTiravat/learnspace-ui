@@ -9,6 +9,25 @@ import { Header, Body, Footer } from "../../../Card";
 
 const ListItem = styled.li`
   animation: ${p => p.theme.SHOW_FROM_TOP} 400ms;
+  position: relative;
+  width: 90%;
+`;
+
+const RemoveItemButton = DangerButton.extend`
+  position: absolute;
+  right: -3em;
+  margin-left: 1.2em;
+  margin-top: -3.25em;
+  padding: 0.5em 1em;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.1em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: 150ms ease-in;
+  &:hover {
+    background-color: #fff;
+    color: #e57373;
+  }
 `;
 
 /**
@@ -45,9 +64,9 @@ class List extends React.Component {
           component={TextAreaField}
         />
         {item !== "first" ? (
-          <DangerButton type="button" onClick={() => this.removeItem(item)}>
-            ลบรายการนี้ออก
-          </DangerButton>
+          <RemoveItemButton type="button" onClick={() => this.removeItem(item)}>
+            -
+          </RemoveItemButton>
         ) : null}
       </ListItem>
     ));
@@ -63,17 +82,22 @@ class List extends React.Component {
       <Header>{headerText}</Header>,
       <Form onSubmit={handleSubmit(submitHandlerFunc)}>
         <Body>
-          <Field name="description" component={InputField} type="text" />
+          <Field
+            name="description"
+            label="คำอธิบายเกี่ยวกับรายการนี้"
+            component={InputField}
+            type="text"
+          />
           <ol>
             {this.renderItemDependsOnTotalItemsNumber()}
             <PrimaryButton
               type="button"
               textCenter
-              fluidWidth
               marginTop="1em"
+              style={{ width: "90%" }}
               onClick={this.addItem}
             >
-              เพิ่มรายการ
+              + เพิ่มรายการ
             </PrimaryButton>
           </ol>
         </Body>
