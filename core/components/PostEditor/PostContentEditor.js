@@ -16,6 +16,7 @@ import Map from "../PostPage/RenderedComponents/Map";
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
+import { PrimaryButton } from "../Button";
 import Card from "../Card";
 import {
   SUB_HEADING,
@@ -30,6 +31,30 @@ import {
   LIST
 } from "../../constants/post-content/components";
 
+const SaveButton = PrimaryButton.extend`
+  color: #fff;
+  margin-left: 1em;
+  padding: 1.3em 1em;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.1em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: 150ms ease-in;
+  position: fixed;
+  bottom: 3em;
+  right: 3em;
+  &:hover {
+    background-color: #fff;
+    color: ${p => p.theme.PRIMARY_COLOR};
+  }
+`;
+
+const PreviewButton = SaveButton.extend`
+  background-color: #fff;
+  color: ${p => p.theme.PRIMARY_COLOR};
+  bottom: 8em;
+`;
+
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
     return this.props.receipe !== nextProp.receipe;
@@ -37,16 +62,6 @@ class PostContentEditor extends React.Component {
 
   renderContentFromReceipe = () => {
     const { receipe } = this.props;
-    console.table(receipe); // DEBUGGING
-    // return receipe.length > 0
-    //   ? receipe.map((component, i) => {
-    //       return !component ? null : (
-    //         <div order={component.order}>
-    //           <h4>{component.type}</h4>
-    //         </div>
-    //       );
-    //     })
-    //   : null;
     return receipe.map(component => {
       switch (component.type) {
         case HEADING:
@@ -125,6 +140,8 @@ class PostContentEditor extends React.Component {
           {this.renderContentFromReceipe()}
           <EmptyField />
         </Card>
+        <SaveButton>บันทึก</SaveButton>
+        <PreviewButton>พรีวิว</PreviewButton>
       </div>
     );
   }
