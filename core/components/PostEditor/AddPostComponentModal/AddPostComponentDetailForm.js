@@ -27,21 +27,14 @@ import {
 /**
  * @name addPostComponentDetailForm
  * @desc Display a form to enter a essential data for individial post component type
- * @prop renderModalTitleDependsOnComponentType: f() used to render a corresponding header text for an individial component
  * @prop hideAddPostComponentModal: f() used to hide 'AddPostComponentModal' when component is added
  * @prop addNewPostComponent: f() to add the current component to the 'receipe'
  * @prop order: Rendering order of the current component
  * @prop type: Type of the component which about to be added
  */
 class addPostComponentDetailForm extends React.Component {
-  /**
-   * @name renderSelectedComponent
-   * @desc Render the selected component which user intended to add to the 'receipe'
-   * @return React Component corresponding to the selected component
-   */
-  renderSelectedComponent = () => {
+  render() {
     const {
-      renderModalTitleDependsOnComponentType,
       hideAddPostComponentModal,
       addNewPostComponent,
       type,
@@ -131,19 +124,14 @@ class addPostComponentDetailForm extends React.Component {
       default:
         return null;
     }
-  };
-
-  render() {
-    return this.renderSelectedComponent();
   }
 }
 
 addPostComponentDetailForm.propTypes = {
-  renderModalTitleDependsOnComponentType: PropTypes.func.isRequired,
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
   order: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string
 };
 
 export default addPostComponentDetailForm;

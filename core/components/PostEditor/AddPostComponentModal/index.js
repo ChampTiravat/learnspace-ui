@@ -22,22 +22,6 @@ import {
 } from "../../../actions/post-editor-actions";
 
 class AddPostComponentModal extends React.Component {
-  renderModalTitleDependsOnComponentType = type => {
-    const componentDescriptionHashMap = {
-      SLIDE_SHOW: "สไลด์รูปภาพ",
-      PARAGRAPH: "ย่อหน้า",
-      HEADING: "หัวข้อเรื่อง",
-      SUB_HEADING: "หัวข้อย่อย",
-      ATTACHMENT: "ไฟล์แนบ",
-      TABLE: "ตาราง",
-      IMAGE: "รูปภาพ",
-      VIDEO: "วิดีโอ",
-      LIST: "รายการย่อย",
-      MAP: "แผนที่"
-    };
-    return componentDescriptionHashMap[type];
-  };
-
   render() {
     const {
       hideAddPostComponentModal,
@@ -56,15 +40,19 @@ class AddPostComponentModal extends React.Component {
             type={AddPostComponentModal.type}
             addNewPostComponent={addNewPostComponent}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            renderModalTitleDependsOnComponentType={
-              this.renderModalTitleDependsOnComponentType
-            }
           />
         </ModalPanel>
       </ModalBackground>
     );
   }
 }
+
+AddPostComponentModal.propTypes = {
+  hideAddPostComponentModal: PropTypes.func.isRequired,
+  addNewPostComponent: PropTypes.func.isRequired,
+  AddPostComponentDetailForm: PropTypes.object,
+  receipe: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => ({
   AddPostComponentModal: state.isAddPostComponentModalShowing,
