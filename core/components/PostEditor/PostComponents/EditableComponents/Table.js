@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { reduxForm, Field } from "redux-form";
 import styled, { keyframes } from "styled-components";
 
+import { TABLE } from "../../../../constants/post-content/components";
 import TableWrapper from "../../../PostPage/RenderedComponents/Table";
 import { Form, InputField, TextAreaField } from "../../../Form";
 import { SuccessButton, DangerButton } from "../../../Button";
@@ -31,15 +32,47 @@ const AddItemButton = RemoveItemButton.extend`
  * @name Table
  * @desc Display a data as a grid
  * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : A trigger to close the AddPostComponentModal(close the modal intentionally)
- * @prop submitHandlerFunc : Custom submition handler function
- * @prop headerText : Text displaying at <Header /> of this modal, which determinig what component is about to be added
+ * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop order : The component's current order in receipe
+ * @prop type : Type of the component to be inserted
  */
 class Table extends React.Component {
   state = {
     meta: { name: "", description: "" },
     head: ["ชื่อจริง", "นามสกุล", "อายุ"],
     body: []
+  };
+
+  /**
+   * @name submitHandler
+   * @desc Append the <Table /> component to the 'receipe'
+   * @param { description } : Describe what is presenting in the list
+   * @param { items[string] } : Array of list items
+   */
+  submitHandler = values => {
+    return console.log(values);
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order
+    } = this.props;
+
+    if (
+      !description &&
+      description !== "" &&
+      (items.length && items.length > 0)
+    ) {
+      return;
+    }
+
+    addNewPostComponent({
+      type: TABLE,
+      order,
+      data
+    });
+
+    hideAddPostComponentModal();
   };
 
   /**
@@ -66,8 +99,8 @@ class Table extends React.Component {
    * @param rowToRemove : An indentification of the row which will be removed
    */
   removeRowItem = rowToRemove =>
-    this.setState(prevState => ({
-      body: prevState.body.filter(rowItem => rowItem.id !== rowToRemove)
+    this.setState(({ body }) => ({
+      body: body.filter(rowItem => rowItem.id !== rowToRemove)
     }));
 
   /**
@@ -84,12 +117,11 @@ class Table extends React.Component {
    * @desc f() to remove one particular column from the table, specifying by row ID
    * @param columnToRemove : An indentification of the column which will be removed
    */
-  removeColumnItem = columnToRemove => {
+  removeColumnItem = columnToRemove =>
     // we need to remove this.state.body[?].items[?].column === columnToRemove
     this.setState(({ head, body }) => ({
       head: head.filter(columnItem => columnItem !== columnToRemove)
     }));
-  };
 
   /**
    * @name renderRows
@@ -118,14 +150,7 @@ class Table extends React.Component {
   renderColumns = () => (
     <tr>
       <th>ลำดับ</th>
-      {this.state.head.map((column, i) => (
-        <th>
-          {column}
-          {/* <RemoveItemButton onClick={() => this.removeColumnItem(column)}>
-            -
-          </RemoveItemButton> */}
-        </th>
-      ))}
+      {this.state.head.map((column, i) => <th>{column}</th>)}
       <th>
         <AddItemButton type="button" onClick={this.addColumnItem}>
           +
@@ -161,16 +186,10 @@ class Table extends React.Component {
   };
 
   render() {
-    const {
-      hideAddPostComponentModal,
-      submitHandlerFunc,
-      handleSubmit,
-      headerText
-    } = this.props;
+    const { hideAddPostComponentModal, handleSubmit } = this.props;
     return [
-      <Header>{headerText}</Header>,
-      // <Form onSubmit={handleSubmit(submitHandlerFunc)}>
-      <Form onSubmit={e => e.preventDefault() & submitHandlerFunc(this.state)}>
+      <Header>ตาราว</Header>,
+      <Form onSubmit={e => e.preventDefault() & this.submitHandler(this.state)}>
         <Body>
           <Field
             name="name"
@@ -205,9 +224,9 @@ class Table extends React.Component {
 
 Table.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
-  submitHandlerFunc: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  headerText: PropTypes.string.isRequired
+  addNewPostComponent: PropTypes.func.isRequired,
+  order: PropTypes.number.isRequired
 };
 
 export default reduxForm({ form: "table_component_data" })(Table);

@@ -35,39 +35,6 @@ import {
  */
 class addPostComponentDetailForm extends React.Component {
   /**
-   * @name tableComponentDataHandler
-   * @desc Append the <Table /> component to the 'receipe'
-   * @param { description } : Describe what is presenting in the list
-   * @param { items[string] } : Array of list items
-   */
-  tableComponentDataHandler = values => {
-    return console.log(values);
-
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (
-      !description &&
-      description !== "" &&
-      (items.length && items.length > 0)
-    ) {
-      return;
-    }
-
-    addNewPostComponent({
-      order,
-      data,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name renderSelectedComponent
    * @desc Render the selected component which user intended to add to the 'receipe'
    * @return React Component corresponding to the selected component
@@ -124,9 +91,9 @@ class addPostComponentDetailForm extends React.Component {
       case TABLE:
         return (
           <Table
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.tableComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case IMAGE:
