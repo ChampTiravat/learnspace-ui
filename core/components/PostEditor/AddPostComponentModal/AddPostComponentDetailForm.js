@@ -35,30 +35,6 @@ import {
  */
 class addPostComponentDetailForm extends React.Component {
   /**
-   * @name headingComponentDataHandler
-   * @desc Append the <Heading /> component to the 'receipe'
-   * @param { heading_text } : text to display inside the heading component
-   */
-  headingComponentDataHandler = ({ heading_text }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!heading_text && heading_text !== "") return;
-
-    addNewPostComponent({
-      data: heading_text,
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name paragraphComponentDataHandler
    * @desc Append the <Paragraph /> component to the 'receipe'
    * @param { paragraph_text } : text to display inside the sub-heading component
@@ -327,11 +303,9 @@ class addPostComponentDetailForm extends React.Component {
       case HEADING:
         return (
           <Heading
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
             addNewPostComponent={addNewPostComponent}
             order={order}
-            type={type}
           />
         );
       case TABLE:

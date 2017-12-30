@@ -2,23 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { reduxForm, Field } from "redux-form";
 
+import { SUB_HEADING } from "../../../../constants/post-content/components";
 import { SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, InputField } from "../../../Form";
-import { SUB_HEADING } from "../../../../constants/post-content/components";
 
 /**
  * @name SubHeading
  * @desc Display a sub heading text, used to seperate one big topic into a smaller one
  * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : A trigger to close the AddPostComponentModal(close the modal intentionally)
- * @prop submitHandlerFunc : Custom submition handler function
+ * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop addNewPostComponent : f() to append a new post component to receipe
  * @prop order : The component's current order in receipe
  * @prop type : Type of the component to be inserted
  */
 class SubHeading extends React.Component {
   /**
-   * @name subHeadingComponentDataHandler
+   * @name submitHandler
    * @desc Append the <SubHeading /> component to the 'receipe'
    * @param { sub_heading_text } : text to display inside the sub-heading component
    */
@@ -42,22 +42,20 @@ class SubHeading extends React.Component {
 
   render() {
     const { hideAddPostComponentModal, handleSubmit } = this.props;
-    return (
-      <div>
-        <Header>หัวข้อย่อย</Header>
-        <Form onSubmit={handleSubmit(this.submitHandler)}>
-          <Body>
-            <Field name="sub_heading_text" component={InputField} type="text" />
-          </Body>
-          <Footer>
-            <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-            <DangerButton type="button" onClick={hideAddPostComponentModal}>
-              ยกเลิก
-            </DangerButton>
-          </Footer>
-        </Form>
-      </div>
-    );
+    return [
+      <Header>หัวข้อย่อย</Header>,
+      <Form onSubmit={handleSubmit(this.submitHandler)}>
+        <Body>
+          <Field name="sub_heading_text" component={InputField} type="text" />
+        </Body>
+        <Footer>
+          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
+          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+            ยกเลิก
+          </DangerButton>
+        </Footer>
+      </Form>
+    ];
   }
 }
 
