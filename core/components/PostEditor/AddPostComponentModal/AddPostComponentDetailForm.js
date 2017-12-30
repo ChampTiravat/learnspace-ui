@@ -35,30 +35,6 @@ import {
  */
 class addPostComponentDetailForm extends React.Component {
   /**
-   * @name mapComponentDataHandler
-   * @desc Append the <Map /> component to the 'receipe'
-   * @param { location } : A location specified to send to Google Map API
-   */
-  mapComponentDataHandler = ({ location }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!location && location !== "") return;
-
-    addNewPostComponent({
-      data: { location },
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name listComponentDataHandler
    * @desc Append the <List /> component to the 'receipe'
    * @param { description } : Describe what is presenting in the list
@@ -216,9 +192,9 @@ class addPostComponentDetailForm extends React.Component {
       case MAP:
         return (
           <Map
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.mapComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       default:
