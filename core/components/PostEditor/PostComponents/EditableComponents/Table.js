@@ -47,11 +47,15 @@ class Table extends React.Component {
    * @desc f() to add a new row item to the table
    */
   addRowItem = () =>
-    this.setState(prevState => ({
-      body: prevState.body.concat([
+    this.setState(({ body }) => ({
+      body: body.concat([
         {
           id: Math.ceil((Math.random() + (1 + Math.random())) * 100),
-          items: ["Tony", "Stark", "39"]
+          items: [
+            { column: "ชื่อจริง", data: "tony" },
+            { column: "นามสกุล", data: "stark" },
+            { column: "อายุ", data: "40" }
+          ]
         }
       ])
     }));
@@ -76,14 +80,16 @@ class Table extends React.Component {
     }));
 
   /**
-   * @name removeColumnItem
+   * @name removeColumnItem (DO NOT USE THIS F(). IT DID NOT COMPLETED, YET!!!)
    * @desc f() to remove one particular column from the table, specifying by row ID
    * @param columnToRemove : An indentification of the column which will be removed
    */
-  removeColumnItem = columnToRemove =>
-    this.setState(({ head }) => ({
+  removeColumnItem = columnToRemove => {
+    // we need to remove this.state.body[?].items[?].column === columnToRemove
+    this.setState(({ head, body }) => ({
       head: head.filter(columnItem => columnItem !== columnToRemove)
     }));
+  };
 
   /**
    * @name renderRows
@@ -93,9 +99,12 @@ class Table extends React.Component {
     this.state.body.map((rowItem, i) => (
       <tr key={i + 1}>
         <td>{i + 1}</td>
-        {rowItem.items.map((row, j) => <td key={j}>{row}</td>)}
+        {rowItem.items.map((row, j) => <td key={j}>{row.data}</td>)}
         <td>
-          <RemoveItemButton onClick={() => this.removeRowItem(rowItem.id)}>
+          <RemoveItemButton
+            type="button"
+            onClick={() => this.removeRowItem(rowItem.id)}
+          >
             -
           </RemoveItemButton>
         </td>
@@ -112,13 +121,15 @@ class Table extends React.Component {
       {this.state.head.map((column, i) => (
         <th>
           {column}
-          <RemoveItemButton onClick={() => this.removeColumnItem(column)}>
+          {/* <RemoveItemButton onClick={() => this.removeColumnItem(column)}>
             -
-          </RemoveItemButton>
+          </RemoveItemButton> */}
         </th>
       ))}
       <th>
-        <AddItemButton onClick={this.addColumnItem}>+</AddItemButton>
+        <AddItemButton type="button" onClick={this.addColumnItem}>
+          +
+        </AddItemButton>
       </th>
     </tr>
   );
@@ -141,7 +152,9 @@ class Table extends React.Component {
           </td>
         ))}
         <td>
-          <AddItemButton onClick={this.addRowItem}>+</AddItemButton>
+          <AddItemButton type="button" onClick={this.addRowItem}>
+            +
+          </AddItemButton>
         </td>
       </tr>
     );
@@ -156,7 +169,8 @@ class Table extends React.Component {
     } = this.props;
     return [
       <Header>{headerText}</Header>,
-      <Form onSubmit={handleSubmit(submitHandlerFunc)}>
+      // <Form onSubmit={handleSubmit(submitHandlerFunc)}>
+      <Form onSubmit={e => e.preventDefault() & submitHandlerFunc(this.state)}>
         <Body>
           <Field
             name="name"
