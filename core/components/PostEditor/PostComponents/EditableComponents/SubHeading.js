@@ -5,6 +5,7 @@ import { reduxForm, Field } from "redux-form";
 import { SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, InputField } from "../../../Form";
+import { SUB_HEADING } from "../../../../constants/post-content/components";
 
 /**
  * @name SubHeading
@@ -12,7 +13,6 @@ import { Form, InputField } from "../../../Form";
  * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
  * @prop hideAddPostComponentModal : A trigger to close the AddPostComponentModal(close the modal intentionally)
  * @prop submitHandlerFunc : Custom submition handler function
- * @prop headerText : Text displaying at <Header /> of this modal, which determinig what component is about to be added
  * @prop order : The component's current order in receipe
  * @prop type : Type of the component to be inserted
  */
@@ -26,26 +26,25 @@ class SubHeading extends React.Component {
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
-      order,
-      type
+      order
     } = this.props;
 
     if (!sub_heading_text && sub_heading_text !== "") return;
 
     addNewPostComponent({
       data: sub_heading_text,
-      order,
-      type
+      type: SUB_HEADING,
+      order
     });
 
     hideAddPostComponentModal();
   };
 
   render() {
-    const { hideAddPostComponentModal, handleSubmit, headerText } = this.props;
+    const { hideAddPostComponentModal, handleSubmit } = this.props;
     return (
       <div>
-        <Header>{headerText}</Header>
+        <Header>หัวข้อย่อย</Header>
         <Form onSubmit={handleSubmit(this.submitHandler)}>
           <Body>
             <Field name="sub_heading_text" component={InputField} type="text" />
@@ -65,10 +64,8 @@ class SubHeading extends React.Component {
 SubHeading.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  headerText: PropTypes.string.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
-  order: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired
+  order: PropTypes.number.isRequired
 };
 
 export default reduxForm({ form: "sub_heading_component_data" })(SubHeading);

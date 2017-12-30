@@ -295,11 +295,9 @@ class addPostComponentDetailForm extends React.Component {
       case SUB_HEADING:
         return (
           <SubHeading
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
             addNewPostComponent={addNewPostComponent}
             order={order}
-            type={type}
           />
         );
       case SLIDE_SHOW:
@@ -331,7 +329,9 @@ class addPostComponentDetailForm extends React.Component {
           <Heading
             headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.headingComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
+            type={type}
           />
         );
       case TABLE:
