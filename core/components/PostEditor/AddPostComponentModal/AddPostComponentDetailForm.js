@@ -276,12 +276,6 @@ class addPostComponentDetailForm extends React.Component {
    * @param { items[string] } : Array of list items
    */
   tableComponentDataHandler = values => {
-    // const { metadata, description } = values;
-    // const items = Object.values(values).filter((item, i) => i !== 0);
-    // const data = { description, items };
-    // console.log(metadata);
-    // const keys = Object.keys(values);
-    // return console.log(keys);
     return console.log(values);
 
     const {

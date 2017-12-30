@@ -65,66 +65,96 @@ class PostContentEditor extends React.Component {
     return receipe.map(component => {
       switch (component.type) {
         case HEADING:
-          return <Heading key={component.order}>{component.data}</Heading>;
+          return (
+            <BasedComponent type={HEADING}>
+              <Heading key={component.order}>{component.data}</Heading>
+            </BasedComponent>
+          );
         case VIDEO:
-          return <Video key={component.order} />;
+          return (
+            <BasedComponent type={VIDEO}>
+              <Video key={component.order} />
+            </BasedComponent>
+          );
         case SUB_HEADING:
           return (
-            <SubHeading key={component.order}>{component.data}</SubHeading>
+            <BasedComponent type={SUB_HEADING}>
+              <SubHeading key={component.order}>{component.data}</SubHeading>
+            </BasedComponent>
           );
         case PARAGRAPH:
-          return <Paragraph key={component.order}>{component.data}</Paragraph>;
+          return (
+            <BasedComponent type={PARAGRAPH}>
+              <Paragraph key={component.order}>{component.data}</Paragraph>
+            </BasedComponent>
+          );
         case LIST:
           return (
-            <List
-              description={component.data.description}
-              key={component.order}
-            >
-              {component.data.items.map((item, i) => <li key={i}>{item}</li>)}
-            </List>
+            <BasedComponent type={LIST}>
+              <List
+                description={component.data.description}
+                key={component.order}
+              >
+                {component.data.items.map((item, i) => <li key={i}>{item}</li>)}
+              </List>
+            </BasedComponent>
           );
         case IMAGE:
           return (
-            <Image
-              key={component.order}
-              src={component.data.url}
-              alt={component.data.alt}
-            />
+            <BasedComponent type={IMAGE}>
+              <Image
+                key={component.order}
+                src={component.data.url}
+                alt={component.data.alt}
+              />
+            </BasedComponent>
           );
         case TABLE:
           return (
-            <Table
-              name={component.data.meta.name}
-              description={component.data.meta.description}
-            >
-              <thead>
-                <tr>
-                  {component.data.head.map((columnName, i) => (
-                    <th key={i}>{columnName}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {component.data.body.map((dataRow, i) => (
-                  <tr key={i}>
-                    {dataRow.map((data, i) => <td key={i}>{data}</td>)}
+            <BasedComponent type={TABLE}>
+              <Table
+                name={component.data.meta.name}
+                description={component.data.meta.description}
+              >
+                <thead>
+                  <tr>
+                    {component.data.head.map((columnName, i) => (
+                      <th key={i}>{columnName}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {component.data.body.map((dataRow, i) => (
+                    <tr key={i}>
+                      {dataRow.map((data, i) => <td key={i}>{data}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </BasedComponent>
           );
         case SLIDE_SHOW:
-          return <Slideshow key={component.order} images={component.data} />;
+          return (
+            <BasedComponent type={SLIDE_SHOW}>
+              <Slideshow key={component.order} images={component.data} />;
+            </BasedComponent>
+          );
         case MAP:
-          return <Map key={component.order} />;
+          return (
+            <BasedComponent type={MAP}>
+              <Map key={component.order} />;
+            </BasedComponent>
+          );
         case ATTACHMENT:
           return (
-            <Attachment
-              key={component.order}
-              filename={component.data.filename}
-              size={component.data.size}
-              type={component.data.type}
-            />
+            <BasedComponent type={ATTACHMENT}>
+              <Attachment
+                key={component.order}
+                filename={component.data.filename}
+                size={component.data.size}
+                type={component.data.type}
+              />
+            </BasedComponent>
           );
         default:
           return null;
@@ -143,7 +173,7 @@ class PostContentEditor extends React.Component {
         </Card>
         {receipe.length > 0
           ? [
-              <SaveButton>บันทึก</SaveButton>,
+              <SaveButton onClick={() => alert("Saving")}>บันทึก</SaveButton>,
               <PreviewButton>พรีวิว</PreviewButton>
             ]
           : null}
