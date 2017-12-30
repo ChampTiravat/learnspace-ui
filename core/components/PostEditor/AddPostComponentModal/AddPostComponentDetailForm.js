@@ -108,32 +108,6 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
-   * @name attachmentComponentDataHandler
-   * @desc Append the <Attachment /> component to the 'receipe'
-   * @param { filename } : The name of the uploaded file
-   * @param { size } : Size of the file(KBs)
-   * @param { type } : Type of the file(PDF,DOCX, TXT, JPG, etc)
-   */
-  attachmentComponentDataHandler = ({ filename }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!filename && filename !== "") return;
-
-    addNewPostComponent({
-      data: { filename, type: "PDF", size: "100" },
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name listComponentDataHandler
    * @desc Append the <List /> component to the 'receipe'
    * @param { description } : Describe what is presenting in the list
@@ -235,9 +209,9 @@ class addPostComponentDetailForm extends React.Component {
       case ATTACHMENT:
         return (
           <Attachment
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.attachmentComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case PARAGRAPH:
