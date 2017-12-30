@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { reduxForm, Field } from "redux-form";
 
+import { PARAGRAPH } from "../../../../constants/post-content/components";
 import { SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, TextAreaField } from "../../../Form";
@@ -10,37 +11,59 @@ import { Form, TextAreaField } from "../../../Form";
  * @name Paragraph
  * @desc Display a paragraph text, used to present a content of the topic in details
  * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : A trigger to close the AddPostComponentModal(close the modal intentionally)
- * @prop submitHandlerFunc : Custom submition handler function
- * @prop headerText : Text displaying at <Header /> of this modal, which determinig what component is about to be added
+ * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop order : The component's current order in receipe
+ * @prop type : Type of the component to be inserted
  */
-const Paragraph = ({
-  hideAddPostComponentModal,
-  submitHandlerFunc,
-  handleSubmit,
-  headerText
-}) => (
-  <div>
-    <Header>{headerText}</Header>
-    <Form onSubmit={handleSubmit(submitHandlerFunc)}>
-      <Body>
-        <Field name="paragraph_text" component={TextAreaField} type="text" />
-      </Body>
-      <Footer>
-        <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-        <DangerButton type="button" onClick={hideAddPostComponentModal}>
-          ยกเลิก
-        </DangerButton>
-      </Footer>
-    </Form>
-  </div>
-);
+class Paragraph extends React.Component {
+  /**
+   * @name submitHandler
+   * @desc Append the <Paragraph /> component to the 'receipe'
+   * @param { paragraph_text } : text to display inside the sub-heading component
+   */
+  submitHandler = ({ paragraph_text }) => {
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order
+    } = this.props;
+
+    if (!paragraph_text && paragraph_text !== "") return;
+
+    addNewPostComponent({
+      data: paragraph_text,
+      type: PARAGRAPH,
+      order
+    });
+
+    hideAddPostComponentModal();
+  };
+
+  render() {
+    const { hideAddPostComponentModal, handleSubmit } = this.props;
+    return [
+      <Header>ย่อหน้า</Header>,
+      <Form onSubmit={handleSubmit(this.submitHandler)}>
+        <Body>
+          <Field name="paragraph_text" component={TextAreaField} type="text" />
+        </Body>
+        <Footer>
+          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
+          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+            ยกเลิก
+          </DangerButton>
+        </Footer>
+      </Form>
+    ];
+  }
+}
 
 Paragraph.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
-  submitHandlerFunc: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  headerText: PropTypes.string.isRequired
+  addNewPostComponent: PropTypes.func.isRequired,
+  order: PropTypes.number.isRequired
 };
 
 export default reduxForm({ form: "paragraph_component_data" })(Paragraph);

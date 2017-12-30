@@ -35,30 +35,6 @@ import {
  */
 class addPostComponentDetailForm extends React.Component {
   /**
-   * @name paragraphComponentDataHandler
-   * @desc Append the <Paragraph /> component to the 'receipe'
-   * @param { paragraph_text } : text to display inside the sub-heading component
-   */
-  paragraphComponentDataHandler = ({ paragraph_text }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!paragraph_text && paragraph_text !== "") return;
-
-    addNewPostComponent({
-      data: paragraph_text,
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name imageComponentDataHandler
    * @desc Append the <Paragraph /> component to the 'receipe'
    * @param { image_url } : URL of the image(if the image is available online)
@@ -295,9 +271,9 @@ class addPostComponentDetailForm extends React.Component {
       case PARAGRAPH:
         return (
           <Paragraph
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.paragraphComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case HEADING:
