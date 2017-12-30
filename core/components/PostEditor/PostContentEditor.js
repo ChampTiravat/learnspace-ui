@@ -133,6 +133,7 @@ class PostContentEditor extends React.Component {
   };
 
   render() {
+    const { receipe } = this.props;
     return (
       <div>
         <SetTitleCard />
@@ -140,8 +141,12 @@ class PostContentEditor extends React.Component {
           {this.renderContentFromReceipe()}
           <EmptyField />
         </Card>
-        <SaveButton>บันทึก</SaveButton>
-        <PreviewButton>พรีวิว</PreviewButton>
+        {receipe.length > 0
+          ? [
+              <SaveButton>บันทึก</SaveButton>,
+              <PreviewButton>พรีวิว</PreviewButton>
+            ]
+          : null}
       </div>
     );
   }
