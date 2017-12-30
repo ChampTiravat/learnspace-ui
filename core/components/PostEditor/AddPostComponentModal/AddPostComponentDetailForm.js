@@ -59,30 +59,6 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
-   * @name subHeadingComponentDataHandler
-   * @desc Append the <SubHeading /> component to the 'receipe'
-   * @param { sub_heading_text } : text to display inside the sub-heading component
-   */
-  subHeadingComponentDataHandler = ({ sub_heading_text }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!sub_heading_text && sub_heading_text !== "") return;
-
-    addNewPostComponent({
-      data: sub_heading_text,
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name paragraphComponentDataHandler
    * @desc Append the <Paragraph /> component to the 'receipe'
    * @param { paragraph_text } : text to display inside the sub-heading component
@@ -311,7 +287,9 @@ class addPostComponentDetailForm extends React.Component {
     const {
       renderModalTitleDependsOnComponentType,
       hideAddPostComponentModal,
-      type
+      addNewPostComponent,
+      type,
+      order
     } = this.props;
     switch (type) {
       case SUB_HEADING:
@@ -319,7 +297,9 @@ class addPostComponentDetailForm extends React.Component {
           <SubHeading
             headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.subHeadingComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
+            type={type}
           />
         );
       case SLIDE_SHOW:
