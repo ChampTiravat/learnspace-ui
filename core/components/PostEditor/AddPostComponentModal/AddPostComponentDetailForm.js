@@ -280,7 +280,9 @@ class addPostComponentDetailForm extends React.Component {
     // const items = Object.values(values).filter((item, i) => i !== 0);
     // const data = { description, items };
     // console.log(metadata);
-    return;
+    // const keys = Object.keys(values);
+    // return console.log(keys);
+    return console.log(values);
 
     const {
       hideAddPostComponentModal,
