@@ -4,6 +4,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 
 import { showNotificationModal } from "../../actions/notification-modal-actions";
+import { showChatroomModal } from "../../actions/chatroom-modal-actions";
 import NavbarLinksContainer from "./NavbarLinksContainer";
 import NavbarContainer from "./NavbarContainer";
 import SearchTab from "../SearchTab/SearchTab";
@@ -22,7 +23,7 @@ import {
 /**
  * @desc Use this component when user is authenticated
  */
-const AuthenticatedNav = ({ showNotificationModal }) => (
+const AuthenticatedNav = ({ showChatroomModal, showNotificationModal }) => (
   <Navbar>
     <NavbarContainer>
       <LogoTab authenticated>
@@ -44,12 +45,10 @@ const AuthenticatedNav = ({ showNotificationModal }) => (
             </Link>
           </NavbarLink>
           <NavbarLink>
-            <Link href={PROFILE_PAGE} prefetch>
-              <a>
-                แชท
-                <InfoBadge>12</InfoBadge>
-              </a>
-            </Link>
+            <a onClick={() => showChatroomModal()}>
+              แชท
+              <InfoBadge>12</InfoBadge>
+            </a>
           </NavbarLink>
           <NavbarLink>
             <a onClick={() => showNotificationModal()}>
@@ -66,8 +65,14 @@ const AuthenticatedNav = ({ showNotificationModal }) => (
   </Navbar>
 );
 
+AuthenticatedNav.propTypes = {
+  showNotificationModal: PropTypes.func.isRequired,
+  showChatroomModal: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = dispatch => ({
-  showNotificationModal: () => dispatch(showNotificationModal())
+  showNotificationModal: () => dispatch(showNotificationModal()),
+  showChatroomModal: () => dispatch(showChatroomModal())
 });
 
 export default connect(null, mapDispatchToProps)(AuthenticatedNav);
