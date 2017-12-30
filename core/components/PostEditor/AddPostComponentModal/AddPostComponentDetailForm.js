@@ -241,9 +241,9 @@ class addPostComponentDetailForm extends React.Component {
       case IMAGE:
         return (
           <Image
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.imageComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case VIDEO:
