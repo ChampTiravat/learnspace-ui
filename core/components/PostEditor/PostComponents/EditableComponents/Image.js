@@ -29,12 +29,12 @@ const ImageUpLoadWrapper = styled.div`
  */
 class Image extends React.Component {
   /**
-   * @name imageComponentDataHandler
-   * @desc Append the <Paragraph /> component to the 'receipe'
+   * @name submitHandler
+   * @desc Append the <Image /> component to the 'receipe'
    * @param { image_url } : URL of the image(if the image is available online)
    * @param { image_alt } : A breif information about the image
    */
-  imageComponentDataHandler = ({ image_url, image_alt }) => {
+  submitHandler = ({ image_url, image_alt }) => {
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
