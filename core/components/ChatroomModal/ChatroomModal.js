@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import { connect } from "react-redux";
 
-import { CLASSROOM_PAGE } from "../../constants/endpoints/ui";
+import { CLASSROOM_CHATROOM_PAGE } from "../../constants/endpoints/ui";
 import { NotificationItem } from "../NotificationPanel";
 import { ModalBackground, ModalPanel } from "../Modal";
 import { Header, Body, Footer } from "../Card";
@@ -13,6 +13,7 @@ import {
   hideChatroomModal
 } from "../../actions/chatroom-modal-actions";
 
+// hide this modal if the current url is /chatroom?c=???
 const ChatroomModal = ({ isModalShowing, showModal, hideModal }) => (
   <ModalBackground show={isModalShowing}>
     <ModalPanel large>
@@ -20,7 +21,7 @@ const ChatroomModal = ({ isModalShowing, showModal, hideModal }) => (
       <Body overflowY="scroll" height="600px">
         {/* {}  */}
         {[0, 1, 2, 3, 4, 5, 6].map((_, i) => (
-          <Link href={CLASSROOM_PAGE} prefetch key={i}>
+          <Link href={CLASSROOM_CHATROOM_PAGE} prefetch key={i}>
             <a>
               <NotificationItem
                 origin="Introduction to Computer Science"
