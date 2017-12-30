@@ -35,42 +35,6 @@ import {
  */
 class addPostComponentDetailForm extends React.Component {
   /**
-   * @name listComponentDataHandler
-   * @desc Append the <List /> component to the 'receipe'
-   * @param { description } : Describe what is presenting in the list
-   * @param { items[string] } : Array of list items
-   */
-  listComponentDataHandler = values => {
-    const { metadata, description } = values;
-    const items = Object.values(values).filter((item, i) => i !== 0);
-    const data = { description, items };
-    console.log(metadata);
-
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (
-      !description &&
-      description !== "" &&
-      (items.length && items.length > 0)
-    ) {
-      return;
-    }
-
-    addNewPostComponent({
-      order,
-      data,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name tableComponentDataHandler
    * @desc Append the <Table /> component to the 'receipe'
    * @param { description } : Describe what is presenting in the list
@@ -184,9 +148,9 @@ class addPostComponentDetailForm extends React.Component {
       case LIST:
         return (
           <List
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.listComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case MAP:

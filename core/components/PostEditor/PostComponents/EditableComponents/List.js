@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { reduxForm, Field } from "redux-form";
 
 import { PrimaryButton, SuccessButton, DangerButton } from "../../../Button";
+import { LIST } from "../../../../constants/post-content/components";
 import { Form, InputField, TextAreaField } from "../../../Form";
 import { Header, Body, Footer } from "../../../Card";
 
@@ -34,13 +35,48 @@ const RemoveItemButton = DangerButton.extend`
  * @name List
  * @desc Display a list with ordered items
  * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : A trigger to close the AddPostComponentModal(close the modal intentionally)
- * @prop submitHandlerFunc : Custom submition handler function
- * @prop headerText : Text displaying at <Header /> of this modal, which determinig what component is about to be added
+ * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop order : The component's current order in receipe
+ * @prop type : Type of the component to be inserte
  */
 class List extends React.Component {
   state = {
     items: ["first"]
+  };
+
+  /**
+   * @name submitHandler
+   * @desc Append the <List /> component to the 'receipe'
+   * @param { description } : Describe what is presenting in the list
+   * @param { items[string] } : Array of list items
+   */
+  submitHandler = values => {
+    const { metadata, description } = values;
+    const items = Object.values(values).filter((item, i) => i !== 0);
+    const data = { description, items };
+
+    const {
+      hideAddPostComponentModal,
+      addNewPostComponent,
+      order
+    } = this.props;
+
+    if (
+      !description &&
+      description !== "" &&
+      (items.length && items.length > 0)
+    ) {
+      return;
+    }
+
+    addNewPostComponent({
+      type: LIST,
+      order,
+      data
+    });
+
+    hideAddPostComponentModal();
   };
 
   removeItem = itemToDelete =>
@@ -72,15 +108,10 @@ class List extends React.Component {
     ));
 
   render() {
-    const {
-      hideAddPostComponentModal,
-      submitHandlerFunc,
-      handleSubmit,
-      headerText
-    } = this.props;
+    const { hideAddPostComponentModal, handleSubmit } = this.props;
     return [
-      <Header>{headerText}</Header>,
-      <Form onSubmit={handleSubmit(submitHandlerFunc)}>
+      <Header>รายการ</Header>,
+      <Form onSubmit={handleSubmit(this.submitHandler)}>
         <Body>
           <Field
             name="description"
@@ -114,9 +145,9 @@ class List extends React.Component {
 
 List.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
-  submitHandlerFunc: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  headerText: PropTypes.string.isRequired
+  addNewPostComponent: PropTypes.func.isRequired,
+  order: PropTypes.number.isRequired
 };
 
 export default reduxForm({ form: "list_component_data" })(List);
