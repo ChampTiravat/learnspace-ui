@@ -134,34 +134,6 @@ class addPostComponentDetailForm extends React.Component {
   };
 
   /**
-   * @name slideshowComponentDataHandler
-   * @desc Append the <Slideshow /> component to the 'receipe'
-   * @param { slide_image_url } : URL of the image(if the image is available online)
-   * @param { slide_image_alt } : A breif information about the image
-   */
-  slideshowComponentDataHandler = ({
-    slideshow_image_url,
-    slideshow_image_alt
-  }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order,
-      type
-    } = this.props;
-
-    if (!slideshow_image_url && slideshow_image_url !== "") return;
-
-    addNewPostComponent({
-      data: [{ url: slideshow_image_url, alt: slideshow_image_alt }],
-      order,
-      type
-    });
-
-    hideAddPostComponentModal();
-  };
-
-  /**
    * @name listComponentDataHandler
    * @desc Append the <List /> component to the 'receipe'
    * @param { description } : Describe what is presenting in the list
@@ -255,9 +227,9 @@ class addPostComponentDetailForm extends React.Component {
       case SLIDE_SHOW:
         return (
           <Slideshow
-            headerText={renderModalTitleDependsOnComponentType(type)}
             hideAddPostComponentModal={hideAddPostComponentModal}
-            submitHandlerFunc={this.slideshowComponentDataHandler}
+            addNewPostComponent={addNewPostComponent}
+            order={order}
           />
         );
       case ATTACHMENT:
