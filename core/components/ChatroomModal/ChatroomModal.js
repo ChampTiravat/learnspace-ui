@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import { connect } from "react-redux";
 
+import { CLASSROOM_PAGE } from "../../constants/endpoints/ui";
 import { NotificationItem } from "../NotificationPanel";
 import { ModalBackground, ModalPanel } from "../Modal";
 import { Header, Body, Footer } from "../Card";
@@ -11,7 +12,6 @@ import {
   showChatroomModal,
   hideChatroomModal
 } from "../../actions/chatroom-modal-actions";
-import { CLASSROOM_PAGE } from "../../constants/endpoints/ui";
 
 const ChatroomModal = ({ isModalShowing, showModal, hideModal }) => (
   <ModalBackground show={isModalShowing}>
