@@ -39,7 +39,9 @@ const UserProfilePic = styled.img`
 const MemberItem = ({ children, profilePic }) => (
   <MemberItemCard>
     <UserProfilePic src={profilePic} />
-    <CircleButton danger>-</CircleButton>
+    <CircleButton danger position="absolute" top="1em" right="1em">
+      -
+    </CircleButton>
     <Body>{children}</Body>
   </MemberItemCard>
 );
