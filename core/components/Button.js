@@ -46,12 +46,15 @@ export const Button = styled.button`
 export const CircleButton = Button.extend`
   position: ${p => p.position || "static"};
   right: ${p => p.right || ""};
+  left: ${p => p.left || ""};
+  bottom: ${p => p.bottom || ""};
+  top: ${p => p.top || ""};
   border-radius: 50%;
-  padding: 0.5em 1em;
+  padding: ${p => p.padding || "0.5em 1em"};
   font-size: 1.1em;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: 150ms ease-in;
-  color: #fff;
+  color: ${p => (p.light ? p.theme.PRIMARY_COLOR : "#fff")};
   background-color: ${p =>
     p.primary
       ? p.theme.PRIMARY_COLOR
@@ -61,7 +64,9 @@ export const CircleButton = Button.extend`
           ? p.theme.DANGER_COLOR
           : p.warning
             ? p.theme.WARNING_COLOR
-            : p.success ? p.theme.SUCCESS_COLOR : p.theme.PRIMARY_COLOR};
+            : p.success
+              ? p.theme.SUCCESS_COLOR
+              : p.light ? "#fff" : p.theme.PRIMARY_COLOR};
   &:hover {
     background-color: #fff;
     color: ${p =>
@@ -73,7 +78,9 @@ export const CircleButton = Button.extend`
             ? p.theme.DANGER_COLOR
             : p.warning
               ? p.theme.WARNING_COLOR
-              : p.success ? p.theme.SUCCESS_COLOR : ""};
+              : p.success
+                ? p.theme.SUCCESS_COLOR
+                : p.light ? p.theme.PRIMARY_COLOR : ""};
   }
 `;
 

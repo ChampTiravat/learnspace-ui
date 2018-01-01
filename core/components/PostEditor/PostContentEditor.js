@@ -155,8 +155,23 @@ class PostContentEditor extends React.Component {
         </Card>
         {receipe.length > 0
           ? [
-              <CircleButton>พรีวิว</CircleButton>,
-              <CircleButton primary onClick={() => alert("Saving")}>
+              <CircleButton
+                light
+                padding="1.3em 1em"
+                position="fixed"
+                right="3em"
+                bottom="9em"
+              >
+                พรีวิว
+              </CircleButton>,
+              <CircleButton
+                primary
+                padding="1.3em 1em"
+                position="fixed"
+                right="3em"
+                bottom="3em"
+                onClick={() => alert("Saving")}
+              >
                 บันทึก
               </CircleButton>
             ]
