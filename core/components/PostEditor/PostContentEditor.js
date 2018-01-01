@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
@@ -13,6 +14,7 @@ import Image from "../PostPage/RenderedComponents/Image";
 import List from "../PostPage/RenderedComponents/List";
 import Map from "../PostPage/RenderedComponents/Map";
 
+import { showPostComponentsSelectorModal } from "../../actions/post-editor-actions";
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
@@ -163,13 +165,13 @@ class PostContentEditor extends React.Component {
   };
 
   render() {
-    const { receipe } = this.props;
+    const { receipe, showThisPostComponentsSelectorModal } = this.props;
     return (
       <div>
         <SetTitleCard />
         <Card fluidWidth padding="2em" marginBottom="4em">
           {this.renderContentFromReceipe()}
-          <EmptyField />
+          <EmptyField onClick={showThisPostComponentsSelectorModal} />
         </Card>
         {receipe.length > 0
           ? [
@@ -182,10 +184,17 @@ class PostContentEditor extends React.Component {
   }
 }
 
+PostContentEditor.propTypes = {
+  showThisPostComponentsSelectorModal: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   receipe: state.editingPostReceipe
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  showThisPostComponentsSelectorModal: () =>
+    dispatch(showPostComponentsSelectorModal())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContentEditor);
