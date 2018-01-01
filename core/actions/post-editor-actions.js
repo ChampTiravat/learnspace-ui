@@ -44,7 +44,9 @@ export const showAddPostComponentModal = type => ({
  */
 export const hideAddPostComponentModal = () => ({
   type: HIDE_ADD_POST_COMPONENT_MODAL,
-  payload: false
+  payload: {
+    isShowing: false
+  }
 });
 
 /**

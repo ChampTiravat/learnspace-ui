@@ -21,23 +21,28 @@ import {
   addNewPostComponent
 } from "../../../actions/post-editor-actions";
 
+/**
+ * @name AddPostComponentModal
+ * @desc Display a modal to add a new post component
+ * @prop
+ */
 class AddPostComponentModal extends React.Component {
   render() {
     const {
       hideAddPostComponentModal,
-      AddPostComponentModal,
+      addPostComponentModal,
       addNewPostComponent,
       receipe
     } = this.props;
     return (
       <ModalBackground
         style={{ zIndex: "100" }}
-        show={AddPostComponentModal.isShowing}
+        show={addPostComponentModal.isShowing}
       >
         <ModalPanel style={{ maxWidth: "1200px" }}>
           <AddPostComponentDetailForm
             order={receipe.length}
-            type={AddPostComponentModal.type}
+            type={addPostComponentModal.type}
             addNewPostComponent={addNewPostComponent}
             hideAddPostComponentModal={hideAddPostComponentModal}
           />
@@ -49,13 +54,14 @@ class AddPostComponentModal extends React.Component {
 
 AddPostComponentModal.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
+  addPostComponentModal: PropTypes.object.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
-  AddPostComponentDetailForm: PropTypes.object,
+  addPostComponentDetailForm: PropTypes.object,
   receipe: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  AddPostComponentModal: state.isAddPostComponentModalShowing,
+  addPostComponentModal: state.isAddPostComponentModalShowing,
   receipe: state.editingPostReceipe
 });
 
