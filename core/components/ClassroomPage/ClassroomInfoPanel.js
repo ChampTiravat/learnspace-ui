@@ -4,7 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { CLASSROOM_CHATROOM_PAGE } from "../../constants/endpoints/ui";
-import { PrimaryButton } from "../Button";
+import { Button } from "../Button";
 import Card from "../Card";
 
 const ClassroomInfoPanelCard = Card.extend`
@@ -78,7 +78,7 @@ const ClassroomInfoPanel = ({
     </ClassroomCourseInfoContainer>
     <ClassroomPanelButtonsGroup>
       <Link href={CLASSROOM_CHATROOM_PAGE} prefetch>
-        <PrimaryButton>ห้องแชท</PrimaryButton>
+        <Button primary>ห้องแชท</Button>
       </Link>
     </ClassroomPanelButtonsGroup>
   </ClassroomInfoPanelWrapper>

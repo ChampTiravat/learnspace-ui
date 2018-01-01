@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { ModalBackground, ModalPanel } from "../Modal";
 import PostComponentItem from "./PostComponentItem";
 import { Header, Body, Footer } from "../Card";
-import { DangerButton } from "../Button";
+import { Button } from "../Button";
 import {
   SUB_HEADING,
   SLIDE_SHOW,
@@ -80,12 +80,13 @@ class PostComponentsSelectorModal extends React.Component {
             />
           </Body>
           <Footer>
-            <DangerButton
+            <Button
+              danger
               textCenter
               onClick={() => hideComponentsSelectorModal()}
             >
               ยกเลิก
-            </DangerButton>
+            </Button>
           </Footer>
         </ModalPanel>
       </ModalBackground>

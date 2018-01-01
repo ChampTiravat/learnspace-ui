@@ -8,10 +8,10 @@ import { showChatroomModal } from "../../actions/chatroom-modal-actions";
 import NavbarLinksContainer from "./NavbarLinksContainer";
 import NavbarContainer from "./NavbarContainer";
 import SearchTab from "../SearchTab/SearchTab";
-import { LightButton } from "../Button";
 import ButtonsTab from "./ButtonsTab";
 import NavbarLink from "./NavbarLink";
 import { InfoBadge } from "../Badge";
+import { Button } from "../Button";
 import LogoTab from "./LogoTab";
 import Navbar from "./Navbar";
 import {
@@ -57,7 +57,7 @@ const AuthenticatedNav = ({ showChatroomModal, showNotificationModal }) => (
             </a>
           </NavbarLink>
           <NavbarLink>
-            <LightButton>ออกจากระบบ</LightButton>
+            <Button light>ออกจากระบบ</Button>
           </NavbarLink>
         </NavbarLinksContainer>
       </ButtonsTab>

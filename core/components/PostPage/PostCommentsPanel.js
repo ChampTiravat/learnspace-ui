@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import Card, { Header, Body, Footer } from "../Card";
 import PostCommentItem from "./PostCommentItem";
-import { PrimaryButton } from "../Button";
 
 const SubCommentsWrapper = styled.ul`
   list-style: none;

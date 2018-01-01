@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Card, { Header, Body, Footer } from "../Card";
-import { PrimaryButton } from "../Button";
 import { Form, TextArea } from "../Form";
 import ChatMessage from "./ChatMessage";
+import { Button } from "../Button";
 
 const ChatMessagesPanelWrapper = Card.extend`
   height: auto;
@@ -71,9 +71,9 @@ const ChatMessagesPanel = () => (
         <TextArea
           style={{ marginBottom: "1em", width: "100%", height: "50px" }}
         />
-        <PrimaryButton textCenter fluidWidth>
+        <Button primary textCenter fluidWidth>
           ส่ง
-        </PrimaryButton>
+        </Button>
       </Form>
     </Footer>
   </ChatMessagesPanelWrapper>

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-import Card from "./Card";
 import ClassroomProfilePic from "./ClassroomProfilePic";
+import Card from "./Card";
 
 const ClassroomListItemWrapper = styled.div`
   position: relative;

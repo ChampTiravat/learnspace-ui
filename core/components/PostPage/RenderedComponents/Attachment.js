@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { PrimaryButton, LightButton } from "../../Button";
+import { Button } from "../../Button";
 import Card from "../../Card";
 
 const AttachmentCard = Card.extend`
@@ -56,9 +56,9 @@ const Attachment = ({ filename, size, type }) => (
         File type: <span>{type}</span>
       </FileInfo>
     </FileInfoWrapper>
-    <PrimaryButton fluidWidth textCenter>
+    <Button primary fluidWidth textCenter>
       ดาวน์โหลด
-    </PrimaryButton>
+    </Button>
   </AttachmentCard>
 );
 

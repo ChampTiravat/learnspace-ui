@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { reduxForm, Field } from "redux-form";
 
 import { ATTACHMENT } from "../../../../constants/post-content/components";
-import { LightButton, SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, InputField } from "../../../Form";
+import { Button } from "../../../Button";
 
 const AttachmentUpLoadWrapper = styled.div`
   height: 250px;
@@ -60,15 +60,17 @@ class Attachment extends React.Component {
       <Form onSubmit={handleSubmit(this.submitHandler)}>
         <Body>
           <AttachmentUpLoadWrapper>
-            <LightButton>เลือกไฟล์</LightButton>
+            <Button light>เลือกไฟล์</Button>
           </AttachmentUpLoadWrapper>
           <Field name="filename" component={InputField} type="text" />
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];

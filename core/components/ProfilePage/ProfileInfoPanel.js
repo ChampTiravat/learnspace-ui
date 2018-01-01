@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { PrimaryButton } from "../Button";
+import { Button } from "../Button";
 import Card from "../Card";
 
 const Seperator = styled.div`
@@ -73,7 +73,7 @@ const ProfileInfoPanel = ({
         <UserInfoItem>ที่อยู่ : {location}</UserInfoItem>
         <UserInfoItem>อาชีพ : {career}</UserInfoItem>
       </ProfileInfoDetails>
-      <PrimaryButton>ส่งข้อความ</PrimaryButton>
+      <Button primary>ส่งข้อความ</Button>
     </ProfileInfoContainer>
   </ProfileInfoPanelCard>
 );

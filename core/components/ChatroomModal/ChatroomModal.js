@@ -7,7 +7,7 @@ import { CLASSROOM_CHATROOM_PAGE } from "../../constants/endpoints/ui";
 import { NotificationItem } from "../NotificationPanel";
 import { ModalBackground, ModalPanel } from "../Modal";
 import { Header, Body, Footer } from "../Card";
-import { LightButton } from "../Button";
+import { Button } from "../Button";
 import {
   showChatroomModal,
   hideChatroomModal
@@ -32,7 +32,9 @@ const ChatroomModal = ({ isModalShowing, showModal, hideModal }) => (
         ))}
       </Body>
       <Footer>
-        <LightButton onClick={() => hideModal()}>ปิด</LightButton>
+        <Button light onClick={() => hideModal()}>
+          ปิด
+        </Button>
       </Footer>
     </ModalPanel>
   </ModalBackground>

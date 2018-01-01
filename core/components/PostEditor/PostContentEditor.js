@@ -16,7 +16,7 @@ import Map from "../PostPage/RenderedComponents/Map";
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
-import { PrimaryButton } from "../Button";
+import { CircleButton } from "../Button";
 import Card from "../Card";
 import {
   SUB_HEADING,
@@ -30,30 +30,6 @@ import {
   MAP,
   LIST
 } from "../../constants/post-content/components";
-
-const SaveButton = PrimaryButton.extend`
-  color: #fff;
-  margin-left: 1em;
-  padding: 1.3em 1em;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 1.1em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: 150ms ease-in;
-  position: fixed;
-  bottom: 3em;
-  right: 3em;
-  &:hover {
-    background-color: #fff;
-    color: ${p => p.theme.PRIMARY_COLOR};
-  }
-`;
-
-const PreviewButton = SaveButton.extend`
-  background-color: #fff;
-  color: ${p => p.theme.PRIMARY_COLOR};
-  bottom: 8em;
-`;
 
 /**
  * @name PostContentEditor
@@ -179,8 +155,10 @@ class PostContentEditor extends React.Component {
         </Card>
         {receipe.length > 0
           ? [
-              <SaveButton onClick={() => alert("Saving")}>บันทึก</SaveButton>,
-              <PreviewButton>พรีวิว</PreviewButton>
+              <CircleButton>พรีวิว</CircleButton>,
+              <CircleButton primary onClick={() => alert("Saving")}>
+                บันทึก
+              </CircleButton>
             ]
           : null}
       </div>

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { NotificationItem } from "./NotificationPanel";
 import { ModalBackground, ModalPanel } from "./Modal";
 import { Header, Body, Footer } from "./Card";
-import { LightButton } from "./Button";
+import { Button } from "./Button";
 import {
   showNotificationModal,
   hideNotificationModal
@@ -42,7 +42,9 @@ const NotificationModal = ({ isModalShowing, showModal, hideModal }) => (
         />
       </Body>
       <Footer>
-        <LightButton onClick={() => hideModal()}>ปิด</LightButton>
+        <Button light onClick={() => hideModal()}>
+          ปิด
+        </Button>
       </Footer>
     </ModalPanel>
   </ModalBackground>

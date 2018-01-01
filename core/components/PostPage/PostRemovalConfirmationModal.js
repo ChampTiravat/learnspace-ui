@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { ModalBackground, ModalPanel } from "..//Modal";
-import { PrimaryButton, LightButton } from "../Button";
 import { Header, Body, Footer } from "../Card";
+import { Button } from "../Button";
 
 /**
  * @name PostRemovalConfirmationModal
@@ -23,8 +23,12 @@ const PostRemovalConfirmationModal = ({
         คุณต้องการดำเนินการต่อหรือไม่
       </Body>
       <Footer>
-        <PrimaryButton marginRight="0.5em">ยืนยัน</PrimaryButton>
-        <LightButton onClick={() => hidePostRMModal()}>ยกเลิก</LightButton>
+        <Button primary marginRight="0.5em">
+          ยืนยัน
+        </Button>
+        <Button light onClick={() => hidePostRMModal()}>
+          ยกเลิก
+        </Button>
       </Footer>
     </ModalPanel>
   </ModalBackground>

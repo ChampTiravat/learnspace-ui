@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { reduxForm, Field } from "redux-form";
 
 import { PARAGRAPH } from "../../../../constants/post-content/components";
-import { SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, TextAreaField } from "../../../Form";
+import { Button } from "../../../Button";
 
 /**
  * @name Paragraph
@@ -49,10 +49,12 @@ class Paragraph extends React.Component {
           <Field name="paragraph_text" component={TextAreaField} type="text" />
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];

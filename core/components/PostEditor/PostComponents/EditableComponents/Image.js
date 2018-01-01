@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { reduxForm, Field } from "redux-form";
 
-import { LightButton, SuccessButton, DangerButton } from "../../../Button";
 import { IMAGE } from "../../../../constants/post-content/components";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, InputField } from "../../../Form";
+import { Button } from "../../../Button";
 
 const ImageUpLoadWrapper = styled.div`
   height: 250px;
@@ -59,16 +59,18 @@ class Image extends React.Component {
       <Form onSubmit={handleSubmit(this.submitHandler)}>
         <Body>
           <ImageUpLoadWrapper>
-            <LightButton>เลือกรูปภาพ</LightButton>
+            <Button light>เลือกรูปภาพ</Button>
           </ImageUpLoadWrapper>
           <Field name="image_url" component={InputField} type="text" />
           <Field name="image_alt" component={InputField} type="text" />
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];

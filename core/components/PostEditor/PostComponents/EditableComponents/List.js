@@ -3,32 +3,15 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { reduxForm, Field } from "redux-form";
 
-import { PrimaryButton, SuccessButton, DangerButton } from "../../../Button";
 import { LIST } from "../../../../constants/post-content/components";
 import { Form, InputField, TextAreaField } from "../../../Form";
+import { CircleButton, Button } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 
 const ListItem = styled.li`
   animation: ${p => p.theme.SHOW_FROM_TOP} 400ms;
   position: relative;
   width: 90%;
-`;
-
-const RemoveItemButton = DangerButton.extend`
-  position: absolute;
-  right: -3em;
-  margin-left: 1.2em;
-  margin-top: -3.25em;
-  padding: 0.5em 1em;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 1.1em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: 150ms ease-in;
-  &:hover {
-    background-color: #fff;
-    color: #e57373;
-  }
 `;
 
 /**
@@ -100,9 +83,13 @@ class List extends React.Component {
           component={TextAreaField}
         />
         {item !== "first" ? (
-          <RemoveItemButton type="button" onClick={() => this.removeItem(item)}>
+          <CircleButton
+            danger
+            type="button"
+            onClick={() => this.removeItem(item)}
+          >
             -
-          </RemoveItemButton>
+          </CircleButton>
         ) : null}
       </ListItem>
     ));
@@ -121,7 +108,8 @@ class List extends React.Component {
           />
           <ol>
             {this.renderItemDependsOnTotalItemsNumber()}
-            <PrimaryButton
+            <Button
+              primary
               type="button"
               textCenter
               marginTop="1em"
@@ -129,14 +117,16 @@ class List extends React.Component {
               onClick={this.addItem}
             >
               + เพิ่มรายการ
-            </PrimaryButton>
+            </Button>
           </ol>
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];

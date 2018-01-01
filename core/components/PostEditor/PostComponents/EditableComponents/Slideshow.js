@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { reduxForm, Field } from "redux-form";
 
 import { SLIDE_SHOW } from "../../../../constants/post-content/components";
-import { LightButton, SuccessButton, DangerButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
 import { Form, InputField } from "../../../Form";
+import { Button } from "../../../Button";
 
 const ImageUpLoadWrapper = styled.div`
   height: 250px;
@@ -61,7 +61,7 @@ class Slideshow extends React.Component {
         <Body>
           <div>
             <ImageUpLoadWrapper>
-              <LightButton>เลือกรูปภาพ</LightButton>
+              <Button light>เลือกรูปภาพ</Button>
             </ImageUpLoadWrapper>
             <Field
               name="slideshow_image_url"
@@ -76,10 +76,12 @@ class Slideshow extends React.Component {
           </div>
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];

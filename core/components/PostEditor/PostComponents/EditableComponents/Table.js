@@ -6,27 +6,8 @@ import styled, { keyframes } from "styled-components";
 import { TABLE } from "../../../../constants/post-content/components";
 import TableWrapper from "../../../PostPage/RenderedComponents/Table";
 import { Form, InputField, TextAreaField } from "../../../Form";
-import { SuccessButton, DangerButton } from "../../../Button";
+import { Button, CircleButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
-
-const RemoveItemButton = DangerButton.extend`
-  color: #fff;
-  margin-left: 1em;
-  padding: 0.5em 1em;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 1.1em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: 150ms ease-in;
-  &:hover {
-    background-color: #fff;
-    color: ${p => p.theme.DANGER_COLOR};
-  }
-`;
-
-const AddItemButton = RemoveItemButton.extend`
-  background-color: ${p => p.theme.PRIMARY_COLOR};
-`;
 
 /**
  * @name Table
@@ -133,12 +114,13 @@ class Table extends React.Component {
         <td>{i + 1}</td>
         {rowItem.items.map((row, j) => <td key={j}>{row.data}</td>)}
         <td>
-          <RemoveItemButton
+          <CircleButton
+            danger
             type="button"
             onClick={() => this.removeRowItem(rowItem.id)}
           >
             -
-          </RemoveItemButton>
+          </CircleButton>
         </td>
       </tr>
     ));
@@ -152,9 +134,9 @@ class Table extends React.Component {
       <th>ลำดับ</th>
       {this.state.head.map((column, i) => <th>{column}</th>)}
       <th>
-        <AddItemButton type="button" onClick={this.addColumnItem}>
+        <CircleButton primary type="button" onClick={this.addColumnItem}>
           +
-        </AddItemButton>
+        </CircleButton>
       </th>
     </tr>
   );
@@ -177,9 +159,9 @@ class Table extends React.Component {
           </td>
         ))}
         <td>
-          <AddItemButton type="button" onClick={this.addRowItem}>
+          <CircleButton primary type="button" onClick={this.addRowItem}>
             +
-          </AddItemButton>
+          </CircleButton>
         </td>
       </tr>
     );
@@ -212,10 +194,12 @@ class Table extends React.Component {
           </TableWrapper>
         </Body>
         <Footer>
-          <SuccessButton marginRight="0.5em">เสร็จสิ้น</SuccessButton>
-          <DangerButton type="button" onClick={hideAddPostComponentModal}>
+          <Button success marginRight="0.5em">
+            เสร็จสิ้น
+          </Button>
+          <Button danger type="button" onClick={hideAddPostComponentModal}>
             ยกเลิก
-          </DangerButton>
+          </Button>
         </Footer>
       </Form>
     ];
