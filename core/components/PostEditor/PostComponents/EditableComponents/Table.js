@@ -188,7 +188,7 @@ class Table extends React.Component {
   render() {
     const { hideAddPostComponentModal, handleSubmit } = this.props;
     return [
-      <Header>ตาราว</Header>,
+      <Header>ตาราง</Header>,
       <Form onSubmit={e => e.preventDefault() & this.submitHandler(this.state)}>
         <Body>
           <Field

@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
-import { hidePostComponentsSelectorModal } from "../../actions/post-editor-actions";
-import { showAddPostComponentModal } from "../../actions/post-editor-actions";
 import { ModalBackground, ModalPanel } from "../Modal";
 import PostComponentItem from "./PostComponentItem";
 import { Header, Body, Footer } from "../Card";
@@ -24,18 +21,19 @@ import {
 /**
  * @name PostComponentsSelectorModal
  * @desc Showing a modal displaying post's components
- * @prop [REDUX] isPostComponentsSelectorModalShowing : is this modal showing
- * @prop [REDUX] hideThisPostComponentsSelectorModal  : dipatch an action to hide this modal
+ * @prop isComponentsSelectorModalShowing : is this modal showing
+ * @prop hideComponentsSelectorModal  : dipatch an action to hide this modal
+ * @prop showAddPostComponentModal : Display a modal to enter an essential information to create a modal
  */
 class PostComponentsSelectorModal extends React.Component {
   render() {
     const {
-      isPostComponentsSelectorModalShowing,
-      hideThisPostComponentsSelectorModal,
+      isComponentsSelectorModalShowing,
+      hideComponentsSelectorModal,
       showAddPostComponentModal
     } = this.props;
     return (
-      <ModalBackground show={isPostComponentsSelectorModalShowing}>
+      <ModalBackground show={isComponentsSelectorModalShowing}>
         <ModalPanel large>
           <Header>เลือกส่วนประกอบที่ต้องการ</Header>
           <Body height="470px" style={{ textAlign: "center" }}>
@@ -84,7 +82,7 @@ class PostComponentsSelectorModal extends React.Component {
           <Footer>
             <DangerButton
               textCenter
-              onClick={() => hideThisPostComponentsSelectorModal()}
+              onClick={() => hideComponentsSelectorModal()}
             >
               ยกเลิก
             </DangerButton>
@@ -96,22 +94,9 @@ class PostComponentsSelectorModal extends React.Component {
 }
 
 PostComponentsSelectorModal.propTypes = {
-  isPostComponentsSelectorModalShowing: PropTypes.bool.isRequired,
-  hideThisPostComponentsSelectorModal: PropTypes.func.isRequired,
+  isComponentsSelectorModalShowing: PropTypes.bool.isRequired,
+  hideComponentsSelectorModal: PropTypes.func.isRequired,
   showAddPostComponentModal: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  isPostComponentsSelectorModalShowing:
-    state.isPostComponentsSelectorModalShowing
-});
-
-const mapDispatchToProps = dispatch => ({
-  hideThisPostComponentsSelectorModal: () =>
-    dispatch(hidePostComponentsSelectorModal()),
-  showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  PostComponentsSelectorModal
-);
+export default PostComponentsSelectorModal;

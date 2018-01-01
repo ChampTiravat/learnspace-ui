@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
 import AddPostComponentDetailForm from "./AddPostComponentDetailForm";
 import { ModalBackground, ModalPanel } from "../../Modal";
@@ -16,15 +15,14 @@ import {
   LIST,
   MAP
 } from "../../../constants/post-content/components";
-import {
-  hideAddPostComponentModal,
-  addNewPostComponent
-} from "../../../actions/post-editor-actions";
 
 /**
  * @name AddPostComponentModal
  * @desc Display a modal to add a new post component
- * @prop
+ * @prop [REDUX] hideAddPostComponentModal : f() to hide 'AddPostComponentModal'. Used this when finished adding data to selected component
+ * @prop [REDUX] addPostComponentModal : Object contains information about 'AddPostComponentModal'
+ * @prop [REDUX] addNewPostComponent : Add a new component to 'receipe'
+ * @prop [REDUX] receipe: Array of post components
  */
 class AddPostComponentModal extends React.Component {
   render() {
@@ -56,21 +54,7 @@ AddPostComponentModal.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addPostComponentModal: PropTypes.object.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
-  addPostComponentDetailForm: PropTypes.object,
   receipe: PropTypes.array.isRequired
 };
 
-const mapStateToProps = state => ({
-  addPostComponentModal: state.isAddPostComponentModalShowing,
-  receipe: state.editingPostReceipe
-});
-
-const mapDispatchToProps = dispatch => ({
-  hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
-  addNewPostComponent: componentToAdd =>
-    dispatch(addNewPostComponent(componentToAdd))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  AddPostComponentModal
-);
+export default AddPostComponentModal;

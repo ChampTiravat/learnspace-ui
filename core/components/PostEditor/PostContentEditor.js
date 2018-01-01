@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 import SubHeading from "../PostPage/RenderedComponents/SubHeading";
 import Attachment from "../PostPage/RenderedComponents/Attachment";
@@ -14,7 +13,6 @@ import Image from "../PostPage/RenderedComponents/Image";
 import List from "../PostPage/RenderedComponents/List";
 import Map from "../PostPage/RenderedComponents/Map";
 
-import { showPostComponentsSelectorModal } from "../../actions/post-editor-actions";
 import SetTitleCard from "./PostComponents/SetPostTitleCard";
 import BasedComponent from "./PostComponents/BasedComponent";
 import EmptyField from "./PostComponents/EmptyField";
@@ -60,8 +58,8 @@ const PreviewButton = SaveButton.extend`
 /**
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
- * @prop [REDUX] receipe: Array of post components
- * @prop [REDUX] showThisPostComponentsSelectorModal: f() to select the post component to add to the receipe
+ * @prop receipe: Array of post components
+ * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
  */
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
@@ -171,13 +169,13 @@ class PostContentEditor extends React.Component {
   };
 
   render() {
-    const { receipe, showThisPostComponentsSelectorModal } = this.props;
+    const { receipe, showComponentsSelectorModal } = this.props;
     return (
       <div>
         <SetTitleCard />
         <Card fluidWidth padding="2em" marginBottom="4em">
           {this.renderContentFromReceipe()}
-          <EmptyField onClick={showThisPostComponentsSelectorModal} />
+          <EmptyField onClick={showComponentsSelectorModal} />
         </Card>
         {receipe.length > 0
           ? [
@@ -191,17 +189,8 @@ class PostContentEditor extends React.Component {
 }
 
 PostContentEditor.propTypes = {
-  receipe: PropTypes.array.isRequired,
-  showThisPostComponentsSelectorModal: PropTypes.func.isRequired
+  showComponentsSelectorModal: PropTypes.func.isRequired,
+  receipe: PropTypes.array.isRequired
 };
 
-const mapStateToProps = state => ({
-  receipe: state.editingPostReceipe
-});
-
-const mapDispatchToProps = dispatch => ({
-  showThisPostComponentsSelectorModal: () =>
-    dispatch(showPostComponentsSelectorModal())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostContentEditor);
+export default PostContentEditor;
