@@ -18,9 +18,9 @@ const PostRemovalConfirmationModal = ({
   <ModalBackground show={isPostRMModalShowing}>
     <ModalPanel large>
       <Header>ยืนยันการดำเนินการ</Header>
-      <Body style={{ color: "#777", fontSize: "1.2em", textAlign: "center" }}>
+      <Body style={{ color: "#777", fontSize: "1em", textAlign: "center" }}>
         การกระทำนี้ไม่สามารถย้อนกลับได้ และคุณจะสูญเสียข้อมูลทั้งหมดของโพสนี้
-        คุณต้องการดำเนินการต่อหรอไม่
+        คุณต้องการดำเนินการต่อหรือไม่
       </Body>
       <Footer>
         <PrimaryButton marginRight="0.5em">ยืนยัน</PrimaryButton>
