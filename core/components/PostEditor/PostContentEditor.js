@@ -57,6 +57,12 @@ const PreviewButton = SaveButton.extend`
   bottom: 8em;
 `;
 
+/**
+ * @name PostContentEditor
+ * @desc Main playground for building post with the required tools
+ * @prop [REDUX] receipe: Array of post components
+ * @prop [REDUX] showThisPostComponentsSelectorModal: f() to select the post component to add to the receipe
+ */
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
     return this.props.receipe !== nextProp.receipe;
@@ -185,6 +191,7 @@ class PostContentEditor extends React.Component {
 }
 
 PostContentEditor.propTypes = {
+  receipe: PropTypes.array.isRequired,
   showThisPostComponentsSelectorModal: PropTypes.func.isRequired
 };
 
