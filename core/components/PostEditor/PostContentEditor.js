@@ -105,7 +105,7 @@ class PostContentEditor extends React.Component {
         case SLIDE_SHOW:
           return (
             <BasedComponent key={component.order} type={SLIDE_SHOW}>
-              <Slideshow key={component.order} images={component.data} />;
+              <Slideshow key={component.order} images={component.data} />
             </BasedComponent>
           );
         case MAP:
