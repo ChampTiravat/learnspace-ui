@@ -6,6 +6,7 @@ const EmptyFieldWrapper = styled.div`
   height: 200px;
   background-color: transparent;
   border: 2px dashed ${p => p.theme.PRIMARY_COLOR};
+  border-radius: 7px;
   display: flex;
   flex-direction: column;
   justify-content: center;

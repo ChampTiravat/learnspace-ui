@@ -7,14 +7,17 @@ const TestComponentWrapper = styled.div`
   position: relative;
   margin-top: 2em;
   margin-bottom: 3em;
-  &:hover {
-    background-color: #f5f5f5;
-  }
 `;
 
 const BasedComponent = ({ children, type }) => (
   <TestComponentWrapper>
-    <CircleButton primary onClick={() => null}>
+    <CircleButton
+      primary
+      position="absolute"
+      left="-5em"
+      top="0em"
+      onClick={() => null}
+    >
       /
     </CircleButton>
     {children}
