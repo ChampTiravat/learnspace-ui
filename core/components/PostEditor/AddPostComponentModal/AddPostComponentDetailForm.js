@@ -40,90 +40,35 @@ class addPostComponentDetailForm extends React.Component {
       type,
       order
     } = this.props;
-    switch (type) {
-      case SUB_HEADING:
-        return (
-          <SubHeading
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case SLIDE_SHOW:
-        return (
-          <Slideshow
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case ATTACHMENT:
-        return (
-          <Attachment
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case PARAGRAPH:
-        return (
-          <Paragraph
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case HEADING:
-        return (
-          <Heading
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case TABLE:
-        return (
-          <Table
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case IMAGE:
-        return (
-          <Image
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case VIDEO:
-        return (
-          <Video
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case LIST:
-        return (
-          <List
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      case MAP:
-        return (
-          <Map
-            hideAddPostComponentModal={hideAddPostComponentModal}
-            addNewPostComponent={addNewPostComponent}
-            order={order}
-          />
-        );
-      default:
-        return null;
+
+    if (!type) {
+      return null;
     }
+
+    const components = [
+      { type: HEADING, form: Heading },
+      { type: SUB_HEADING, form: SubHeading },
+      { type: PARAGRAPH, form: Paragraph },
+      { type: IMAGE, form: Image },
+      { type: LIST, form: List },
+      { type: VIDEO, form: Video },
+      { type: MAP, form: Map },
+      { type: TABLE, form: Table },
+      { type: SLIDE_SHOW, form: Slideshow },
+      { type: ATTACHMENT, form: Attachment }
+    ];
+
+    const ComponentToRender = components.filter(
+      component => component.type === type
+    )[0].form;
+
+    return (
+      <ComponentToRender
+        hideAddPostComponentModal={hideAddPostComponentModal}
+        addNewPostComponent={addNewPostComponent}
+        order={order}
+      />
+    );
   }
 }
 
