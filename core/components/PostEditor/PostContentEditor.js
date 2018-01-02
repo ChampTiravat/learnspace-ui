@@ -111,7 +111,7 @@ class PostContentEditor extends React.Component {
         case MAP:
           return (
             <BasedComponent key={component.order} type={MAP}>
-              <Map key={component.order} />;
+              <Map key={component.order} />
             </BasedComponent>
           );
         case ATTACHMENT:
