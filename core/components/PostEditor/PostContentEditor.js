@@ -48,31 +48,31 @@ class PostContentEditor extends React.Component {
       switch (component.type) {
         case HEADING:
           return (
-            <BasedComponent type={HEADING}>
+            <BasedComponent key={component.order} type={HEADING}>
               <Heading key={component.order}>{component.data}</Heading>
             </BasedComponent>
           );
         case VIDEO:
           return (
-            <BasedComponent type={VIDEO}>
+            <BasedComponent key={component.order} type={VIDEO}>
               <Video key={component.order} />
             </BasedComponent>
           );
         case SUB_HEADING:
           return (
-            <BasedComponent type={SUB_HEADING}>
+            <BasedComponent key={component.order} type={SUB_HEADING}>
               <SubHeading key={component.order}>{component.data}</SubHeading>
             </BasedComponent>
           );
         case PARAGRAPH:
           return (
-            <BasedComponent type={PARAGRAPH}>
+            <BasedComponent key={component.order} type={PARAGRAPH}>
               <Paragraph key={component.order}>{component.data}</Paragraph>
             </BasedComponent>
           );
         case LIST:
           return (
-            <BasedComponent type={LIST}>
+            <BasedComponent key={component.order} type={LIST}>
               <List
                 description={component.data.description}
                 key={component.order}
@@ -83,7 +83,7 @@ class PostContentEditor extends React.Component {
           );
         case IMAGE:
           return (
-            <BasedComponent type={IMAGE}>
+            <BasedComponent key={component.order} type={IMAGE}>
               <Image
                 key={component.order}
                 src={component.data.url}
@@ -93,7 +93,7 @@ class PostContentEditor extends React.Component {
           );
         case TABLE:
           return (
-            <BasedComponent type={TABLE}>
+            <BasedComponent key={component.order} type={TABLE}>
               <Table
                 name={component.data.meta.name}
                 description={component.data.meta.description}
@@ -104,19 +104,19 @@ class PostContentEditor extends React.Component {
           );
         case SLIDE_SHOW:
           return (
-            <BasedComponent type={SLIDE_SHOW}>
+            <BasedComponent key={component.order} type={SLIDE_SHOW}>
               <Slideshow key={component.order} images={component.data} />;
             </BasedComponent>
           );
         case MAP:
           return (
-            <BasedComponent type={MAP}>
+            <BasedComponent key={component.order} type={MAP}>
               <Map key={component.order} />;
             </BasedComponent>
           );
         case ATTACHMENT:
           return (
-            <BasedComponent type={ATTACHMENT}>
+            <BasedComponent key={component.order} type={ATTACHMENT}>
               <Attachment
                 key={component.order}
                 filename={component.data.filename}
@@ -133,7 +133,6 @@ class PostContentEditor extends React.Component {
 
   render() {
     const { receipe, showComponentsSelectorModal } = this.props;
-    console.log(receipe);
     return [
       <SetTitleCard />,
       <Card fluidWidth padding="2em" marginBottom="4em">
