@@ -73,7 +73,6 @@ const ProfileInfoPanel = ({
         <UserInfoItem>ที่อยู่ : {location}</UserInfoItem>
         <UserInfoItem>อาชีพ : {career}</UserInfoItem>
       </ProfileInfoDetails>
-      <Button primary>ส่งข้อความ</Button>
     </ProfileInfoContainer>
   </ProfileInfoPanelCard>
 );
