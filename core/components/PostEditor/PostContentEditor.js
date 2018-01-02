@@ -97,22 +97,9 @@ class PostContentEditor extends React.Component {
               <Table
                 name={component.data.meta.name}
                 description={component.data.meta.description}
-              >
-                <thead>
-                  <tr>
-                    {component.data.head.map((columnName, i) => (
-                      <th key={i}>{columnName}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {component.data.body.map((dataRow, i) => (
-                    <tr key={i}>
-                      {dataRow.map((data, i) => <td key={i}>{data}</td>)}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+                head={component.data.head}
+                body={component.data.body}
+              />
             </BasedComponent>
           );
         case SLIDE_SHOW:
@@ -146,13 +133,14 @@ class PostContentEditor extends React.Component {
 
   render() {
     const { receipe, showComponentsSelectorModal } = this.props;
-    return (
+    console.log(receipe);
+    return [
+      <SetTitleCard />,
+      <Card fluidWidth padding="2em" marginBottom="4em">
+        {this.renderContentFromReceipe()}
+        <EmptyField onClick={showComponentsSelectorModal} />
+      </Card>,
       <div>
-        <SetTitleCard />
-        <Card fluidWidth padding="2em" marginBottom="4em">
-          {this.renderContentFromReceipe()}
-          <EmptyField onClick={showComponentsSelectorModal} />
-        </Card>
         {receipe.length > 0
           ? [
               <CircleButton
@@ -177,7 +165,7 @@ class PostContentEditor extends React.Component {
             ]
           : null}
       </div>
-    );
+    ];
   }
 }
 

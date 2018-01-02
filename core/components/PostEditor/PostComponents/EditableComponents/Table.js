@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { reduxForm, Field } from "redux-form";
-import styled, { keyframes } from "styled-components";
 
 import { TABLE } from "../../../../constants/post-content/components";
 import TableWrapper from "../../../PostPage/RenderedComponents/Table";
-import { Form, InputField, TextAreaField } from "../../../Form";
 import { Button, CircleButton } from "../../../Button";
 import { Header, Body, Footer } from "../../../Card";
+import {
+  Form,
+  Input,
+  InputLabel,
+  InputGroup,
+  TextAreaField
+} from "../../../Form";
+import { map } from "async";
 
 /**
  * @name Table
@@ -20,19 +25,25 @@ import { Header, Body, Footer } from "../../../Card";
  */
 class Table extends React.Component {
   state = {
-    meta: { name: "", description: "" },
-    head: ["ชื่อจริง", "นามสกุล", "อายุ"],
+    description: "",
+    columnToAdd: "",
+    name: "",
+    head: [],
     body: []
   };
 
   /**
    * @name submitHandler
    * @desc Append the <Table /> component to the 'receipe'
+   * @param { name } : Name of the table
    * @param { description } : Describe what is presenting in the list
-   * @param { items[string] } : Array of list items
+   * @param { body } : Array of list items(Table's rows)
+   * @param { head } : Names of table's columns
    */
   submitHandler = values => {
-    return console.log(values);
+    const { body, name, description, head } = values;
+    const meta = { name, description };
+
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
@@ -40,17 +51,22 @@ class Table extends React.Component {
     } = this.props;
 
     if (
-      !description &&
-      description !== "" &&
-      (items.length && items.length > 0)
+      !head.length ||
+      head.length === 0 ||
+      !body.length ||
+      body.length === 0
     ) {
-      return;
+      return null;
     }
 
     addNewPostComponent({
       type: TABLE,
       order,
-      data
+      data: {
+        meta,
+        head,
+        body
+      }
     });
 
     hideAddPostComponentModal();
@@ -60,19 +76,21 @@ class Table extends React.Component {
    * @name addRowItem
    * @desc f() to add a new row item to the table
    */
-  addRowItem = () =>
+  addRowItem = () => {
+    const itemsToAdd = this.state.head.map(column => ({
+      data: this.state[column],
+      column
+    }));
+
     this.setState(({ body }) => ({
       body: body.concat([
         {
           id: Math.ceil((Math.random() + (1 + Math.random())) * 100),
-          items: [
-            { column: "ชื่อจริง", data: "tony" },
-            { column: "นามสกุล", data: "stark" },
-            { column: "อายุ", data: "40" }
-          ]
+          items: itemsToAdd
         }
       ])
     }));
+  };
 
   /**
    * @name removeRowItem
@@ -88,21 +106,14 @@ class Table extends React.Component {
    * @name addColumnItem
    * @desc f() to add a new column item to the table
    */
-  addColumnItem = () =>
-    this.setState(({ head }) => ({
-      head: head.concat("new column")
+  addColumnItem = () => {
+    this.setState(({ head, columnToAdd }) => ({
+      head: head.concat(columnToAdd)
     }));
-
-  /**
-   * @name removeColumnItem (DO NOT USE THIS F(). IT DID NOT COMPLETED, YET!!!)
-   * @desc f() to remove one particular column from the table, specifying by row ID
-   * @param columnToRemove : An indentification of the column which will be removed
-   */
-  removeColumnItem = columnToRemove =>
-    // we need to remove this.state.body[?].items[?].column === columnToRemove
-    this.setState(({ head, body }) => ({
-      head: head.filter(columnItem => columnItem !== columnToRemove)
-    }));
+    this.setState({
+      columnToAdd: ""
+    });
+  };
 
   /**
    * @name renderRows
@@ -134,6 +145,15 @@ class Table extends React.Component {
       <th>ลำดับ</th>
       {this.state.head.map((column, i) => <th>{column}</th>)}
       <th>
+        <Input
+          type="text"
+          name="newColumn"
+          value={this.state.columnToAdd}
+          placeholder="พิมพ์ชื่อคอลัมน์ที่ต้องการจะเพิ่มที่นี่"
+          onChange={e => this.setState({ columnToAdd: e.target.value })}
+        />
+      </th>
+      <th>
         <CircleButton primary type="button" onClick={this.addColumnItem}>
           +
         </CircleButton>
@@ -147,17 +167,23 @@ class Table extends React.Component {
    */
   renderNewRowInput = () => {
     const { head, body } = this.state;
+    if (!head.length || head.length === 0) {
+      return null;
+    }
     return (
       <tr>
-        <td>{/* Leave this blank */}</td>
+        <td>{/* LEAVE THIS BLANK */}</td>
         {head.map(column => (
           <td>
-            <Field
-              name={`${column}-${body.length + 1}`}
-              component={InputField}
+            <Input
+              type="text"
+              name={column}
+              value={this.state.body[column]}
+              onChange={e => this.setState({ [column]: e.target.value })}
             />
           </td>
         ))}
+        <td>{/* LEAVE THIS BLANK */}</td>
         <td>
           <CircleButton primary type="button" onClick={this.addRowItem}>
             +
@@ -168,24 +194,34 @@ class Table extends React.Component {
   };
 
   render() {
-    const { hideAddPostComponentModal, handleSubmit } = this.props;
+    console.log(this.state);
+    const { hideAddPostComponentModal } = this.props;
     return [
       <Header>ตาราง</Header>,
       <Form onSubmit={e => e.preventDefault() & this.submitHandler(this.state)}>
         <Body>
-          <Field
-            name="name"
-            label="ชื่อตารางนี้"
-            component={InputField}
-            type="text"
-          />
-          <Field
-            name="description"
-            label="คำอธิบายเกี่ยวกับตารางนี้"
-            component={InputField}
-            type="text"
-          />
-          <TableWrapper>
+          <InputGroup>
+            <InputLabel>ชื่อตารางนี้</InputLabel>
+            <Input
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={e => this.setState({ [e.target.name]: e.target.value })}
+            />
+          </InputGroup>
+          <InputGroup>
+            <InputLabel>คำอธิบายเกี่ยวกับตารางนี้</InputLabel>
+            <Input
+              name="description"
+              type="text"
+              value={this.state.description}
+              onChange={e => this.setState({ [e.target.name]: e.target.value })}
+            />
+          </InputGroup>
+          <TableWrapper
+            description={this.state.description}
+            name={this.state.name}
+          >
             <thead>{this.renderColumns()}</thead>
             <tbody>
               {this.renderRows()}
@@ -208,9 +244,8 @@ class Table extends React.Component {
 
 Table.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
   order: PropTypes.number.isRequired
 };
 
-export default reduxForm({ form: "table_component_data" })(Table);
+export default Table;

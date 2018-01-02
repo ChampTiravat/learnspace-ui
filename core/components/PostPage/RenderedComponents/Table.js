@@ -66,11 +66,28 @@ const TableWrapper = styled.div`
  * @name Table
  * @desc Display a data as a grid
  */
-const Table = ({ children, description, name }) => (
+const Table = ({ children, head, body, description, name }) => (
   <TableWrapper>
     <h1>{name}</h1>
     <p>{description}</p>
-    <table>{children}</table>
+    <table>
+      {children
+        ? children
+        : [
+            <thead>
+              <tr>
+                {head.map((columnName, i) => <th key={i}>{columnName}</th>)}
+              </tr>
+            </thead>,
+            <tbody>
+              {body.map((dataRow, i) => (
+                <tr key={i}>
+                  {dataRow.items.map((item, j) => <td key={j}>{item.data}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          ]}
+    </table>
   </TableWrapper>
 );
 
