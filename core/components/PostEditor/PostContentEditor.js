@@ -147,6 +147,15 @@ class PostContentEditor extends React.Component {
                 padding="1.3em 1em"
                 position="fixed"
                 right="3em"
+                bottom="15em"
+              >
+                รีเซ็ต
+              </CircleButton>,
+              <CircleButton
+                light
+                padding="1.3em 1em"
+                position="fixed"
+                right="3em"
                 bottom="9em"
               >
                 พรีวิว

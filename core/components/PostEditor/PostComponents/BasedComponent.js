@@ -14,7 +14,7 @@ const BasedComponent = ({ children, type }) => (
     <CircleButton
       primary
       position="absolute"
-      left="-5em"
+      left="-6em"
       top="0em"
       onClick={() => null}
     >
