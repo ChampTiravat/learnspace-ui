@@ -194,7 +194,6 @@ class Table extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     const { hideAddPostComponentModal } = this.props;
     return [
       <Header>ตาราง</Header>,
