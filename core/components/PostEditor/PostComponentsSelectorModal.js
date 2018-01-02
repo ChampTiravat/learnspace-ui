@@ -32,52 +32,32 @@ class PostComponentsSelectorModal extends React.Component {
       hideComponentsSelectorModal,
       showAddPostComponentModal
     } = this.props;
+
+    const components = [
+      { type: HEADING, name: "หัวข้อเรื่อง" },
+      { type: SUB_HEADING, name: "หัวข้อย่อย" },
+      { type: PARAGRAPH, name: "ย่อหน้า" },
+      { type: IMAGE, name: "รุปภาพ" },
+      { type: LIST, name: "รายการ" },
+      { type: VIDEO, name: "วิดีโอ" },
+      { type: MAP, name: "แผนที่" },
+      { type: TABLE, name: "ตาราง" },
+      { type: SLIDE_SHOW, name: "สไลด์รูปภาพ" },
+      { type: ATTACHMENT, name: "ไฟล์แนบ" }
+    ];
+
     return (
       <ModalBackground show={isComponentsSelectorModalShowing}>
         <ModalPanel large>
           <Header>เลือกส่วนประกอบที่ต้องการ</Header>
           <Body height="470px" style={{ textAlign: "center" }}>
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(HEADING)}
-              name="หัวข้อเรื่อง"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(SUB_HEADING)}
-              name="หัวข้อย่อย"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(PARAGRAPH)}
-              name="ย่อหน้า"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(IMAGE)}
-              name="รุปภาพ"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(VIDEO)}
-              name="วิดีโอ"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(MAP)}
-              name="แผนที่"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(TABLE)}
-              name="ตาราง"
-            />
-
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(SLIDE_SHOW)}
-              name="สไลด์รูปภาพ"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(ATTACHMENT)}
-              name="ไฟล์แนบ"
-            />
-            <PostComponentItem
-              onClick={() => showAddPostComponentModal(LIST)}
-              name="รายการ"
-            />
+            {components.map((component, i) => (
+              <PostComponentItem
+                key={i}
+                onClick={() => showAddPostComponentModal(component.type)}
+                name={component.name}
+              />
+            ))}
           </Body>
           <Footer>
             <Button
