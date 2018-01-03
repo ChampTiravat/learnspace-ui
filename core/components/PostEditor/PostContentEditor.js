@@ -34,8 +34,9 @@ import {
 /**
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
- * @prop receipe: Array of post components
  * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
+ * @prop resetPost: f() to remove every components in the current post editor
+ * @prop receipe: Array of post components
  */
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
@@ -132,7 +133,7 @@ class PostContentEditor extends React.Component {
   };
 
   render() {
-    const { receipe, showComponentsSelectorModal } = this.props;
+    const { receipe, resetPost, showComponentsSelectorModal } = this.props;
     return [
       <SetTitleCard />,
       <Card fluidWidth padding="2em" marginBottom="4em">
@@ -144,10 +145,11 @@ class PostContentEditor extends React.Component {
           ? [
               <CircleButton
                 light
-                padding="1.3em 1em"
-                position="fixed"
                 right="3em"
                 bottom="15em"
+                position="fixed"
+                padding="1.3em 1em"
+                onClick={resetPost}
               >
                 รีเซ็ต
               </CircleButton>,
@@ -155,17 +157,17 @@ class PostContentEditor extends React.Component {
                 light
                 padding="1.3em 1em"
                 position="fixed"
-                right="3em"
                 bottom="9em"
+                right="3em"
               >
                 พรีวิว
               </CircleButton>,
               <CircleButton
                 primary
-                padding="1.3em 1em"
-                position="fixed"
                 right="3em"
                 bottom="3em"
+                position="fixed"
+                padding="1.3em 1em"
                 onClick={() => alert("Saving")}
               >
                 บันทึก
@@ -179,6 +181,7 @@ class PostContentEditor extends React.Component {
 
 PostContentEditor.propTypes = {
   showComponentsSelectorModal: PropTypes.func.isRequired,
+  resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
 };
 

@@ -5,11 +5,13 @@ import {
   HIDE_ADD_POST_COMPONENT_MODAL,
   INITIALIZE_POST_TO_EDIT,
   REMOVE_COMPONENT,
-  ADD_COMPONENT
+  ADD_COMPONENT,
+  RESET_POST
 } from "../constants/actions/post-editor";
 
 /**
- * @desc qreturn TRUE, in order to show the modal
+ * @name showPostComponentsSelectorModal()
+ * @desc return TRUE, in order to show the modal
  * @return object
  */
 export const showPostComponentsSelectorModal = () => ({
@@ -18,6 +20,7 @@ export const showPostComponentsSelectorModal = () => ({
 });
 
 /**
+ * @name hidePostComponentsSelectorModal()
  * @desc return FALSE, in order to close the modal
  * @return object
  */
@@ -27,6 +30,7 @@ export const hidePostComponentsSelectorModal = () => ({
 });
 
 /**
+ * @name showaddPostComponentMOdal()
  * @desc return TRUE, in order to show the add post component modal
  * @return object
  */
@@ -39,6 +43,7 @@ export const showAddPostComponentModal = type => ({
 });
 
 /**
+ * @name hideAddPostComponentModal()
  * @desc return FALSE, in order to close the add post component modal
  * @return object
  */
@@ -50,6 +55,7 @@ export const hideAddPostComponentModal = () => ({
 });
 
 /**
+ * @name initializePost()
  * @desc Initialize a post with empty content
  */
 export const initializePost = () => ({
@@ -57,6 +63,7 @@ export const initializePost = () => ({
 });
 
 /**
+ * @name addNewPostComponent()
  * @desc Append a component to a post
  * @param order : A component rendering order
  * @param type  : Component type
@@ -72,6 +79,7 @@ export const addNewPostComponent = ({ order, type, data }) => ({
 });
 
 /**
+ * @name removePostComponent()
  * @desc Remove a component from a post by specifying a rendering order and a type of the component
  * @param order : A component rendering order
  * @param type  : Component type
@@ -82,4 +90,12 @@ export const removePostComponent = ({ order, type }) => ({
     order,
     type
   }
+});
+
+/**
+ * @name resetPost()
+ * @desc Remove every components from a post
+ */
+export const resetPost = () => ({
+  type: RESET_POST
 });

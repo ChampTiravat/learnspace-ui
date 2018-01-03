@@ -8,11 +8,10 @@ import AddPostComponentModal from "./AddPostComponentModal";
 import PostContentEditor from "./PostContentEditor";
 import {
   hidePostComponentsSelectorModal,
-  showPostComponentsSelectorModal
-} from "../../actions/post-editor-actions";
-import {
+  showPostComponentsSelectorModal,
   hideAddPostComponentModal,
-  addNewPostComponent
+  addNewPostComponent,
+  resetPost
 } from "../../actions/post-editor-actions";
 
 /**
@@ -26,6 +25,7 @@ import {
  * @prop [REDUX] hideAddPostComponentModal : f() to hide 'AddPostComponentModal'. Used this when finished adding data to selected component
  * @prop [REDUX] addPostComponentModal : Object contains information about 'AddPostComponentModal'
  * @prop [REDUX] addNewPostComponent : Add a new component to 'receipe'
+ * @prop [REDUX] resetPost : f() to delete all components in the post editor
  */
 class PostEditor extends React.Component {
   render() {
@@ -37,6 +37,7 @@ class PostEditor extends React.Component {
       hideAddPostComponentModal,
       addPostComponentModal,
       addNewPostComponent,
+      resetPost,
       receipe
     } = this.props;
     return [
@@ -53,6 +54,7 @@ class PostEditor extends React.Component {
       />,
       <PostContentEditor
         receipe={receipe}
+        resetPost={resetPost}
         showComponentsSelectorModal={showComponentsSelectorModal}
       />
     ];
@@ -68,6 +70,7 @@ PostEditor.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addPostComponentModal: PropTypes.object.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
+  resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
 };
 
@@ -84,7 +87,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showPostComponentsSelectorModal()),
   hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
   showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type)),
-  hideComponentsSelectorModal: () => dispatch(hidePostComponentsSelectorModal())
+  hideComponentsSelectorModal: () =>
+    dispatch(hidePostComponentsSelectorModal()),
+  resetPost: () => dispatch(resetPost())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);
