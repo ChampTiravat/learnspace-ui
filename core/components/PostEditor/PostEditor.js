@@ -4,12 +4,15 @@ import { connect } from "react-redux";
 
 import PostComponentSelectorModal from "./PostComponentsSelectorModal";
 import AddPostComponentModal from "./AddPostComponentModal";
+import PostPreviewModal from "./PostPreviewModal.js";
 import PostContentEditor from "./PostContentEditor";
 import {
   hidePostComponentsSelectorModal,
   showPostComponentsSelectorModal,
   hideAddPostComponentModal,
   showAddPostComponentModal,
+  showPostPreviewModal,
+  hidePostPreviewModal,
   addNewPostComponent,
   removePostComponent,
   resetPost
@@ -27,6 +30,9 @@ import {
  * @prop [REDUX] addPostComponentModal : Object contains information about 'AddPostComponentModal'
  * @prop [REDUX] addNewPostComponent : Add a new component to 'receipe'
  * @prop [REDUX] resetPost : f() to delete all components in the post editor
+ * @prop [REDUX] isShowing : A redux state used to specify wether to show or hide post preview modal
+ * @prop [REDUX] receipe : A list of components that need to be rendered
+ * @prop [REDUX] hidePostPreviewModal : f() to hide post preview modal
  */
 class PostEditor extends React.Component {
   render() {
@@ -39,6 +45,9 @@ class PostEditor extends React.Component {
       addPostComponentModal,
       addNewPostComponent,
       removePostComponent,
+      isPostPreviewModalShowing,
+      showPostPreviewModal,
+      hidePostPreviewModal,
       resetPost,
       receipe
     } = this.props;
@@ -54,10 +63,16 @@ class PostEditor extends React.Component {
         hideComponentsSelectorModal={hideComponentsSelectorModal}
         showAddPostComponentModal={showAddPostComponentModal}
       />,
+      <PostPreviewModal
+        hidePostPreviewModal={hidePostPreviewModal}
+        isShowing={isPostPreviewModalShowing}
+        receipe={receipe}
+      />,
       <PostContentEditor
         receipe={receipe}
         resetPost={resetPost}
         removePostComponent={removePostComponent}
+        showPostPreviewModal={showPostPreviewModal}
         showComponentsSelectorModal={showComponentsSelectorModal}
       />
     ];
@@ -72,6 +87,8 @@ PostEditor.propTypes = {
   showAddPostComponentModal: PropTypes.func.isRequired,
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addPostComponentModal: PropTypes.object.isRequired,
+  showPostPreviewModal: PropTypes.func.isRequired,
+  hidePostPreviewModal: PropTypes.func.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
@@ -81,6 +98,7 @@ PostEditor.propTypes = {
 const mapStateToProps = state => ({
   isComponentsSelectorModalShowing: state.isPostComponentsSelectorModalShowing,
   addPostComponentModal: state.isAddPostComponentModalShowing,
+  isPostPreviewModalShowing: state.isPostPreviewModalShowing,
   receipe: state.editingPostReceipe
 });
 
@@ -95,7 +113,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(hidePostComponentsSelectorModal()),
   resetPost: () => dispatch(resetPost()),
   removePostComponent: componentOrder =>
-    dispatch(removePostComponent(componentOrder))
+    dispatch(removePostComponent(componentOrder)),
+  showPostPreviewModal: () => dispatch(showPostPreviewModal()),
+  hidePostPreviewModal: () => dispatch(hidePostPreviewModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);

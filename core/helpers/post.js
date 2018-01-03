@@ -67,8 +67,8 @@ const availableComponents = {
         </tr>
       </thead>
       <tbody>
-        {component.data.body.map((dataRow, i) => (
-          <tr key={i}>{dataRow.map((data, i) => <td key={i}>{data}</td>)}</tr>
+        {component.data.body.map((rows, i) => (
+          <tr key={i}>{rows.map((row, i) => <td key={i}>{row}</td>)}</tr>
         ))}
       </tbody>
     </Table>

@@ -12,6 +12,7 @@ import Card from "../Card";
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
  * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
+ * @prop showPostPreviewModal : f() to show a post preview modal
  * @prop removePostComponent: f() to remove a single post component
  * @prop resetPost: f() to remove every components in the current post editor
  * @prop receipe: Array of post components
@@ -26,6 +27,7 @@ class PostContentEditor extends React.Component {
       receipe,
       resetPost,
       removePostComponent,
+      showPostPreviewModal,
       showComponentsSelectorModal
     } = this.props;
     console.log(receipe);
@@ -54,6 +56,7 @@ class PostContentEditor extends React.Component {
                 position="fixed"
                 bottom="9em"
                 right="3em"
+                onClick={showPostPreviewModal}
               >
                 พรีวิว
               </CircleButton>,
@@ -76,6 +79,7 @@ class PostContentEditor extends React.Component {
 
 PostContentEditor.propTypes = {
   showComponentsSelectorModal: PropTypes.func.isRequired,
+  showPostPreviewModal: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired

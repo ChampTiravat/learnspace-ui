@@ -3,6 +3,7 @@ import { reducer as formReducer } from "redux-form";
 import isPostComponentsSelectorModalShowing from "./post-components-selector-modal";
 import isAddPostComponentModalShowing from "./is-add-post-component-modal-showing";
 import postRemovalConfirmationModal from "./post-removal-confirmation-modal";
+import isPostPreviewModalShowing from "./is-post-preview-modal-showing";
 import editingPostReceipe from "./editing-post-receipe";
 import notificationModal from "./notification-modal";
 import searchBarPanel from "./searchbar-panel";
@@ -14,6 +15,7 @@ export default {
   isPostComponentsSelectorModalShowing,
   isAddPostComponentModalShowing,
   postRemovalConfirmationModal,
+  isPostPreviewModalShowing,
   editingPostReceipe,
   notificationModal,
   form: formReducer,

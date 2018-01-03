@@ -6,7 +6,9 @@ import {
   INITIALIZE_POST_TO_EDIT,
   REMOVE_COMPONENT,
   ADD_COMPONENT,
-  RESET_POST
+  RESET_POST,
+  SHOW_POST_PREVIEW_MODAL,
+  HIDE_POST_PREVIEW_MODAL
 } from "../constants/actions/post-editor";
 
 /**
@@ -96,4 +98,22 @@ export const removePostComponent = order => ({
  */
 export const resetPost = () => ({
   type: RESET_POST
+});
+
+/**
+ * @name showPostPreviewModal()
+ * @desc Show post preview modal
+ */
+export const showPostPreviewModal = () => ({
+  type: SHOW_POST_PREVIEW_MODAL,
+  payload: true
+});
+
+/**
+ * @name hidePostPreviewModal()
+ * @desc Hide post preview modal
+ */
+export const hidePostPreviewModal = () => ({
+  type: HIDE_POST_PREVIEW_MODAL,
+  payload: false
 });
