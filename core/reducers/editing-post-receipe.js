@@ -11,9 +11,13 @@ export default (state = [], action) => {
       return state.concat(action.payload);
 
     case REMOVE_COMPONENT:
-      return state.filter(
-        component => component.order !== action.payload.order
-      );
+      let counter = 0;
+      return state
+        .filter(component => component.order !== action.payload.order)
+        .reduce((totalComponent, nextComponent) => {
+          nextComponent.order = counter++;
+          return totalComponent.concat(nextComponent);
+        }, []);
 
     case RESET_POST:
       return [];
