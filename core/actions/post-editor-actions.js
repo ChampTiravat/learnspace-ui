@@ -82,13 +82,11 @@ export const addNewPostComponent = ({ order, type, data }) => ({
  * @name removePostComponent()
  * @desc Remove a component from a post by specifying a rendering order and a type of the component
  * @param order : A component rendering order
- * @param type  : Component type
  */
-export const removePostComponent = ({ order, type }) => ({
+export const removePostComponent = order => ({
   type: REMOVE_COMPONENT,
   payload: {
-    order,
-    type
+    order
   }
 });
 

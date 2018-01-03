@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { showAddPostComponentModal } from "../../actions/post-editor-actions";
 import PostComponentSelectorModal from "./PostComponentsSelectorModal";
 import AddPostComponentModal from "./AddPostComponentModal";
 import PostContentEditor from "./PostContentEditor";
@@ -10,7 +9,9 @@ import {
   hidePostComponentsSelectorModal,
   showPostComponentsSelectorModal,
   hideAddPostComponentModal,
+  showAddPostComponentModal,
   addNewPostComponent,
+  removePostComponent,
   resetPost
 } from "../../actions/post-editor-actions";
 
@@ -37,6 +38,7 @@ class PostEditor extends React.Component {
       hideAddPostComponentModal,
       addPostComponentModal,
       addNewPostComponent,
+      removePostComponent,
       resetPost,
       receipe
     } = this.props;
@@ -55,6 +57,7 @@ class PostEditor extends React.Component {
       <PostContentEditor
         receipe={receipe}
         resetPost={resetPost}
+        removePostComponent={removePostComponent}
         showComponentsSelectorModal={showComponentsSelectorModal}
       />
     ];
@@ -70,6 +73,7 @@ PostEditor.propTypes = {
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addPostComponentModal: PropTypes.object.isRequired,
   addNewPostComponent: PropTypes.func.isRequired,
+  removePostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
 };
@@ -89,7 +93,9 @@ const mapDispatchToProps = dispatch => ({
   showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type)),
   hideComponentsSelectorModal: () =>
     dispatch(hidePostComponentsSelectorModal()),
-  resetPost: () => dispatch(resetPost())
+  resetPost: () => dispatch(resetPost()),
+  removePostComponent: componentOrder =>
+    dispatch(removePostComponent(componentOrder))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);

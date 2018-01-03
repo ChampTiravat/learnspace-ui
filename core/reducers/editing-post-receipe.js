@@ -11,16 +11,9 @@ export default (state = [], action) => {
       return state.concat(action.payload);
 
     case REMOVE_COMPONENT:
-      return state.reduce((prevVal, nextVal) => {
-        if (
-          nextVal.order === action.payload.order &&
-          nextVal.type === action.payload.type
-        ) {
-          nextVal = null;
-          prevVal.concat(nextVal);
-        }
-        return prevVal;
-      }, []);
+      return state.filter(
+        component => component.order !== action.payload.order
+      );
 
     case RESET_POST:
       return [];

@@ -35,6 +35,7 @@ import {
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
  * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
+ * @prop removePostComponent: f() to remove a single post component
  * @prop resetPost: f() to remove every components in the current post editor
  * @prop receipe: Array of post components
  */
@@ -44,36 +45,61 @@ class PostContentEditor extends React.Component {
   }
 
   renderContentFromReceipe = () => {
-    const { receipe } = this.props;
+    const { receipe, removePostComponent } = this.props;
     return receipe.map(component => {
       switch (component.type) {
         case HEADING:
           return (
-            <BasedComponent key={component.order} type={HEADING}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={HEADING}
+            >
               <Heading key={component.order}>{component.data}</Heading>
             </BasedComponent>
           );
         case VIDEO:
           return (
-            <BasedComponent key={component.order} type={VIDEO}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={VIDEO}
+            >
               <Video key={component.order} />
             </BasedComponent>
           );
         case SUB_HEADING:
           return (
-            <BasedComponent key={component.order} type={SUB_HEADING}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={SUB_HEADING}
+            >
               <SubHeading key={component.order}>{component.data}</SubHeading>
             </BasedComponent>
           );
         case PARAGRAPH:
           return (
-            <BasedComponent key={component.order} type={PARAGRAPH}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={PARAGRAPH}
+            >
               <Paragraph key={component.order}>{component.data}</Paragraph>
             </BasedComponent>
           );
         case LIST:
           return (
-            <BasedComponent key={component.order} type={LIST}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={LIST}
+            >
               <List
                 description={component.data.description}
                 key={component.order}
@@ -84,7 +110,12 @@ class PostContentEditor extends React.Component {
           );
         case IMAGE:
           return (
-            <BasedComponent key={component.order} type={IMAGE}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={IMAGE}
+            >
               <Image
                 key={component.order}
                 src={component.data.url}
@@ -94,7 +125,12 @@ class PostContentEditor extends React.Component {
           );
         case TABLE:
           return (
-            <BasedComponent key={component.order} type={TABLE}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={TABLE}
+            >
               <Table
                 name={component.data.meta.name}
                 description={component.data.meta.description}
@@ -105,19 +141,34 @@ class PostContentEditor extends React.Component {
           );
         case SLIDE_SHOW:
           return (
-            <BasedComponent key={component.order} type={SLIDE_SHOW}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={SLIDE_SHOW}
+            >
               <Slideshow key={component.order} images={component.data} />
             </BasedComponent>
           );
         case MAP:
           return (
-            <BasedComponent key={component.order} type={MAP}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={MAP}
+            >
               <Map key={component.order} />
             </BasedComponent>
           );
         case ATTACHMENT:
           return (
-            <BasedComponent key={component.order} type={ATTACHMENT}>
+            <BasedComponent
+              key={component.order}
+              order={component.order}
+              removePostComponent={removePostComponent}
+              type={ATTACHMENT}
+            >
               <Attachment
                 key={component.order}
                 filename={component.data.filename}
@@ -134,6 +185,7 @@ class PostContentEditor extends React.Component {
 
   render() {
     const { receipe, resetPost, showComponentsSelectorModal } = this.props;
+    console.log(receipe);
     return [
       <SetTitleCard />,
       <Card fluidWidth padding="2em" marginBottom="4em">
@@ -181,6 +233,7 @@ class PostContentEditor extends React.Component {
 
 PostContentEditor.propTypes = {
   showComponentsSelectorModal: PropTypes.func.isRequired,
+  removePostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
 };
