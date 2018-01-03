@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { postComponentRenderer } from "../../helpers/post";
+import { renderPostComponent } from "../../helpers/post";
 import PostContentWrapper from "./PostContentWrapper";
 
 const AttachmentWrapper = styled.div`
@@ -106,7 +106,7 @@ class PostContent extends React.Component {
   render() {
     const { receipe } = this.state;
     return (
-      <PostContentWrapper>{postComponentRenderer(receipe)}</PostContentWrapper>
+      <PostContentWrapper>{renderPostComponent(receipe)}</PostContentWrapper>
     );
   }
 }
