@@ -25,6 +25,11 @@ import {
   ATTACHMENT
 } from "../constants/post-content/components";
 
+/**
+ * @name availableComponents
+ * @type Object
+ * @desc A keys-values set of post components which are available to add the post
+ */
 const availableComponents = {
   HEADING: ({ component }) => (
     <Heading key={component.order}>{component.data}</Heading>
