@@ -15,8 +15,10 @@ import { Button } from "../Button";
  */
 const PostPreviewModal = ({ receipe, isShowing, hidePostPreviewModal }) => (
   <ModalBackground show={isShowing}>
-    <ModalPanel style={{ maxWidth: "1400px", paddingTop: "3em" }}>
-      <Body>{renderPostComponent(receipe)}</Body>
+    <ModalPanel style={{ maxWidth: "1400px" }}>
+      <Body style={{ paddingTop: "5em", paddingBottom: "5em" }}>
+        {renderPostComponent(receipe)}
+      </Body>
       <Footer>
         <Button light onClick={hidePostPreviewModal}>
           ปิด
