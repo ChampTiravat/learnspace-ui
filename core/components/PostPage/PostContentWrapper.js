@@ -11,6 +11,7 @@ const PostContentWrapper = Card.extend`
   font-size: 1.2em;
   color: #555;
   text-align: left;
+  box-shadow: none;
 `;
 
 export default PostContentWrapper;

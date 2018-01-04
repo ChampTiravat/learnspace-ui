@@ -26,7 +26,7 @@ const Card = styled.div`
   margin-left: ${p => p.marginLeft || "auto"};
   margin-right: ${p => p.marginRight || "auto"};
   padding: ${p => p.padding || "0"};
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: ${p => (p.noShadow ? "none" : "0 5px 15px rgba(0, 0, 0, 0.1)")};
   border-radius: 7px;
   text-align: ${p => (p.textCenter ? "center" : "left")};
 `;

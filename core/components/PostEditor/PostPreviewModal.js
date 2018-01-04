@@ -16,6 +16,7 @@ import { Button } from "../Button";
 const PostPreviewModal = ({ receipe, isShowing, hidePostPreviewModal }) => (
   <ModalBackground show={isShowing}>
     <ModalPanel style={{ maxWidth: "1400px" }}>
+      <Header>พรีวิว</Header>
       <Body style={{ paddingTop: "5em", paddingBottom: "5em" }}>
         {renderPostComponent(receipe)}
       </Body>

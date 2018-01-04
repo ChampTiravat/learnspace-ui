@@ -33,7 +33,7 @@ class PostContentEditor extends React.Component {
     console.log(receipe);
     return [
       <SetTitleCard />,
-      <Card fluidWidth padding="2em" marginBottom="4em">
+      <Card fluidWidth noShadow padding="2em" marginBottom="4em">
         {renderEditableComponent(receipe, removePostComponent)}
         <EmptyField onClick={showComponentsSelectorModal} />
       </Card>,
