@@ -21,6 +21,9 @@ const PostPreviewModal = ({ receipe, isShowing, hidePostPreviewModal }) => (
         {renderPostComponent(receipe)}
       </Body>
       <Footer>
+        <Button primary onClick={() => alert("Saving")}>
+          บันทึก
+        </Button>
         <Button light onClick={hidePostPreviewModal}>
           ปิด
         </Button>
