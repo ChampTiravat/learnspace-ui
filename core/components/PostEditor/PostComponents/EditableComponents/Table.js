@@ -143,7 +143,7 @@ class Table extends React.Component {
   renderColumns = () => (
     <tr>
       <th>ลำดับ</th>
-      {this.state.head.map((column, i) => <th>{column}</th>)}
+      {this.state.head.map((column, i) => <th key={i}>{column}</th>)}
       <th>
         <Input
           type="text"
@@ -173,8 +173,8 @@ class Table extends React.Component {
     return (
       <tr>
         <td>{/* LEAVE THIS BLANK */}</td>
-        {head.map(column => (
-          <td>
+        {head.map((column, i) => (
+          <td key={i}>
             <Input
               type="text"
               name={column}
