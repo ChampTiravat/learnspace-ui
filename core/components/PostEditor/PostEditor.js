@@ -51,31 +51,33 @@ class PostEditor extends React.Component {
       resetPost,
       receipe
     } = this.props;
-    return [
-      <AddPostComponentModal
-        hideAddPostComponentModal={hideAddPostComponentModal}
-        addPostComponentModal={addPostComponentModal}
-        addNewPostComponent={addNewPostComponent}
-        receipe={receipe}
-      />,
-      <PostComponentSelectorModal
-        isComponentsSelectorModalShowing={isComponentsSelectorModalShowing}
-        hideComponentsSelectorModal={hideComponentsSelectorModal}
-        showAddPostComponentModal={showAddPostComponentModal}
-      />,
-      <PostPreviewModal
-        hidePostPreviewModal={hidePostPreviewModal}
-        isShowing={isPostPreviewModalShowing}
-        receipe={receipe}
-      />,
-      <PostContentEditor
-        receipe={receipe}
-        resetPost={resetPost}
-        removePostComponent={removePostComponent}
-        showPostPreviewModal={showPostPreviewModal}
-        showComponentsSelectorModal={showComponentsSelectorModal}
-      />
-    ];
+    return (
+      <div>
+        <AddPostComponentModal
+          hideAddPostComponentModal={hideAddPostComponentModal}
+          addPostComponentModal={addPostComponentModal}
+          addNewPostComponent={addNewPostComponent}
+          receipe={receipe}
+        />
+        <PostComponentSelectorModal
+          isComponentsSelectorModalShowing={isComponentsSelectorModalShowing}
+          hideComponentsSelectorModal={hideComponentsSelectorModal}
+          showAddPostComponentModal={showAddPostComponentModal}
+        />
+        <PostPreviewModal
+          hidePostPreviewModal={hidePostPreviewModal}
+          isShowing={isPostPreviewModalShowing}
+          receipe={receipe}
+        />
+        <PostContentEditor
+          receipe={receipe}
+          resetPost={resetPost}
+          removePostComponent={removePostComponent}
+          showPostPreviewModal={showPostPreviewModal}
+          showComponentsSelectorModal={showComponentsSelectorModal}
+        />
+      </div>
+    );
   }
 }
 

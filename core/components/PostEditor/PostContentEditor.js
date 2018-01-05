@@ -30,16 +30,17 @@ class PostContentEditor extends React.Component {
       showPostPreviewModal,
       showComponentsSelectorModal
     } = this.props;
-    console.log(receipe);
-    return [
-      <SetTitleCard />,
-      <Card fluidWidth noShadow padding="2em" marginBottom="4em">
-        {renderEditableComponent(receipe, removePostComponent)}
-        <EmptyField onClick={showComponentsSelectorModal} />
-      </Card>,
+    console.log(receipe); // DEBUGING
+    return (
       <div>
-        {receipe.length > 0
-          ? [
+        <SetTitleCard />
+        <Card fluidWidth noShadow padding="2em" marginBottom="4em">
+          {renderEditableComponent(receipe, removePostComponent)}
+          <EmptyField onClick={showComponentsSelectorModal} />
+        </Card>
+        <div>
+          {receipe.length > 0 ? (
+            <div>
               <CircleButton
                 light
                 right="3em"
@@ -49,7 +50,7 @@ class PostContentEditor extends React.Component {
                 onClick={resetPost}
               >
                 รีเซ็ต
-              </CircleButton>,
+              </CircleButton>
               <CircleButton
                 light
                 padding="1.3em 1em"
@@ -59,7 +60,7 @@ class PostContentEditor extends React.Component {
                 onClick={showPostPreviewModal}
               >
                 พรีวิว
-              </CircleButton>,
+              </CircleButton>
               <CircleButton
                 primary
                 right="3em"
@@ -70,10 +71,11 @@ class PostContentEditor extends React.Component {
               >
                 บันทึก
               </CircleButton>
-            ]
-          : null}
+            </div>
+          ) : null}
+        </div>
       </div>
-    ];
+    );
   }
 }
 
