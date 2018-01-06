@@ -17,9 +17,10 @@ import { map } from "async";
 /**
  * @name Table
  * @desc Display a data as a grid
- * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
  * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
  * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop editPostComponent : f() to edit an existing post component in the receipe
  * @prop order : The component's current order in receipe
  * @prop type : Type of the component to be inserted
  */
@@ -33,16 +34,11 @@ class Table extends React.Component {
   };
 
   /**
-   * @name submitHandler
+   * @name addComponentHandler
    * @desc Append the <Table /> component to the 'receipe'
-   * @param { name } : Name of the table
-   * @param { description } : Describe what is presenting in the list
-   * @param { body } : Array of list items(Table's rows)
-   * @param { head } : Names of table's columns
    */
-  submitHandler = values => {
-    const { body, name, description, head } = values;
-    const meta = { name, description };
+  addComponentHandler = () => {
+    const { body, name, description, head } = this.state;
 
     const {
       hideAddPostComponentModal,
@@ -63,13 +59,43 @@ class Table extends React.Component {
       type: TABLE,
       order,
       data: {
-        meta,
+        meta: { name, description },
         head,
         body
       }
     });
 
     hideAddPostComponentModal();
+  };
+
+  /**
+   * @name addComponentHandler
+   * @desc Edit the specific <Table /> component in the 'receipe'
+   */
+  editComponentHandler = () => {
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+    const { body, name, description, head } = this.state;
+
+    if (
+      !head.length ||
+      head.length === 0 ||
+      !body.length ||
+      body.length === 0
+    ) {
+      return null;
+    }
+
+    editPostComponent({
+      type: TABLE,
+      order,
+      newData: {
+        meta: { name, description },
+        head,
+        body
+      }
+    });
+
+    hideEditPostComponentModal();
   };
 
   /**
@@ -194,10 +220,33 @@ class Table extends React.Component {
   };
 
   render() {
-    const { hideAddPostComponentModal } = this.props;
+    const {
+      hideAddPostComponentModal,
+      hideEditPostComponentModal,
+      useToAddComponent
+    } = this.props;
+
+    /*
+      Specify the which f() will be used to hide this modal
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const hideThisModal = useToAddComponent
+      ? hideAddPostComponentModal
+      : hideEditPostComponentModal;
+
+    /*
+      Specify the which f() will be used to submit the form 
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const submitHandler = useToAddComponent
+      ? this.addComponentHandler
+      : this.editComponentHandler;
+
     return [
       <Header>ตาราง</Header>,
-      <Form onSubmit={e => e.preventDefault() & this.submitHandler(this.state)}>
+      <Form onSubmit={e => e.preventDefault() & submitHandler()}>
         <Body>
           <InputGroup>
             <InputLabel>ชื่อตารางนี้</InputLabel>
@@ -229,10 +278,10 @@ class Table extends React.Component {
           </TableWrapper>
         </Body>
         <Footer>
-          <Button success marginRight="0.5em">
+          <Button primary marginRight="0.5em">
             เสร็จสิ้น
           </Button>
-          <Button danger type="button" onClick={hideAddPostComponentModal}>
+          <Button light type="button" onClick={hideThisModal}>
             ยกเลิก
           </Button>
         </Footer>
@@ -242,8 +291,10 @@ class Table extends React.Component {
 }
 
 Table.propTypes = {
-  hideAddPostComponentModal: PropTypes.func.isRequired,
-  addNewPostComponent: PropTypes.func.isRequired,
+  useToAddComponent: PropTypes.bool.isRequired,
+  hideAddPostComponentModal: PropTypes.func,
+  addNewPostComponent: PropTypes.func,
+  editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
 };
 

@@ -18,11 +18,11 @@ import { Button } from "../../../Button";
  */
 class Map extends React.Component {
   /**
-   * @name submitHandler
+   * @name addComponentHandler()
    * @desc Append the <Map /> component to the 'receipe'
    * @param { location } : A location specified to send to Google Map API
    */
-  submitHandler = ({ location }) => {
+  addComponentHandler = ({ location }) => {
     const {
       hideAddPostComponentModal,
       addNewPostComponent,
@@ -40,19 +40,62 @@ class Map extends React.Component {
     hideAddPostComponentModal();
   };
 
+  /**
+   * @name addComponentHandler()
+   * @desc Edit the specific <Map /> component in the 'receipe'
+   * @param { location } : A location specified to send to Google Map API
+   */
+  editComponentHandler = ({ location }) => {
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+
+    if (!location && location !== "") return;
+
+    editPostComponent({
+      newData: { location },
+      type: MAP,
+      order
+    });
+
+    hideEditPostComponentModal();
+  };
+
   render() {
-    const { hideAddPostComponentModal, handleSubmit } = this.props;
+    const {
+      hideAddPostComponentModal,
+      hideEditPostComponentModal,
+      handleSubmit,
+      useToAddComponent
+    } = this.props;
+
+    /*
+      Specify the which f() will be used to hide this modal
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const hideThisModal = useToAddComponent
+      ? hideAddPostComponentModal
+      : hideEditPostComponentModal;
+
+    /*
+      Specify the which f() will be used to submit the form 
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const submitHandler = useToAddComponent
+      ? this.addComponentHandler
+      : this.editComponentHandler;
+
     return [
       <Header>แผนที่</Header>,
-      <Form onSubmit={handleSubmit(this.submitHandler)}>
+      <Form onSubmit={handleSubmit(submitHandler)}>
         <Body>
           <Field name="location" component={InputField} type="text" />
         </Body>
         <Footer>
-          <Button success marginRight="0.5em">
+          <Button primary marginRight="0.5em">
             เสร็จสิ้น
           </Button>
-          <Button danger type="button" onClick={hideAddPostComponentModal}>
+          <Button light type="button" onClick={hideThisModal}>
             ยกเลิก
           </Button>
         </Footer>
@@ -62,9 +105,11 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  hideAddPostComponentModal: PropTypes.func.isRequired,
+  useToAddComponent: PropTypes.bool.isRequired,
+  hideAddPostComponentModal: PropTypes.func,
   handleSubmit: PropTypes.func.isRequired,
-  addNewPostComponent: PropTypes.func.isRequired,
+  addNewPostComponent: PropTypes.func,
+  editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
 };
 

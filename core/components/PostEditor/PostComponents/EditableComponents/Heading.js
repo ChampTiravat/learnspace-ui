@@ -14,12 +14,13 @@ import { Button } from "../../../Button";
  * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
  * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
  * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop editPostComponent : f() to edit an existing post component in the receipe
  * @prop order : The component's current order in receipe
  * @prop type : Type of the component to be inserted
  */
 class Heading extends React.Component {
   /**
-   * @name addComponentHandler
+   * @name addComponentHandler()
    * @desc Append the <Heading /> component to the 'receipe'
    * @param { heading_text } : text to display inside the heading component
    */
@@ -42,7 +43,7 @@ class Heading extends React.Component {
   };
 
   /**
-   * @name editComponentHandler
+   * @name editComponentHandler()
    * @desc Edit the specific <Heading /> component in the 'receipe'
    * @param { heading_text } : text to display inside the heading component
    */
@@ -54,7 +55,7 @@ class Heading extends React.Component {
     editPostComponent({
       newData: heading_text,
       type: HEADING,
-      order: order
+      order
     });
 
     hideEditPostComponentModal();
@@ -93,10 +94,10 @@ class Heading extends React.Component {
           <Field name="heading_text" component={InputField} type="text" />
         </Body>
         <Footer>
-          <Button success marginRight="0.5em">
+          <Button primary marginRight="0.5em">
             เสร็จสิ้น
           </Button>
-          <Button danger type="button" onClick={hideThisModal}>
+          <Button light type="button" onClick={hideThisModal}>
             ยกเลิก
           </Button>
         </Footer>

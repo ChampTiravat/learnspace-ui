@@ -51,7 +51,6 @@ const TableWrapper = styled.div`
         &:hover {
           box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
           color: ${p => p.theme.PRIMARY_COLOR};
-          font-weight: 500;
         }
         td {
           padding: 0.7em 0.5em;

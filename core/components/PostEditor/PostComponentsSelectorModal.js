@@ -61,7 +61,7 @@ class PostComponentsSelectorModal extends React.Component {
           </Body>
           <Footer>
             <Button
-              danger
+              light
               textCenter
               onClick={() => hideComponentsSelectorModal()}
             >
