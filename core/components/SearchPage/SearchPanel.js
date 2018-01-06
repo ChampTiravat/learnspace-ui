@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
-import { LightButton, PrimaryButton } from "../Button";
-import Card, { Header, Body, Footer } from "../Card";
 import { Form, Input } from "../Form";
+import { Button } from "../Button";
+import Card from "../Card";
 
 /**
  * @name SearchPanel
@@ -16,7 +16,8 @@ class SearchPanel extends React.Component {
       <Card fluidWidth padding="1em" marginBottom="2em">
         <Form>
           <Input type="text" />
-          <LightButton
+          <Button
+            light
             textCenter
             fluidWidth
             marginTop="1em"
@@ -25,7 +26,7 @@ class SearchPanel extends React.Component {
             marginRight="auto"
           >
             ค้นหา
-          </LightButton>
+          </Button>
         </Form>
       </Card>
     );

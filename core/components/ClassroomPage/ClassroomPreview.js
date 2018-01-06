@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { PrimaryButton } from "../Button";
+import { Button } from "../Button";
 import Card from "../Card";
 
 const ClassroomPreviewWrapper = Card.extend`
@@ -59,7 +59,7 @@ const ClassroomPreview = ({
       <Topic>คำอธิบาย</Topic>
       <TextInfo>{description}</TextInfo>
     </PrimaryInfoItem>
-    <PrimaryButton>ส่งคำขอเข้าห้องเรียนนี้</PrimaryButton>
+    <Button primary>ส่งคำขอเข้าห้องเรียนนี้</Button>
   </ClassroomPreviewWrapper>
 );
 

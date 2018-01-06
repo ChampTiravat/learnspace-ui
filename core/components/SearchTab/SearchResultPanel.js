@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import SearchResultCard from "./SearchResultCard";
 import SearchResultItem from "./SearchResultItem";
-import { Footer, Body } from "../Card";
 
 /**
  *  @name SearchResultPanel

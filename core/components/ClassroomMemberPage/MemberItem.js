@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Card, { Header, Body, Footer } from "../Card";
-import { DangerButton } from "../Button";
+import { CircleButton } from "../Button";
 
 const MemberItemCard = Card.extend`
   margin-left: 1.5em;
@@ -30,22 +30,6 @@ const UserProfilePic = styled.img`
   border-top-left-radius: 5px;
 `;
 
-const DeleteMemberButton = DangerButton.extend`
-  position: absolute;
-  margin-left: -4em;
-  margin-top: 1em;
-  padding: 0.5em 1em;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 1.1em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: 150ms ease-in;
-  &:hover {
-    background-color: #fff;
-    color: #e57373;
-  }
-`;
-
 /**
  * @name MemberItem
  * @desc Display a single classroom member with some information and operational button
@@ -55,7 +39,9 @@ const DeleteMemberButton = DangerButton.extend`
 const MemberItem = ({ children, profilePic }) => (
   <MemberItemCard>
     <UserProfilePic src={profilePic} />
-    <DeleteMemberButton>-</DeleteMemberButton>
+    <CircleButton danger position="absolute" top="1em" right="1em">
+      -
+    </CircleButton>
     <Body>{children}</Body>
   </MemberItemCard>
 );

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Card, { Header, Body, Footer } from "./Card";
+import Card, { Header, Body } from "./Card";
 
 /**
  * @name FullContainerCard

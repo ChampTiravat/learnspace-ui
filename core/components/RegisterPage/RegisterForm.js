@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
 import { InputField, InputLabel, InputGroup } from "../Form";
-import { PrimaryButton } from "../Button";
+import { Button } from "../Button";
 
 const submitHandler = value => {
   console.table(value);
@@ -46,9 +46,9 @@ const RegisterForm = ({ handleSubmit }) => (
         ข้าพเจ้ายอมรับเงื่อนไขในการใข้งาน
       </InputLabel>
     </InputGroup>
-    <PrimaryButton fluidWidth textCenter>
+    <Button primary fluidWidth textCenter>
       ยืนยัน
-    </PrimaryButton>
+    </Button>
   </form>
 );
 

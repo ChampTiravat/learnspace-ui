@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
-import { PrimaryButton } from "../Button";
 import { InputField } from "../Form";
+import { Button } from "../Button";
 
 const submitHandler = value => {
   console.table(value);
@@ -18,9 +18,9 @@ const LoginForm = ({ handleSubmit }) => (
       component={InputField}
       type="password"
     />
-    <PrimaryButton fluidWidth textCenter>
+    <Button primary fluidWidth textCenter>
       เข้าสู่ระบบ
-    </PrimaryButton>
+    </Button>
   </form>
 );
 

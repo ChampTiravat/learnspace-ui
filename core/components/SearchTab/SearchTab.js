@@ -11,7 +11,7 @@ import SearchResultPanel from "./SearchResultPanel";
 import Card, { Body, Footer } from "../Card";
 import { ModalBackground } from "../Modal";
 import SearchField from "./SearchField";
-import { LightButton } from "../Button";
+import { Button } from "../Button";
 import { Form } from "../Form";
 import {
   showSearchPanel,
@@ -56,7 +56,7 @@ class SearchTab extends React.Component {
           />
           <SearchResultPanel show={isSearchPanelShowing} />
         </div>
-        <LightButton>ค้นหา</LightButton>
+        <Button light>ค้นหา</Button>
       </Form>
     );
   }

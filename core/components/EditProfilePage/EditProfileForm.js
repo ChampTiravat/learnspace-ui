@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
-import { PrimaryButton } from "../Button";
 import { InputField } from "../Form";
+import { Button } from "../Button";
 
 const submitHandler = value => {
   console.table(value);
@@ -20,9 +20,9 @@ const EditProfileForm = ({ handleSubmit }) => (
     <Field name="email" label="อีเมลล์" component={InputField} type="email" />
     <Field name="career" label="อาชีพ" component={InputField} type="text" />
     <Field name="location" label="ที่อยู่" component={InputField} type="text" />
-    <PrimaryButton fluidWidth textCenter>
+    <Button primary fluidWidth textCenter>
       เรียบร้อย
-    </PrimaryButton>
+    </Button>
   </form>
 );
 

@@ -1,45 +1,42 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import {
-  PrimaryButton,
-  DangerButton,
-  SuccessButton,
-  WarningButton
-} from "../../Button";
+import { CircleButton } from "../../Button";
 
 const TestComponentWrapper = styled.div`
-  &:hover {
-    background-color: #f5f5f5;
-  }
+  position: relative;
+  margin-top: 2em;
+  margin-bottom: 3em;
 `;
 
 const BasedComponent = ({
-  i,
+  children,
   type,
-  text,
-  editFunc,
-  removeFunc,
-  SuccesFunc,
-  isEditing
+  order,
+  removePostComponent,
+  showEditPostComponentModal
 }) => (
-  <TestComponentWrapper key={i}>
-    <h2>{type}</h2>
-    {isEditing ? (
-      <div>
-        <form>
-          <input type="text" />
-        </form>
-        <div>
-          <SuccessButton onClick={SuccesFunc}>เสร็จสิ้น</SuccessButton>
-          <WarningButton onClick={editFunc}>แก้ไข</WarningButton>
-          <DangerButton onClick={removeFunc}>ยกเลิก</DangerButton>
-        </div>
-      </div>
-    ) : (
-      <h1>{text}</h1>
-    )}
-    <br />
+  <TestComponentWrapper>
+    <CircleButton
+      danger
+      position="absolute"
+      left="-9.5em"
+      top="0em"
+      onClick={() => removePostComponent(order)}
+    >
+      -
+    </CircleButton>
+    <CircleButton
+      primary
+      position="absolute"
+      left="-6em"
+      top="0em"
+      onClick={() => showEditPostComponentModal(type, order)}
+    >
+      /
+    </CircleButton>
+    {children}
   </TestComponentWrapper>
 );
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 
 import { InputField, TextAreaField } from "../Form";
-import { PrimaryButton } from "../Button";
+import { Button } from "../Button";
 
 const submitHandler = value => {
   console.table(value);
@@ -23,9 +23,9 @@ const EditClassroomForm = ({ handleSubmit }) => (
       component={TextAreaField}
       type="text"
     />
-    <PrimaryButton fluidWidth textCenter>
+    <Button primary fluidWidth textCenter>
       เรียบร้อย
-    </PrimaryButton>
+    </Button>
   </form>
 );
 

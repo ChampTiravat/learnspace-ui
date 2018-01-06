@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Link from 'next/link'
-import { connect } from "react-redux";
+import Link from "next/link";
 
-import { showPostRemovalConfirmationModal } from "../../actions/post-page-actions";
-import ActivityPanel from '../ActivityPanel'
+import ActivityPanel from "../ActivityPanel";
 
 const PostActivityPanel = ({ showPostRMModal }) => (
   <ActivityPanel>
@@ -15,8 +13,8 @@ const PostActivityPanel = ({ showPostRMModal }) => (
   </ActivityPanel>
 );
 
-const mapDispatchToProps = dispatch => ({
-  showPostRMModal: () => dispatch(showPostRemovalConfirmationModal())
-});
+PostActivityPanel.propTypes = {
+  showPostRMModal: PropTypes.func.isRequired
+};
 
-export default connect(null, mapDispatchToProps)(PostActivityPanel);
+export default PostActivityPanel;
