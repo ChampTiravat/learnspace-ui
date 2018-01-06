@@ -24,8 +24,11 @@ const ImageUpLoadWrapper = styled.div`
  * @name Slideshow
  * @desc Display a slide of images, used to present a visual communication about a certain topic or used to catch reader's attention
  * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
  * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop editPostComponent : f() to edit an existing post component in the receipe
  * @prop order : The component's current order in receipe
+ * @prop type : Type of the component to be inserted
  */
 class Slideshow extends React.Component {
   state = {
@@ -34,10 +37,10 @@ class Slideshow extends React.Component {
     images: []
   };
   /**
-   * @name submitHandler
+   * @name addComponentHandler()
    * @desc Append the <Slideshow /> component to the 'receipe'
    */
-  submitHandler = () => {
+  addComponentHandler = () => {
     const { images } = this.state;
 
     const {
@@ -46,7 +49,7 @@ class Slideshow extends React.Component {
       order
     } = this.props;
 
-    if (!images.length || images.length == 0) return null;
+    if (!images.length || images.length == 0 || images.length < 2) return null;
 
     addNewPostComponent({
       type: SLIDE_SHOW,
@@ -55,6 +58,25 @@ class Slideshow extends React.Component {
     });
 
     hideAddPostComponentModal();
+  };
+
+  /**
+   * @name editComponentHandler()
+   * @desc Edit the specific <Slideshow /> component in the 'receipe'
+   */
+  editComponentHandler = () => {
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+    const { images } = this.state;
+
+    if (!images.length || images.length == 0 || images.length < 2) return null;
+
+    editPostComponent({
+      newData: images,
+      type: SLIDE_SHOW,
+      order
+    });
+
+    hideEditPostComponentModal();
   };
 
   /**
@@ -117,10 +139,33 @@ class Slideshow extends React.Component {
   };
 
   render() {
-    const { hideAddPostComponentModal } = this.props;
+    const {
+      hideAddPostComponentModal,
+      hideEditPostComponentModal,
+      useToAddComponent
+    } = this.props;
+
+    /*
+      Specify the which f() will be used to hide this modal
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const hideThisModal = useToAddComponent
+      ? hideAddPostComponentModal
+      : hideEditPostComponentModal;
+
+    /*
+      Specify the which f() will be used to submit the form 
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const submitHandler = useToAddComponent
+      ? this.addComponentHandler
+      : this.editComponentHandler;
+
     return [
       <Header>สไลด์รูปภาพ</Header>,
-      <Form onSubmit={e => e.preventDefault() & this.submitHandler()}>
+      <Form onSubmit={e => e.preventDefault() & submitHandler()}>
         <Body>
           {this.renderImages()}
           <div>
@@ -149,10 +194,10 @@ class Slideshow extends React.Component {
           </div>
         </Body>
         <Footer>
-          <Button success marginRight="0.5em">
+          <Button primary marginRight="0.5em">
             เสร็จสิ้น
           </Button>
-          <Button danger type="button" onClick={hideAddPostComponentModal}>
+          <Button light type="button" onClick={hideThisModal}>
             ยกเลิก
           </Button>
         </Footer>
@@ -162,8 +207,10 @@ class Slideshow extends React.Component {
 }
 
 Slideshow.propTypes = {
-  hideAddPostComponentModal: PropTypes.func.isRequired,
-  addNewPostComponent: PropTypes.func.isRequired,
+  useToAddComponent: PropTypes.bool.isRequired,
+  hideAddPostComponentModal: PropTypes.func,
+  addNewPostComponent: PropTypes.func,
+  editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
 };
 
