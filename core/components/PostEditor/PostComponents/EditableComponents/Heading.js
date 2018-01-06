@@ -20,7 +20,7 @@ import { Button } from "../../../Button";
  */
 class Heading extends React.Component {
   /**
-   * @name addComponentHandler
+   * @name addComponentHandler()
    * @desc Append the <Heading /> component to the 'receipe'
    * @param { heading_text } : text to display inside the heading component
    */
@@ -43,7 +43,7 @@ class Heading extends React.Component {
   };
 
   /**
-   * @name editComponentHandler
+   * @name editComponentHandler()
    * @desc Edit the specific <Heading /> component in the 'receipe'
    * @param { heading_text } : text to display inside the heading component
    */
