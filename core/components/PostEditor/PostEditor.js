@@ -3,19 +3,28 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import PostComponentSelectorModal from "./PostComponentsSelectorModal";
+import EditPostComponentModal from "./EditPostComponentModal";
 import AddPostComponentModal from "./AddPostComponentModal";
 import PostPreviewModal from "./PostPreviewModal.js";
 import PostContentEditor from "./PostContentEditor";
 import {
+  // PostComponentsSelectorModal
   hidePostComponentsSelectorModal,
   showPostComponentsSelectorModal,
+  // AddPostComponentModal
   hideAddPostComponentModal,
   showAddPostComponentModal,
+  // EditPostComponentModal
+  showEditPostComponentModal,
+  hideEditPostComponentModal,
+  // PostPreviewModal
   showPostPreviewModal,
   hidePostPreviewModal,
-  addNewPostComponent,
-  removePostComponent,
-  resetPost
+  // PostContentEditor Operations
+  addNewPostComponent, // Add a new component
+  removePostComponent, // Remove existing component
+  editPostComponent, // Edit an existing component
+  resetPost // Remove every thing and start from scratch
 } from "../../actions/post-editor-actions";
 
 /**
@@ -33,6 +42,10 @@ import {
  * @prop [REDUX] isShowing : A redux state used to specify wether to show or hide post preview modal
  * @prop [REDUX] receipe : A list of components that need to be rendered
  * @prop [REDUX] hidePostPreviewModal : f() to hide post preview modal
+ * @prop [REDUX] editPostComponentModal : object contains information of a EditPostComponentModal
+ * @prop [REDUX] showEditPostComponentModal : f() to show EditPostComponentModal
+ * @prop [REDUX] hideEditPostComponentModal : f() to hide EditPostComponentModal
+ * @prop [REDUX] editPostComponent : f() to edit an existing post component in the receipe
  */
 class PostEditor extends React.Component {
   render() {
@@ -49,10 +62,20 @@ class PostEditor extends React.Component {
       showPostPreviewModal,
       hidePostPreviewModal,
       resetPost,
-      receipe
+      receipe,
+      editPostComponentModal,
+      showEditPostComponentModal,
+      hideEditPostComponentModal,
+      editPostComponent
     } = this.props;
     return (
       <div>
+        <EditPostComponentModal
+          hideEditPostComponentModal={hideEditPostComponentModal}
+          editPostComponentModal={editPostComponentModal}
+          editPostComponent={editPostComponent}
+          receipe={receipe}
+        />
         <AddPostComponentModal
           hideAddPostComponentModal={hideAddPostComponentModal}
           addPostComponentModal={addPostComponentModal}
@@ -74,6 +97,7 @@ class PostEditor extends React.Component {
           resetPost={resetPost}
           removePostComponent={removePostComponent}
           showPostPreviewModal={showPostPreviewModal}
+          showEditPostComponentModal={showEditPostComponentModal}
           showComponentsSelectorModal={showComponentsSelectorModal}
         />
       </div>
@@ -82,42 +106,69 @@ class PostEditor extends React.Component {
 }
 
 PostEditor.propTypes = {
+  // PostComponentsSelectorModal
   isComponentsSelectorModalShowing: PropTypes.bool.isRequired,
   showComponentsSelectorModal: PropTypes.func.isRequired,
   hideComponentsSelectorModal: PropTypes.func.isRequired,
-  showComponentsSelectorModal: PropTypes.func.isRequired,
+
+  // AddPostComponentModal
   showAddPostComponentModal: PropTypes.func.isRequired,
   hideAddPostComponentModal: PropTypes.func.isRequired,
   addPostComponentModal: PropTypes.object.isRequired,
+
+  // PostPreviewModal
   showPostPreviewModal: PropTypes.func.isRequired,
   hidePostPreviewModal: PropTypes.func.isRequired,
+
+  // PostContentEditor Operations
   addNewPostComponent: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
+  editPostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
-  receipe: PropTypes.array.isRequired
+  receipe: PropTypes.array.isRequired,
+
+  // EditPostComponentModal
+  editPostComponentModal: PropTypes.object.isRequired,
+  showEditPostComponentModal: PropTypes.func.isRequired,
+  hideEditPostComponentModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   isComponentsSelectorModalShowing: state.isPostComponentsSelectorModalShowing,
+  editPostComponentModal: state.isEditPostComponentModalShowing,
   addPostComponentModal: state.isAddPostComponentModalShowing,
   isPostPreviewModalShowing: state.isPostPreviewModalShowing,
   receipe: state.editingPostReceipe
 });
 
 const mapDispatchToProps = dispatch => ({
-  addNewPostComponent: componentToAdd =>
-    dispatch(addNewPostComponent(componentToAdd)),
+  // PostComponentsSelectorModal
   showComponentsSelectorModal: () =>
     dispatch(showPostComponentsSelectorModal()),
-  hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
-  showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type)),
   hideComponentsSelectorModal: () =>
     dispatch(hidePostComponentsSelectorModal()),
+
+  // AddPostComponentModal
+  hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
+  showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type)),
+
+  // PostContentEditor Operations
   resetPost: () => dispatch(resetPost()),
   removePostComponent: componentOrder =>
     dispatch(removePostComponent(componentOrder)),
+  addNewPostComponent: componentToAdd =>
+    dispatch(addNewPostComponent(componentToAdd)),
+  editPostComponent: (order, type, newData) =>
+    dispatch(editPostComponent(order, type, newData)),
+
+  // PostPreviewModal
   showPostPreviewModal: () => dispatch(showPostPreviewModal()),
-  hidePostPreviewModal: () => dispatch(hidePostPreviewModal())
+  hidePostPreviewModal: () => dispatch(hidePostPreviewModal()),
+
+  // EditPostComponentModal
+  showEditPostComponentModal: (type, order) =>
+    dispatch(showEditPostComponentModal(type, order)),
+  hideEditPostComponentModal: () => dispatch(hideEditPostComponentModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);

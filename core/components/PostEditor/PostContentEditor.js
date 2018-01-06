@@ -12,6 +12,7 @@ import Card from "../Card";
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
  * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
+ * @prop showEditPostComponentModal : f() to show showEditPostComponentModal when user wish to edit an existing component
  * @prop showPostPreviewModal : f() to show a post preview modal
  * @prop removePostComponent: f() to remove a single post component
  * @prop resetPost: f() to remove every components in the current post editor
@@ -19,7 +20,7 @@ import Card from "../Card";
  */
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
-    return this.props.receipe !== nextProp.receipe;
+    return this.props !== nextProp;
   }
 
   render() {
@@ -28,6 +29,7 @@ class PostContentEditor extends React.Component {
       resetPost,
       removePostComponent,
       showPostPreviewModal,
+      showEditPostComponentModal,
       showComponentsSelectorModal
     } = this.props;
     console.log(receipe); // DEBUGING
@@ -35,7 +37,11 @@ class PostContentEditor extends React.Component {
       <div>
         <SetTitleCard />
         <Card fluidWidth noShadow padding="2em" marginBottom="4em">
-          {renderEditableComponent(receipe, removePostComponent)}
+          {renderEditableComponent(
+            receipe,
+            removePostComponent,
+            showEditPostComponentModal
+          )}
           <EmptyField onClick={showComponentsSelectorModal} />
         </Card>
         <div>
@@ -81,6 +87,7 @@ class PostContentEditor extends React.Component {
 
 PostContentEditor.propTypes = {
   showComponentsSelectorModal: PropTypes.func.isRequired,
+  showEditPostComponentModal: PropTypes.func.isRequired,
   showPostPreviewModal: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,

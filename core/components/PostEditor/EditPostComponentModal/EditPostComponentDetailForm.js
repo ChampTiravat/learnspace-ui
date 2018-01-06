@@ -25,18 +25,18 @@ import {
 } from "../../../constants/post-content/components";
 
 /**
- * @name addPostComponentDetailForm
- * @desc Display a form to enter a essential data for individial post component type
- * @prop hideAddPostComponentModal: f() used to hide 'AddPostComponentModal' when component is added
- * @prop addNewPostComponent: f() to add the current component to the 'receipe'
- * @prop order: Rendering order of the current component
- * @prop type: Type of the component which about to be added
+ * @name EditPostComponentDetailForm
+ * @desc Display a form to enter a essential data to edit an individial post component type
+ * @prop [REDUX] order : Rendering order of the current component
+ * @prop [REDUX] type : Type of the component which about to be added
+ * @prop [REDUX] hideEditPostComponentModal : f() to close EditPostComponentModal
+ * @prop [REDUX] editPostComponent : f() to edit an existing post component in the receipe
  */
-class addPostComponentDetailForm extends React.Component {
+class EditPostComponentDetailForm extends React.Component {
   render() {
     const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
+      hideEditPostComponentModal,
+      editPostComponent,
       type,
       order
     } = this.props;
@@ -64,20 +64,20 @@ class addPostComponentDetailForm extends React.Component {
 
     return (
       <ComponentToRender
-        hideAddPostComponentModal={hideAddPostComponentModal}
-        addNewPostComponent={addNewPostComponent}
-        useToAddComponent={true}
+        hideEditPostComponentModal={hideEditPostComponentModal}
+        editPostComponent={editPostComponent}
+        useToAddComponent={false}
         order={order}
       />
     );
   }
 }
 
-addPostComponentDetailForm.propTypes = {
-  hideAddPostComponentModal: PropTypes.func.isRequired,
-  addNewPostComponent: PropTypes.func.isRequired,
+EditPostComponentDetailForm.propTypes = {
+  hideEditPostComponentModal: PropTypes.func.isRequired,
+  editPostComponent: PropTypes.func.isRequired,
   order: PropTypes.number.isRequired,
   type: PropTypes.string
 };
 
-export default addPostComponentDetailForm;
+export default EditPostComponentDetailForm;

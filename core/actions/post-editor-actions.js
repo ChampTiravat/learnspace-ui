@@ -4,11 +4,14 @@ import {
   SHOW_ADD_POST_COMPONENT_MODAL,
   HIDE_ADD_POST_COMPONENT_MODAL,
   INITIALIZE_POST_TO_EDIT,
+  EDIT_POST_COMPONENT,
   REMOVE_COMPONENT,
   ADD_COMPONENT,
   RESET_POST,
   SHOW_POST_PREVIEW_MODAL,
-  HIDE_POST_PREVIEW_MODAL
+  HIDE_POST_PREVIEW_MODAL,
+  SHOW_EDIT_POST_COMPONENT_MODAL,
+  HIDE_EDIT_POST_COMPONENT_MODAL
 } from "../constants/actions/post-editor";
 
 /**
@@ -116,4 +119,49 @@ export const showPostPreviewModal = () => ({
 export const hidePostPreviewModal = () => ({
   type: HIDE_POST_PREVIEW_MODAL,
   payload: false
+});
+
+/**
+ * @name editPostComponent()
+ * @desc Edit an existing component in the receipe
+ * @param { order } : Component rendering order
+ * @param { type } : Component type
+ * @param { newData } : New data for the component
+ * @return Object
+ */
+export const editPostComponent = ({ order, type, newData }) => ({
+  type: EDIT_POST_COMPONENT,
+  payload: {
+    order,
+    type,
+    newData
+  }
+});
+
+/**
+ * @name showEditPostComponentModal()
+ * @desc return TRUE, in order to show the edit post component modal
+ * @param order : Component rendering order
+ * @param type : Component type
+ * @return object
+ */
+export const showEditPostComponentModal = (type, order) => ({
+  type: SHOW_EDIT_POST_COMPONENT_MODAL,
+  payload: {
+    isShowing: true,
+    type,
+    order
+  }
+});
+
+/**
+ * @name hideEditPostComponentModal()
+ * @desc return FALSE, in order to close the edit post component modal
+ * @return object
+ */
+export const hideEditPostComponentModal = () => ({
+  type: HIDE_EDIT_POST_COMPONENT_MODAL,
+  payload: {
+    isShowing: false
+  }
 });

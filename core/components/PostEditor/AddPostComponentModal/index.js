@@ -3,18 +3,6 @@ import PropTypes from "prop-types";
 
 import AddPostComponentDetailForm from "./AddPostComponentDetailForm";
 import { ModalBackground, ModalPanel } from "../../Modal";
-import {
-  SUB_HEADING,
-  SLIDE_SHOW,
-  ATTACHMENT,
-  PARAGRAPH,
-  HEADING,
-  TABLE,
-  IMAGE,
-  VIDEO,
-  LIST,
-  MAP
-} from "../../../constants/post-content/components";
 
 /**
  * @name AddPostComponentModal

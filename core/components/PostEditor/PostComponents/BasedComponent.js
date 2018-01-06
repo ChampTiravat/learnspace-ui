@@ -10,7 +10,13 @@ const TestComponentWrapper = styled.div`
   margin-bottom: 3em;
 `;
 
-const BasedComponent = ({ children, type, order, removePostComponent }) => (
+const BasedComponent = ({
+  children,
+  type,
+  order,
+  removePostComponent,
+  showEditPostComponentModal
+}) => (
   <TestComponentWrapper>
     <CircleButton
       danger
@@ -26,7 +32,7 @@ const BasedComponent = ({ children, type, order, removePostComponent }) => (
       position="absolute"
       left="-6em"
       top="0em"
-      onClick={() => null}
+      onClick={() => showEditPostComponentModal(type, order)}
     >
       /
     </CircleButton>

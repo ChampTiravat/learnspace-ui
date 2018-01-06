@@ -102,8 +102,13 @@ const availableComponents = {
  * @desc Render post components from receipe(used this in PostEditor)
  * @param receipe : Post's receipe contents of components that need to be rendered
  * @param removePostComponent : A f() to remove a single post component in the receipe
+ * @param showEditPostComponentModal : f() to show AddPostComponentModal. Use this when user wish to edit the existing component
  */
-export const renderEditableComponent = (receipe, removePostComponent) =>
+export const renderEditableComponent = (
+  receipe,
+  removePostComponent,
+  showEditPostComponentModal
+) =>
   !receipe || receipe.length === 0
     ? null
     : receipe.map(component => {
@@ -114,6 +119,7 @@ export const renderEditableComponent = (receipe, removePostComponent) =>
             type={component.type}
             order={component.order}
             removePostComponent={removePostComponent}
+            showEditPostComponentModal={showEditPostComponentModal}
           >
             <ComponentToRender component={component} />
           </BasedComponent>
