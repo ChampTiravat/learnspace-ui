@@ -58,11 +58,51 @@ class PostContent extends React.Component {
           },
           head: ["ลำดับ", "ชื่อ", "นามสกุล", "อายุ"],
           body: [
-            [1, "Tony", "Stark", 35],
-            [2, "Tony", "Stark", 35],
-            [3, "Tony", "Stark", 35],
-            [4, "Tony", "Stark", 35],
-            [5, "Tony", "Stark", 35]
+            {
+              id: "1",
+              items: [
+                { data: 1 },
+                { data: "Tony" },
+                { data: "Stark" },
+                { data: 35 }
+              ]
+            },
+            {
+              id: "2",
+              items: [
+                { data: 2 },
+                { data: "Tony" },
+                { data: "Stark" },
+                { data: 35 }
+              ]
+            },
+            {
+              id: "3",
+              items: [
+                { data: 3 },
+                { data: "Tony" },
+                { data: "Stark" },
+                { data: 35 }
+              ]
+            },
+            {
+              id: "4",
+              items: [
+                { data: 4 },
+                { data: "Tony" },
+                { data: "Stark" },
+                { data: 35 }
+              ]
+            },
+            {
+              id: "5",
+              items: [
+                { data: 5 },
+                { data: "Tony" },
+                { data: "Stark" },
+                { data: 35 }
+              ]
+            }
           ]
         }
       },
