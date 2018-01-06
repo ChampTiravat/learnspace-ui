@@ -22,9 +22,9 @@ const ClassroomActivityPanel = () => (
     <Link href={CREATE_POST_PAGE} prefetch>
       <a>สร้างโพสใหม่</a>
     </Link>
-    <Link>
+    {/* <Link>
       <a>เพิ่มการสอบ</a>
-    </Link>
+    </Link> */}
     <Link href={EDIT_CLASSROOM_PAGE} prefetch>
       <a>แก้ไขข้อมูลห้องเรียน</a>
     </Link>
