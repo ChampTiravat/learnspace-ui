@@ -10,8 +10,11 @@ import { Header, Body, Footer } from "../../../Card";
  * @name List
  * @desc Display a list with ordered items
  * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
  * @prop addNewPostComponent : f() to append a new post component to receipe
+ * @prop editPostComponent : f() to edit an existing post component in the receipe
  * @prop order : The component's current order in receipe
+ * @prop type : Type of the component to be inserted
  */
 class List extends React.Component {
   state = {
@@ -21,12 +24,10 @@ class List extends React.Component {
   };
 
   /**
-   * @name submitHandler
+   * @name addComponentHandler()
    * @desc Append the <List /> component to the 'receipe'
-   * @param { description } : Describe what is presenting in the list
-   * @param { items } : Array of list items
    */
-  submitHandler = values => {
+  addComponentHandler = () => {
     const { items, description } = this.state;
 
     const {
@@ -50,6 +51,31 @@ class List extends React.Component {
     });
 
     hideAddPostComponentModal();
+  };
+
+  /**
+   * @name editComponentHandler()
+   * @desc Edit the specific <List /> component in the 'receipe'
+   */
+  editComponentHandler = () => {
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+    const { items, description } = this.state;
+
+    if (
+      !description &&
+      description !== "" &&
+      (items.length && items.length > 0)
+    ) {
+      return;
+    }
+
+    editPostComponent({
+      newData: { description, items: items.map(item => item.data) },
+      type: LIST,
+      order
+    });
+
+    hideEditPostComponentModal();
   };
 
   /**
@@ -107,10 +133,33 @@ class List extends React.Component {
     ));
 
   render() {
-    const { hideAddPostComponentModal } = this.props;
+    const {
+      hideAddPostComponentModal,
+      hideEditPostComponentModal,
+      useToAddComponent
+    } = this.props;
+
+    /*
+      Specify the which f() will be used to hide this modal
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const hideThisModal = useToAddComponent
+      ? hideAddPostComponentModal
+      : hideEditPostComponentModal;
+
+    /*
+      Specify the which f() will be used to submit the form 
+      depending on wether this modal have been called as
+      a modal to add new component or editing the new one
+    */
+    const submitHandler = useToAddComponent
+      ? this.addComponentHandler
+      : this.editComponentHandler;
+
     return [
       <Header>รายการ</Header>,
-      <Form onSubmit={e => e.preventDefault() & this.submitHandler()}>
+      <Form onSubmit={e => e.preventDefault() & submitHandler()}>
         <Body>
           <InputGroup>
             <InputLabel>รายการนี้เกี่ยวข้องกับอะไร</InputLabel>
@@ -144,7 +193,7 @@ class List extends React.Component {
           <Button primary marginRight="0.5em">
             เสร็จสิ้น
           </Button>
-          <Button light type="button" onClick={hideAddPostComponentModal}>
+          <Button light type="button" onClick={hideThisModal}>
             ยกเลิก
           </Button>
         </Footer>
@@ -154,8 +203,10 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  hideAddPostComponentModal: PropTypes.func.isRequired,
-  addNewPostComponent: PropTypes.func.isRequired,
+  useToAddComponent: PropTypes.bool.isRequired,
+  hideAddPostComponentModal: PropTypes.func,
+  addNewPostComponent: PropTypes.func,
+  editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
 };
 
