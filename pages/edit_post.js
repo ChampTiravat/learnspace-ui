@@ -5,12 +5,12 @@ import PostEditor from "../core/components/PostEditor/PostEditor";
 import Container from "../core/components/Container";
 import withData from "../core/withData";
 
-const CreatePostPage = () => (
+const EditPostPage = () => (
   <AuthenticatedLayout>
-    <Container transparent>
+    <Container>
       <PostEditor />
     </Container>
   </AuthenticatedLayout>
 );
 
-export default withData(CreatePostPage);
+export default withData(EditPostPage);

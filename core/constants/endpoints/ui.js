@@ -18,3 +18,4 @@ export const CREATE_CLASSROOM_PAGE = `/create_classroom`;
 export const EDIT_CLASSROOM_PAGE = `/edit_classroom`;
 export const CLASSROOM_CHATROOM_PAGE = `/chatroom`;
 export const SEARCH_RESULT_PAGE = `/search`;
+export const EDIT_POST_PAGE = `/edit_post`;
