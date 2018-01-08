@@ -11,15 +11,19 @@ import {
   // PostComponentsSelectorModal
   hidePostComponentsSelectorModal,
   showPostComponentsSelectorModal,
+
   // AddPostComponentModal
   hideAddPostComponentModal,
   showAddPostComponentModal,
+
   // EditPostComponentModal
   showEditPostComponentModal,
   hideEditPostComponentModal,
+
   // PostPreviewModal
   showPostPreviewModal,
   hidePostPreviewModal,
+
   // PostContentEditor Operations
   addNewPostComponent, // Add a new component
   removePostComponent, // Remove existing component
@@ -53,20 +57,20 @@ class PostEditor extends React.Component {
       isComponentsSelectorModalShowing,
       showComponentsSelectorModal,
       hideComponentsSelectorModal,
+      hideEditPostComponentModal,
+      showEditPostComponentModal,
       showAddPostComponentModal,
       hideAddPostComponentModal,
-      addPostComponentModal,
-      addNewPostComponent,
-      removePostComponent,
       isPostPreviewModalShowing,
+      editPostComponentModal,
+      addPostComponentModal,
       showPostPreviewModal,
       hidePostPreviewModal,
+      addNewPostComponent,
+      removePostComponent,
+      editPostComponent,
       resetPost,
-      receipe,
-      editPostComponentModal,
-      showEditPostComponentModal,
-      hideEditPostComponentModal,
-      editPostComponent
+      receipe
     } = this.props;
     return (
       <div>
@@ -93,12 +97,12 @@ class PostEditor extends React.Component {
           receipe={receipe}
         />
         <PostContentEditor
-          receipe={receipe}
-          resetPost={resetPost}
-          removePostComponent={removePostComponent}
-          showPostPreviewModal={showPostPreviewModal}
-          showEditPostComponentModal={showEditPostComponentModal}
           showComponentsSelectorModal={showComponentsSelectorModal}
+          showEditPostComponentModal={showEditPostComponentModal}
+          showPostPreviewModal={showPostPreviewModal}
+          removePostComponent={removePostComponent}
+          resetPost={resetPost}
+          receipe={receipe}
         />
       </div>
     );

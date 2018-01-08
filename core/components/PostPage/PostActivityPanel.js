@@ -7,7 +7,10 @@ import ActivityPanel from "../ActivityPanel";
 
 const PostActivityPanel = ({ showPostRMModal }) => (
   <ActivityPanel>
-    <Link href={EDIT_POST_PAGE} prefetch>
+    <Link
+      href={{ pathname: EDIT_POST_PAGE, query: { id: "1525651231" } }}
+      prefetch
+    >
       <a>แก้ไขเนื้อหาโพส</a>
     </Link>
     <a onClick={() => showPostRMModal()}>ลบโพส</a>
