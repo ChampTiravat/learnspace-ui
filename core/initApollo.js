@@ -20,7 +20,7 @@ if (!process.browser) {
 // Constructing a Apollo Network Interface
 // ===================================================================
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql", // Server URL (must be absolute)
+  uri: "http://localhost:5000/graphql", // Server URL (must be absolute)
   credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
 });
 
@@ -43,7 +43,7 @@ if (process.browser) {
       return kind === "OperationDefinition" && operation === "subscription";
     },
     new WebSocketLink({
-      uri: `ws://localhost:4000/subscriptions`,
+      uri: `ws://localhost:5000/subscriptions`,
       options: {
         reconnect: true
       }
