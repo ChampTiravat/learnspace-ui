@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import { initializeAuthenticatedUser } from '../../actions/user-actions'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../../constants/security'
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
 import { InputField } from '../Form'
@@ -12,9 +14,10 @@ import { Button } from '../Button'
 
 class LoginForm extends React.Component {
   submitHandler = async ({ email, password }) => {
+    const { initializeAuthenticatedUser, mutate } = this.props
     try {
       // Running mutation
-      const result = await this.props.mutate({
+      const result = await mutate({
         variables: {
           email,
           password
@@ -33,6 +36,9 @@ class LoginForm extends React.Component {
         // Save tokens into the client
         await window.localStorage.setItem(REFRESH_TOKEN, refreshToken)
         await window.localStorage.setItem(ACCESS_TOKEN, accessToken)
+
+        // Save authenticated user into Redux Store
+        initializeAuthenticatedUser(user)
 
         // Redirect to dashboard page
         Router.push(DASHBOARD_PAGE)
@@ -70,6 +76,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
+  initializeAuthenticatedUser: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   mutate: PropTypes.func.isRequired
 }
@@ -84,15 +91,20 @@ const LOGIN_MUTATION = gql`
       user {
         _id
         fname
+        lname
         email
       }
     }
   }
 `
 
+const mapDispatchToProps = dispatch => ({
+  initializeAuthenticatedUser: user =>
+    dispatch(initializeAuthenticatedUser(user))
+})
+
 export default compose(
-  reduxForm({
-    form: 'login'
-  }),
+  connect(null, mapDispatchToProps),
+  reduxForm({ form: 'login' }),
   graphql(LOGIN_MUTATION)
 )(LoginForm)
