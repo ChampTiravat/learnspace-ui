@@ -1,12 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Router from "next/router";
-import { Field, reduxForm } from "redux-form";
-import { graphql, compose } from "react-apollo";
-import gql from "graphql-tag";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Router from 'next/router'
+import { Field, reduxForm } from 'redux-form'
+import { graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
 
-import { InputField, InputLabel, InputGroup } from "../Form";
-import { Button } from "../Button";
+import { InputField, InputLabel, InputGroup } from '../Form'
+import { LOGIN_PAGE } from '../../constants/endpoints/ui'
+import { Button } from '../Button'
 
 /**
  * @name RegisterForm
@@ -24,22 +25,22 @@ class RegisterForm extends React.Component {
           email,
           password
         }
-      });
+      })
 
-      const { success } = result.data.register;
+      const { success } = result.data.register
 
       if (success) {
-        Router.push("/login");
+        Router.push(LOGIN_PAGE)
       } else {
-        alert("failed");
+        alert('failed')
       }
     } catch (err) {
       // Do something with this later
     }
-  };
+  }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.submitHandler)}>
         <Field
@@ -87,14 +88,14 @@ class RegisterForm extends React.Component {
           ยืนยัน
         </Button>
       </form>
-    );
+    )
   }
 }
 
 RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   mutate: PropTypes.func.isRequired
-};
+}
 
 const USER_REGISTRATION_MUTATION = gql`
   mutation register(
@@ -106,18 +107,13 @@ const USER_REGISTRATION_MUTATION = gql`
     register(fname: $fname, lname: $lname, email: $email, password: $password) {
       success
       err
-      user {
-        _id
-        email
-        fname
-      }
     }
   }
-`;
+`
 
 export default compose(
   reduxForm({
-    form: "register"
+    form: 'register'
   }),
   graphql(USER_REGISTRATION_MUTATION)
-)(RegisterForm);
+)(RegisterForm)
