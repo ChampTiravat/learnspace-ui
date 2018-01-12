@@ -12,6 +12,7 @@ import { Button } from "../Button";
  * @name RegisterForm
  * @desc A form to register a new user account
  * @prop [REDUX] handleSubmit : redux-form's form submition handler function
+ * @prop [APOLLO] mutate : f() to perform GraphQL mutation
  */
 class RegisterForm extends React.Component {
   submitHandler = async ({ fname, lname, email, password }) => {
@@ -91,7 +92,8 @@ class RegisterForm extends React.Component {
 }
 
 RegisterForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  mutate: PropTypes.func.isRequired
 };
 
 const USER_REGISTRATION_MUTATION = gql`
