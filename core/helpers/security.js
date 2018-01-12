@@ -1,17 +1,28 @@
 import JWTDecode from 'jwt-decode'
 
- /**
+import { REFRESH_TOKEN, ACCESS_TOKEN } from '../constants/security'
+
+/**
  * @desc Check wether the current user is authenticated or not
  * @return Boolean
  */
-export const validateToken = async () => {
+export const validateToken = () => {
+  if (!process.browser) {
+    return true
+  }
+
+  const refreshToken = window.localStorage.getItem(REFRESH_TOKEN)
+
+  if (!refreshToken || refreshToken === '') {
+    return false //throw new Error('refreshToken not found')
+  }
+
+  try {
     // Get the token
-    const token = localStorage.getItem('token')
-    try {
-        await JWTDecode(token)
-        return true
-    } catch (err) {
-        // User isn't authenticated
-        return false
-    }
+    JWTDecode(refreshToken)
+    return true
+  } catch (err) {
+    // User isn't authenticated
+    return false
+  }
 }
