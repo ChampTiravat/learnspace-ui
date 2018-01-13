@@ -7,7 +7,7 @@ import { ApolloClient } from 'apollo-client'
 import fetch from 'isomorphic-fetch'
 import { split } from 'apollo-link'
 
-import { ACCESS_TOKEN } from './constants/security'
+import { ACCESS_TOKEN, REFRESH_TOKEN } from './constants/security'
 import {
   GRAPHQL_SUBSCRIPTION_ENDPOINT,
   GRAPHQL_ENDPOINT
@@ -35,7 +35,8 @@ const httpLink = createHttpLink({
 // ===================================================================
 const middlewareLink = setContext(() => ({
   headers: {
-    authorization: localStorage.getItem(ACCESS_TOKEN) || ''
+    ['x-access-token']: localStorage.getItem(ACCESS_TOKEN) || '',
+    ['x-refresh-token']: localStorage.getItem(REFRESH_TOKEN) || ''
   }
 }))
 
