@@ -1,25 +1,24 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react'
+import Head from 'next/head'
 
-import ClassroomActivityPanel from "../core/components/ClassroomPage/ClassroomActivityPanel";
-import ClassroomHeaderPanel from "../core/components/ClassroomPage/ClassroomHeaderPanel";
-import ClassroomInfoPanel from "../core/components/ClassroomPage/ClassroomInfoPanel";
-import ClassroomPreview from "../core/components/ClassroomPage/ClassroomPreview";
-import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
-import ClassroomsList from "../core/components/ClassroomsList";
-import Container from "../core/components/Container";
-import PostsList from "../core/components/PostsList";
-import Panel from "../core/components/Panel";
-import withData from "../core/withData";
+import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomActivityPanel'
+import ClassroomHeaderPanel from '../core/components/ClassroomPage/ClassroomHeaderPanel'
+import ClassroomInfoPanel from '../core/components/ClassroomPage/ClassroomInfoPanel'
+import ClassroomPreview from '../core/components/ClassroomPage/ClassroomPreview'
+import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
+import Container from '../core/components/Container'
+import PostsList from '../core/components/PostsList'
+import Panel from '../core/components/Panel'
+import withData from '../core/withData'
 
 class ClassroomPage extends React.Component {
   static async getInitialProps({ query: { id } }) {
     return {
       isMember: 1,
       classroomID: id,
-      classroomName: "Introduction to Computer Science",
-      subject: "วิทยาการคอมพิวเตอร์เบื้องต้น",
-      instructor: "Alan Turing",
+      classroomName: 'Introduction to Computer Science',
+      subject: 'วิทยาการคอมพิวเตอร์เบื้องต้น',
+      instructor: 'Alan Turing',
       description: `แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
         แพรหลายอยู ห  ลายสิบป สสารทั้งหลายประกอบดวยอนุภาคที่เล็กที่สุด
         จนกระทั่งตอมา
@@ -36,7 +35,7 @@ class ClassroomPage extends React.Component {
         รวมตัวกันดวยสัดสวนอะตอมที่คงที่และเปนเลขจํานวนเต็มหรือเศษสวนอยางงาย
         4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
         เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม`
-    };
+    }
   }
 
   render() {
@@ -47,7 +46,7 @@ class ClassroomPage extends React.Component {
       subject,
       description,
       instructor
-    } = this.props;
+    } = this.props
     return !isMember
       ? [
           <Head>
@@ -87,8 +86,8 @@ class ClassroomPage extends React.Component {
               <ClassroomActivityPanel />
             </Container>
           </AuthenticatedLayout>
-        ];
+        ]
   }
 }
 
-export default withData(ClassroomPage);
+export default withData(ClassroomPage)
