@@ -43,40 +43,56 @@ const ProfileImage = styled.img`
   display: block;
   width: 100%;
   height: 250px;
-  background-color: #cbcbcb;
+  background: ${p => (p.src ? `url(${p.src})` : '#cbcbcb')};
 `
 
 /**
  * @name ProfileInfoPanel
  * @desc Display individial user specific information
- * @prop realName : user's real firstname contactinated with his/her lastname
- * @prop username : user's username
- * @prop email : user's email
- * @prop address : user's location(not required)
- * @prop career : user's occupation(not required)
+ * @prop { realName } : user's real firstname contactinated with his/her lastname
+ * @prop { username } : user's username
+ * @prop { email } : user's email
+ * @prop { address } : user's location(not required)
+ * @prop { career } : user's occupation(not required)
+ * @prop { loading } : Determine wether data is loaded or not
+ * @prop { profilePicture } : User Profile picture
  */
-const ProfileInfoPanel = ({ realName, username, email, address, career }) => (
+const ProfileInfoPanel = ({
+  email,
+  career,
+  address,
+  loading,
+  realName,
+  username,
+  profilePicture
+}) => (
   <ProfileInfoPanelCard>
-    <ProfileImage />
+    <ProfileImage src={profilePicture} />
     <ProfileInfoContainer>
-      <ProfileInfoDetails>
-        <UserFullName>{realName}</UserFullName>
-        <Seperator />
-        <UserInfoItem>ชื่อผู้ใช้ : {username || 'ไม่ได้กำหนด'}</UserInfoItem>
-        <UserInfoItem>อีเมลล์ : {email || 'ไม่ได้กำหนด'}</UserInfoItem>
-        <UserInfoItem>ที่อยู่ : {address || 'ไม่ได้กำหนด'}</UserInfoItem>
-        <UserInfoItem>อาชีพ : {career || 'ไม่ได้กำหนด'}</UserInfoItem>
-      </ProfileInfoDetails>
+      {loading ? (
+        <h3>Loading ...</h3>
+      ) : (
+        <ProfileInfoDetails>
+          <UserFullName>{realName}</UserFullName>
+          <Seperator />
+          <UserInfoItem>ชื่อผู้ใช้ : {username || 'ไม่ได้กำหนด'}</UserInfoItem>
+          <UserInfoItem>อีเมลล์ : {email || 'ไม่ได้กำหนด'}</UserInfoItem>
+          <UserInfoItem>ที่อยู่ : {address || 'ไม่ได้กำหนด'}</UserInfoItem>
+          <UserInfoItem>อาชีพ : {career || 'ไม่ได้กำหนด'}</UserInfoItem>
+        </ProfileInfoDetails>
+      )}
     </ProfileInfoContainer>
   </ProfileInfoPanelCard>
 )
 
 ProfileInfoPanel.propTypes = {
-  realName: PropTypes.string,
+  loading: PropTypes.bool,
   email: PropTypes.string,
-  username: PropTypes.string,
+  career: PropTypes.string,
   address: PropTypes.string,
-  career: PropTypes.string
+  username: PropTypes.string,
+  realName: PropTypes.string,
+  profilePicture: PropTypes.string
 }
 
 export default ProfileInfoPanel

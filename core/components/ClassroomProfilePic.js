@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+/**
+ * @name ClassroomProfilePic
+ * @desc Dispay an profile picture of a particular classroom
+ * @prop { src } : Image URL of the classroom's profile picture
+ */
 const ClassroomProfilePic = styled.img`
   padding: 1.5em;
   width: 150px;

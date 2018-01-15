@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import { graphql, compose } from 'react-apollo'
+import { graphql } from 'react-apollo'
 
 import ProfileActivityPanel from '../core/components/ProfilePage/ProfileActivityPanel'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
@@ -12,42 +12,60 @@ import Container from '../core/components/Container'
 import Panel from '../core/components/Panel'
 import withData from '../core/withData'
 
+/**
+ * @name ProfilePage
+ * @desc Display a user's profile information depending on a given user ID
+ * @prop { data } [APOLLO] : Apollo Client helpers
+ */
 class ProfilePage extends React.Component {
-  static async getInitialProps({ query }) {
-    // return { id: query.id }
+  componentDidMount() {
+    if (process.browser) {
+      this.props.data.refetch & this.props.data.refetch()
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props !== nextProps
   }
 
   render() {
     const { loading, user } = this.props.data
-    return [
-      <Head key={1}>
-        {loading ? (
-          <title>loading...</title>
-        ) : (
-          <title>{`${user.fname} ${user.lname}`} | LEARNSPACE</title>
-        )}
-      </Head>,
-      <AuthenticatedLayout key={2}>
-        <Container>
-          <Panel left width="40">
-            <ProfileInfoPanel
-              realName={!loading ? `${user.fname} ${user.lname}` : ''}
-              username={!loading ? user.username : ''}
-              email={!loading ? user.email : ''}
-              address={!loading ? user.address : ''}
-              career={!loading ? user.career : ''}
-            />
-          </Panel>
-          <Panel right width="60">
-            <ClassroomsList
-              classrooms={!loading ? user.classrooms : []}
-              height="700px"
-            />
-          </Panel>
-        </Container>
-        <ProfileActivityPanel />
-      </AuthenticatedLayout>
-    ]
+    return (
+      <div>
+        <Head>
+          <title>
+            {!loading ? `${user.fname} ${user.lname}` : 'loading ...'} |
+            LEARNSPACE
+          </title>
+        </Head>
+        <AuthenticatedLayout>
+          <Container>
+            <Panel left width="40">
+              {loading ? (
+                <ProfileInfoPanel loading={loading} />
+              ) : (
+                <ProfileInfoPanel
+                  email={user.email}
+                  career={user.career}
+                  address={user.address}
+                  username={user.username}
+                  profilePicture={user.profilePicture}
+                  realName={`${user.fname} ${user.lname}`}
+                />
+              )}
+            </Panel>
+            <Panel right width="60">
+              {loading ? (
+                <ClassroomsList loading={loading} />
+              ) : (
+                <ClassroomsList classrooms={user.classrooms} height="700px" />
+              )}
+            </Panel>
+          </Container>
+          <ProfileActivityPanel />
+        </AuthenticatedLayout>
+      </div>
+    )
   }
 }
 
@@ -65,6 +83,7 @@ const USER_PROFILE_QUERY = gql`
       address
       username
       career
+      profilePicture
       classrooms {
         _id
         name
