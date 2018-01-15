@@ -4,6 +4,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { WebSocketLink } from 'apollo-link-ws'
 import { ApolloClient } from 'apollo-client'
+import { ApolloLink } from 'apollo-link'
 import fetch from 'isomorphic-fetch'
 import { split } from 'apollo-link'
 
@@ -40,6 +41,27 @@ const middlewareLink = setContext(() => ({
   }
 }))
 
+// ===================================================================
+// Applying Apollo-client afterware(s)
+// ===================================================================
+const afterwareLink = new ApolloLink((operation, forward) => {
+  const { headers } = operation.getContext()
+
+  if (headers) {
+    const refreshToken = headers.get('x-refresh-token')
+    const accessToken = headers.get('x-access-token')
+
+    if (refreshToken) {
+      localStorage.setItem(REFRESH_TOKEN, refreshToken)
+    }
+
+    if (accessToken) {
+      localStorage.setItem(ACCESS_TOKEN, accessToken)
+    }
+  }
+  return forward(operation)
+})
+
 let graphqlConnectionLink = null
 
 if (process.browser) {
@@ -55,11 +77,11 @@ if (process.browser) {
         reconnect: true
       }
     }),
-    middlewareLink.concat(httpLink)
+    afterwareLink.concat(middlewareLink.concat(httpLink))
   )
 } else {
   // If the this code executes on the server, don't attach WebSocket
-  graphqlConnectionLink = middlewareLink.concat(httpLink)
+  graphqlConnectionLink = afterwareLink.concat(middlewareLink.concat(httpLink))
 }
 
 const create = () => {
