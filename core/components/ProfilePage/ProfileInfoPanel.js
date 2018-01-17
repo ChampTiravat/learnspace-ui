@@ -54,14 +54,12 @@ const ProfileImage = styled.img`
  * @prop { email } : user's email
  * @prop { address } : user's location(not required)
  * @prop { career } : user's occupation(not required)
- * @prop { loading } : Determine wether data is loaded or not
  * @prop { profilePicture } : User Profile picture
  */
 const ProfileInfoPanel = ({
   email,
   career,
   address,
-  loading,
   realName,
   username,
   profilePicture
@@ -69,24 +67,19 @@ const ProfileInfoPanel = ({
   <ProfileInfoPanelCard>
     <ProfileImage src={profilePicture} />
     <ProfileInfoContainer>
-      {loading ? (
-        <h3>Loading ...</h3>
-      ) : (
-        <ProfileInfoDetails>
-          <UserFullName>{realName}</UserFullName>
-          <Seperator />
-          <UserInfoItem>ชื่อผู้ใช้ : {username || 'ไม่ได้กำหนด'}</UserInfoItem>
-          <UserInfoItem>อีเมลล์ : {email || 'ไม่ได้กำหนด'}</UserInfoItem>
-          <UserInfoItem>ที่อยู่ : {address || 'ไม่ได้กำหนด'}</UserInfoItem>
-          <UserInfoItem>อาชีพ : {career || 'ไม่ได้กำหนด'}</UserInfoItem>
-        </ProfileInfoDetails>
-      )}
+      <ProfileInfoDetails>
+        <UserFullName>{realName}</UserFullName>
+        <Seperator />
+        <UserInfoItem>ชื่อผู้ใช้ : {username || 'ไม่ได้กำหนด'}</UserInfoItem>
+        <UserInfoItem>อีเมลล์ : {email || 'ไม่ได้กำหนด'}</UserInfoItem>
+        <UserInfoItem>ที่อยู่ : {address || 'ไม่ได้กำหนด'}</UserInfoItem>
+        <UserInfoItem>อาชีพ : {career || 'ไม่ได้กำหนด'}</UserInfoItem>
+      </ProfileInfoDetails>
     </ProfileInfoContainer>
   </ProfileInfoPanelCard>
 )
 
 ProfileInfoPanel.propTypes = {
-  loading: PropTypes.bool,
   email: PropTypes.string,
   career: PropTypes.string,
   address: PropTypes.string,

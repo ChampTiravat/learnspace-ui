@@ -78,13 +78,10 @@ const ClassroomListItem = ({ _id, name, description, thumbnail }) => (
  * @desc Display a list of classroom in /dashboard and /profile
  * @prop { classrooms } : Array of classrooms
  * @prop { height } : A height(CSS) of the panel
- * @prop { loading } : Determine wether data is loaded or not
  */
 const ClassroomsList = ({ loading, classrooms, height }) => (
   <ClassroomsListWrapper height={height}>
-    {loading ? (
-      <h3>Loading ...</h3>
-    ) : !classrooms || !classrooms.length || classrooms.length === 0 ? (
+    {!classrooms || !classrooms.length || classrooms.length === 0 ? (
       <Card padding="2em 4em" marginTop="3em" textCenter>
         <h3>คุณยังไม่ได้สร้าง หรือเข้าร่วมห้องเรียนใดๆ</h3>
       </Card>
@@ -104,8 +101,7 @@ const ClassroomsList = ({ loading, classrooms, height }) => (
 
 ClassroomsList.propTypes = {
   classrooms: PropTypes.array,
-  height: PropTypes.string,
-  loading: PropTypes.bool
+  height: PropTypes.string
 }
 
 ClassroomListItem.propTypes = {
