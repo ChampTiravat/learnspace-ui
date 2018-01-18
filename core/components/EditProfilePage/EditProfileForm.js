@@ -36,7 +36,6 @@ class EditProfileForm extends React.Component {
       }
     } catch (err) {
       // Do something with this later
-      alert(err)
     }
   }
 
@@ -102,7 +101,9 @@ const EDIT_PROFILE_MUTATION = gql`
       username: $username
     ) {
       success
-      err
+      err {
+        message
+      }
     }
   }
 `

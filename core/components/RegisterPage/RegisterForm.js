@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import gql from 'graphql-tag'
 import Router from 'next/router'
+import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import { InputField, InputLabel, InputGroup } from '../Form'
 import { LOGIN_PAGE } from '../../constants/endpoints/ui'
@@ -12,8 +12,8 @@ import { Button } from '../Button'
 /**
  * @name RegisterForm
  * @desc A form to register a new user account
- * @prop [REDUX] handleSubmit : redux-form's form submition handler function
- * @prop [APOLLO] mutate : f() to perform GraphQL mutation
+ * @prop { handleSubmit } [REDUX] : redux-form's form submition handler function
+ * @prop { mutate } [APOLLO] : f() to perform GraphQL mutation
  */
 class RegisterForm extends React.Component {
   submitHandler = async ({ fname, lname, email, password }) => {
@@ -106,7 +106,9 @@ const USER_REGISTRATION_MUTATION = gql`
   ) {
     register(fname: $fname, lname: $lname, email: $email, password: $password) {
       success
-      err
+      err {
+        message
+      }
     }
   }
 `

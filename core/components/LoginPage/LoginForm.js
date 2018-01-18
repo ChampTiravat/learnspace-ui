@@ -85,7 +85,6 @@ const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       success
-      err
       refreshToken
       accessToken
       user {
@@ -93,6 +92,9 @@ const LOGIN_MUTATION = gql`
         fname
         lname
         email
+      }
+      err {
+        message
       }
     }
   }
