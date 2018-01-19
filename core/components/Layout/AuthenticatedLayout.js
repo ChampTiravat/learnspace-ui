@@ -38,7 +38,7 @@ const AuthenticatedLayout = ({
           marginRight="auto"
           marginTop="4em"
         >
-          <h2>Please login first</h2>
+          <h2>กรุณาเข้าล็อกอินเพื่อเข้าใช้งาน</h2>
         </Card>
       </Container>
     ) : (
