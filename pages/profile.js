@@ -8,15 +8,17 @@ import ProfileActivityPanel from '../core/components/ProfilePage/ProfileActivity
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
 import ProfileInfoPanel from '../core/components/ProfilePage/ProfileInfoPanel'
 import ClassroomsList from '../core/components/ClassroomsList'
+import LoadingIcon from '../core/components/LoadingIcon'
 import Container from '../core/components/Container'
 import Panel from '../core/components/Panel'
+import Card from '../core/components/Card'
 import withData from '../core/withData'
 
 /**
  * @name ProfilePage
  * @desc Display a user's profile information depending on a given user ID
  * @prop { data } [APOLLO] : Apollo Client helpers
- * @prop { _id } : User ID, from getInitialProps()
+ * @prop { _id } [NEXTJS] : User ID, from getInitialProps()
  */
 class ProfilePage extends React.Component {
   static async getInitialProps({ query }) {
@@ -39,7 +41,11 @@ class ProfilePage extends React.Component {
    *  specified by their ID
    */
   renderUserInfo = user =>
-    user ? (
+    !user ? (
+      <Card textCenter padding="2em" marginTop="5em">
+        <h2>ไม่พบข้อมูลผู้ใช้งาน</h2>
+      </Card>
+    ) : (
       [
         <Panel left width="40">
           <ProfileInfoPanel
@@ -48,15 +54,13 @@ class ProfilePage extends React.Component {
             address={user.address}
             username={user.username}
             profilePicture={user.profilePicture}
-            realName={`${user.fname} ${user.lname}`}
+            realName={`${user.fname} ${user.lname || ''}`}
           />
         </Panel>,
         <Panel right width="60">
           <ClassroomsList classrooms={user.classrooms} height="700px" />
         </Panel>
       ]
-    ) : (
-      <h1>User not found</h1>
     )
 
   /**
@@ -65,11 +69,11 @@ class ProfilePage extends React.Component {
    * @desc Render user's firstname and lastname associated to their ID
    */
   renderTitleText = user =>
-    user ? `${user.fname} ${user.lname}` : 'ไม่พบข้อมูลผู้ใช้งาน'
+    !user ? 'ไม่พบข้อมูลผู้ใช้งาน' : `${user.fname} ${user.lname || ''}`
 
   render() {
     const { loading, userProfile } = this.props.data
-    const user = !loading ? userProfile.user : null
+    const user = !loading && userProfile ? userProfile.user : null
 
     return [
       <Head key="profile_head">
@@ -79,7 +83,11 @@ class ProfilePage extends React.Component {
       </Head>,
       <AuthenticatedLayout key="profile_content">
         <Container>
-          {loading ? <h1>Loading</h1> : this.renderUserInfo(user)}
+          {loading ? (
+            <LoadingIcon />
+          ) : (
+            <Container>{this.renderUserInfo(user)}</Container>
+          )}
         </Container>
         <ProfileActivityPanel />
       </AuthenticatedLayout>
