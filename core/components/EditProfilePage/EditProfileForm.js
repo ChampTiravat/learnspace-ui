@@ -30,7 +30,7 @@ class EditProfileForm extends React.Component {
       const { success } = result.data.editProfile
 
       if (success) {
-        Router.push(PROFILE_PAGE)
+        Router.push(`${PROFILE_PAGE}/?id=${activeUser._id}`)
       } else {
         alert('failed')
       }
