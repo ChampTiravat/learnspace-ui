@@ -16,7 +16,18 @@ import { Button } from '../Button'
  * @prop { mutate } [APOLLO] : f() to perform GraphQL mutation
  */
 class RegisterForm extends React.Component {
-  submitHandler = async ({ fname, lname, email, password }) => {
+  submitHandler = async ({
+    fname,
+    lname,
+    email,
+    password,
+    password_confirmation
+  }) => {
+    if (password !== password_confirmation) {
+      alert('Please confirm your password')
+      return
+    }
+
     try {
       const result = await this.props.mutate({
         variables: {
