@@ -1,81 +1,78 @@
-import React from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import Card from "./Card";
+import { POST_PAGE } from '../constants/endpoints/ui'
+import Card from './Card'
 
-const ClassroomListItemWrapper = styled.div`
-  padding-top: 0;
-  padding-bottom: 0;
+const PostListItemCard = Card.extend`
+  margin: 0 auto 1em auto;
+  padding-bottom: 2em;
   padding-right: 2em;
   padding-left: 4em;
+  padding-top: 2em;
   text-align: center;
+  box-shadow: none;
   cursor: pointer;
-`;
+  max-width: 90%;
+`
 
-const ClassroomListItemCard = Card.extend`
-  margin-bottom: 1em;
-  margin-left: 0;
-  padding: 4em;
-  max-width: 650px;
-`;
+const PostTitle = styled.h3`
+  color: ${p => p.theme.PRIMARY_COLOR};
+  font-weight: 400;
+  font-size: 1.3em;
+`
 
-const ClassroomListItemLabel = styled.div`
-  width: 470px;
-  text-align: center;
-  h3 {
-    color: ${p => p.theme.PRIMARY_COLOR};
-    font-weight: 400;
-    font-size: 1.3em;
-    margin-bottom: 0.5em;
-  }
-  p {
-    color: #777;
-    font-weight: 300;
-    font-size: 1.1em;
-    margin: 0;
-    margin-top: 0;
-  }
-`;
-
-const ClassroomsListWrapper = styled.div`
-  height: ${p => p.height || "600px"};
+const PostsListWrapper = styled.div`
+  height: ${p => p.height || '600px'};
+  overflow-y: auto;
   margin-top: 1.5em;
-  overflow-y: scroll;
-`;
+`
 
-const ClassroomListItem = ({ name, desc }) => (
-  <Link href="/post" prefetch>
-    <ClassroomListItemWrapper>
-      <ClassroomListItemCard>
-        <ClassroomListItemLabel>
-          <h3>{name}</h3>
-          <p>{desc}</p>
-        </ClassroomListItemLabel>
-      </ClassroomListItemCard>
-    </ClassroomListItemWrapper>
+/**
+ * @name PostListItem
+ * @desc Display a single post item with a label
+ * @prop { title } : Post title used as a label of each item
+ * @prop { _id } : Post ID, used to navigate to a specific post
+ */
+const PostListItem = ({ title, _id }) => (
+  <Link href={{ pathname: POST_PAGE, query: { id: _id } }} prefetch>
+    <PostListItemCard>
+      <PostTitle>
+        {title.length > 55 ? `${title.substr(0, 52)}...` : title}
+      </PostTitle>
+    </PostListItemCard>
   </Link>
-);
+)
 
-const PostsList = ({ height }) => (
-  <ClassroomsListWrapper height={height}>
-    <ClassroomListItem
-      name="# Introduction to Artificial Inteligence"
-      desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
-    />
-    <ClassroomListItem
-      name="# Introduction to AI"
-      desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
-    />
-    <ClassroomListItem
-      name="# Introduction to AI"
-      desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
-    />
-    <ClassroomListItem
-      name="# Introduction to AI"
-      desc="ฟหกฟหกฟหกฟหกสาฟนดาำๆนาดำ่ดพไรำ่ดนาฟนกฟยกสๆไยสกยฟสกยสฟก"
-    />
-  </ClassroomsListWrapper>
-);
+/**
+ * @name PostsList
+ * @desc Display a list of posts associated to a particular classroom
+ * @prop { posts } : Array of posts
+ * @prop { height } : A height of the list component(CSS Property)
+ */
+const PostsList = ({ posts, height }) => (
+  <PostsListWrapper height={height}>
+    {posts.length && posts.length > 0 ? (
+      posts.map(post => (
+        <PostListItem key={post._id} _id={post._id} title={post.title} />
+      ))
+    ) : (
+      <Card padding="2em 4em" marginTop="3em" textCenter>
+        <h3>ยังไม่มีโพสใดๆ</h3>
+      </Card>
+    )}
+  </PostsListWrapper>
+)
 
-export default PostsList;
+PostListItem.propTypes = {
+  title: PropTypes.string.isRequired
+}
+
+PostsList.propTypes = {
+  posts: PropTypes.array.isRequired,
+  height: PropTypes.string
+}
+
+export default PostsList
