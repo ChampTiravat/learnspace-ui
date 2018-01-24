@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
-import UnAuthenticatedLayout from "../core/components/Layout/UnAuthenticatedLayout";
-import LoginCard from "../core/components/LoginPage/LoginCard";
-import Container from "../core/components/Container";
-import Wallpaper from "../core/components/Wallpaper";
-import withData from "../core/withData";
+import UnAuthenticatedLayout from '../core/components/Layout/UnAuthenticatedLayout'
+import LoginForm from '../core/components/LoginPage/LoginForm'
+import Container from '../core/components/Container'
+import Wallpaper from '../core/components/Wallpaper'
+import withData from '../core/withData'
 
 class LoginPage extends React.Component {
   render() {
@@ -12,12 +12,12 @@ class LoginPage extends React.Component {
       <UnAuthenticatedLayout>
         <Wallpaper pageName="login">
           <Container transparent>
-            <LoginCard />
+            <LoginForm />
           </Container>
         </Wallpaper>
       </UnAuthenticatedLayout>
-    );
+    )
   }
 }
 
-export default withData(LoginPage);
+export default withData(LoginPage)

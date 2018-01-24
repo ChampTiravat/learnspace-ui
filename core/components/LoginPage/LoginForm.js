@@ -1,14 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import gql from 'graphql-tag'
 import Router from 'next/router'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import { initializeAuthenticatedUser } from '../../actions/user-actions'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../../constants/security'
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
+import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
 
@@ -54,23 +55,28 @@ class LoginForm extends React.Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit(this.submitHandler)}>
-        <Field
-          name="email"
-          label="อีเมลล์"
-          component={InputField}
-          type="email"
-        />
-        <Field
-          name="password"
-          label="พาสเวิร์ด"
-          component={InputField}
-          type="password"
-        />
-        <Button primary fluidWidth textCenter>
-          เข้าสู่ระบบ
-        </Button>
-      </form>
+      <Card small marginTop="5em">
+        <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
+        <Body>
+          <form onSubmit={handleSubmit(this.submitHandler)}>
+            <Field
+              name="email"
+              label="อีเมลล์"
+              component={InputField}
+              type="email"
+            />
+            <Field
+              name="password"
+              label="พาสเวิร์ด"
+              component={InputField}
+              type="password"
+            />
+            <Button primary fluidWidth textCenter>
+              เข้าสู่ระบบ
+            </Button>
+          </form>
+        </Body>
+      </Card>
     )
   }
 }
