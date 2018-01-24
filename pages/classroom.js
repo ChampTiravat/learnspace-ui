@@ -10,9 +10,11 @@ import ClassroomHeaderPanel from '../core/components/ClassroomPage/ClassroomHead
 import ClassroomInfoPanel from '../core/components/ClassroomPage/ClassroomInfoPanel'
 import ClassroomPreview from '../core/components/ClassroomPage/ClassroomPreview'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
+import LoadingIcon from '../core/components/LoadingIcon'
 import Container from '../core/components/Container'
 import PostsList from '../core/components/PostsList'
 import Panel from '../core/components/Panel'
+import Card from '../core/components/Card'
 import withData from '../core/withData'
 
 class ClassroomPage extends React.Component {
@@ -89,12 +91,22 @@ class ClassroomPage extends React.Component {
         </title>
       </Head>,
       <AuthenticatedLayout>
-        {this.renderClassroomHeaderPanel(classroom)}
-        <Container marginTop="10em">
-          {isMember
-            ? this.renderClassroomProfile(classroom)
-            : this.renderClassroomPreview(classroom)}
-        </Container>
+        {loading ? (
+          <LoadingIcon />
+        ) : !classroom ? (
+          <Card padding="2em" marginTop="5em" textCenter>
+            <h3>ไม่พบข้อมูลของห้องเรียน</h3>
+          </Card>
+        ) : (
+          [
+            this.renderClassroomHeaderPanel(classroom),
+            <Container marginTop="10em">
+              {isMember
+                ? this.renderClassroomProfile(classroom)
+                : this.renderClassroomPreview(classroom)}
+            </Container>
+          ]
+        )}
       </AuthenticatedLayout>
     ]
   }
