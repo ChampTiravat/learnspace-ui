@@ -7,6 +7,7 @@ import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 
 import { PROFILE_PAGE } from '../../constants/endpoints/ui'
+import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
 
@@ -41,38 +42,47 @@ class EditProfileForm extends React.Component {
 
   render() {
     const { handleSubmit } = this.props
-    console.table(this.props.activeUser)
     return (
-      <form onSubmit={handleSubmit(this.submitHandler)}>
-        <Field
-          type="text"
-          name="username"
-          label="ชื่อผู้ใช้งาน"
-          component={InputField}
-        />
-        <Field
-          type="text"
-          name="fname"
-          label="ชื่อจริง"
-          component={InputField}
-        />
-        <Field
-          type="text"
-          name="lname"
-          label="นามสกุล"
-          component={InputField}
-        />
-        <Field name="career" label="อาชีพ" component={InputField} type="text" />
-        <Field
-          type="text"
-          label="ที่อยู่"
-          name="address"
-          component={InputField}
-        />
-        <Button primary fluidWidth textCenter>
-          เรียบร้อย
-        </Button>
-      </form>
+      <Card small marginTop="5em">
+        <Header>แก้ไขข้อมูลส่วนตัว</Header>
+        <Body>
+          <form onSubmit={handleSubmit(this.submitHandler)}>
+            <Field
+              type="text"
+              name="username"
+              label="ชื่อผู้ใช้งาน"
+              component={InputField}
+            />
+            <Field
+              type="text"
+              name="fname"
+              label="ชื่อจริง"
+              component={InputField}
+            />
+            <Field
+              type="text"
+              name="lname"
+              label="นามสกุล"
+              component={InputField}
+            />
+            <Field
+              name="career"
+              label="อาชีพ"
+              component={InputField}
+              type="text"
+            />
+            <Field
+              type="text"
+              label="ที่อยู่"
+              name="address"
+              component={InputField}
+            />
+            <Button primary fluidWidth textCenter>
+              เรียบร้อย
+            </Button>
+          </form>
+        </Body>
+      </Card>
     )
   }
 }

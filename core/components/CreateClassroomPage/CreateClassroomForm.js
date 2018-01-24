@@ -6,6 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 
 import { CLASSROOM_PAGE } from '../../constants/endpoints/ui'
+import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
 
@@ -36,29 +37,34 @@ class CreateClassroomForm extends React.Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit(this.submitHandler)}>
-        <Field
-          name="name"
-          label="ชื่อห้องเรียน"
-          component={InputField}
-          type="text"
-        />
-        <Field
-          name="subject"
-          label="วิชาที่สอน"
-          component={InputField}
-          type="text"
-        />
-        <Field
-          name="description"
-          label="รายละเอียด"
-          component={InputField}
-          type="text"
-        />
-        <Button primary fluidWidth textCenter>
-          สร้างห้องเรียน
-        </Button>
-      </form>
+      <Card small marginTop="5em">
+        <Header>สร้างห้องเรียนใหม่</Header>
+        <Body>
+          <form onSubmit={handleSubmit(this.submitHandler)}>
+            <Field
+              name="name"
+              label="ชื่อห้องเรียน"
+              component={InputField}
+              type="text"
+            />
+            <Field
+              name="subject"
+              label="วิชาที่สอน"
+              component={InputField}
+              type="text"
+            />
+            <Field
+              name="description"
+              label="รายละเอียด"
+              component={InputField}
+              type="text"
+            />
+            <Button primary fluidWidth textCenter>
+              สร้างห้องเรียน
+            </Button>
+          </form>
+        </Body>
+      </Card>
     )
   }
 }

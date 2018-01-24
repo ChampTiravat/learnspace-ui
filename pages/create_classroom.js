@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import CreateClassroomCard from "../core/components/CreateClassroomPage/CreateClassroomCard";
-import AuthenticatedLayout from "../core/components/Layout/AuthenticatedLayout";
-import Container from "../core/components/Container";
-import Wallpaper from "../core/components/Wallpaper";
-import withData from "../core/withData";
+import CreateClassroomForm from '../core/components/CreateClassroomPage/CreateClassroomForm'
+import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
+import Container from '../core/components/Container'
+import Wallpaper from '../core/components/Wallpaper'
+import withData from '../core/withData'
 
 const CreateClassroomPage = () => (
   <AuthenticatedLayout>
     <Container transparent>
-      <CreateClassroomCard />
+      <CreateClassroomForm />
     </Container>
   </AuthenticatedLayout>
-);
+)
 
-export default withData(CreateClassroomPage);
+export default withData(CreateClassroomPage)
