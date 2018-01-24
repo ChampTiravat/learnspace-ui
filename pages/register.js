@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
-import UnAuthenticatedLayout from "../core/components/Layout/UnAuthenticatedLayout";
-import RegisterCard from "../core/components/RegisterPage/RegisterCard";
-import Container from "../core/components/Container";
-import Wallpaper from "../core/components/Wallpaper";
-import withData from "../core/withData";
+import UnAuthenticatedLayout from '../core/components/Layout/UnAuthenticatedLayout'
+import RegisterForm from '../core/components/RegisterPage/RegisterForm'
+import Container from '../core/components/Container'
+import Wallpaper from '../core/components/Wallpaper'
+import withData from '../core/withData'
 
 class RegisterPage extends React.Component {
   render() {
@@ -12,12 +12,12 @@ class RegisterPage extends React.Component {
       <UnAuthenticatedLayout>
         <Wallpaper pageName="register">
           <Container transparent>
-            <RegisterCard />
+            <RegisterForm />
           </Container>
         </Wallpaper>
       </UnAuthenticatedLayout>
-    );
+    )
   }
 }
 
-export default withData(RegisterPage);
+export default withData(RegisterPage)
