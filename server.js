@@ -13,7 +13,7 @@ app.prepare().then(() => {
   const server = express()
   const PORT = process.env.APP_PORT || 3000
 
-  server.use(compression())
+  server.use(compression({ level: 9 }))
 
   server.get('*', (req, res) => {
     return handle(req, res)
