@@ -116,8 +116,6 @@ const CLASSROOM_PROFILE_QUERY = gql`
         thumbnail
         creator {
           _id
-          fname
-          lname
         }
         outline {
           title
