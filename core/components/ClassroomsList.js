@@ -48,7 +48,7 @@ const ClassroomListItemLabel = styled.div`
 const ClassroomsListWrapper = styled.div`
   height: ${p => p.height || '600px'};
   margin-top: 1.5em;
-  overflow-y: scroll;
+  overflow-y: auto;
 `
 
 /**
