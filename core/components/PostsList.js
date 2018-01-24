@@ -7,7 +7,7 @@ import { POST_PAGE } from '../constants/endpoints/ui'
 import Card from './Card'
 
 const PostListItemCard = Card.extend`
-  margin: 0 auto 1em auto;
+  margin: 0 auto 1.5em auto;
   padding-bottom: 2em;
   padding-right: 2em;
   padding-left: 4em;
@@ -16,10 +16,15 @@ const PostListItemCard = Card.extend`
   box-shadow: none;
   cursor: pointer;
   max-width: 90%;
+  transition: 150ms ease-in;
+  color: #777;
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    color: ${p => p.theme.PRIMARY_COLOR};
+  }
 `
 
 const PostTitle = styled.h3`
-  color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 400;
   font-size: 1.3em;
 `
