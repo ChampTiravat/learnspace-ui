@@ -58,7 +58,7 @@ class ProfilePage extends React.Component {
           />
         </Panel>,
         <Panel right width="60">
-          <ClassroomsList classrooms={user.classrooms} height="700px" />
+          <ClassroomsList _id={this.props._id} height="700px" />
         </Panel>
       ]
     )
@@ -111,12 +111,6 @@ const USER_PROFILE_QUERY = gql`
         username
         career
         profilePicture
-        classrooms {
-          _id
-          name
-          description
-          thumbnail
-        }
       }
       err {
         message
