@@ -1,5 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
+import gql from 'graphql-tag'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { graphql, compose } from 'react-apollo'
 
 import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomActivityPanel'
 import ClassroomHeaderPanel from '../core/components/ClassroomPage/ClassroomHeaderPanel'
@@ -13,81 +17,132 @@ import withData from '../core/withData'
 
 class ClassroomPage extends React.Component {
   static async getInitialProps({ query: { id } }) {
-    return {
-      isMember: 1,
-      classroomID: id,
-      classroomName: 'Introduction to Computer Science',
-      subject: 'วิทยาการคอมพิวเตอร์เบื้องต้น',
-      instructor: 'Alan Turing',
-      description: `แนวความคิดของ ลูซิพปุส (Leucippus) และดิโมคริตุส (Democritus) ยังคง
-        แพรหลายอยู ห  ลายสิบป สสารทั้งหลายประกอบดวยอนุภาคที่เล็กที่สุด
-        จนกระทั่งตอมา
-        วิทยาศาสตรไดเจริญกาวหนาขึ้นและเกิดทฤษฎีอะตอมขึ้นมาในป ค.ศ.1808
-        จากแนวความคิด ของจอหน ดาลตัน ผูเสนอจุดเริ่มตนของเคมียุคใหม
-        สมมติฐานเกี ย ่ วกับธรรมชาติของสสารท ดาลตัน ไดเสนอคือแบบจําลองอะตอม
-        เปนที่ยอมรับและสนับสนุนจากนักวิทยาศาสตรในสมัย นั้น
-        โดยทฤษฎีอะตอมของดาลตันไดกลาวไววา 1. สสารทุกชนิดประกอบดวยอะตอม
-        ซึ่งเปนหนวยที่เล็กที่สุด ไมสามารถ แบงแยก ไมอาจสรางขึ้นหรือทําลายได
-        2. ธาตุประกอบดวยอนุภาคที เ ่ รียกวาอะตอม อะตอมของธาตุชนิดเดียวกันม
-        ลักษณะเหมือนกัน คือ มีมวล ขนาด และสมบัติทางเคมีเหมือนกัน
-        และแตกตางจากอะตอม ของธาตุชนิดอื่น 3.
-        สารประกอบเกิดจากการรวมตัวของอะตอมของธาตุตั้งแต 2 ชนิดขึ้นไป มา
-        รวมตัวกันดวยสัดสวนอะตอมที่คงที่และเปนเลขจํานวนเต็มหรือเศษสวนอยางงาย
-        4. การเกิดปฏิกิร ย ิ าเคมีเกี่ยวของกับการแยก การรวม และการจัดอะตอมใหม
-        เทานั้น ไมมีการสรางหรือการสูญหายของอะตอม`
-    }
+    return { id }
   }
 
-  render() {
-    const {
-      isMember,
-      classroomName,
-      classroomID,
-      subject,
-      description,
-      instructor
-    } = this.props
-    return !isMember
-      ? [
-          <Head>
-            <title>{classroomName} | LEARNSPACE</title>
-          </Head>,
-          <AuthenticatedLayout>
-            <ClassroomHeaderPanel
-              classroomID={classroomID}
-              classroomName={classroomName}
-            />
-            <Container marginTop="10em">
-              <ClassroomPreview
-                classroomID={classroomID}
-                subject={subject}
-                instructor={instructor}
-                description={description}
-              />
-            </Container>
-          </AuthenticatedLayout>
-        ]
+  componentDidMount() {
+    const { data } = this.props
+    process.browser && data.refetch & data.refetch()
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props !== nextProps
+  }
+
+  renderClassroomProfile = classroom =>
+    !classroom
+      ? null
       : [
-          <Head>
-            <title>{classroomName} | LEARNSPACE</title>
-          </Head>,
-          <AuthenticatedLayout>
-            <ClassroomHeaderPanel
-              classroomID={classroomID}
-              classroomName={classroomName}
+          <Panel left width="40">
+            <ClassroomInfoPanel
+              thumbnail={classroom.thumbnail}
+              courseOutline={classroom.outline}
             />
-            <Container marginTop="10em">
-              <Panel left width="40">
-                <ClassroomInfoPanel />
-              </Panel>
-              <Panel right height="850px" width="60">
-                <PostsList height="700px" />
-              </Panel>
-              <ClassroomActivityPanel />
-            </Container>
-          </AuthenticatedLayout>
+          </Panel>,
+          <Panel right height="850px" width="60">
+            <PostsList posts={classroom.posts} height="700px" />
+          </Panel>,
+          <ClassroomActivityPanel
+            classroomCreatorID={classroom.creator._id}
+            currentUserID={this.props.activeUser._id}
+          />
         ]
+
+  renderClassroomPreview = classroom =>
+    !classroom ? null : (
+      <ClassroomPreview
+        classroomID={classroom._id}
+        subject={classroom.subject}
+        instructor={classroom.creator.fname}
+        description={classroom.description}
+      />
+    )
+
+  renderClassroomHeaderPanel = classroom =>
+    !classroom ? null : (
+      <ClassroomHeaderPanel
+        classroomID={classroom._id}
+        classroomName={classroom.name}
+      />
+    )
+
+  /**
+   * @name renderTitleText()
+   * @param classroom : classroom data
+   * @desc Render Classroom information corresponding to a given ID
+   */
+  renderTitleText = classroom =>
+    !classroom ? 'ไม่พบข้อมูลของห้องเรียน' : classroom.name || ''
+
+  render() {
+    const { loading, classroomProfile } = this.props.data
+
+    const classroom =
+      !loading && classroomProfile ? classroomProfile.classroom : null
+    const isMember = true
+
+    return [
+      <Head>
+        <title>
+          {loading ? 'loading ...' : this.renderTitleText(classroom)} |
+          LEARNSPACE
+        </title>
+      </Head>,
+      <AuthenticatedLayout>
+        {this.renderClassroomHeaderPanel(classroom)}
+        <Container marginTop="10em">
+          {isMember
+            ? this.renderClassroomProfile(classroom)
+            : this.renderClassroomPreview(classroom)}
+        </Container>
+      </AuthenticatedLayout>
+    ]
   }
 }
 
-export default withData(ClassroomPage)
+ClassroomPage.propTypes = {
+  activeUser: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
+}
+
+const CLASSROOM_PROFILE_QUERY = gql`
+  query classroomProfile($_id: String!) {
+    classroomProfile(_id: $_id) {
+      classroom {
+        _id
+        name
+        description
+        subject
+        thumbnail
+        creator {
+          _id
+          fname
+          lname
+        }
+        outline {
+          title
+          passed
+        }
+        posts {
+          _id
+          title
+        }
+      }
+      err {
+        message
+      }
+    }
+  }
+`
+
+const mapStateToProps = state => ({
+  activeUser: state.user
+})
+
+export default compose(
+  withData,
+  connect(mapStateToProps, null),
+  graphql(CLASSROOM_PROFILE_QUERY, {
+    options: ({ id }) => ({ variables: { _id: id } })
+  })
+)(ClassroomPage)
