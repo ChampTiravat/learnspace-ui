@@ -1,6 +1,6 @@
 import JWTDecode from 'jwt-decode'
 
-import { REFRESH_TOKEN, ACCESS_TOKEN } from '../constants/security'
+import { REFRESH_TOKEN } from '../constants/security'
 
 /**
  * @desc Check wether the current user is authenticated or not
