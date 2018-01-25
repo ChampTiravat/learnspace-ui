@@ -1,29 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import { connect } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Link from 'next/link'
 
-import { showNotificationModal } from "../../actions/notification-modal-actions";
-import { showChatroomModal } from "../../actions/chatroom-modal-actions";
-import NavbarLinksContainer from "./NavbarLinksContainer";
-import NavbarContainer from "./NavbarContainer";
-import SearchTab from "../SearchTab/SearchTab";
-import ButtonsTab from "./ButtonsTab";
-import NavbarLink from "./NavbarLink";
-import { InfoBadge } from "../Badge";
-import { Button } from "../Button";
-import LogoTab from "./LogoTab";
-import Navbar from "./Navbar";
+import NavbarLinksContainer from './NavbarLinksContainer'
+import NavbarContainer from './NavbarContainer'
+import SearchTab from '../SearchTab/SearchTab'
+import ButtonsTab from './ButtonsTab'
+import NavbarLink from './NavbarLink'
+import { InfoBadge } from '../Badge'
+import { Button } from '../Button'
+import LogoTab from './LogoTab'
+import Navbar from './Navbar'
 import {
   HOME_PAGE,
   DASHBOARD_PAGE,
   PROFILE_PAGE
-} from "../../constants/endpoints/ui";
+} from '../../constants/endpoints/ui'
 
 /**
- * @desc Use this component when user is authenticated
+ * @name AuthenticatedNav
+ * @desc Use this NavigationBar when user is authenticated
+ * @prop { activeUser } [REDUX] : Currently logged-in user
+ * @prop { showChatroomModal } [REDUX] : Display a ChatroomModal
+ * @prop { showNotificationModal } [REDUX] : Display a NotificationModal
  */
-const AuthenticatedNav = ({ showChatroomModal, showNotificationModal }) => (
+const AuthenticatedNav = ({
+  showChatroomModal,
+  showNotificationModal,
+  activeUser
+}) => (
   <Navbar>
     <NavbarContainer>
       <LogoTab authenticated>
@@ -40,7 +45,10 @@ const AuthenticatedNav = ({ showChatroomModal, showNotificationModal }) => (
             </Link>
           </NavbarLink>
           <NavbarLink>
-            <Link href={PROFILE_PAGE} prefetch>
+            <Link
+              href={{ pathname: PROFILE_PAGE, query: { id: activeUser._id } }}
+              prefetch
+            >
               <a>โปรไฟล์</a>
             </Link>
           </NavbarLink>
@@ -63,16 +71,12 @@ const AuthenticatedNav = ({ showChatroomModal, showNotificationModal }) => (
       </ButtonsTab>
     </NavbarContainer>
   </Navbar>
-);
+)
 
 AuthenticatedNav.propTypes = {
   showNotificationModal: PropTypes.func.isRequired,
-  showChatroomModal: PropTypes.func.isRequired
-};
+  showChatroomModal: PropTypes.func.isRequired,
+  activeUser: PropTypes.object.isRequired
+}
 
-const mapDispatchToProps = dispatch => ({
-  showNotificationModal: () => dispatch(showNotificationModal()),
-  showChatroomModal: () => dispatch(showChatroomModal())
-});
-
-export default connect(null, mapDispatchToProps)(AuthenticatedNav);
+export default AuthenticatedNav

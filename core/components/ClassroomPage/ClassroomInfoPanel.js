@@ -1,87 +1,78 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { CLASSROOM_CHATROOM_PAGE } from "../../constants/endpoints/ui";
-import { Button } from "../Button";
-import Card from "../Card";
+import { CLASSROOM_CHATROOM_PAGE } from '../../constants/endpoints/ui'
+import { Button } from '../Button'
+import Card from '../Card'
 
 const ClassroomInfoPanelCard = Card.extend`
   margin: 1.5em auto 0 auto;
-  height: 650px;
   max-width: 480px;
-`;
+  height: 650px;
+`
 
-const ClassroomProfileImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 250px;
+const ClassroomThumbnailImage = styled.img`
   background-color: #cbcbcb;
-`;
+  display: block;
+  height: 250px;
+  width: 100%;
+`
 
 const ClassroomCourseInfoContainer = styled.div`
-  width: 100%;
   padding: 3em 3em 1em 3em;
-`;
+  width: 100%;
+`
 
 const ClassroomCourseInfoHeading = styled.h2`
   color: ${p => p.theme.PRIMARY_COLOR};
   font-weight: 400;
-`;
+`
 
 const CourseOutlineItem = styled.li`
-  color: #777;
   font-size: 1.1em;
   font-weight: 300;
-`;
+  color: ${p => (p.passed ? p.theme.PRIMARY_COLOR : '#777')};
+`
 
 const ClassroomPanelButtonsGroup = styled.div`
   text-align: center;
   margin: 1em auto;
-`;
+`
 
-const CourseOutline = styled.ul``;
-
-const ClassroomInfoPanelWrapper = ({ children }) => (
+const ClassroomInfoPanelWrapper = ({ children, thumbnail }) => (
   <ClassroomInfoPanelCard>
-    <ClassroomProfileImage />
+    <ClassroomThumbnailImage src={thumbnail} />
     {children}
   </ClassroomInfoPanelCard>
-);
+)
 
 /**
  * @name ClassroomInfoPanel
  * @desc Showing classroom information
- * @prop courseOutline : Course Events
+ * @prop { courseOutline } : Course Events
+ * @prop { thumbnail } : Classroom thumbnail
  */
-const ClassroomInfoPanel = ({
-  courseOutline = [
-    "Explain course outline",
-    "Calculus and Analytic Geometry",
-    "Getting started with Python programming",
-    "Data Structures and Algorithms",
-    "Final Project",
-    "Examination"
-  ]
-}) => (
-  <ClassroomInfoPanelWrapper>
+const ClassroomInfoPanel = ({ courseOutline, thumbnail }) => (
+  <ClassroomInfoPanelWrapper thumbnail={thumbnail}>
     <ClassroomCourseInfoContainer>
       <ClassroomCourseInfoHeading>
-        รายละเอียดหลักสูตร
+        # รายละเอียดหลักสูตร
       </ClassroomCourseInfoHeading>
-      <CourseOutline>
+      <ul>
         {courseOutline.map((event, i) => (
-          <CourseOutlineItem key={i}>{event}</CourseOutlineItem>
+          <CourseOutlineItem key={i} passed={event.passed}>
+            {event.title.length > 39
+              ? `${event.title.substr(0, 36)}...`
+              : event.title}
+          </CourseOutlineItem>
         ))}
-      </CourseOutline>
+      </ul>
     </ClassroomCourseInfoContainer>
     <ClassroomPanelButtonsGroup>
-      <Link href={CLASSROOM_CHATROOM_PAGE} prefetch>
-        <Button primary>ห้องแชท</Button>
-      </Link>
+      <Button light>รายละเอียดของห้องเรียน</Button>
     </ClassroomPanelButtonsGroup>
   </ClassroomInfoPanelWrapper>
-);
+)
 
-export default ClassroomInfoPanel;
+export default ClassroomInfoPanel
