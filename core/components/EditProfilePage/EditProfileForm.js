@@ -19,7 +19,6 @@ class EditProfileForm extends React.Component {
     try {
       const result = await mutate({
         variables: {
-          _id: activeUser._id,
           username,
           fname,
           lname,
@@ -95,7 +94,6 @@ EditProfileForm.propTypes = {
 
 const EDIT_PROFILE_MUTATION = gql`
   mutation editProfile(
-    $_id: String!
     $lname: String
     $fname: String
     $career: String
@@ -103,7 +101,6 @@ const EDIT_PROFILE_MUTATION = gql`
     $username: String
   ) {
     editProfile(
-      _id: $_id
       fname: $fname
       lname: $lname
       career: $career
