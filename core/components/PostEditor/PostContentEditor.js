@@ -1,26 +1,62 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import Router from 'next/router'
+import PropTypes from 'prop-types'
 
-import { renderEditableComponent } from "../../helpers/post";
-import SetTitleCard from "./PostComponents/SetPostTitleCard";
-import BasedComponent from "./PostComponents/BasedComponent";
-import EmptyField from "./PostComponents/EmptyField";
-import { CircleButton } from "../Button";
-import Card from "../Card";
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
+import { renderEditableComponent } from '../../helpers/post'
+import SetTitleCard from './PostComponents/SetPostTitleCard'
+import BasedComponent from './PostComponents/BasedComponent'
+import { POST_PAGE } from '../../constants/endpoints/ui'
+import EmptyField from './PostComponents/EmptyField'
+import { CircleButton } from '../Button'
+import Card from '../Card'
 
 /**
  * @name PostContentEditor
  * @desc Main playground for building post with the required tools
- * @prop showComponentsSelectorModal: f() to select the post component to add to the receipe
- * @prop showEditPostComponentModal : f() to show showEditPostComponentModal when user wish to edit an existing component
- * @prop showPostPreviewModal : f() to show a post preview modal
- * @prop removePostComponent: f() to remove a single post component
- * @prop resetPost: f() to remove every components in the current post editor
- * @prop receipe: Array of post components
+ * @prop { showComponentsSelectorModal } [REDUX] : f() to select the post component to add to the receipe
+ * @prop { showEditPostComponentModal } [REDUX] : f() to show showEditPostComponentModal when user wish to edit an existing component
+ * @prop { showPostPreviewModal } [REDUX] : f() to show a post preview modal
+ * @prop { removePostComponent } [REDUX] : f() to remove a single post component
+ * @prop { classroomID } [REDUX] : Classroom ID
+ * @prop { resetPost } [REDUX] : f() to remove every components in the current post editor
+ * @prop { receipe } [REDUX] : Array of post components
  */
 class PostContentEditor extends React.Component {
   shouldComponentUpdate(nextProp) {
-    return this.props !== nextProp;
+    return this.props !== nextProp
+  }
+
+  /**
+   * @name savePost()
+   * @desc Save the editing post to API
+   */
+  savePost = async () => {
+    try {
+      const { mutate, receipe, classroomID } = this.props
+      const recipeJSON = JSON.stringify(receipe)
+
+      const result = await mutate({
+        variables: {
+          title: 'testing',
+          recipe: recipeJSON,
+          isPublic: false,
+          classroomID
+        }
+      })
+
+      const { success, post } = result.data.createPost
+
+      if (success) {
+        Router.push(`${POST_PAGE}/?id=${post._id}`)
+      } else {
+        alert('failed')
+      }
+    } catch (err) {
+      // Do something with this
+    }
   }
 
   render() {
@@ -31,8 +67,8 @@ class PostContentEditor extends React.Component {
       showPostPreviewModal,
       showEditPostComponentModal,
       showComponentsSelectorModal
-    } = this.props;
-    console.log(receipe); // DEBUGING
+    } = this.props
+    console.log(receipe) // DEBUGING
     return (
       <div>
         <SetTitleCard />
@@ -73,7 +109,7 @@ class PostContentEditor extends React.Component {
                 bottom="3em"
                 position="fixed"
                 padding="1.3em 1em"
-                onClick={() => alert("Saving")}
+                onClick={() => this.savePost()}
               >
                 บันทึก
               </CircleButton>
@@ -81,7 +117,7 @@ class PostContentEditor extends React.Component {
           ) : null}
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -90,8 +126,33 @@ PostContentEditor.propTypes = {
   showEditPostComponentModal: PropTypes.func.isRequired,
   showPostPreviewModal: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
+  classroomID: PropTypes.string.isRequired,
   resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
-};
+}
 
-export default PostContentEditor;
+const CREATE_POST_MUTATION = gql`
+  mutation createPost(
+    $title: String!
+    $recipe: String!
+    $isPublic: Boolean!
+    $classroomID: String!
+  ) {
+    createPost(
+      title: $title
+      recipe: $recipe
+      isPublic: $isPublic
+      classroomID: $classroomID
+    ) {
+      success
+      post {
+        _id
+      }
+      err {
+        message
+      }
+    }
+  }
+`
+
+export default graphql(CREATE_POST_MUTATION)(PostContentEditor)
