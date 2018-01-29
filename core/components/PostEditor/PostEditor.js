@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import PostComponentSelectorModal from "./PostComponentsSelectorModal";
-import EditPostComponentModal from "./EditPostComponentModal";
-import AddPostComponentModal from "./AddPostComponentModal";
-import PostPreviewModal from "./PostPreviewModal.js";
-import PostContentEditor from "./PostContentEditor";
+import PostComponentSelectorModal from './PostComponentsSelectorModal'
+import EditPostComponentModal from './EditPostComponentModal'
+import AddPostComponentModal from './AddPostComponentModal'
+import PostPreviewModal from './PostPreviewModal.js'
+import PostContentEditor from './PostContentEditor'
 import {
   // PostComponentsSelectorModal
   hidePostComponentsSelectorModal,
@@ -29,27 +29,27 @@ import {
   removePostComponent, // Remove existing component
   editPostComponent, // Edit an existing component
   resetPost // Remove every thing and start from scratch
-} from "../../actions/post-editor-actions";
+} from '../../actions/post-editor-actions'
 
 /**
  * @name PostEditor
  * @desc A set of tools for building and editing a post
- * @prop [REDUX] receipe: Array of post components
- * @prop [REDUX] showComponentsSelectorModal: f() to select the post component to add to the receipe
- * @prop [REDUX] isComponentsSelectorModalShowing : is this modal showing
- * @prop [REDUX] hideComponentsSelectorModal : dipatch an action to hide this modal
- * @prop [REDUX] showAddPostComponentModal : Display a modal to enter an essential information to create a modal
- * @prop [REDUX] hideAddPostComponentModal : f() to hide 'AddPostComponentModal'. Used this when finished adding data to selected component
- * @prop [REDUX] addPostComponentModal : Object contains information about 'AddPostComponentModal'
- * @prop [REDUX] addNewPostComponent : Add a new component to 'receipe'
- * @prop [REDUX] resetPost : f() to delete all components in the post editor
- * @prop [REDUX] isShowing : A redux state used to specify wether to show or hide post preview modal
- * @prop [REDUX] receipe : A list of components that need to be rendered
- * @prop [REDUX] hidePostPreviewModal : f() to hide post preview modal
- * @prop [REDUX] editPostComponentModal : object contains information of a EditPostComponentModal
- * @prop [REDUX] showEditPostComponentModal : f() to show EditPostComponentModal
- * @prop [REDUX] hideEditPostComponentModal : f() to hide EditPostComponentModal
- * @prop [REDUX] editPostComponent : f() to edit an existing post component in the receipe
+ * @prop { isComponentsSelectorModalShowing } [REDUX] : is this modal showing
+ * @prop { showComponentsSelectorModal } [REDUX] : f() to select the post component to add to the receipe
+ * @prop { hideComponentsSelectorModal } [REDUX] : dipatch an action to hide this modal
+ * @prop { showEditPostComponentModal } [REDUX] : f() to show EditPostComponentModal
+ * @prop { hideEditPostComponentModal } [REDUX] : f() to hide EditPostComponentModal
+ * @prop { showAddPostComponentModal } [REDUX] : Display a modal to enter an essential information to create a modal
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to hide 'AddPostComponentModal'. Used this when finished adding data to selected component
+ * @prop { editPostComponentModal } [REDUX] : object contains information of a EditPostComponentModal
+ * @prop { addPostComponentModal } [REDUX] : Object contains information about 'AddPostComponentModal'
+ * @prop { hidePostPreviewModal } [REDUX] : f() to hide post preview modal
+ * @prop { addNewPostComponent } [REDUX] : Add a new component to 'receipe'
+ * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { classroomID } [REDUX] : Classroom ID
+ * @prop { resetPost } [REDUX] : f() to delete all components in the post editor
+ * @prop { isShowing } [REDUX] : A redux state used to specify wether to show or hide post preview modal
+ * @prop { receipe } [REDUX] : A list of components that need to be rendered
  */
 class PostEditor extends React.Component {
   render() {
@@ -69,9 +69,10 @@ class PostEditor extends React.Component {
       addNewPostComponent,
       removePostComponent,
       editPostComponent,
+      classroomID,
       resetPost,
       receipe
-    } = this.props;
+    } = this.props
     return (
       <div>
         <EditPostComponentModal
@@ -101,11 +102,12 @@ class PostEditor extends React.Component {
           showEditPostComponentModal={showEditPostComponentModal}
           showPostPreviewModal={showPostPreviewModal}
           removePostComponent={removePostComponent}
+          classroomID={classroomID}
           resetPost={resetPost}
           receipe={receipe}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -134,8 +136,11 @@ PostEditor.propTypes = {
   // EditPostComponentModal
   editPostComponentModal: PropTypes.object.isRequired,
   showEditPostComponentModal: PropTypes.func.isRequired,
-  hideEditPostComponentModal: PropTypes.func.isRequired
-};
+  hideEditPostComponentModal: PropTypes.func.isRequired,
+
+  // Classroom ID
+  classroomID: PropTypes.string.isRequired
+}
 
 const mapStateToProps = state => ({
   isComponentsSelectorModalShowing: state.isPostComponentsSelectorModalShowing,
@@ -143,7 +148,7 @@ const mapStateToProps = state => ({
   addPostComponentModal: state.isAddPostComponentModalShowing,
   isPostPreviewModalShowing: state.isPostPreviewModalShowing,
   receipe: state.editingPostReceipe
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   // PostComponentsSelectorModal
@@ -173,6 +178,6 @@ const mapDispatchToProps = dispatch => ({
   showEditPostComponentModal: (type, order) =>
     dispatch(showEditPostComponentModal(type, order)),
   hideEditPostComponentModal: () => dispatch(hideEditPostComponentModal())
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(PostEditor)
