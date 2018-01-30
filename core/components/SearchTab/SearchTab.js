@@ -1,22 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Router from "next/router";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
-import { compose } from "react-apollo";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Router from 'next/router'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { compose } from 'react-apollo'
 
-import { SEARCH_RESULT_PAGE } from "../../constants/endpoints/ui";
-import SearchResultPanel from "./SearchResultPanel";
-import Card, { Body, Footer } from "../Card";
-import { ModalBackground } from "../Modal";
-import SearchField from "./SearchField";
-import { Button } from "../Button";
-import { Form } from "../Form";
+import { SEARCH_RESULT_PAGE } from '../../constants/endpoints/ui'
+import SearchResultPanel from './SearchResultPanel'
+import Card, { Body, Footer } from '../Card'
+import { ModalBackground } from '../Modal'
+import SearchField from './SearchField'
+import { Button } from '../Button'
+import { Form } from '../Form'
 import {
   showSearchPanel,
   hideSearchPanel
-} from "../../actions/searchbar-panel-actions";
+} from '../../actions/searchbar-panel-actions'
+
+const SearchTabForm = styled.form`
+  display: inline;
+  @media (max-width: 900px) {
+    text-align: center;
+    padding: 0 1em;
+  }
+`
 
 /**
  *  @name SearchResultPanel
@@ -32,20 +40,20 @@ class SearchTab extends React.Component {
       isSearchPanelShowing,
       showSearchPanel,
       hideSearchPanel
-    } = this.props;
-    isSearchPanelShowing ? hideSearchPanel() : showSearchPanel();
-  };
+    } = this.props
+    isSearchPanelShowing ? hideSearchPanel() : showSearchPanel()
+  }
 
   submitHandler = value => {
-    this.props.hideSearchPanel();
-    Router.push(SEARCH_RESULT_PAGE);
-  };
+    this.props.hideSearchPanel()
+    Router.push(SEARCH_RESULT_PAGE)
+  }
 
   render() {
-    const { isSearchPanelShowing, handleSubmit } = this.props;
+    const { isSearchPanelShowing, handleSubmit } = this.props
     return (
-      <Form onSubmit={handleSubmit(this.submitHandler)}>
-        <div style={{ display: "inline-block" }}>
+      <SearchTabForm onSubmit={handleSubmit(this.submitHandler)}>
+        <div style={{ display: 'inline-block' }}>
           <Field
             isSearchPanelShowing={isSearchPanelShowing}
             onFocus={this.showSearchPanel}
@@ -57,8 +65,8 @@ class SearchTab extends React.Component {
           <SearchResultPanel show={isSearchPanelShowing} />
         </div>
         <Button light>ค้นหา</Button>
-      </Form>
-    );
+      </SearchTabForm>
+    )
   }
 }
 
@@ -67,18 +75,18 @@ SearchTab.propTypes = {
   showSearchPanel: PropTypes.func.isRequired,
   hideSearchPanel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
-};
+}
 
 const mapStateToProps = state => ({
   isSearchPanelShowing: state.searchBarPanel
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   showSearchPanel: () => dispatch(showSearchPanel()),
   hideSearchPanel: () => dispatch(hideSearchPanel())
-});
+})
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  reduxForm({ form: "navbar_search" })
-)(SearchTab);
+  reduxForm({ form: 'navbar_search' })
+)(SearchTab)

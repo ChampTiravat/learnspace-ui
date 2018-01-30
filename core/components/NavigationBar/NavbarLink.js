@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const NavbarLink = styled.li`
   display: inline-block;
@@ -17,6 +17,14 @@ const NavbarLink = styled.li`
       cursor: pointer;
     }
   }
-`;
+  @media (max-width: 900px) {
+    /* a { */
+    /* background-color: red; */
+    display: block;
+    width: 100%;
+    text-align: center;
+    /* } */
+  }
+`
 
-export default NavbarLink;
+export default NavbarLink

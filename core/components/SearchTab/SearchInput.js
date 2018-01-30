@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 /**
  *  @name SearchInput
@@ -18,12 +18,18 @@ const SearchInput = styled.input`
   font-weight: 300;
   color: ${p => p.theme.TEXT_COLOR};
   background-color: #fff;
-  border-bottom-left-radius: ${p => (p.isSearchPanelShowing ? "0" : "5px")};
-  border-bottom-right-radius: ${p => (p.isSearchPanelShowing ? "0" : "5px")};
-`;
+  border-bottom-left-radius: ${p => (p.isSearchPanelShowing ? '0' : '5px')};
+  border-bottom-right-radius: ${p => (p.isSearchPanelShowing ? '0' : '5px')};
+  @media (max-width: 900px) {
+    display: block;
+    height: auto;
+    width: 90%;
+    margin: 1em 0;
+  }
+`
 
 SearchInput.propTypes = {
   isSearchPanelShowing: PropTypes.bool.isRequired
-};
+}
 
-export default SearchInput;
+export default SearchInput

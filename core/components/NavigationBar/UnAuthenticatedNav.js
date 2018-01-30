@@ -20,6 +20,9 @@ const AppDescription = styled.h2`
   font-size: 1em;
   font-weight: 300;
   margin-left: 1em;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `
 
 /**
