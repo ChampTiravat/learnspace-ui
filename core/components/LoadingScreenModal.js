@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { ModalBackground } from './Modal'
+import { ModalBackground, ModalPanel } from './Modal'
+import LoadingIcon from './LoadingIcon'
 
 const LoadingScreenModal = ({ isLoading }) => (
   <ModalBackground show={isLoading}>
-    <h1>Loading</h1>
+    <LoadingIcon style={{ margin: '5em auto' }} />
   </ModalBackground>
 )
 
