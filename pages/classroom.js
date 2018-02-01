@@ -42,7 +42,11 @@ class ClassroomPage extends React.Component {
             />
           </Panel>,
           <Panel right height="850px" width="60">
-            <PostsList posts={classroom.posts} height="700px" />
+            <PostsList
+              classroomID={classroom._id}
+              posts={classroom.posts}
+              height="700px"
+            />
           </Panel>,
           <ClassroomActivityPanel
             classroomID={classroom._id}
@@ -84,8 +88,6 @@ class ClassroomPage extends React.Component {
       !loading && classroomProfile ? classroomProfile.classroom : null
 
     const isMember = true
-
-    console.log(this.props.activeUser)
 
     return [
       <Head>
