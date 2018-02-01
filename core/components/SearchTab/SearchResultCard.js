@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Link from 'next/link'
+import styled from 'styled-components'
 
-import Card, { Footer, Body } from "../Card";
+import Card, { Footer, Body } from '../Card'
 
 /**
  *  @name SearchResultCardWrapper
@@ -11,16 +11,22 @@ import Card, { Footer, Body } from "../Card";
  *  @prop show : the state of navbar search result panel apearence
  */
 const SearchResultCardWrapper = Card.extend`
-  display: ${p => (p.show ? "block" : "none")};
-  position: absolute;
+  display: ${p => (p.show ? 'block' : 'none')};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  margin: 0 0 0 0.5em;
   padding: 1em 0.5em;
+  position: absolute;
   height: 300px;
   width: 400px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin: 0 0 0 0.5em;
-`;
+  @media (max-width: 900px) {
+    position: fixed;
+    width: 100%;
+    left: 0em;
+    margin: 0;
+  }
+`
 
 /**
  *  @name MoreSearchResultLink
@@ -31,7 +37,7 @@ const MoreSearchResultLink = styled.a`
   font-size: 1em;
   font-weight: 400;
   cursor: pointer;
-`;
+`
 
 /**
  *  @name SearchResultCard
@@ -50,15 +56,15 @@ const SearchResultCard = ({ children, show }) => (
       </Link>
     </Footer>
   </SearchResultCardWrapper>
-);
+)
 
 SearchResultCard.propTypes = {
   children: PropTypes.array,
   show: PropTypes.bool.isRequired
-};
+}
 
 SearchResultCardWrapper.propTypes = {
   show: PropTypes.bool.isRequired
-};
+}
 
-export default SearchResultCard;
+export default SearchResultCard

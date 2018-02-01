@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const LogoTab = styled.div`
   display: inline-block;
   color: #fff;
-  width: ${p => (p.authenticated ? "15%" : "50%")};
+  width: ${p => (p.authenticated ? '15%' : '50%')};
   a {
     background-color: #3a82ea;
     display: inline-block;
@@ -13,6 +13,11 @@ const LogoTab = styled.div`
     font-size: 1.2em;
     font-weight: 400;
   }
-`;
+  @media (max-width: 900px) {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+`
 
-export default LogoTab;
+export default LogoTab

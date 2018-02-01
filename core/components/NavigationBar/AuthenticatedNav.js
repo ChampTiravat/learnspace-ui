@@ -17,6 +17,13 @@ import {
   PROFILE_PAGE
 } from '../../constants/endpoints/ui'
 
+const NavbarMenuButton = Button.extend`
+  display: none;
+  @media (max-width: 900px) {
+    display: inline-block;
+  }
+`
+
 /**
  * @name AuthenticatedNav
  * @desc Use this NavigationBar when user is authenticated
@@ -35,6 +42,14 @@ const AuthenticatedNav = ({
         <Link href={HOME_PAGE} prefetch>
           <a>LEARNSPACE</a>
         </Link>
+        <NavbarMenuButton
+          light
+          marginLeft="2em"
+          marginRight="2em"
+          onClick={() => alert('Hello')}
+        >
+          Menu
+        </NavbarMenuButton>
       </LogoTab>
       <SearchTab />
       <ButtonsTab>

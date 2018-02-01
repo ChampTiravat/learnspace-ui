@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Navbar = styled.nav`
   position: fixed;
@@ -8,6 +8,9 @@ const Navbar = styled.nav`
   top: 0;
   background-color: #3b90f9;
   box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
-`;
+  @media (max-width: 900px) {
+    /* background-color: red; */
+  }
+`
 
-export default Navbar;
+export default Navbar
