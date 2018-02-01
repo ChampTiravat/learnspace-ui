@@ -50,7 +50,7 @@ class PostContentEditor extends React.Component {
       const { success, post } = result.data.createPost
 
       if (success) {
-        Router.push(`${POST_PAGE}/?id=${post._id}`)
+        Router.push(`${POST_PAGE}?id=${post._id}`)
       } else {
         alert('failed')
       }
