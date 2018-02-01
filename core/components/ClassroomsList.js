@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 import { CLASSROOM_PAGE } from '../constants/endpoints/ui'
 import ClassroomProfilePic from './ClassroomProfilePic'
+import LoadingIcon from './LoadingIcon'
 import Card from './Card'
 
 const ClassroomListItemWrapper = styled.div`
@@ -115,7 +116,9 @@ class ClassroomsList extends React.Component {
           ))
         )}
       </ClassroomsListWrapper>
-    ) : null
+    ) : (
+      <LoadingIcon />
+    )
   }
 }
 
