@@ -9,6 +9,7 @@ import UnAuthenticatedNav from '../NavigationBar/UnAuthenticatedNav'
 import AuthenticatedNav from '../NavigationBar/AuthenticatedNav'
 import ChatroomModal from '../ChatroomModal/ChatroomModal'
 import { validateToken } from '../../helpers/security'
+import LoadingScreenModal from '../LoadingScreenModal'
 import NotificationModal from '../NotificationModal'
 import defaultTheme from '../../themes/default'
 import Container from '../Container'
@@ -18,11 +19,13 @@ import Card from '../Card'
  * @name AuthenticatedLayout
  * @desc Use this Layout when user is authorized
  * @prop { activeUser } [REDUX] : Currently logged-in user
+ * @prop { isMutating } [REDUX] : Return TRUE or FALSE depending wether user is performing GraphQL Mutation or not
  * @prop { showChatroomModal } [REDUX] : Display a ChatroomModal
  * @prop { showNotificationModal } [REDUX] : Display a NotificationModal
  */
 const AuthenticatedLayout = ({
   children,
+  isMutating,
   activeUser,
   showChatroomModal,
   showNotificationModal
@@ -49,6 +52,7 @@ const AuthenticatedLayout = ({
           showNotificationModal={showNotificationModal}
         />
         <NotificationModal />
+        <LoadingScreenModal isLoading={isMutating} />
         <ChatroomModal />
         {children}
       </Container>
@@ -59,10 +63,12 @@ const AuthenticatedLayout = ({
 AuthenticatedLayout.propTypes = {
   showNotificationModal: PropTypes.func.isRequired,
   showChatroomModal: PropTypes.func.isRequired,
-  activeUser: PropTypes.object.isRequired
+  activeUser: PropTypes.object.isRequired,
+  isMutating: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
+  isMutating: state.mutationStatus,
   activeUser: state.user
 })
 

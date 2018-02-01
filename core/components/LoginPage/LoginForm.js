@@ -12,10 +12,24 @@ import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
 import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
+import {
+  showLoadingModal,
+  hideLoadingModal
+} from '../../actions/system-actions'
 
 class LoginForm extends React.Component {
+  state = { err: null }
+
   submitHandler = async ({ email, password }) => {
-    const { initializeAuthenticatedUser, mutate } = this.props
+    const {
+      initializeAuthenticatedUser,
+      showLoadingModal,
+      hideLoadingModal,
+      mutate
+    } = this.props
+
+    showLoadingModal()
+
     try {
       // Running mutation
       const result = await mutate({
@@ -26,14 +40,16 @@ class LoginForm extends React.Component {
       })
 
       const {
-        success,
-        err,
         refreshToken,
         accessToken,
-        user
+        success,
+        user,
+        err
       } = result.data.login
 
       if (success) {
+        hideLoadingModal()
+
         // Save tokens into the client
         await window.localStorage.setItem(REFRESH_TOKEN, refreshToken)
         await window.localStorage.setItem(ACCESS_TOKEN, accessToken)
@@ -42,34 +58,38 @@ class LoginForm extends React.Component {
         initializeAuthenticatedUser(user)
 
         // Redirect to dashboard page
-        Router.push(DASHBOARD_PAGE)
+        await Router.push(DASHBOARD_PAGE)
       } else {
-        console.log('err: ' + err)
+        this.setState({ err: err.message })
+        hideLoadingModal()
       }
     } catch (err) {
-      console.log(err)
-      // Do something with this
+      hideLoadingModal()
     }
   }
 
   render() {
     const { handleSubmit } = this.props
+    const { err } = this.state
     return (
       <Card small marginTop="5em">
         <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
         <Body>
+          {err != null ? <h3 style={{ color: 'red' }}>{err}</h3> : null}
           <form onSubmit={handleSubmit(this.submitHandler)}>
             <Field
+              required
               name="email"
               label="อีเมลล์"
-              component={InputField}
               type="email"
+              component={InputField}
             />
             <Field
+              required
               name="password"
               label="พาสเวิร์ด"
-              component={InputField}
               type="password"
+              component={InputField}
             />
             <Button primary fluidWidth textCenter>
               เข้าสู่ระบบ
@@ -108,7 +128,10 @@ const LOGIN_MUTATION = gql`
 
 const mapDispatchToProps = dispatch => ({
   initializeAuthenticatedUser: user =>
-    dispatch(initializeAuthenticatedUser(user))
+    dispatch(initializeAuthenticatedUser(user)),
+
+  showLoadingModal: () => dispatch(showLoadingModal()),
+  hideLoadingModal: () => dispatch(hideLoadingModal())
 })
 
 export default compose(
