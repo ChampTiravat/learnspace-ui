@@ -32,7 +32,7 @@ const PostViewer = ({
   showPostRMModal
 }) =>
   !loading ? (
-    <Container marginTop="11.5em">
+    <Container>
       <PostContent recipe={getPost.post.recipe} />
       <PostCommentsPanel />
       <CommentMessageBox />
