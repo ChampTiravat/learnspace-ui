@@ -1,16 +1,16 @@
 import React from 'react'
+import gql from 'graphql-tag'
 import Router from 'next/router'
 import PropTypes from 'prop-types'
-
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { Field, reduxForm } from 'redux-form'
+import { graphql, compose } from 'react-apollo'
 
 import { renderEditableComponent } from '../../helpers/post'
-import SetTitleCard from './PostComponents/SetPostTitleCard'
 import BasedComponent from './PostComponents/BasedComponent'
 import { POST_PAGE } from '../../constants/endpoints/ui'
 import EmptyField from './PostComponents/EmptyField'
 import { CircleButton } from '../Button'
+import { InputField } from '../Form'
 import Card from '../Card'
 
 /**
@@ -20,6 +20,8 @@ import Card from '../Card'
  * @prop { showEditPostComponentModal } [REDUX] : f() to show showEditPostComponentModal when user wish to edit an existing component
  * @prop { showPostPreviewModal } [REDUX] : f() to show a post preview modal
  * @prop { removePostComponent } [REDUX] : f() to remove a single post component
+ * @prop { showLoadingModal } [REDUX] : Show a loading screen modal while submiting post data to server
+ * @prop { hideLoadingModal } [REDUX] : Hide the loading screen modal when post data is submited
  * @prop { classroomID } [REDUX] : Classroom ID
  * @prop { resetPost } [REDUX] : f() to remove every components in the current post editor
  * @prop { receipe } [REDUX] : Array of post components
@@ -32,46 +34,87 @@ class PostContentEditor extends React.Component {
   /**
    * @name savePost()
    * @desc Save the editing post to API
+   * @param { title } [REDUX_FORM] : Post title
    */
-  savePost = async () => {
+  savePost = async ({ title }) => {
     try {
-      const { mutate, receipe, classroomID } = this.props
-      const recipeJSON = JSON.stringify(receipe)
+      const {
+        mutate,
+        receipe,
+        classroomID,
+        showLoadingModal,
+        hideLoadingModal
+      } = this.props
 
+      // Show loading modal
+      showLoadingModal()
+
+      // Validation
+      if (!title || title.length == 0) {
+        alert('Title is required')
+        hideLoadingModal()
+        return
+      }
+
+      if (!receipe || receipe.length == 0) {
+        alert('Post must have at least one component')
+        hideLoadingModal()
+        return
+      }
+
+      // Convert Array to JSON string
+      const recipeJSON = await JSON.stringify(receipe)
+
+      // Sending post data to server
       const result = await mutate({
         variables: {
-          title: 'testing',
-          recipe: recipeJSON,
+          title,
+          classroomID,
           isPublic: false,
-          classroomID
+          recipe: recipeJSON
         }
       })
 
       const { success, post } = result.data.createPost
 
       if (success) {
+        hideLoadingModal()
         Router.push(`${POST_PAGE}?id=${post._id}`)
       } else {
+        hideLoadingModal()
         alert('failed')
       }
     } catch (err) {
       // Do something with this
+      hideLoadingModal()
     }
+    return
   }
 
   render() {
     const {
       receipe,
       resetPost,
+      handleSubmit,
       removePostComponent,
       showPostPreviewModal,
       showEditPostComponentModal,
       showComponentsSelectorModal
     } = this.props
-    console.log(receipe) // DEBUGING
+
+    console.log(receipe)
+
     return (
-      <div>
-        <SetTitleCard />
+      <form onSubmit={handleSubmit(this.savePost)}>
+        <Card fluidWidth padding="2em" marginBottom="2em">
+          <Field
+            required
+            type="text"
+            name="title"
+            label="ชื่อโพส"
+            component={InputField}
+          />
+        </Card>
         <Card fluidWidth noShadow padding="2em" marginBottom="4em">
           {renderEditableComponent(
             receipe,
@@ -87,6 +130,7 @@ class PostContentEditor extends React.Component {
                 light
                 right="3em"
                 bottom="15em"
+                type="button"
                 position="fixed"
                 padding="1.3em 1em"
                 onClick={resetPost}
@@ -97,6 +141,7 @@ class PostContentEditor extends React.Component {
                 light
                 padding="1.3em 1em"
                 position="fixed"
+                type="button"
                 bottom="9em"
                 right="3em"
                 onClick={showPostPreviewModal}
@@ -107,16 +152,16 @@ class PostContentEditor extends React.Component {
                 primary
                 right="3em"
                 bottom="3em"
+                type="submit"
                 position="fixed"
                 padding="1.3em 1em"
-                onClick={() => this.savePost()}
               >
                 บันทึก
               </CircleButton>
             </div>
           ) : null}
         </div>
-      </div>
+      </form>
     )
   }
 }
@@ -126,7 +171,10 @@ PostContentEditor.propTypes = {
   showEditPostComponentModal: PropTypes.func.isRequired,
   showPostPreviewModal: PropTypes.func.isRequired,
   removePostComponent: PropTypes.func.isRequired,
+  showLoadingModal: PropTypes.func.isRequired,
+  hideLoadingModal: PropTypes.func.isRequired,
   classroomID: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   resetPost: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
 }
@@ -155,4 +203,7 @@ const CREATE_POST_MUTATION = gql`
   }
 `
 
-export default graphql(CREATE_POST_MUTATION)(PostContentEditor)
+export default compose(
+  reduxForm({ form: 'create_post' }),
+  graphql(CREATE_POST_MUTATION)
+)(PostContentEditor)

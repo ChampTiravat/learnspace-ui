@@ -30,6 +30,10 @@ import {
   editPostComponent, // Edit an existing component
   resetPost // Remove every thing and start from scratch
 } from '../../actions/post-editor-actions'
+import {
+  showLoadingModal,
+  hideLoadingModal
+} from '../../actions/system-actions'
 
 /**
  * @name PostEditor
@@ -46,6 +50,8 @@ import {
  * @prop { hidePostPreviewModal } [REDUX] : f() to hide post preview modal
  * @prop { addNewPostComponent } [REDUX] : Add a new component to 'receipe'
  * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { showLoadingModal } [REDUX] : Show a loading screen modal while submiting post data to server
+ * @prop { hideLoadingModal } [REDUX] : Hide the loading screen modal when post data is submited
  * @prop { classroomID } [REDUX] : Classroom ID
  * @prop { resetPost } [REDUX] : f() to delete all components in the post editor
  * @prop { isShowing } [REDUX] : A redux state used to specify wether to show or hide post preview modal
@@ -69,6 +75,8 @@ class PostEditor extends React.Component {
       addNewPostComponent,
       removePostComponent,
       editPostComponent,
+      showLoadingModal,
+      hideLoadingModal,
       classroomID,
       resetPost,
       receipe
@@ -102,6 +110,8 @@ class PostEditor extends React.Component {
           showEditPostComponentModal={showEditPostComponentModal}
           showPostPreviewModal={showPostPreviewModal}
           removePostComponent={removePostComponent}
+          showLoadingModal={showLoadingModal}
+          hideLoadingModal={hideLoadingModal}
           classroomID={classroomID}
           resetPost={resetPost}
           receipe={receipe}
@@ -139,7 +149,11 @@ PostEditor.propTypes = {
   hideEditPostComponentModal: PropTypes.func.isRequired,
 
   // Classroom ID
-  classroomID: PropTypes.string.isRequired
+  classroomID: PropTypes.string.isRequired,
+
+  // Display Loading Screen when submiting post data to server
+  showLoadingModal: PropTypes.func.isRequired,
+  hideLoadingModal: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -160,6 +174,10 @@ const mapDispatchToProps = dispatch => ({
   // AddPostComponentModal
   hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
   showAddPostComponentModal: type => dispatch(showAddPostComponentModal(type)),
+
+  // Display Loading Screen when submiting post data to server
+  showLoadingModal: () => dispatch(showLoadingModal()),
+  hideLoadingModal: () => dispatch(hideLoadingModal()),
 
   // PostContentEditor Operations
   resetPost: () => dispatch(resetPost()),
