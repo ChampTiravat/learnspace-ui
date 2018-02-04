@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { CircleButton } from "../../Button";
+import { CircleButton } from '../../Button'
 
 const TestComponentWrapper = styled.div`
   position: relative;
   margin-top: 2em;
   margin-bottom: 3em;
-`;
+`
 
 const BasedComponent = ({
   children,
@@ -22,6 +22,7 @@ const BasedComponent = ({
       danger
       position="absolute"
       left="-9.5em"
+      type="button"
       top="0em"
       onClick={() => removePostComponent(order)}
     >
@@ -30,6 +31,7 @@ const BasedComponent = ({
     <CircleButton
       primary
       position="absolute"
+      type="button"
       left="-6em"
       top="0em"
       onClick={() => showEditPostComponentModal(type, order)}
@@ -38,6 +40,6 @@ const BasedComponent = ({
     </CircleButton>
     {children}
   </TestComponentWrapper>
-);
+)
 
-export default BasedComponent;
+export default BasedComponent
