@@ -12,6 +12,7 @@ import { validateToken } from '../../helpers/security'
 import LoadingScreenModal from '../LoadingScreenModal'
 import NotificationModal from '../NotificationModal'
 import defaultTheme from '../../themes/default'
+import { ErrorAlert } from '../Alert'
 import Container from '../Container'
 import Card from '../Card'
 
@@ -54,6 +55,9 @@ const AuthenticatedLayout = ({
         <NotificationModal />
         <LoadingScreenModal isLoading={isMutating} />
         <ChatroomModal />
+        <ErrorAlert show={true}>
+          ขออภัยครับ ขณะนี้การเชื่อมต่อเกิดการขัดข้อง กรุณาลองใหม่ในภายหลัง
+        </ErrorAlert>
         {children}
       </Container>
     )}
