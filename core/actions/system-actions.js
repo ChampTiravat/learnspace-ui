@@ -1,4 +1,9 @@
-import { SHOW_LOADING_MODAL, HIDE_LOADING_MODAL } from '../constants/actions'
+import {
+  SHOW_LOADING_MODAL,
+  HIDE_LOADING_MODAL,
+  SHOW_ERROR_ALERT,
+  HIDE_ERROR_ALERT
+} from '../constants/actions'
 
 /**
  * @name showLoadingModal()
@@ -14,4 +19,28 @@ export const showLoadingModal = () => ({
  */
 export const hideLoadingModal = () => ({
   type: HIDE_LOADING_MODAL
+})
+
+/**
+ * @name showErrorAlert()
+ * @desc Show error alert when GraphQL Mutation(s) has failed
+ */
+export const showErrorAlert = message => ({
+  type: SHOW_ERROR_ALERT,
+  payload: {
+    show: true,
+    message
+  }
+})
+
+/**
+ * @name hideErrorAlert()
+ * @desc Hide loading modal after clicked on error alert
+ */
+export const hideErrorAlert = () => ({
+  type: HIDE_ERROR_ALERT,
+  payload: {
+    show: false,
+    message: ''
+  }
 })

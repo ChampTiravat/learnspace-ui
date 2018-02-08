@@ -10,6 +10,7 @@ import notificationModal from './notification-modal'
 import searchBarPanel from './searchbar-panel'
 import mutationStatus from './mutation-status'
 import chatroomModal from './chatroom-modal'
+import errorAlert from './error-alert'
 import user from './user'
 
 // Attach other reducers into the object below
@@ -25,5 +26,6 @@ export default {
   mutationStatus,
   searchBarPanel,
   chatroomModal,
+  errorAlert,
   user
 }

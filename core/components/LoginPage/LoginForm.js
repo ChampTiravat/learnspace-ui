@@ -9,6 +9,7 @@ import { graphql, compose } from 'react-apollo'
 import { initializeAuthenticatedUser } from '../../actions/user-actions'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../../constants/security'
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
+import { showErrorAlert } from '../../actions/system-actions'
 import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
@@ -17,14 +18,23 @@ import {
   hideLoadingModal
 } from '../../actions/system-actions'
 
+/**
+ * @name LoginForm
+ * @desc Performing login with GraphQL
+ * @prop { initializeAuthenticatedUser } [REDUX] : Attach user who has already logged in, into redux store
+ * @prop { showLoadingModal } [REDUX] : Display loading modal when performing GraphQL mutation(Login mutation)
+ * @prop { hideLoadingModal } [REDUX] : Hide loeading modal after fisnished GraphQL mutation(login mutation)
+ * @prop { showErrorAlert } [REDUX] : If there's any error occored, display it with its message
+ * @prop { handleSubmit } [REDUX_FORM] : redux-form's form handler function
+ * @prop { mutate } [APOLLO] : Apollo-client mutation controller function
+ */
 class LoginForm extends React.Component {
-  state = { err: null }
-
   submitHandler = async ({ email, password }) => {
     const {
       initializeAuthenticatedUser,
       showLoadingModal,
       hideLoadingModal,
+      showErrorAlert,
       mutate
     } = this.props
 
@@ -60,22 +70,21 @@ class LoginForm extends React.Component {
         // Redirect to dashboard page
         await Router.push(DASHBOARD_PAGE)
       } else {
-        this.setState({ err: err.message })
         hideLoadingModal()
+        showErrorAlert(err.message)
       }
     } catch (err) {
       hideLoadingModal()
+      showErrorAlert('ไม่สามารถดำเนินการได้ในขณะนี้')
     }
   }
 
   render() {
     const { handleSubmit } = this.props
-    const { err } = this.state
     return (
       <Card small marginTop="5em">
         <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
         <Body>
-          {err != null ? <h3 style={{ color: 'red' }}>{err}</h3> : null}
           <form onSubmit={handleSubmit(this.submitHandler)}>
             <Field
               required
@@ -103,7 +112,10 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   initializeAuthenticatedUser: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  showLoadingModal: PropTypes.func.isRequired,
+  hideLoadingModal: PropTypes.func.isRequired,
+  showErrorAlert: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isReuired,
   mutate: PropTypes.func.isRequired
 }
 
@@ -131,7 +143,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(initializeAuthenticatedUser(user)),
 
   showLoadingModal: () => dispatch(showLoadingModal()),
-  hideLoadingModal: () => dispatch(hideLoadingModal())
+  hideLoadingModal: () => dispatch(hideLoadingModal()),
+
+  showErrorAlert: message => dispatch(showErrorAlert(message))
 })
 
 export default compose(
