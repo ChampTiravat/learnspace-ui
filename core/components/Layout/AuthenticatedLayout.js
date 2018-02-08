@@ -21,6 +21,7 @@ import Card from '../Card'
  * @desc Use this Layout when user is authorized
  * @prop { activeUser } [REDUX] : Currently logged-in user
  * @prop { isMutating } [REDUX] : Return TRUE or FALSE depending wether user is performing GraphQL Mutation or not
+ * @prop { errorAlert } [REDUX] : Object containing error alert component data
  * @prop { showChatroomModal } [REDUX] : Display a ChatroomModal
  * @prop { showNotificationModal } [REDUX] : Display a NotificationModal
  */
@@ -28,6 +29,7 @@ const AuthenticatedLayout = ({
   children,
   isMutating,
   activeUser,
+  errorAlert,
   showChatroomModal,
   showNotificationModal
 }) => (
@@ -55,9 +57,7 @@ const AuthenticatedLayout = ({
         <NotificationModal />
         <LoadingScreenModal isLoading={isMutating} />
         <ChatroomModal />
-        <ErrorAlert show={true}>
-          ขออภัยครับ ขณะนี้การเชื่อมต่อเกิดการขัดข้อง กรุณาลองใหม่ในภายหลัง
-        </ErrorAlert>
+        <ErrorAlert show={errorAlert.show}>{errorAlert.message}</ErrorAlert>
         {children}
       </Container>
     )}
@@ -68,11 +68,13 @@ AuthenticatedLayout.propTypes = {
   showNotificationModal: PropTypes.func.isRequired,
   showChatroomModal: PropTypes.func.isRequired,
   activeUser: PropTypes.object.isRequired,
+  errorAlert: PropTypes.object.isRequired,
   isMutating: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
   isMutating: state.mutationStatus,
+  errorAlert: state.errorAlert,
   activeUser: state.user
 })
 
