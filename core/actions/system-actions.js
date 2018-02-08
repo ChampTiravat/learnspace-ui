@@ -40,6 +40,7 @@ export const showErrorAlert = message => ({
 export const hideErrorAlert = () => ({
   type: HIDE_ERROR_ALERT,
   payload: {
-    show: false
+    show: false,
+    message: ''
   }
 })
