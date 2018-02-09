@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { SLIDE_SHOW } from "../../../../constants/post-content/components";
-import { CircleButton, Button } from "../../../Button";
-import { Header, Body, Footer } from "../../../Card";
-import { Form, Input } from "../../../Form";
+import { SLIDE_SHOW } from '../../../../constants/post-content/components'
+import { CircleButton, Button } from '../../../Button'
+import { Header, Body, Footer } from '../../../Card'
+import { Form, Input } from '../../../Form'
 
 const ImageUpLoadWrapper = styled.div`
   height: 250px;
@@ -18,66 +18,62 @@ const ImageUpLoadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ddd;
-`;
+`
 
 /**
  * @name Slideshow
  * @desc Display a slide of images, used to present a visual communication about a certain topic or used to catch reader's attention
- * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
- * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
- * @prop addNewPostComponent : f() to append a new post component to receipe
- * @prop editPostComponent : f() to edit an existing post component in the receipe
- * @prop order : The component's current order in receipe
- * @prop type : Type of the component to be inserted
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop { useToAddComponent } [REDUX] : Specify wether to use this modal to add new component or edit the one existed
+ * @prop { addNewPostComponent } [REDUX] : f() to append a new post component to receipe
+ * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { order } [REDUX] : The component's current order in receipe
+ * @prop { type } [REDUX] : Type of the component to be inserted
  */
 class Slideshow extends React.Component {
   state = {
-    imageToAddURL: "",
-    imageToAddALT: "",
+    imageToAddURL: '',
+    imageToAddALT: '',
     images: []
-  };
+  }
   /**
    * @name addComponentHandler()
    * @desc Append the <Slideshow /> component to the 'receipe'
    */
   addComponentHandler = () => {
-    const { images } = this.state;
+    const { images } = this.state
 
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order
-    } = this.props;
+    const { hideAddPostComponentModal, addNewPostComponent, order } = this.props
 
-    if (!images.length || images.length == 0 || images.length < 2) return null;
+    if (!images.length || images.length == 0 || images.length < 2) return null
 
     addNewPostComponent({
       type: SLIDE_SHOW,
       data: images,
       order
-    });
+    })
 
-    hideAddPostComponentModal();
-  };
+    hideAddPostComponentModal()
+  }
 
   /**
    * @name editComponentHandler()
    * @desc Edit the specific <Slideshow /> component in the 'receipe'
    */
   editComponentHandler = () => {
-    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
-    const { images } = this.state;
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props
+    const { images } = this.state
 
-    if (!images.length || images.length == 0 || images.length < 2) return null;
+    if (!images.length || images.length == 0 || images.length < 2) return null
 
     editPostComponent({
       newData: images,
       type: SLIDE_SHOW,
       order
-    });
+    })
 
-    hideEditPostComponentModal();
-  };
+    hideEditPostComponentModal()
+  }
 
   /**
    * @name removeImage
@@ -87,8 +83,8 @@ class Slideshow extends React.Component {
   removeImage = imageToRemove => {
     this.setState(({ images }) => ({
       images: images.filter(image => image.id !== imageToRemove.id)
-    }));
-  };
+    }))
+  }
 
   /**
    * @name renderImages
@@ -111,17 +107,17 @@ class Slideshow extends React.Component {
           เลือกรูปภาพ
         </Button>
       </ImageUpLoadWrapper>
-    ));
+    ))
 
   /**
    * @name addImage
    * @desc Add a new image to the slide
    */
   addImage = () => {
-    const { imageToAddURL, imageToAddALT } = this.state;
+    const { imageToAddURL, imageToAddALT } = this.state
 
-    if (imageToAddURL == "") {
-      return null;
+    if (imageToAddURL == '') {
+      return null
     }
 
     this.setState(({ images, imageToAddURL, imageToAddALT }) => ({
@@ -130,38 +126,38 @@ class Slideshow extends React.Component {
         url: imageToAddURL,
         alt: imageToAddALT || imageToAddURL
       })
-    }));
+    }))
 
     this.setState({
-      imageToAddURL: "",
-      imageToAddALT: ""
-    });
-  };
+      imageToAddURL: '',
+      imageToAddALT: ''
+    })
+  }
 
   render() {
     const {
       hideAddPostComponentModal,
       hideEditPostComponentModal,
       useToAddComponent
-    } = this.props;
+    } = this.props
 
     /*
-      Specify the which f() will be used to hide this modal
+      Specify which f() will be used to hide this modal
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const hideThisModal = useToAddComponent
       ? hideAddPostComponentModal
-      : hideEditPostComponentModal;
+      : hideEditPostComponentModal
 
     /*
-      Specify the which f() will be used to submit the form 
+      Specify which f() will be used to submit the form 
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const submitHandler = useToAddComponent
       ? this.addComponentHandler
-      : this.editComponentHandler;
+      : this.editComponentHandler
 
     return [
       <Header>สไลด์รูปภาพ</Header>,
@@ -202,7 +198,7 @@ class Slideshow extends React.Component {
           </Button>
         </Footer>
       </Form>
-    ];
+    ]
   }
 }
 
@@ -212,6 +208,6 @@ Slideshow.propTypes = {
   addNewPostComponent: PropTypes.func,
   editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
-};
+}
 
-export default Slideshow;
+export default Slideshow

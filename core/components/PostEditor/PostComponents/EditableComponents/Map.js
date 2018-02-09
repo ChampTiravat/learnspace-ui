@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { reduxForm, Field } from "redux-form";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { reduxForm, Field } from 'redux-form'
 
-import { MAP } from "../../../../constants/post-content/components";
-import { Header, Body, Footer } from "../../../Card";
-import { Form, InputField } from "../../../Form";
-import { Button } from "../../../Button";
+import { MAP } from '../../../../constants/post-content/components'
+import { Header, Body, Footer } from '../../../Card'
+import { Form, InputField } from '../../../Form'
+import { Button } from '../../../Button'
 
 /**
  * @name Map
  * @desc Display a Google Map, used to present direction of a real location
- * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
- * @prop addNewPostComponent : f() to append a new post component to receipe
- * @prop order : The component's current order in receipe
- * @prop type : Type of the component to be inserted
+ * @prop { handleSubmit } [REDUX_FORM] : Redux-Form's default form handle function
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop { addNewPostComponent } [REDUX] : f() to append a new post component to receipe
+ * @prop { order } [REDUX] : The component's current order in receipe
+ * @prop { type } [REDUX] : Type of the component to be inserted
  */
 class Map extends React.Component {
   /**
@@ -23,22 +23,18 @@ class Map extends React.Component {
    * @param { location } : A location specified to send to Google Map API
    */
   addComponentHandler = ({ location }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order
-    } = this.props;
+    const { hideAddPostComponentModal, addNewPostComponent, order } = this.props
 
-    if (!location && location !== "") return;
+    if (!location && location !== '') return
 
     addNewPostComponent({
       data: { location },
       type: MAP,
       order
-    });
+    })
 
-    hideAddPostComponentModal();
-  };
+    hideAddPostComponentModal()
+  }
 
   /**
    * @name addComponentHandler()
@@ -46,18 +42,18 @@ class Map extends React.Component {
    * @param { location } : A location specified to send to Google Map API
    */
   editComponentHandler = ({ location }) => {
-    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props
 
-    if (!location && location !== "") return;
+    if (!location && location !== '') return
 
     editPostComponent({
       newData: { location },
       type: MAP,
       order
-    });
+    })
 
-    hideEditPostComponentModal();
-  };
+    hideEditPostComponentModal()
+  }
 
   render() {
     const {
@@ -65,25 +61,25 @@ class Map extends React.Component {
       hideEditPostComponentModal,
       handleSubmit,
       useToAddComponent
-    } = this.props;
+    } = this.props
 
     /*
-      Specify the which f() will be used to hide this modal
+      Specify which f() will be used to hide this modal
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const hideThisModal = useToAddComponent
       ? hideAddPostComponentModal
-      : hideEditPostComponentModal;
+      : hideEditPostComponentModal
 
     /*
-      Specify the which f() will be used to submit the form 
+      Specify which f() will be used to submit the form 
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const submitHandler = useToAddComponent
       ? this.addComponentHandler
-      : this.editComponentHandler;
+      : this.editComponentHandler
 
     return [
       <Header>แผนที่</Header>,
@@ -100,7 +96,7 @@ class Map extends React.Component {
           </Button>
         </Footer>
       </Form>
-    ];
+    ]
   }
 }
 
@@ -111,6 +107,6 @@ Map.propTypes = {
   addNewPostComponent: PropTypes.func,
   editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
-};
+}
 
-export default reduxForm({ form: "map_component_data" })(Map);
+export default reduxForm({ form: 'map_component_data' })(Map)

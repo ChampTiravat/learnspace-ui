@@ -1,22 +1,22 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { reduxForm, Field } from "redux-form";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { reduxForm, Field } from 'redux-form'
 
-import { HEADING } from "../../../../constants/post-content/components";
-import { Header, Body, Footer } from "../../../Card";
-import { Form, InputField } from "../../../Form";
-import { Button } from "../../../Button";
+import { HEADING } from '../../../../constants/post-content/components'
+import { Header, Body, Footer } from '../../../Card'
+import { Form, InputField } from '../../../Form'
+import { Button } from '../../../Button'
 
 /**
  * @name Heading
  * @desc Display a heading text, used to remind readers the topic which thay are currently reading
- * @prop [REDUX-FORM] handleSubmit : Redux-Form's default form handle function
- * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
- * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
- * @prop addNewPostComponent : f() to append a new post component to receipe
- * @prop editPostComponent : f() to edit an existing post component in the receipe
- * @prop order : The component's current order in receipe
- * @prop type : Type of the component to be inserted
+ * @prop { handleSubmit } [REDUX_FORM] : Redux-Form's default form handle function
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop { useToAddComponent } [REDUX] : Specify wether to use this modal to add new component or edit the one existed
+ * @prop { addNewPostComponent } [REDUX] : f() to append a new post component to receipe
+ * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { order } [REDUX] : The component's current order in receipe
+ * @prop { type } [REDUX] : Type of the component to be inserted
  */
 class Heading extends React.Component {
   /**
@@ -25,22 +25,18 @@ class Heading extends React.Component {
    * @param { heading_text } : text to display inside the heading component
    */
   addComponentHandler = ({ heading_text }) => {
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order
-    } = this.props;
+    const { hideAddPostComponentModal, addNewPostComponent, order } = this.props
 
-    if (!heading_text && heading_text !== "") return;
+    if (!heading_text && heading_text !== '') return
 
     addNewPostComponent({
       data: heading_text,
       type: HEADING,
       order
-    });
+    })
 
-    hideAddPostComponentModal();
-  };
+    hideAddPostComponentModal()
+  }
 
   /**
    * @name editComponentHandler()
@@ -48,18 +44,18 @@ class Heading extends React.Component {
    * @param { heading_text } : text to display inside the heading component
    */
   editComponentHandler = ({ heading_text }) => {
-    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props
 
-    if (!heading_text && heading_text !== "") return;
+    if (!heading_text && heading_text !== '') return
 
     editPostComponent({
       newData: heading_text,
       type: HEADING,
       order
-    });
+    })
 
-    hideEditPostComponentModal();
-  };
+    hideEditPostComponentModal()
+  }
 
   render() {
     const {
@@ -67,25 +63,25 @@ class Heading extends React.Component {
       hideEditPostComponentModal,
       handleSubmit,
       useToAddComponent
-    } = this.props;
+    } = this.props
 
     /*
-      Specify the which f() will be used to hide this modal
+      Specify which f() will be used to hide this modal
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const hideThisModal = useToAddComponent
       ? hideAddPostComponentModal
-      : hideEditPostComponentModal;
+      : hideEditPostComponentModal
 
     /*
-      Specify the which f() will be used to submit the form 
+      Specify which f() will be used to submit the form 
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const submitHandler = useToAddComponent
       ? this.addComponentHandler
-      : this.editComponentHandler;
+      : this.editComponentHandler
 
     return [
       <Header>หัวข้อเรื่อง</Header>,
@@ -102,7 +98,7 @@ class Heading extends React.Component {
           </Button>
         </Footer>
       </Form>
-    ];
+    ]
   }
 }
 
@@ -113,6 +109,6 @@ Heading.propTypes = {
   addNewPostComponent: PropTypes.func,
   editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
-};
+}
 
-export default reduxForm({ form: "heading_component_data" })(Heading);
+export default reduxForm({ form: 'heading_component_data' })(Heading)
