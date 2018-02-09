@@ -1,82 +1,78 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { LIST } from "../../../../constants/post-content/components";
-import { Form, InputGroup, Input, InputLabel } from "../../../Form";
-import { CircleButton, Button } from "../../../Button";
-import { Header, Body, Footer } from "../../../Card";
+import { LIST } from '../../../../constants/post-content/components'
+import { Form, InputGroup, Input, InputLabel } from '../../../Form'
+import { CircleButton, Button } from '../../../Button'
+import { Header, Body, Footer } from '../../../Card'
 
 /**
  * @name List
  * @desc Display a list with ordered items
- * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
- * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
- * @prop addNewPostComponent : f() to append a new post component to receipe
- * @prop editPostComponent : f() to edit an existing post component in the receipe
- * @prop order : The component's current order in receipe
- * @prop type : Type of the component to be inserted
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop { useToAddComponent } [REDUX] : Specify wether to use this modal to add new component or edit the one existed
+ * @prop { addNewPostComponent } [REDUX] : f() to append a new post component to receipe
+ * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { order } [REDUX] : The component's current order in receipe
+ * @prop { type } [REDUX] : Type of the component to be inserted
  */
 class List extends React.Component {
   state = {
-    description: "",
-    itemToAdd: "",
+    description: '',
+    itemToAdd: '',
     items: []
-  };
+  }
 
   /**
    * @name addComponentHandler()
    * @desc Append the <List /> component to the 'receipe'
    */
   addComponentHandler = () => {
-    const { items, description } = this.state;
+    const { items, description } = this.state
 
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order
-    } = this.props;
+    const { hideAddPostComponentModal, addNewPostComponent, order } = this.props
 
     if (
       !description &&
-      description !== "" &&
+      description !== '' &&
       (items.length && items.length > 0)
     ) {
-      return;
+      return
     }
 
     addNewPostComponent({
       type: LIST,
       data: { description, items: items.map(item => item.data) },
       order
-    });
+    })
 
-    hideAddPostComponentModal();
-  };
+    hideAddPostComponentModal()
+  }
 
   /**
    * @name editComponentHandler()
    * @desc Edit the specific <List /> component in the 'receipe'
    */
   editComponentHandler = () => {
-    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
-    const { items, description } = this.state;
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props
+    const { items, description } = this.state
 
     if (
       !description &&
-      description !== "" &&
+      description !== '' &&
       (items.length && items.length > 0)
     ) {
-      return;
+      return
     }
 
     editPostComponent({
       newData: { description, items: items.map(item => item.data) },
       type: LIST,
       order
-    });
+    })
 
-    hideEditPostComponentModal();
-  };
+    hideEditPostComponentModal()
+  }
 
   /**
    * @name removeItem
@@ -86,7 +82,7 @@ class List extends React.Component {
   removeItem = itemToRemove =>
     this.setState(({ items }) => ({
       items: items.filter(item => item.id !== itemToRemove.id)
-    }));
+    }))
 
   /**
    * @name addItem
@@ -98,11 +94,11 @@ class List extends React.Component {
         id: Math.ceil((Math.random() + (1 + Math.random())) * 100),
         data: this.state.itemToAdd
       })
-    }));
+    }))
     this.setState({
-      itemToAdd: ""
-    });
-  };
+      itemToAdd: ''
+    })
+  }
 
   /**
    * @name renderItems
@@ -113,9 +109,9 @@ class List extends React.Component {
       <li
         key={item.id}
         style={{
-          position: "relative",
-          width: "90%",
-          padding: "1.5em"
+          position: 'relative',
+          width: '90%',
+          padding: '1.5em'
         }}
       >
         {item.data}
@@ -130,32 +126,32 @@ class List extends React.Component {
           -
         </CircleButton>
       </li>
-    ));
+    ))
 
   render() {
     const {
       hideAddPostComponentModal,
       hideEditPostComponentModal,
       useToAddComponent
-    } = this.props;
+    } = this.props
 
     /*
-      Specify the which f() will be used to hide this modal
+      Specify which f() will be used to hide this modal
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const hideThisModal = useToAddComponent
       ? hideAddPostComponentModal
-      : hideEditPostComponentModal;
+      : hideEditPostComponentModal
 
     /*
-      Specify the which f() will be used to submit the form 
+      Specify which f() will be used to submit the form 
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const submitHandler = useToAddComponent
       ? this.addComponentHandler
-      : this.editComponentHandler;
+      : this.editComponentHandler
 
     return [
       <Header>รายการ</Header>,
@@ -182,7 +178,7 @@ class List extends React.Component {
               textCenter
               type="button"
               marginTop="1em"
-              style={{ width: "90%" }}
+              style={{ width: '90%' }}
               onClick={this.addItem}
             >
               + เพิ่มรายการ
@@ -198,7 +194,7 @@ class List extends React.Component {
           </Button>
         </Footer>
       </Form>
-    ];
+    ]
   }
 }
 
@@ -208,6 +204,6 @@ List.propTypes = {
   addNewPostComponent: PropTypes.func,
   editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
-};
+}
 
-export default List;
+export default List

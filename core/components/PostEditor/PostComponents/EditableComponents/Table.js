@@ -1,50 +1,46 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { TABLE } from "../../../../constants/post-content/components";
-import TableWrapper from "../../../PostPage/RenderedComponents/Table";
-import { Button, CircleButton } from "../../../Button";
-import { Header, Body, Footer } from "../../../Card";
+import { TABLE } from '../../../../constants/post-content/components'
+import TableWrapper from '../../../PostPage/RenderedComponents/Table'
+import { Button, CircleButton } from '../../../Button'
+import { Header, Body, Footer } from '../../../Card'
 import {
   Form,
   Input,
   InputLabel,
   InputGroup,
   TextAreaField
-} from "../../../Form";
-import { map } from "async";
+} from '../../../Form'
+import { map } from 'async'
 
 /**
  * @name Table
  * @desc Display a data as a grid
- * @prop hideAddPostComponentModal : f() to close the AddPostComponentModal(close the modal intentionally)
- * @prop useToAddComponent : Specify wether to use this modal to add new component or edit the one existed
- * @prop addNewPostComponent : f() to append a new post component to receipe
- * @prop editPostComponent : f() to edit an existing post component in the receipe
- * @prop order : The component's current order in receipe
- * @prop type : Type of the component to be inserted
+ * @prop { hideAddPostComponentModal } [REDUX] : f() to close the AddPostComponentModal(close the modal intentionally)
+ * @prop { useToAddComponent } [REDUX] : Specify wether to use this modal to add new component or edit the one existed
+ * @prop { addNewPostComponent } [REDUX] : f() to append a new post component to receipe
+ * @prop { editPostComponent } [REDUX] : f() to edit an existing post component in the receipe
+ * @prop { order } [REDUX] : The component's current order in receipe
+ * @prop { type } [REDUX] : Type of the component to be inserted
  */
 class Table extends React.Component {
   state = {
-    description: "",
-    columnToAdd: "",
-    name: "",
+    description: '',
+    columnToAdd: '',
+    name: '',
     head: [],
     body: []
-  };
+  }
 
   /**
    * @name addComponentHandler
    * @desc Append the <Table /> component to the 'receipe'
    */
   addComponentHandler = () => {
-    const { body, name, description, head } = this.state;
+    const { body, name, description, head } = this.state
 
-    const {
-      hideAddPostComponentModal,
-      addNewPostComponent,
-      order
-    } = this.props;
+    const { hideAddPostComponentModal, addNewPostComponent, order } = this.props
 
     if (
       !head.length ||
@@ -52,7 +48,7 @@ class Table extends React.Component {
       !body.length ||
       body.length === 0
     ) {
-      return null;
+      return null
     }
 
     addNewPostComponent({
@@ -63,18 +59,18 @@ class Table extends React.Component {
         head,
         body
       }
-    });
+    })
 
-    hideAddPostComponentModal();
-  };
+    hideAddPostComponentModal()
+  }
 
   /**
    * @name addComponentHandler
    * @desc Edit the specific <Table /> component in the 'receipe'
    */
   editComponentHandler = () => {
-    const { hideEditPostComponentModal, editPostComponent, order } = this.props;
-    const { body, name, description, head } = this.state;
+    const { hideEditPostComponentModal, editPostComponent, order } = this.props
+    const { body, name, description, head } = this.state
 
     if (
       !head.length ||
@@ -82,7 +78,7 @@ class Table extends React.Component {
       !body.length ||
       body.length === 0
     ) {
-      return null;
+      return null
     }
 
     editPostComponent({
@@ -93,10 +89,10 @@ class Table extends React.Component {
         head,
         body
       }
-    });
+    })
 
-    hideEditPostComponentModal();
-  };
+    hideEditPostComponentModal()
+  }
 
   /**
    * @name addRowItem
@@ -106,7 +102,7 @@ class Table extends React.Component {
     const itemsToAdd = this.state.head.map(column => ({
       data: this.state[column],
       column
-    }));
+    }))
 
     this.setState(({ body }) => ({
       body: body.concat([
@@ -115,8 +111,8 @@ class Table extends React.Component {
           items: itemsToAdd
         }
       ])
-    }));
-  };
+    }))
+  }
 
   /**
    * @name removeRowItem
@@ -126,7 +122,7 @@ class Table extends React.Component {
   removeRowItem = rowToRemove =>
     this.setState(({ body }) => ({
       body: body.filter(rowItem => rowItem.id !== rowToRemove)
-    }));
+    }))
 
   /**
    * @name addColumnItem
@@ -135,11 +131,11 @@ class Table extends React.Component {
   addColumnItem = () => {
     this.setState(({ head, columnToAdd }) => ({
       head: head.concat(columnToAdd)
-    }));
+    }))
     this.setState({
-      columnToAdd: ""
-    });
-  };
+      columnToAdd: ''
+    })
+  }
 
   /**
    * @name renderRows
@@ -160,7 +156,7 @@ class Table extends React.Component {
           </CircleButton>
         </td>
       </tr>
-    ));
+    ))
 
   /**
    * @name renderColumns
@@ -185,16 +181,16 @@ class Table extends React.Component {
         </CircleButton>
       </th>
     </tr>
-  );
+  )
 
   /**
    * @name renderNewRowInput
    * @desc f() to render the corresponding number of row inputs to the number of table's columns
    */
   renderNewRowInput = () => {
-    const { head, body } = this.state;
+    const { head, body } = this.state
     if (!head.length || head.length === 0) {
-      return null;
+      return null
     }
     return (
       <tr>
@@ -216,33 +212,33 @@ class Table extends React.Component {
           </CircleButton>
         </td>
       </tr>
-    );
-  };
+    )
+  }
 
   render() {
     const {
       hideAddPostComponentModal,
       hideEditPostComponentModal,
       useToAddComponent
-    } = this.props;
+    } = this.props
 
     /*
-      Specify the which f() will be used to hide this modal
+      Specify which f() will be used to hide this modal
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const hideThisModal = useToAddComponent
       ? hideAddPostComponentModal
-      : hideEditPostComponentModal;
+      : hideEditPostComponentModal
 
     /*
-      Specify the which f() will be used to submit the form 
+      Specify which f() will be used to submit the form 
       depending on wether this modal have been called as
       a modal to add new component or editing the new one
     */
     const submitHandler = useToAddComponent
       ? this.addComponentHandler
-      : this.editComponentHandler;
+      : this.editComponentHandler
 
     return [
       <Header>ตาราง</Header>,
@@ -286,7 +282,7 @@ class Table extends React.Component {
           </Button>
         </Footer>
       </Form>
-    ];
+    ]
   }
 }
 
@@ -296,6 +292,6 @@ Table.propTypes = {
   addNewPostComponent: PropTypes.func,
   editPostComponent: PropTypes.func,
   order: PropTypes.number.isRequired
-};
+}
 
-export default Table;
+export default Table
