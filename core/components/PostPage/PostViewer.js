@@ -12,6 +12,7 @@ import Container from '../Container'
 /**
  * @name PostViewer
  * @desc Display post content, comments in one component
+ * @prop { postID } [NEXT] : Post ID
  * @prop { recipe } [APOLLO] : Post recipe
  * @prop { loading } [APOLLO] : Determining wether GraphQL operation is complete or not
  * @prop { comments } [APOLLO] : Array of post's comments
@@ -25,6 +26,7 @@ const PostViewer = ({
   showPostRMModal,
   comments,
   loading,
+  postID,
   recipe
 }) =>
   !loading ? (
@@ -34,6 +36,7 @@ const PostViewer = ({
       <CommentMessageBox />
       <PostActivityPanel showPostRMModal={showPostRMModal} />
       <PostRemovalConfirmationModal
+        postID={postID}
         isPostRMModalShowing={isPostRMModalShowing}
         hidePostRMModal={hidePostRMModal}
       />
@@ -47,6 +50,7 @@ PostViewer.propTypes = {
   hidePostRMModal: PropTypes.func.isRequired,
   showPostRMModal: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
+  postID: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   recipe: PropTypes.array.isRequired
 }

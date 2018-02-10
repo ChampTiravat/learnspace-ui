@@ -46,6 +46,7 @@ class PostPage extends React.Component {
         </Head>
         <AuthenticatedLayout>
           <PostViewer
+            postID={postID}
             loading={loading}
             hidePostRMModal={hidePostRMModal}
             showPostRMModal={showPostRMModal}
