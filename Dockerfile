@@ -1,13 +1,9 @@
-FROM node:8.9.1-alpine
+FROM node:8.9.4-alpine
 
-WORKDIR /app
-
-RUN apt-get update -y && apt-get upgrade -y
-
+WORKDIR /learnspace-ui
+COPY ./package.json /learnspace-ui
+EXPOSE 3000
+RUN yarn
+COPY . /learnspace-ui
 USER node
-
-COPY ./package.json /app
-
-RUN npm install
-
-CMD yarn dev
+CMD ["yarn", "run", "production"]
