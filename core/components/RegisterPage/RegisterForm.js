@@ -18,6 +18,7 @@ import { Button } from '../Button'
  */
 class RegisterForm extends React.Component {
   submitHandler = async ({
+    username,
     fname,
     lname,
     email,
@@ -32,6 +33,7 @@ class RegisterForm extends React.Component {
     try {
       const result = await this.props.mutate({
         variables: {
+          username,
           fname,
           lname,
           email,
@@ -63,6 +65,12 @@ class RegisterForm extends React.Component {
               label="อีเมลล์"
               component={InputField}
               type="email"
+            />
+            <Field
+              name="username"
+              label="ชื่อผู้ใช้ในระบบ(username)"
+              component={InputField}
+              type="text"
             />
             <Field
               name="fname"
@@ -116,12 +124,19 @@ RegisterForm.propTypes = {
 
 const USER_REGISTRATION_MUTATION = gql`
   mutation register(
+    $username: String!
     $fname: String!
     $lname: String
     $email: String!
     $password: String!
   ) {
-    register(fname: $fname, lname: $lname, email: $email, password: $password) {
+    register(
+      username: $username
+      fname: $fname
+      lname: $lname
+      email: $email
+      password: $password
+    ) {
       success
       err {
         message
