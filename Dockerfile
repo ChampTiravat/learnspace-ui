@@ -1,9 +1,8 @@
-FROM node:8.9.4-alpine
+FROM node:8.10.0
 
 WORKDIR /learnspace-ui
 COPY ./package.json /learnspace-ui
-EXPOSE 3000
 RUN yarn
 COPY . /learnspace-ui
-USER node
+EXPOSE 3000
 CMD ["yarn", "run", "production"]
