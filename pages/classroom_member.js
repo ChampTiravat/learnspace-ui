@@ -37,9 +37,6 @@ class ClassroomMemberPage extends React.Component {
             classroomName={classroomName}
           />
           <Container marginTop="10em">
-            <Card padding="2em" marginTop="1em" fluidWidth textCenter>
-              <Button primary>เพิ่มสมาชิกใหม่</Button>
-            </Card>
             <ClassroomMemberPanel />
             <ClassroomActivityPanel />
           </Container>
