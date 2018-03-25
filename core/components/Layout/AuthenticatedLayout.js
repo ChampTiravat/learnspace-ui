@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import { showNotificationModal } from '../../actions/notification-modal-actions'
 import { showChatroomModal } from '../../actions/chatroom-modal-actions'
 import UnAuthenticatedNav from '../NavigationBar/UnAuthenticatedNav'
+import ClassroomInvitationModal from '../ClassroomInvitationModal'
 import AuthenticatedNav from '../NavigationBar/AuthenticatedNav'
 import ChatroomModal from '../ChatroomModal/ChatroomModal'
 import { validateToken } from '../../helpers/security'
@@ -56,6 +57,7 @@ const AuthenticatedLayout = ({
         />
         <NotificationModal />
         <LoadingScreenModal isLoading={isMutating} />
+        <ClassroomInvitationModal />
         <ChatroomModal />
         <ErrorAlert show={errorAlert.show}>{errorAlert.message}</ErrorAlert>
         {children}

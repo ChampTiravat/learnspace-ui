@@ -37,9 +37,17 @@ const ClassroomActivityPanel = ({
       </Link>
     ) : null}
 
-    <Link href={EDIT_CLASSROOM_PAGE} prefetch>
-      <a>แก้ไขข้อมูลห้องเรียน</a>
-    </Link>
+    {classroomCreatorID === currentUserID ? (
+      // hide this if current user is not classroom's admin
+      <Link href={EDIT_CLASSROOM_PAGE} prefetch>
+        <a>แก้ไขข้อมูลห้องเรียน</a>
+      </Link>
+    ) : null}
+
+    {classroomCreatorID === currentUserID ? (
+      // hide this if current user is not classroom's admin
+      <a onClick={() => alert('Hello')}>เพิ่มสมาชิกใหม่</a>
+    ) : null}
 
     <Link href={CLASSROOM_MEMBER_PAGE} prefetch>
       <a>สมาชิก</a>
