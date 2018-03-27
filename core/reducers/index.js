@@ -1,5 +1,6 @@
 import { reducer as formReducer } from 'redux-form'
 
+import isClassroomInvitationModalShowing from './is-classroom-invitation-modal-showing'
 import isEditPostComponentModalShowing from './is-edit-post-component-modal-showing'
 import isPostComponentsSelectorModalShowing from './post-components-selector-modal'
 import isAddPostComponentModalShowing from './is-add-post-component-modal-showing'
@@ -16,6 +17,7 @@ import user from './user'
 // Attach other reducers into the object below
 export default {
   isPostComponentsSelectorModalShowing,
+  isClassroomInvitationModalShowing,
   isEditPostComponentModalShowing,
   isAddPostComponentModalShowing,
   postRemovalConfirmationModal,

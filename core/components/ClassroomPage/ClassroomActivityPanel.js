@@ -16,8 +16,10 @@ import {
  * @prop { classroomID } [REDUX] : Classroom ID
  * @prop { currentUserID } [REDUX] : Current logged-in user
  * @prop { classroomCreatorID } [REDUX] : Creator of the classroom
+ * @prop { showClassroomInvitationModal } [REDUX] : f() to display Classroom Invitation Modal
  */
 const ClassroomActivityPanel = ({
+  showClassroomInvitationModal,
   classroomCreatorID,
   currentUserID,
   classroomID
@@ -46,7 +48,7 @@ const ClassroomActivityPanel = ({
 
     {classroomCreatorID === currentUserID ? (
       // hide this if current user is not classroom's admin
-      <a onClick={() => alert('Hello')}>เพิ่มสมาชิกใหม่</a>
+      <a onClick={() => showClassroomInvitationModal()}>เพิ่มสมาชิกใหม่</a>
     ) : null}
 
     <Link href={CLASSROOM_MEMBER_PAGE} prefetch>

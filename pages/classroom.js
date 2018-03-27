@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { graphql, compose } from 'react-apollo'
 
+import { showClassroomInvitationModal } from '../core/actions/classroom-actions'
+
 import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomActivityPanel'
 import ClassroomHeaderPanel from '../core/components/ClassroomPage/ClassroomHeaderPanel'
 import ClassroomInfoPanel from '../core/components/ClassroomPage/ClassroomInfoPanel'
@@ -15,6 +17,7 @@ import Container from '../core/components/Container'
 import PostsList from '../core/components/PostsList'
 import Panel from '../core/components/Panel'
 import Card from '../core/components/Card'
+
 import withData from '../core/withData'
 
 class ClassroomPage extends React.Component {
@@ -50,8 +53,11 @@ class ClassroomPage extends React.Component {
           </Panel>,
           <ClassroomActivityPanel
             classroomID={classroom._id}
-            classroomCreatorID={classroom.creator._id}
             currentUserID={this.props.activeUser._id}
+            classroomCreatorID={classroom.creator._id}
+            showClassroomInvitationModal={
+              this.props.showClassroomInvitationModal
+            }
           />
         ]
 
@@ -119,6 +125,7 @@ class ClassroomPage extends React.Component {
 }
 
 ClassroomPage.propTypes = {
+  showClassroomInvitationModal: PropTypes.func.isRequired,
   activeUser: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
 }
@@ -155,9 +162,13 @@ const mapStateToProps = state => ({
   activeUser: state.user
 })
 
+const mapDispatchToProps = dispatch => ({
+  showClassroomInvitationModal: () => dispatch(showClassroomInvitationModal())
+})
+
 export default compose(
   withData,
-  connect(mapStateToProps, null),
+  connect(mapStateToProps, mapDispatchToProps),
   graphql(CLASSROOM_PROFILE_QUERY, {
     options: ({ id }) => ({ variables: { _id: id } })
   })

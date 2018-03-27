@@ -7,8 +7,16 @@ import { ModalBackground, ModalPanel } from './Modal'
 import Card, { Header, Body, Footer } from './Card'
 import { Button } from './Button'
 
-const ClassroomInvitationModal = () => (
-  <ModalBackground show={true}>
+/**
+ * @name ClassroomInvitationModal
+ * @desc Modal used to invite new member to a classroom
+ *
+ */
+const ClassroomInvitationModal = ({
+  isShowing,
+  hideClassroomInvitationModal
+}) => (
+  <ModalBackground show={isShowing}>
     <ModalPanel large>
       <Header>เพิ่มสมาชิกใหม่</Header>
       <Body>
@@ -28,7 +36,9 @@ const ClassroomInvitationModal = () => (
       </Body>
       <Footer>
         <Button primary>ส่งคำเชิญ</Button>
-        <Button light>ปิด</Button>
+        <Button light onClick={hideClassroomInvitationModal}>
+          ปิด
+        </Button>
       </Footer>
     </ModalPanel>
   </ModalBackground>
