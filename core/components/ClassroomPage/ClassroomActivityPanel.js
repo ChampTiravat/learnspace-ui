@@ -15,6 +15,16 @@ import {
 } from '../../constants/endpoints/ui'
 
 /**
+ * @name AdminOnly
+ * @desc Render 'children' if the current user is an admin of a particular classroom.
+ *       Otherwise, return NULL
+ * @prop { classroomCreatorID } : User ID of the classroom creator(Admin)
+ * @prop { currentUserID } : ID of the current user
+ */
+const AdminOnly = ({ classroomCreatorID, currentUserID, children }) =>
+  classroomCreatorID === currentUserID ? children : null
+
+/**
  * @name ClassroomActivityPanel
  * @desc Showing a navigation menu associated to classroom page
  * @prop { classroomID } [REDUX] : Classroom ID
@@ -33,38 +43,34 @@ const ClassroomActivityPanel = ({
       <a>ห้องแชท</a>
     </Link>
 
-    {classroomCreatorID === currentUserID ? (
-      // hide this if current user is not classroom's admin
+    <AdminOnly>
       <Link
         href={{ pathname: CREATE_POST_PAGE, query: { classroomID } }}
         prefetch
       >
         <a>สร้างโพสใหม่</a>
       </Link>
-    ) : null}
+    </AdminOnly>
 
-    {classroomCreatorID === currentUserID ? (
-      // hide this if current user is not classroom's admin
+    <AdminOnly>
       <Link href={EDIT_CLASSROOM_PAGE} prefetch>
         <a>แก้ไขข้อมูลห้องเรียน</a>
       </Link>
-    ) : null}
+    </AdminOnly>
 
-    {classroomCreatorID === currentUserID ? (
-      // hide this if current user is not classroom's admin
+    <AdminOnly>
       <a onClick={() => showClassroomInvitationModal()}>เพิ่มสมาชิกใหม่</a>
-    ) : null}
+    </AdminOnly>
 
     <Link href={CLASSROOM_MEMBER_PAGE} prefetch>
       <a>สมาชิก</a>
     </Link>
 
-    {classroomCreatorID === currentUserID ? (
-      // hide this if current user is not classroom's admin
+    <AdminOnly>
       <Link href={CLASSROOM_JOIN_REQUEST_PAGE} prefetch>
         <a>คำขอเข้าร่วม</a>
       </Link>
-    ) : null}
+    </AdminOnly>
   </ActivityPanel>
 )
 
