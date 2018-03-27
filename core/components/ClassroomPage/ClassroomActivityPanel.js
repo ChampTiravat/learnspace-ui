@@ -1,5 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+import { showClassroomInvitationModal } from '../../actions/classroom-actions'
 
 import ActivityPanel from '../ActivityPanel'
 import {
@@ -64,4 +68,15 @@ const ClassroomActivityPanel = ({
   </ActivityPanel>
 )
 
-export default ClassroomActivityPanel
+ClassroomActivityPanel.propTypes = {
+  showClassroomInvitationModal: PropTypes.func.isRequired,
+  classroomCreatorID: PropTypes.string.isRequired,
+  currentUserID: PropTypes.string.isRequired,
+  classroomID: PropTypes.string.isRequired
+}
+
+const mapDispatchToProps = dispatch => ({
+  showClassroomInvitationModal: () => dispatch(showClassroomInvitationModal())
+})
+
+export default connect(null, mapDispatchToProps)(ClassroomActivityPanel)
