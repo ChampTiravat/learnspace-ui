@@ -4,11 +4,9 @@ import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
 
 import { showNotificationModal } from '../../actions/notification-modal-actions'
-import { hideClassroomInvitationModal } from '../../actions/classroom-actions'
 import { showChatroomModal } from '../../actions/chatroom-modal-actions'
 
 import UnAuthenticatedNav from '../NavigationBar/UnAuthenticatedNav'
-import ClassroomInvitationModal from '../ClassroomInvitationModal'
 import AuthenticatedNav from '../NavigationBar/AuthenticatedNav'
 import ChatroomModal from '../ChatroomModal/ChatroomModal'
 import { validateToken } from '../../helpers/security'
@@ -27,8 +25,6 @@ import Card from '../Card'
  * @prop { errorAlert } [REDUX] : Object containing error alert component data
  * @prop { showChatroomModal } [REDUX] : Display a ChatroomModal
  * @prop { showNotificationModal } [REDUX] : Display a NotificationModal
- * @prop { isClassroomInvitationModalShowing } [REDUX] : State of classroom Invitation modal
- * @prop { hideClassroomInvitationModal } [REDUX] : f() to hide Classroom Invitation modal
  */
 const AuthenticatedLayout = ({
   children,
@@ -36,9 +32,7 @@ const AuthenticatedLayout = ({
   activeUser,
   errorAlert,
   showChatroomModal,
-  showNotificationModal,
-  hideClassroomInvitationModal,
-  isClassroomInvitationModalShowing
+  showNotificationModal
 }) => (
   <ThemeProvider theme={defaultTheme}>
     {!validateToken() ? (
@@ -63,10 +57,6 @@ const AuthenticatedLayout = ({
         />
         <NotificationModal />
         <LoadingScreenModal isLoading={isMutating} />
-        <ClassroomInvitationModal
-          isShowing={isClassroomInvitationModalShowing}
-          hideClassroomInvitationModal={hideClassroomInvitationModal}
-        />
         <ChatroomModal />
         <ErrorAlert show={errorAlert.show}>{errorAlert.message}</ErrorAlert>
         {children}
@@ -76,8 +66,6 @@ const AuthenticatedLayout = ({
 )
 
 AuthenticatedLayout.propTypes = {
-  isClassroomInvitationModalShowing: PropTypes.bool.isRequired,
-  hideClassroomInvitationModal: PropTypes.func.isRequired,
   showNotificationModal: PropTypes.func.isRequired,
   showChatroomModal: PropTypes.func.isRequired,
   activeUser: PropTypes.object.isRequired,
@@ -86,14 +74,12 @@ AuthenticatedLayout.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isClassroomInvitationModalShowing: state.isClassroomInvitationModalShowing,
   isMutating: state.mutationStatus,
   errorAlert: state.errorAlert,
   activeUser: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
-  hideClassroomInvitationModal: () => dispatch(hideClassroomInvitationModal()),
   showNotificationModal: () => dispatch(showNotificationModal()),
   showChatroomModal: () => dispatch(showChatroomModal())
 })

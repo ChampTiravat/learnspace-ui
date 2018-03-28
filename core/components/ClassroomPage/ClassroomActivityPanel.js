@@ -1,9 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { showClassroomInvitationModal } from '../../actions/classroom-actions'
 
 import ActivityPanel from '../ActivityPanel'
 import {
@@ -30,7 +27,6 @@ const AdminOnly = ({ classroomCreatorID, currentUserID, children }) =>
  * @prop { classroomID } [REDUX] : Classroom ID
  * @prop { currentUserID } [REDUX] : Current logged-in user
  * @prop { classroomCreatorID } [REDUX] : Creator of the classroom
- * @prop { showClassroomInvitationModal } [REDUX] : f() to display Classroom Invitation Modal
  */
 const ClassroomActivityPanel = ({
   showClassroomInvitationModal,
@@ -58,11 +54,9 @@ const ClassroomActivityPanel = ({
       </Link>
     </AdminOnly>
 
-    <AdminOnly>
-      <a onClick={() => showClassroomInvitationModal()}>เพิ่มสมาชิกใหม่</a>
-    </AdminOnly>
-
-    <Link href={CLASSROOM_MEMBER_PAGE} prefetch>
+    <Link
+      href={{ pathname: CLASSROOM_MEMBER_PAGE, query: { id: classroomID } }}
+    >
       <a>สมาชิก</a>
     </Link>
 
@@ -75,14 +69,9 @@ const ClassroomActivityPanel = ({
 )
 
 ClassroomActivityPanel.propTypes = {
-  showClassroomInvitationModal: PropTypes.func.isRequired,
   classroomCreatorID: PropTypes.string.isRequired,
   currentUserID: PropTypes.string.isRequired,
   classroomID: PropTypes.string.isRequired
 }
 
-const mapDispatchToProps = dispatch => ({
-  showClassroomInvitationModal: () => dispatch(showClassroomInvitationModal())
-})
-
-export default connect(null, mapDispatchToProps)(ClassroomActivityPanel)
+export default ClassroomActivityPanel

@@ -15,25 +15,27 @@ import { Button } from './Button'
  * @prop { isShowing } [REDUX] : State of the modal(TRUE if showing, FALSE otherwise)
  * @prop { hideClassroomInvitationModal } [REDUX] : f() to hide this modal
  * @prop { handleSubmit } [REDUX] : redux-form's form submition handler function
+ * @prop { classroomID } [NEXT] : ID of the visiting classroom
  * @prop { mutate } [APOLLO] : f() to perform GraphQL mutation
  */
 class ClassroomInvitationModal extends React.Component {
-  submitHandler = async ({ candidate_identifier }) => {
+  submitHandler = async ({ candidateIdent }) => {
     try {
-      const result = await this.props.mutate({
+      const { classroomID, mutate } = this.props
+
+      const result = await mutate({
         variables: {
-          candidateIdent: candidate_identifier,
-          classroomID: '' // Will be replaced by a real value, soon
+          candidateIdent,
+          classroomID
         }
       })
 
       const { success } = result.data.inviteUser
 
       if (success) {
-        // Router.push(LOGIN_PAGE)
-        alert('failed')
+        alert('Done')
       } else {
-        alert('failed')
+        alert('Failed')
       }
     } catch (err) {
       // Do something with this later
@@ -58,9 +60,9 @@ class ClassroomInvitationModal extends React.Component {
               <InputGroup>
                 <Field
                   type="text"
+                  name="candidateIdent"
                   component={InputField}
-                  name="candidate_identifier"
-                  label="อีเมลล์ หรือ username ของผู้ใช้งานที่ท่านต้องการส่งคำเชิญเข้าห้องเรียนนี้"
+                  label="อีเมลล์ หรือ username ของผู้ใช้งานที่ท่านต้องการเชิญเข้าห้องเรียนนี้"
                 />
               </InputGroup>
               <input
@@ -69,9 +71,6 @@ class ClassroomInvitationModal extends React.Component {
                 ref="ClassroomInvitationSubmitButton"
               />
             </form>
-            <Card fluidWidth padding="3em" marginTop="2em" marginBottom="2em">
-              {/*  */}
-            </Card>
           </Body>
           <Footer>
             <Button primary onClick={this.submitClassroomInvitationForm}>
@@ -89,6 +88,7 @@ class ClassroomInvitationModal extends React.Component {
 
 ClassroomInvitationModal.propTypes = {
   hideClassroomInvitationModal: PropTypes.func.isRequired,
+  classroomID: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isShowing: PropTypes.bool.isRequired,
   mutate: PropTypes.func.isRequired
