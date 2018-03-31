@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
+import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomActivityPanel'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
 import PostEditor from '../core/components/PostEditor/PostEditor'
 import Container from '../core/components/Container'
@@ -21,6 +22,7 @@ class CreatePostPage extends React.Component {
         <Container transparent>
           <PostEditor classroomID={classroomID} />
         </Container>
+	<ClassroomActivityPanel />
       </AuthenticatedLayout>
     ]
   }
