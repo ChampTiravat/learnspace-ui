@@ -129,7 +129,7 @@ class PostContentEditor extends React.Component {
               <CircleButton
                 light
                 right="3em"
-                bottom="15em"
+                bottom="17em"
                 type="button"
                 position="fixed"
                 padding="1.3em 1em"
@@ -142,7 +142,7 @@ class PostContentEditor extends React.Component {
                 padding="1.3em 1em"
                 position="fixed"
                 type="button"
-                bottom="9em"
+                bottom="11em"
                 right="3em"
                 onClick={showPostPreviewModal}
               >
@@ -151,7 +151,7 @@ class PostContentEditor extends React.Component {
               <CircleButton
                 primary
                 right="3em"
-                bottom="3em"
+                bottom="5em"
                 type="submit"
                 position="fixed"
                 padding="1.3em 1em"
