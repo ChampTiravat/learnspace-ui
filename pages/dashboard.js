@@ -30,7 +30,7 @@ class DashboardPage extends React.Component {
           </Panel>
           <Panel right width="60">
             <DashboardPageHeadingPanel />
-            <ClassroomsList _id={activeUser._id} height="500px" />
+            <ClassroomsList _id={activeUser._id} height="600px" />
           </Panel>
         </Container>
       </AuthenticatedLayout>
