@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import Card, { Header, Body } from "./Card";
+import Card, { Header, Body } from './Card'
 
 const NotificationPanelCard = Card.extend`
+  margin: 0;
   height: 700px;
   padding-bottom: 2em;
-`;
+`
 
 const NotificationOriginPic = styled.img`
   display: inline-block;
@@ -17,7 +18,7 @@ const NotificationOriginPic = styled.img`
   border-radius: 50%;
   background-color: #ccc;
   margin-right: 1.5em;
-`;
+`
 
 const NotificationInfo = styled.div`
   h4 {
@@ -30,12 +31,12 @@ const NotificationInfo = styled.div`
     margin: 0;
     color: #777;
   }
-`;
+`
 
 const NotificationCard = Card.extend`
   box-shadow: none;
   padding: 1em 1em 1.8em 1em;
-`;
+`
 
 export const NotificationItem = ({ origin, content }) => (
   <NotificationCard>
@@ -45,9 +46,9 @@ export const NotificationItem = ({ origin, content }) => (
       <p>{content}</p>
     </NotificationInfo>
   </NotificationCard>
-);
+)
 
-const NotificationPanel = () => (
+export default () => (
   <NotificationPanelCard>
     <Header>การแจ้งเตือน</Header>
     <Body overflowY="scroll" height="600px">
@@ -78,6 +79,4 @@ const NotificationPanel = () => (
       />
     </Body>
   </NotificationPanelCard>
-);
-
-export default NotificationPanel;
+)

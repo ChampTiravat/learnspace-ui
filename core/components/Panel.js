@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 /**
  * @name Panel
@@ -14,15 +14,15 @@ import styled from "styled-components";
  * @prop right
  */
 const Panel = styled.div`
-  display: inline-block;
+  display: block;
   width: ${p => p.width}%;
-  height: ${p => p.height || "100%"};
-  padding: ${p => p.padding || "0"};
-  padding-top: ${p => p.paddingTop || "0"};
-  padding-bottom: ${p => p.paddingBottom || "0"};
-  padding-left: ${p => p.paddingLeft || "0"};
-  padding-right: ${p => p.paddingRight || "0"};
-  float: ${p => (p.left ? "left" : p.right ? "right" : "clear")};
-`;
+  height: ${p => p.height || '100%'};
+  padding: ${p => p.padding || '0'};
+  padding-top: ${p => p.paddingTop || '0'};
+  padding-bottom: ${p => p.paddingBottom || '0'};
+  padding-left: ${p => p.paddingLeft || '0'};
+  padding-right: ${p => p.paddingRight || '0'};
+  float: ${p => (p.left ? 'left' : p.right ? 'right' : 'clear')};
+`
 
-export default Panel;
+export default Panel

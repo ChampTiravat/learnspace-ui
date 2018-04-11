@@ -9,6 +9,7 @@ import NotificationPanel from '../core/components/NotificationPanel'
 import ClassroomsList from '../core/components/ClassroomsList'
 import Container from '../core/components/Container'
 import Panel from '../core/components/Panel'
+import Card from '../core/components/Card'
 import withData from '../core/withData'
 
 /**
@@ -25,13 +26,35 @@ class DashboardPage extends React.Component {
       </Head>,
       <AuthenticatedLayout>
         <Container>
-          <Panel left width="40">
-            <NotificationPanel />
-          </Panel>
-          <Panel right width="60">
-            <DashboardPageHeadingPanel />
-            <ClassroomsList _id={activeUser._id} height="600px" />
-          </Panel>
+          <div
+            style={{
+              height: '400px',
+              paddingTop: '8em',
+              marginBottom: '30px',
+              backgroundColor: '#dfdfdf'
+            }}
+          >
+            <Card padding="2em" textCenter>
+              <h3>Student Analysis is comming</h3>
+            </Card>
+          </div>
+
+          <div
+            style={{
+              paddingTop: '0px',
+              paddingBottom: '60px',
+              marginBottom: '700px',
+              backgroundColor: 'transparent'
+            }}
+          >
+            <Panel left width="40">
+              <NotificationPanel />
+            </Panel>
+            <Panel right width="60">
+              <DashboardPageHeadingPanel />
+              <ClassroomsList _id={activeUser._id} height="600px" />
+            </Panel>
+          </div>
         </Container>
       </AuthenticatedLayout>
     ]
