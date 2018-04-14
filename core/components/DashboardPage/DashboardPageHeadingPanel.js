@@ -6,8 +6,9 @@ import Card from '../Card'
 const DashboardPageHeading = styled.div`
   width: 550px;
   margin: 0.8em;
+  padding: 0.4em;
+  font-size: 1em;
   font-weight: 400;
-  font-size: 1.6em;
   text-align: center;
   display: inline-block;
   color: ${p => p.theme.PRIMARY_COLOR};
