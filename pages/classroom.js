@@ -61,17 +61,14 @@ class ClassroomPage extends React.Component {
       <ClassroomPreview
         classroomID={classroom._id}
         subject={classroom.subject}
-        instructor={classroom.creator.fname}
         description={classroom.description}
+        instructor={`${classroom.creator.fname} ${classroom.creator.lname || ''}`}
       />
     )
 
   renderClassroomHeaderPanel = classroom =>
     !classroom ? null : (
-      <ClassroomHeaderPanel
-        classroomID={classroom._id}
-        classroomName={classroom.name}
-      />
+      <ClassroomHeaderPanel classroomID={classroom._id} classroomName={classroom.name} />
     )
 
   /**
@@ -85,16 +82,14 @@ class ClassroomPage extends React.Component {
   render() {
     const { loading, classroomProfile } = this.props.data
 
-    const classroom =
-      !loading && classroomProfile ? classroomProfile.classroom : null
+    const classroom = !loading && classroomProfile ? classroomProfile.classroom : null
 
-    const isMember = true
+    const isMember = 0
 
     return [
       <Head>
         <title>
-          {loading ? 'loading ...' : this.renderTitleText(classroom)} |
-          LEARNSPACE
+          {loading ? 'loading ...' : this.renderTitleText(classroom)} | LEARNSPACE
         </title>
       </Head>,
       <AuthenticatedLayout>
@@ -136,6 +131,8 @@ const CLASSROOM_PROFILE_QUERY = gql`
         thumbnail
         creator {
           _id
+          fname
+          lname
         }
         outline {
           title
