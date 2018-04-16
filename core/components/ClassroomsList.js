@@ -62,7 +62,7 @@ const ClassroomsListWrapper = styled.div`
  * @prop { description } : Classroom description
  * @prop { thumbnail } : Classroom thumbnail
  */
-const ClassroomListItem = ({ _id, name, description, thumbnail }) => (
+export const ClassroomListItem = ({ _id, name, description, thumbnail }) => (
   <Link href={{ pathname: CLASSROOM_PAGE, query: { id: _id } }} prefetch>
     <ClassroomListItemWrapper>
       <ClassroomListItemCard>
@@ -93,7 +93,10 @@ class ClassroomsList extends React.Component {
   }
 
   render() {
-    const { data: { loading, userClassrooms }, height } = this.props
+    const {
+      data: { loading, userClassrooms },
+      height
+    } = this.props
 
     const classrooms =
       !loading && userClassrooms ? userClassrooms.classrooms : null
