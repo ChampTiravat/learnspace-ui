@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
+import { ClassroomListItem } from '../ClassroomsList'
 import Card, { Header, Body, Footer } from '../Card'
 import LoadingIcon from '../LoadingIcon'
 import { Button } from '../Button'
@@ -27,8 +28,13 @@ const NotificationOriginPicture = styled.img`
 `
 
 class ClassroomInvitationsPanel extends React.Component {
-  houldComponentUpdate(nextProps) {
+  componentWillMount(nextProps) {
     return this.props !== nextProps
+  }
+
+  componentDidMount() {
+    const { data } = this.props
+    process.browser && data.refetch & data.refetch()
   }
 
   render() {
@@ -44,8 +50,20 @@ class ClassroomInvitationsPanel extends React.Component {
         <Body overflowY="auto" height="520px">
           {loading ? (
             <LoadingIcon />
+          ) : !invitations.length || invitations.length < 1 ? (
+            <Card padding="2em 4em" marginTop="3em" textCenter>
+              <h3>คุณยังไม่ได้รับคำเชิญเข้าร่วมห้องเรียนใดๆ</h3>
+            </Card>
           ) : (
-            invitations.map(invitation => <h4>{invitation.classroomName}</h4>)
+            invitations.map(invitation => (
+              <ClassroomListItem
+                _id={invitation.classroomId}
+                key={invitation.classroomId}
+                name={invitation.classroomName}
+                thumbnail={''}
+                description={''}
+              />
+            ))
           )}
         </Body>
         <Footer>
