@@ -51,7 +51,7 @@ export const NotificationItem = ({ origin, content }) => (
 export default () => (
   <NotificationPanelCard>
     <Header>การแจ้งเตือน</Header>
-    <Body overflowY="scroll" height="600px">
+    <Body overflowY="auto" height="600px">
       <NotificationItem
         origin="Introduction to Computer Science"
         content="ไสดมวไำดยสเนาฟบไำานดำฟสาดร่เพเาๆขนายำสกยบากนฟกานฟหากจๆไำาดชๆสยไำนด่ำไจาเ"

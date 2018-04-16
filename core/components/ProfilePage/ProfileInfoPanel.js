@@ -35,17 +35,19 @@ const ProfileInfoContainer = styled.div`
 
 const ProfileInfoPanelCard = Card.extend`
   margin: 1.5em auto 0 auto;
-  height: 650px;
   max-width: 480px;
+  padding-top: 4em;
+  height: 650px;
 `
 
 const ProfileImage = styled.img`
+  border-radius: 50%;
+  margin: 0 auto;
   display: block;
-  width: 100%;
   height: 250px;
-  background: ${p => (p.src ? `url(${p.src})` : '#cbcbcb')};
+  width: 250px;
+  border: none;
 `
-
 /**
  * @name ProfileInfoPanel
  * @desc Display individial user specific information

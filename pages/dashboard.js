@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import DashboardPageHeadingPanel from '../core/components/DashboardPage/DashboardPageHeadingPanel'
+import ClassroomInvitationsPanel from '../core/components/DashboardPage/ClassroomInvitationsPanel'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
 import NotificationPanel from '../core/components/NotificationPanel'
 import ClassroomsList from '../core/components/ClassroomsList'
@@ -42,7 +43,7 @@ class DashboardPage extends React.Component {
           <div
             style={{
               paddingTop: '0px',
-              paddingBottom: '60px',
+              paddingBottom: '30px',
               marginBottom: '700px',
               backgroundColor: 'transparent'
             }}
@@ -54,6 +55,15 @@ class DashboardPage extends React.Component {
               <DashboardPageHeadingPanel />
               <ClassroomsList _id={activeUser._id} height="600px" />
             </Panel>
+          </div>
+          <div
+            style={{
+              paddingTop: '0px',
+              paddingBottom: '60px',
+              backgroundColor: 'transparent'
+            }}
+          >
+            <ClassroomInvitationsPanel userID={activeUser._id} />
           </div>
         </Container>
       </AuthenticatedLayout>
