@@ -61,10 +61,10 @@ class ClassroomInvitationsPanel extends React.Component {
             // Received some classroom invitaitons, then render them
             invitations.map(invitation => (
               <ClassroomInvitationItem
-                _id={invitation.classroomId}
-                key={invitation.classroomId}
+                _id={invitation.classroomID}
+                key={invitation.classroomID}
                 name={invitation.classroomName}
-                thumbnail={''}
+                thumbnail={invitation.thumbnail}
               />
             ))
           )}
@@ -89,7 +89,8 @@ const USER_CLASSROOM_INVITATIONS_QUERY = gql`
     userClassroomInvitations(_id: $_id) {
       invitations {
         classroomName
-        classroomId
+        classroomID
+        thumbnail
         issueDate
       }
       err {
