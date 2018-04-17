@@ -8,15 +8,18 @@ import Card from '../Card'
 
 const ClassroomInfoPanelCard = Card.extend`
   margin: 1.5em auto 0 auto;
+  padding-top: 2.5em;
   max-width: 480px;
   height: 650px;
 `
 
 const ClassroomThumbnailImage = styled.img`
-  background-color: #cbcbcb;
+  border-radius: 50%;
+  border: none;
+  margin: 0 auto;
   display: block;
   height: 250px;
-  width: 100%;
+  width: 250px;
 `
 
 const ClassroomCourseInfoContainer = styled.div`
@@ -26,6 +29,7 @@ const ClassroomCourseInfoContainer = styled.div`
 
 const ClassroomCourseInfoHeading = styled.h2`
   color: ${p => p.theme.PRIMARY_COLOR};
+  text-align: center;
   font-weight: 400;
 `
 
@@ -56,15 +60,11 @@ const ClassroomInfoPanelWrapper = ({ children, thumbnail }) => (
 const ClassroomInfoPanel = ({ courseOutline, thumbnail }) => (
   <ClassroomInfoPanelWrapper thumbnail={thumbnail}>
     <ClassroomCourseInfoContainer>
-      <ClassroomCourseInfoHeading>
-        # รายละเอียดหลักสูตร
-      </ClassroomCourseInfoHeading>
+      <ClassroomCourseInfoHeading>รายละเอียดหลักสูตร</ClassroomCourseInfoHeading>
       <ul>
         {courseOutline.map((event, i) => (
           <CourseOutlineItem key={i} passed={event.passed}>
-            {event.title.length > 39
-              ? `${event.title.substr(0, 36)}...`
-              : event.title}
+            {event.title.length > 39 ? `${event.title.substr(0, 36)}...` : event.title}
           </CourseOutlineItem>
         ))}
       </ul>
