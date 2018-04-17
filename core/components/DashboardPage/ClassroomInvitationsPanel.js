@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 
-import { ClassroomListItem } from '../ClassroomsList'
+import ClassroomInvitationItem from './ClassroomInvitationItem'
 import Card, { Header, Body, Footer } from '../Card'
 import LoadingIcon from '../LoadingIcon'
 import { Button } from '../Button'
@@ -18,7 +18,6 @@ const ClassroomInvitationPanelCard = Card.extend`
 
 const NotificationOriginPicture = styled.img`
   display: inline-block;
-  float: left;
   width: 60px;
   height: 60px;
   border: none;
@@ -40,28 +39,32 @@ class ClassroomInvitationsPanel extends React.Component {
   render() {
     const { loading, userClassroomInvitations } = this.props.data
     const invitations =
-      !loading && userClassroomInvitations
-        ? userClassroomInvitations.invitations
-        : null
+      !loading && userClassroomInvitations ? userClassroomInvitations.invitations : null
 
     return (
       <ClassroomInvitationPanelCard>
         <Header>คำเชิญเข้าร่วมห้องเรียน</Header>
-        <Body overflowY="auto" height="520px">
+        <Body
+          overflowY="auto"
+          height="520px"
+          style={{ textAlign: 'center', background: '#efefef' }}
+        >
           {loading ? (
+            // Loading
             <LoadingIcon />
           ) : !invitations.length || invitations.length < 1 ? (
-            <Card padding="2em 4em" marginTop="3em" textCenter>
+            // Does not received any classroom invitations
+            <Card padding="2em 4em" marginTop="10em" textCenter>
               <h3>คุณยังไม่ได้รับคำเชิญเข้าร่วมห้องเรียนใดๆ</h3>
             </Card>
           ) : (
+            // Received some classroom invitaitons, then render them
             invitations.map(invitation => (
-              <ClassroomListItem
+              <ClassroomInvitationItem
                 _id={invitation.classroomId}
                 key={invitation.classroomId}
                 name={invitation.classroomName}
                 thumbnail={''}
-                description={''}
               />
             ))
           )}
