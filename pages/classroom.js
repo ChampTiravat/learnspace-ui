@@ -81,10 +81,7 @@ class ClassroomPage extends React.Component {
 
   render() {
     const { loading, classroomProfile } = this.props.data
-
     const classroom = !loading && classroomProfile ? classroomProfile.classroom : null
-
-    const isMember = 0
 
     return [
       <Head>
@@ -103,7 +100,7 @@ class ClassroomPage extends React.Component {
           [
             this.renderClassroomHeaderPanel(classroom),
             <Container marginTop="10em">
-              {isMember
+              {classroomProfile.isMember
                 ? this.renderClassroomProfile(classroom)
                 : this.renderClassroomPreview(classroom)}
             </Container>
@@ -123,6 +120,7 @@ ClassroomPage.propTypes = {
 const CLASSROOM_PROFILE_QUERY = gql`
   query classroomProfile($_id: String!) {
     classroomProfile(_id: $_id) {
+      isMember
       classroom {
         _id
         name
