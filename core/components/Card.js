@@ -17,8 +17,7 @@ import PropTypes from 'prop-types'
 const Card = styled.div`
   width: 100%;
   max-width: ${p =>
-    (p.large && '700px') ||
-    (p.small ? '400px' : p.fluidWidth ? '100%' : '500px')};
+    (p.large && '700px') || (p.small ? '400px' : p.fluidWidth ? '100%' : '500px')};
   height: ${p => p.height || 'auto'};
   background-color: #fff;
   margin-top: ${p => p.marginTop || '0'};
@@ -70,7 +69,7 @@ export const Body = styled.div`
   text-align: left;
   font-size: 1em;
   font-weight: 300;
-  font-color: ${({ theme }) => theme.TEXT_COLOR};
+  color: ${({ theme }) => theme.TEXT_COLOR};
   height: ${p => p.height || 'auto'};
   overflow-y: ${p => p.overflowY || 'auto'};
 `
