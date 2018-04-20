@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Card, { Header, Body } from "./Card";
+import Card, { Header, Body } from './Card'
 
 /**
  * @name FullContainerCard
@@ -13,16 +13,19 @@ const FullContainerCard = props => (
     <Body
       height="590px"
       style={{
-        textAlign: "center"
+        textAlign: 'center',
+        background: '#efefef',
+        paddingTop: '2em',
+        paddingBottom: '2em'
       }}
     >
       {props.children}
     </Body>
   </Card>
-);
+)
 
 FullContainerCard.propTypes = {
   header: PropTypes.string.isRequired
-};
+}
 
-export default FullContainerCard;
+export default FullContainerCard
