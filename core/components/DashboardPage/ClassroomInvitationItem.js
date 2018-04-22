@@ -1,6 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
+import gql from 'graphql-tag'
+import Router from 'next/router'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { graphql } from 'react-apollo'
 
 import { CLASSROOM_PAGE } from '../../constants/endpoints/ui'
 import { Button } from '../Button'
@@ -63,25 +67,91 @@ const ClassroomInvitationProfilePicture = styled.img`
  * @name ClassroomInvitationItem
  * @desc Display a received classroom invitation items of a particular user.
  *       This component will be placed in Dashboard page
- * @prop { _id } : Classroom ID. Use this to generate a URL to the particular classroom
- * @prop { name } : Classroom name
- * @prop { thumbnail } : Classroom thumbnail
+ * @prop { name } [APOLLO] : Classroom name
+ * @prop { thumbnail } [APOLLO] : Classroom thumbnail
+ * @prop { classroomID } [APOLLO] : Classroom ID. Use this to generate a URL to the particular classroom
+ * @prop { mutate } [APOLLO] : Apollo-client mutation controller function
+ * @prop { showLoadingModal } [REDUX] : Display loading modal when performing GraphQL mutation(Login mutation)
+ * @prop { hideLoadingModal } [REDUX] : Hide loeading modal after fisnished GraphQL mutation(login mutation)
+ * @prop { showErrorAlert } [REDUX] : If there's any error occored, display it with its message
  */
-const ClassroomInvitationItem = ({ _id, name, thumbnail }) => (
-  <Link href={{ pathname: CLASSROOM_PAGE, query: { id: _id } }} prefetch>
-    <ClassroomInvitationItemWrapper>
-      <ClassroomInvitationItemCard>
-        <ClassroomInvitationItemLabel>
-          <h3>{name}</h3>
-          <Button primary>ยอมรับ</Button>
-          <Button light marginLeft="1em">
-            ปฏิเศษ
-          </Button>
-        </ClassroomInvitationItemLabel>
-        <ClassroomInvitationProfilePicture src={thumbnail} />
-      </ClassroomInvitationItemCard>
-    </ClassroomInvitationItemWrapper>
-  </Link>
-)
+class ClassroomInvitationItem extends React.Component {
+  submitAnswer = async (classroomID, answer) => {
+    try {
+      const { mutate, showLoadingModal, hideLoadingModal, showErrorAlert } = this.props
 
-export default ClassroomInvitationItem
+      showLoadingModal()
+
+      // Running mutation
+      const result = await mutate({
+        variables: {
+          classroomID,
+          answer
+        }
+      })
+
+      const { success, err } = result.data.respondToClassroomInvitation
+
+      if (success) {
+        hideLoadingModal()
+
+        if (answer === 'accept') {
+          await Router.push(`${CLASSROOM_PAGE}?id=${classroomID}`)
+        }
+      } else {
+        hideLoadingModal()
+        showErrorAlert(err.message)
+      }
+    } catch (err) {
+      hideLoadingModal()
+      showErrorAlert('ไม่สามารถดำเนินการได้ในขณะนี้')
+    }
+  }
+
+  render() {
+    const { classroomID, name, thumbnail } = this.props
+    return (
+      <ClassroomInvitationItemWrapper>
+        <ClassroomInvitationItemCard>
+          <ClassroomInvitationItemLabel>
+            <Link href={{ pathname: CLASSROOM_PAGE, query: { id: classroomID } }} prefetch>
+              <h3>{name}</h3>
+            </Link>
+            <Button primary onClick={() => this.submitAnswer(classroomID, 'accept')}>
+              ยอมรับ
+            </Button>
+            <Button light marginLeft="1em" onClick={() => this.submitAnswer(classroomID, 'refuse')}>
+              ปฏิเศษ
+            </Button>
+          </ClassroomInvitationItemLabel>
+          <Link href={{ pathname: CLASSROOM_PAGE, query: { id: classroomID } }} prefetch>
+            <ClassroomInvitationProfilePicture src={thumbnail} />
+          </Link>
+        </ClassroomInvitationItemCard>
+      </ClassroomInvitationItemWrapper>
+    )
+  }
+}
+
+ClassroomInvitationItem.propTypes = {
+  showLoadingModal: PropTypes.func.isRequired,
+  hideLoadingModal: PropTypes.func.isRequired,
+  showErrorAlert: PropTypes.func.isRequired,
+  classroomID: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  mutate: PropTypes.func.isRequired
+}
+
+const RESPONSE_TO_CLASSROOM_INVITATION_MUTATION = gql`
+  mutation respondToClassroomInvitation($classroomID: String!, $answer: String!) {
+    respondToClassroomInvitation(classroomID: $classroomID, answer: $answer) {
+      success
+      err {
+        message
+      }
+    }
+  }
+`
+
+export default graphql(RESPONSE_TO_CLASSROOM_INVITATION_MUTATION)(ClassroomInvitationItem)

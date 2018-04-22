@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 
+import { showLoadingModal, hideLoadingModal } from '../../actions/system-actions'
 import { initializeAuthenticatedUser } from '../../actions/user-actions'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../../constants/security'
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
@@ -13,10 +14,6 @@ import { showErrorAlert } from '../../actions/system-actions'
 import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'
-import {
-  showLoadingModal,
-  hideLoadingModal
-} from '../../actions/system-actions'
 
 /**
  * @name LoginForm
@@ -49,13 +46,7 @@ class LoginForm extends React.Component {
         }
       })
 
-      const {
-        refreshToken,
-        accessToken,
-        success,
-        user,
-        err
-      } = result.data.login
+      const { refreshToken, accessToken, success, user, err } = result.data.login
 
       if (success) {
         hideLoadingModal()
@@ -86,13 +77,7 @@ class LoginForm extends React.Component {
         <Header>ยืนยันตัวตนเพื่อเข้าสู่ระบบ</Header>
         <Body>
           <form onSubmit={handleSubmit(this.submitHandler)}>
-            <Field
-              required
-              name="email"
-              label="อีเมลล์"
-              type="email"
-              component={InputField}
-            />
+            <Field required name="email" label="อีเมลล์" type="email" component={InputField} />
             <Field
               required
               name="password"
@@ -139,8 +124,7 @@ const LOGIN_MUTATION = gql`
 `
 
 const mapDispatchToProps = dispatch => ({
-  initializeAuthenticatedUser: user =>
-    dispatch(initializeAuthenticatedUser(user)),
+  initializeAuthenticatedUser: user => dispatch(initializeAuthenticatedUser(user)),
 
   showLoadingModal: () => dispatch(showLoadingModal()),
   hideLoadingModal: () => dispatch(hideLoadingModal()),
