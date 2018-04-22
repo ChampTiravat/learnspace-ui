@@ -2,7 +2,11 @@ import React from 'react'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { graphql } from 'react-apollo'
+import { connect } from 'react-redux'
+import { graphql, compose } from 'react-apollo'
+
+import { showLoadingModal, hideLoadingModal } from '../../actions/system-actions'
+import { showErrorAlert } from '../../actions/system-actions'
 
 import ClassroomInvitationItem from './ClassroomInvitationItem'
 import Card, { Header, Body, Footer } from '../Card'
@@ -37,7 +41,9 @@ class ClassroomInvitationsPanel extends React.Component {
   }
 
   render() {
-    const { loading, userClassroomInvitations } = this.props.data
+    const { showErrorAlert, showLoadingModal, hideLoadingModal, data } = this.props
+    const { loading, userClassroomInvitations } = data
+
     const invitations =
       !loading && userClassroomInvitations ? userClassroomInvitations.invitations : null
 
@@ -61,10 +67,13 @@ class ClassroomInvitationsPanel extends React.Component {
             // Received some classroom invitaitons, then render them
             invitations.map(invitation => (
               <ClassroomInvitationItem
-                _id={invitation.classroomID}
                 key={invitation.classroomID}
                 name={invitation.classroomName}
                 thumbnail={invitation.thumbnail}
+                classroomID={invitation.classroomID}
+                showErrorAlert={showErrorAlert}
+                showLoadingModal={showLoadingModal}
+                hideLoadingModal={hideLoadingModal}
               />
             ))
           )}
@@ -100,6 +109,15 @@ const USER_CLASSROOM_INVITATIONS_QUERY = gql`
   }
 `
 
-export default graphql(USER_CLASSROOM_INVITATIONS_QUERY, {
-  options: ({ userID }) => ({ variables: { _id: userID } })
-})(ClassroomInvitationsPanel)
+const mapDispatchToProps = dispatch => ({
+  showErrorAlert: message => dispatch(showErrorAlert(message)),
+  showLoadingModal: () => dispatch(showLoadingModal()),
+  hideLoadingModal: () => dispatch(hideLoadingModal())
+})
+
+export default compose(
+  connect(null, mapDispatchToProps),
+  graphql(USER_CLASSROOM_INVITATIONS_QUERY, {
+    options: ({ userID }) => ({ variables: { _id: userID } })
+  })
+)(ClassroomInvitationsPanel)
