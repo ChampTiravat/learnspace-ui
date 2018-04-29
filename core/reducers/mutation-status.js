@@ -1,4 +1,5 @@
-import { SHOW_LOADING_MODAL, HIDE_LOADING_MODAL } from '../constants/actions'
+export const SHOW_LOADING_MODAL = 'SHOW_LOADING_MODAL'
+export const HIDE_LOADING_MODAL = 'HIDE_LOADING_MODAL'
 
 export default (state = false, action) => {
   switch (action.type) {
@@ -12,3 +13,19 @@ export default (state = false, action) => {
       return state
   }
 }
+
+/**
+ * @name showLoadingModal()
+ * @desc Show loading modal when performing GraphQL Mutation(s)
+ */
+export const showLoadingModal = () => ({
+  type: SHOW_LOADING_MODAL
+})
+
+/**
+ * @name hideLoadingModal()
+ * @desc Hide loading modal after GraphQL Mutation(s) operation is done
+ */
+export const hideLoadingModal = () => ({
+  type: HIDE_LOADING_MODAL
+})
