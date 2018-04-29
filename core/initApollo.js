@@ -8,11 +8,8 @@ import { ApolloLink } from 'apollo-link'
 import fetch from 'isomorphic-fetch'
 import { split } from 'apollo-link'
 
+import { GRAPHQL_SUBSCRIPTION_ENDPOINT, GRAPHQL_ENDPOINT } from './constants/endpoints/api'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from './constants/security'
-import {
-  GRAPHQL_SUBSCRIPTION_ENDPOINT,
-  GRAPHQL_ENDPOINT
-} from './constants/endpoints/api'
 
 let apolloClient = null
 
