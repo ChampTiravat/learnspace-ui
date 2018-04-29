@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
 
-import { showNotificationModal } from '../../actions/notification-modal-actions'
-import { showChatroomModal } from '../../actions/chatroom-modal-actions'
+import { showNotificationModal } from '../../reducers/notification-modal'
+import { showChatroomModal } from '../../reducers/chatroom-modal'
 
 import UnAuthenticatedNav from '../NavigationBar/UnAuthenticatedNav'
 import AuthenticatedNav from '../NavigationBar/AuthenticatedNav'
@@ -38,13 +38,7 @@ const AuthenticatedLayout = ({
     {!validateToken() ? (
       <Container>
         <UnAuthenticatedNav />
-        <Card
-          textCenter
-          padding="2em"
-          marginLeft="auto"
-          marginRight="auto"
-          marginTop="4em"
-        >
+        <Card textCenter padding="2em" marginLeft="auto" marginRight="auto" marginTop="4em">
           <h2>กรุณาเข้าล็อกอินเพื่อเข้าใช้งาน</h2>
         </Card>
       </Container>

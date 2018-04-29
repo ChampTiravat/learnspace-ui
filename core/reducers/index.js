@@ -15,14 +15,15 @@ import errorAlert from './error-alert'
 import user from './user'
 
 export default {
+  postRemovalConfirmationModal,
+  postComponentsSelectorModal,
   classroomInvitationModal,
   editPostComponentModal,
-  postComponentsSelectorModal,
   addPostComponentModal,
-  postRemovalConfirmationModal,
-  postPreviewModal,
   editingPostReceipe,
+  form: formReducer,
   notificationModal,
+  postPreviewModal,
   searchBarPanel,
   mutationStatus,
   chatroomModal,

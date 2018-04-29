@@ -68,8 +68,7 @@ class ProfilePage extends React.Component {
    * @param user : User data
    * @desc Render user's firstname and lastname associated to their ID
    */
-  renderTitleText = user =>
-    !user ? 'ไม่พบข้อมูลผู้ใช้งาน' : `${user.fname} ${user.lname || ''}`
+  renderTitleText = user => (!user ? 'ไม่พบข้อมูลผู้ใช้งาน' : `${user.fname} ${user.lname || ''}`)
 
   render() {
     const { loading, userProfile } = this.props.data
@@ -77,17 +76,11 @@ class ProfilePage extends React.Component {
 
     return [
       <Head key="profile_head">
-        <title>
-          {loading ? 'loading ...' : this.renderTitleText(user)} | LEARNSPACE
-        </title>
+        <title>{loading ? 'loading ...' : this.renderTitleText(user)} | LEARNSPACE</title>
       </Head>,
       <AuthenticatedLayout key="profile_content">
         <Container>
-          {loading ? (
-            <LoadingIcon />
-          ) : (
-            <Container>{this.renderUserInfo(user)}</Container>
-          )}
+          {loading ? <LoadingIcon /> : <Container>{this.renderUserInfo(user)}</Container>}
         </Container>
         <ProfileActivityPanel />
       </AuthenticatedLayout>

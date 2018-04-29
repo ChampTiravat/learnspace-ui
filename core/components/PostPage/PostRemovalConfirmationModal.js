@@ -5,14 +5,12 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
-import { showErrorAlert } from '../../actions/system-actions'
 import { ModalBackground, ModalPanel } from '..//Modal'
 import { Header, Body, Footer } from '../Card'
 import { Button } from '../Button'
-import {
-  showLoadingModal,
-  hideLoadingModal
-} from '../../actions/system-actions'
+
+import { showLoadingModal, hideLoadingModal } from '../../reducers/mutation-status'
+import { showErrorAlert } from '../../reducers/error-alert'
 
 /**
  * @name PostRemovalConfirmationModal
@@ -62,15 +60,11 @@ class PostRemovalConfirmationModal extends React.Component {
         <ModalPanel large>
           <Header>ยืนยันการดำเนินการ</Header>
           <Body style={{ color: '#777', fontSize: '1em', textAlign: 'center' }}>
-            การดำเนินการนี้ไม่สามารถย้อนกลับได้
-            และคุณจะสูญเสียข้อมูลทั้งหมดของโพสนี้ คุณต้องการดำเนินการต่อหรือไม่
+            การดำเนินการนี้ไม่สามารถย้อนกลับได้ และคุณจะสูญเสียข้อมูลทั้งหมดของโพสนี้
+            คุณต้องการดำเนินการต่อหรือไม่
           </Body>
           <Footer>
-            <Button
-              primary
-              marginRight="0.5em"
-              onClick={() => this.removePost()}
-            >
+            <Button primary marginRight="0.5em" onClick={() => this.removePost()}>
               ยืนยัน
             </Button>
             <Button light onClick={() => hidePostRMModal()}>

@@ -1,11 +1,8 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
-import ActivityPanel from "../ActivityPanel";
-import {
-  CREATE_CLASSROOM_PAGE,
-  EDIT_PROFILE_PAGE
-} from "../../constants/endpoints/ui";
+import { CREATE_CLASSROOM_PAGE, EDIT_PROFILE_PAGE } from '../../constants/endpoints/ui'
+import ActivityPanel from '../ActivityPanel'
 
 /**
  * @name ProfileActivityPanel
@@ -20,6 +17,6 @@ const ProfileActivityPanel = () => (
       <a>แก้ไขข้อมูลผู้ใช้งาน</a>
     </Link>
   </ActivityPanel>
-);
+)
 
-export default ProfileActivityPanel;
+export default ProfileActivityPanel

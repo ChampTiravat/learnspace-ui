@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Field } from "redux-form";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Field } from 'redux-form'
+import styled from 'styled-components'
 
 /**
  * @name Form
@@ -11,7 +11,7 @@ export const Form = styled.form`
   display: inline;
   padding: 0;
   margin: 0;
-`;
+`
 
 /**
  *  @name Input
@@ -20,18 +20,18 @@ export const Form = styled.form`
  *  @param inline : display the input as an inlined element
  */
 export const Input = styled.input`
-  display: ${p => (p.inline ? "inline-block" : "block")};
-  width: ${p => (p.inline ? "auto" : "100%")};
+  display: ${p => (p.inline ? 'inline-block' : 'block')};
+  width: ${p => (p.inline ? 'auto' : '100%')};
   border: none;
   border-radius: ${p => p.theme.BORDER_RADIUS};
   padding: 0.6em;
   margin: 0 auto;
   font-size: 1em;
-  font-family: "Arial";
+  font-family: 'Arial';
   font-weight: 300;
   color: ${p => p.theme.TEXT_COLOR};
   background-color: ${p => p.theme.TEXT_INPUT_BACKGROUND_COLOR};
-`;
+`
 
 /**
  *  @name TextArea
@@ -40,29 +40,29 @@ export const Input = styled.input`
  *  @param inline : display the input as an inlined element
  */
 export const TextArea = styled.textarea`
-  display: ${p => (p.inline ? "inline-block" : "block")};
-  width: ${p => (p.inline ? "auto" : "100%")};
+  display: ${p => (p.inline ? 'inline-block' : 'block')};
+  width: ${p => (p.inline ? 'auto' : '100%')};
   border: none;
   border-radius: ${p => p.theme.BORDER_RADIUS};
   padding: 0.6em;
   margin: 0 auto;
   font-size: 1em;
-  font-family: "Arial";
+  font-family: 'Arial';
   font-weight: 300;
   color: ${p => p.theme.TEXT_COLOR};
   background-color: ${p => p.theme.TEXT_INPUT_BACKGROUND_COLOR};
-`;
+`
 
 /**
  * @name InputLabel
  * @desc Input label, used to display the users what information they have to provide
  */
 export const InputLabel = styled.label`
-  font-family: "Kanit";
+  font-family: 'Kanit';
   font-size: 1em;
   font-weight: 400;
   color: ${p => p.theme.PRIMARY_COLOR};
-`;
+`
 
 /**
  * @name InputGroup
@@ -70,7 +70,7 @@ export const InputLabel = styled.label`
  */
 export const InputGroup = styled.div`
   margin: 0.5em auto;
-`;
+`
 
 /**
  *  @name InputField
@@ -80,36 +80,25 @@ export const InputGroup = styled.div`
  *  @param label : text to display on <InputLabel />
  *  @param meta : default from redux-form
  */
-export const InputField = ({
-  input,
-  type,
-  label,
-  placeholder,
-  meta: { touched, error }
-}) => (
+export const InputField = ({ input, type, label, placeholder, meta: { touched, error } }) => (
   <InputGroup>
     <InputLabel>{label}</InputLabel>
     <Input placeholder={placeholder} {...input} type={type} />
     {touched && error && <span className="error">{error}</span>}
   </InputGroup>
-);
+)
 
 InputField.prototype = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string
-};
+}
 
-export const TextAreaField = ({
-  input,
-  type,
-  label,
-  meta: { touched, error }
-}) => (
+export const TextAreaField = ({ input, type, label, meta: { touched, error } }) => (
   <InputGroup>
     <InputLabel>{label}</InputLabel>
     <TextArea {...input} />
     {touched && error && <span className="error">{error}</span>}
   </InputGroup>
-);
+)

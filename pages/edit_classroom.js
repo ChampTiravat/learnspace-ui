@@ -6,9 +6,10 @@ import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomAc
 import ClassroomHeaderPanel from '../core/components/ClassroomPage/ClassroomHeaderPanel'
 import EditClassroomForm from '../core/components/EditClassroomPage/EditClassroomForm'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
-import { CLASSROOM_PAGE } from '../core/constants/endpoints/ui'
 import Container from '../core/components/Container'
 import withData from '../core/withData'
+
+import { CLASSROOM_PAGE } from '../core/constants/endpoints/ui'
 
 class EditClassroomPage extends React.Component {
   static async getInitialProps() {
@@ -28,10 +29,7 @@ class EditClassroomPage extends React.Component {
             <title>แก้ไขรายละเอียด - {classroomName}</title>
           </Head>,
           <AuthenticatedLayout>
-            <ClassroomHeaderPanel
-              classroomID={classroomID}
-              classroomName={classroomName}
-            />
+            <ClassroomHeaderPanel classroomID={classroomID} classroomName={classroomName} />
             <Container transparent marginTop="10em">
               <EditClassroomForm />
             </Container>
