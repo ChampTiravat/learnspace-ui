@@ -1,19 +1,19 @@
 /** ==================================================================================
  * Actions
  ================================================================================== */
-export const SHOW_ERROR_ALERT = 'SHOW_ERROR_ALERT'
-export const HIDE_ERROR_ALERT = 'HIDE_ERROR_ALERT'
+export const SHOW_EDIT_POST_COMPONENT_MODAL = 'SHOW_EDIT_POST_COMPONENT_MODAL'
+export const HIDE_EDIT_POST_COMPONENT_MODAL = 'HIDE_EDIT_POST_COMPONENT_MODAL'
 
 /** ==================================================================================
  * @type reducer
- * @desc Display/Hide Error message box
+ * @desc Toggle edit post modal.
  * @return object
  ================================================================================== */
-export default (state = {}, action) => {
+export default (state = false, action) => {
   switch (action.type) {
-    case SHOW_ERROR_ALERT:
+    case SHOW_EDIT_POST_COMPONENT_MODAL:
       return action.payload
-    case HIDE_ERROR_ALERT:
+    case HIDE_EDIT_POST_COMPONENT_MODAL:
       return action.payload
     default:
       return state
@@ -21,28 +21,29 @@ export default (state = {}, action) => {
 }
 
 /** ==================================================================================
- * @name showErrorAlert()
- * @desc Show error alert when GraphQL Mutation(s) has failed
- * @param message : Error message to be displayed on the Error Box
+ * @name showEditPostComponentModal()
+ * @desc return TRUE, in order to show the edit post component modal
+ * @param order : Component rendering order
+ * @param type : Component type
  * @return object
  ================================================================================== */
-export const showErrorAlert = message => ({
-  type: SHOW_ERROR_ALERT,
+export const showEditPostComponentModal = (type, order) => ({
+  type: SHOW_EDIT_POST_COMPONENT_MODAL,
   payload: {
-    show: true,
-    message
+    isShowing: true,
+    type,
+    order
   }
 })
 
 /** ==================================================================================
- * @name hideErrorAlert()
- * @desc Hide loading modal after clicked on error alert
+ * @name hideEditPostComponentModal()
+ * @desc return FALSE, in order to close the edit post component modal
  * @return object
  ================================================================================== */
-export const hideErrorAlert = () => ({
-  type: HIDE_ERROR_ALERT,
+export const hideEditPostComponentModal = () => ({
+  type: HIDE_EDIT_POST_COMPONENT_MODAL,
   payload: {
-    show: false,
-    message: ''
+    isShowing: false
   }
 })

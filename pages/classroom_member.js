@@ -9,7 +9,7 @@ import { graphql, compose } from 'react-apollo'
 import {
   showClassroomInvitationModal,
   hideClassroomInvitationModal
-} from '../core/actions/classroom-actions'
+} from '../core/reducers/classroom-invitation-modal'
 
 import ClassroomMemberPanel from '../core/components/ClassroomMemberPage/ClassroomMemberPanel'
 import ClassroomActivityPanel from '../core/components/ClassroomPage/ClassroomActivityPanel'
@@ -117,7 +117,7 @@ ClassroomMemberPage.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isClassroomInvitationModalShowing: state.isClassroomInvitationModalShowing
+  isClassroomInvitationModalShowing: state.classroomInvitationModal
 })
 
 const mapDispatchToProps = dispatch => ({

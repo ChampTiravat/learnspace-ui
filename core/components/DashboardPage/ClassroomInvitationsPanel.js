@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { graphql, compose } from 'react-apollo'
 
-import { showLoadingModal, hideLoadingModal } from '../../actions/system-actions'
-import { showErrorAlert } from '../../actions/system-actions'
+import { showLoadingModal, hideLoadingModal } from '../../reducers/mutation-status'
+import { showErrorAlert } from '../../reducers/error-alert'
 
 import ClassroomInvitationItem from './ClassroomInvitationItem'
 import Card, { Header, Body, Footer } from '../Card'

@@ -6,11 +6,13 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 
-import { showLoadingModal, hideLoadingModal } from '../../actions/system-actions'
-import { initializeAuthenticatedUser } from '../../actions/user-actions'
+import { showLoadingModal, hideLoadingModal } from '../../reducers/mutation-status'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../../constants/security'
+import { initializeAuthenticatedUser } from '../../reducers/user'
+import { showErrorAlert } from '../../reducers/error-alert'
+
 import { DASHBOARD_PAGE } from '../../constants/endpoints/ui'
-import { showErrorAlert } from '../../actions/system-actions'
+
 import Card, { Header, Body } from '../Card'
 import { InputField } from '../Form'
 import { Button } from '../Button'

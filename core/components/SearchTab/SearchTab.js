@@ -1,22 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Router from 'next/router'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import styled from 'styled-components'
 import { compose } from 'react-apollo'
+import { Field, reduxForm } from 'redux-form'
 
-import { SEARCH_RESULT_PAGE } from '../../constants/endpoints/ui'
 import SearchResultPanel from './SearchResultPanel'
 import Card, { Body, Footer } from '../Card'
 import { ModalBackground } from '../Modal'
 import SearchField from './SearchField'
 import { Button } from '../Button'
 import { Form } from '../Form'
-import {
-  showSearchPanel,
-  hideSearchPanel
-} from '../../actions/searchbar-panel-actions'
+
+import { showSearchPanel, hideSearchPanel } from '../../reducers/searchbar-panel'
+import { SEARCH_RESULT_PAGE } from '../../constants/endpoints/ui'
 
 const SearchTabForm = styled.form`
   display: inline;
@@ -36,11 +34,7 @@ const SearchTabForm = styled.form`
  */
 class SearchTab extends React.Component {
   showSearchPanel = () => {
-    const {
-      isSearchPanelShowing,
-      showSearchPanel,
-      hideSearchPanel
-    } = this.props
+    const { isSearchPanelShowing, showSearchPanel, hideSearchPanel } = this.props
     isSearchPanelShowing ? hideSearchPanel() : showSearchPanel()
   }
 

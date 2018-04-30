@@ -1,19 +1,19 @@
 /** ==================================================================================
  * Actions
  ================================================================================== */
-export const SHOW_POST_COMPONENTS_SELECTOR_MODAL = 'SHOW_POST_COMPONENTS_SELECTOR_MODAL'
-export const HIDE_POST_COMPONENTS_SELECTOR_MODAL = 'HIDE_POST_COMPONENTS_SELECTOR_MODAL'
+export const SHOW_POST_PREVIEW_MODAL = 'SHOW_POST_PREVIEW_MODAL'
+export const HIDE_POST_PREVIEW_MODAL = 'HIDE_POST_PREVIEW_MODAL'
 
 /** ==================================================================================
  * @type reducer
- * @desc Toggle post components selector modal.
+ * @desc Toggle post preview modal. Depending on this reducer's state
  * @return boolean
  ================================================================================== */
 export default (state = false, action) => {
   switch (action.type) {
-    case SHOW_POST_COMPONENTS_SELECTOR_MODAL:
+    case SHOW_POST_PREVIEW_MODAL:
       return action.payload
-    case HIDE_POST_COMPONENTS_SELECTOR_MODAL:
+    case HIDE_POST_PREVIEW_MODAL:
       return action.payload
     default:
       return state
@@ -21,21 +21,21 @@ export default (state = false, action) => {
 }
 
 /** ==================================================================================
- * @name showPostComponentsSelectorModal()
- * @desc return TRUE, in order to show the modal
+ * @name showPostPreviewModal()
+ * @desc Show post preview modal
  * @return boolean
  ================================================================================== */
-export const showPostComponentsSelectorModal = () => ({
-  type: SHOW_POST_COMPONENTS_SELECTOR_MODAL,
+export const showPostPreviewModal = () => ({
+  type: SHOW_POST_PREVIEW_MODAL,
   payload: true
 })
 
 /** ==================================================================================
- * @name hidePostComponentsSelectorModal()
- * @desc return FALSE, in order to close the modal
+ * @name hidePostPreviewModal()
+ * @desc Hide post preview modal
  * @return boolean
  ================================================================================== */
-export const hidePostComponentsSelectorModal = () => ({
-  type: HIDE_POST_COMPONENTS_SELECTOR_MODAL,
+export const hidePostPreviewModal = () => ({
+  type: HIDE_POST_PREVIEW_MODAL,
   payload: false
 })

@@ -9,10 +9,11 @@ import { graphql, compose } from 'react-apollo'
 import AuthenticatedLayout from '../core/components/Layout/AuthenticatedLayout'
 import PostViewer from '../core/components/PostPage/PostViewer'
 import withData from '../core/withData'
+
 import {
   hidePostRemovalConfirmationModal,
   showPostRemovalConfirmationModal
-} from '../core/actions/post-page-actions'
+} from '../core/reducers/post-removal-confirmation-modal'
 
 /**
  * @name PostPage
@@ -40,9 +41,7 @@ class PostPage extends React.Component {
     return (
       <div>
         <Head>
-          <title>
-            {loading ? 'loading...' : `${getPost.post.title} | LEARNSPACE`}
-          </title>
+          <title>{loading ? 'loading...' : `${getPost.post.title} | LEARNSPACE`}</title>
         </Head>
         <AuthenticatedLayout>
           <PostViewer

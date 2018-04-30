@@ -7,33 +7,31 @@ import EditPostComponentModal from './EditPostComponentModal'
 import AddPostComponentModal from './AddPostComponentModal'
 import PostPreviewModal from './PostPreviewModal.js'
 import PostContentEditor from './PostContentEditor'
+
 import {
-  // PostComponentsSelectorModal
   hidePostComponentsSelectorModal,
-  showPostComponentsSelectorModal,
+  showPostComponentsSelectorModal
+} from '../../reducers/post-components-selector-modal'
 
-  // AddPostComponentModal
+import {
   hideAddPostComponentModal,
-  showAddPostComponentModal,
+  showAddPostComponentModal
+} from '../../reducers/add-post-component-modal'
 
-  // EditPostComponentModal
-  showEditPostComponentModal,
-  hideEditPostComponentModal,
-
-  // PostPreviewModal
-  showPostPreviewModal,
-  hidePostPreviewModal,
-
-  // PostContentEditor Operations
+import {
   addNewPostComponent, // Add a new component
   removePostComponent, // Remove existing component
   editPostComponent, // Edit an existing component
   resetPost // Remove every thing and start from scratch
-} from '../../actions/post-editor-actions'
+} from '../../reducers/editing-post-receipe'
+
 import {
-  showLoadingModal,
-  hideLoadingModal
-} from '../../actions/system-actions'
+  showEditPostComponentModal,
+  hideEditPostComponentModal
+} from '../../reducers/edit-post-component-modal'
+
+import { showPostPreviewModal, hidePostPreviewModal } from '../../reducers/post-preview-modal'
+import { showLoadingModal, hideLoadingModal } from '../../reducers/mutation-status'
 
 /**
  * @name PostEditor
@@ -157,19 +155,17 @@ PostEditor.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isComponentsSelectorModalShowing: state.isPostComponentsSelectorModalShowing,
-  editPostComponentModal: state.isEditPostComponentModalShowing,
-  addPostComponentModal: state.isAddPostComponentModalShowing,
-  isPostPreviewModalShowing: state.isPostPreviewModalShowing,
+  isComponentsSelectorModalShowing: state.postComponentsSelectorModal,
+  editPostComponentModal: state.editPostComponentModal,
+  addPostComponentModal: state.addPostComponentModal,
+  isPostPreviewModalShowing: state.postPreviewModal,
   receipe: state.editingPostReceipe
 })
 
 const mapDispatchToProps = dispatch => ({
   // PostComponentsSelectorModal
-  showComponentsSelectorModal: () =>
-    dispatch(showPostComponentsSelectorModal()),
-  hideComponentsSelectorModal: () =>
-    dispatch(hidePostComponentsSelectorModal()),
+  showComponentsSelectorModal: () => dispatch(showPostComponentsSelectorModal()),
+  hideComponentsSelectorModal: () => dispatch(hidePostComponentsSelectorModal()),
 
   // AddPostComponentModal
   hideAddPostComponentModal: () => dispatch(hideAddPostComponentModal()),
@@ -181,20 +177,16 @@ const mapDispatchToProps = dispatch => ({
 
   // PostContentEditor Operations
   resetPost: () => dispatch(resetPost()),
-  removePostComponent: componentOrder =>
-    dispatch(removePostComponent(componentOrder)),
-  addNewPostComponent: componentToAdd =>
-    dispatch(addNewPostComponent(componentToAdd)),
-  editPostComponent: (order, type, newData) =>
-    dispatch(editPostComponent(order, type, newData)),
+  removePostComponent: componentOrder => dispatch(removePostComponent(componentOrder)),
+  addNewPostComponent: componentToAdd => dispatch(addNewPostComponent(componentToAdd)),
+  editPostComponent: (order, type, newData) => dispatch(editPostComponent(order, type, newData)),
 
   // PostPreviewModal
   showPostPreviewModal: () => dispatch(showPostPreviewModal()),
   hidePostPreviewModal: () => dispatch(hidePostPreviewModal()),
 
   // EditPostComponentModal
-  showEditPostComponentModal: (type, order) =>
-    dispatch(showEditPostComponentModal(type, order)),
+  showEditPostComponentModal: (type, order) => dispatch(showEditPostComponentModal(type, order)),
   hideEditPostComponentModal: () => dispatch(hideEditPostComponentModal())
 })
 

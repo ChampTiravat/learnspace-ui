@@ -1,15 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { NotificationItem } from "./NotificationPanel";
-import { ModalBackground, ModalPanel } from "./Modal";
-import { Header, Body, Footer } from "./Card";
-import { Button } from "./Button";
-import {
-  showNotificationModal,
-  hideNotificationModal
-} from "../actions/notification-modal-actions";
+import { NotificationItem } from './NotificationPanel'
+import { ModalBackground, ModalPanel } from './Modal'
+import { Header, Body, Footer } from './Card'
+import { Button } from './Button'
+
+import { showNotificationModal, hideNotificationModal } from '../reducers/notification-modal'
 
 const NotificationModal = ({ isModalShowing, showModal, hideModal }) => (
   <ModalBackground show={isModalShowing}>
@@ -48,15 +46,15 @@ const NotificationModal = ({ isModalShowing, showModal, hideModal }) => (
       </Footer>
     </ModalPanel>
   </ModalBackground>
-);
+)
 
 const mapStateToProps = state => ({
   isModalShowing: state.notificationModal
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   showModal: () => dispatch(showNotificationModal()),
   hideModal: () => dispatch(hideNotificationModal())
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotificationModal);
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationModal)

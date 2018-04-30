@@ -1,19 +1,19 @@
 /** ==================================================================================
  * Actions
  ================================================================================== */
-export const SHOW_POST_COMPONENTS_SELECTOR_MODAL = 'SHOW_POST_COMPONENTS_SELECTOR_MODAL'
-export const HIDE_POST_COMPONENTS_SELECTOR_MODAL = 'HIDE_POST_COMPONENTS_SELECTOR_MODAL'
+export const SHOW_ADD_POST_COMPONENT_MODAL = 'SHOW_ADD_POST_COMPONENT_MODAL'
+export const HIDE_ADD_POST_COMPONENT_MODAL = 'HIDE_ADD_POST_COMPONENT_MODAL'
 
 /** ==================================================================================
  * @type reducer
- * @desc Toggle post components selector modal.
- * @return boolean
+ * @desc Toggle add post component modal.
+ * @return object
  ================================================================================== */
 export default (state = false, action) => {
   switch (action.type) {
-    case SHOW_POST_COMPONENTS_SELECTOR_MODAL:
+    case SHOW_ADD_POST_COMPONENT_MODAL:
       return action.payload
-    case HIDE_POST_COMPONENTS_SELECTOR_MODAL:
+    case HIDE_ADD_POST_COMPONENT_MODAL:
       return action.payload
     default:
       return state
@@ -21,21 +21,27 @@ export default (state = false, action) => {
 }
 
 /** ==================================================================================
- * @name showPostComponentsSelectorModal()
- * @desc return TRUE, in order to show the modal
- * @return boolean
+ * @name showaddPostComponentMOdal()
+ * @desc return TRUE, in order to show the add post component modal
+ * @param type [String] : type of the component which will be added to the post
+ * @return object
  ================================================================================== */
-export const showPostComponentsSelectorModal = () => ({
-  type: SHOW_POST_COMPONENTS_SELECTOR_MODAL,
-  payload: true
+export const showAddPostComponentModal = type => ({
+  type: SHOW_ADD_POST_COMPONENT_MODAL,
+  payload: {
+    isShowing: true,
+    type
+  }
 })
 
 /** ==================================================================================
- * @name hidePostComponentsSelectorModal()
- * @desc return FALSE, in order to close the modal
- * @return boolean
+ * @name hideAddPostComponentModal()
+ * @desc return FALSE, in order to close the add post component modal
+ * @return object
  ================================================================================== */
-export const hidePostComponentsSelectorModal = () => ({
-  type: HIDE_POST_COMPONENTS_SELECTOR_MODAL,
-  payload: false
+export const hideAddPostComponentModal = () => ({
+  type: HIDE_ADD_POST_COMPONENT_MODAL,
+  payload: {
+    isShowing: false
+  }
 })

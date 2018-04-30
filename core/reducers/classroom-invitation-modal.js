@@ -1,19 +1,19 @@
 /** ==================================================================================
  * Actions
  ================================================================================== */
-export const SHOW_POST_COMPONENTS_SELECTOR_MODAL = 'SHOW_POST_COMPONENTS_SELECTOR_MODAL'
-export const HIDE_POST_COMPONENTS_SELECTOR_MODAL = 'HIDE_POST_COMPONENTS_SELECTOR_MODAL'
+export const SHOW_CLASSROOM_INVITATION_MODAL = 'SHOW_CLASSROOM_INVITATION_MODAL'
+export const HIDE_CLASSROOM_INVITATION_MODAL = 'HIDE_CLASSROOM_INVITATION_MODAL'
 
 /** ==================================================================================
  * @type reducer
- * @desc Toggle post components selector modal.
+ * @desc Toggle add classroom invitation modal. Depending on this reducer's state
  * @return boolean
  ================================================================================== */
 export default (state = false, action) => {
   switch (action.type) {
-    case SHOW_POST_COMPONENTS_SELECTOR_MODAL:
+    case SHOW_CLASSROOM_INVITATION_MODAL:
       return action.payload
-    case HIDE_POST_COMPONENTS_SELECTOR_MODAL:
+    case HIDE_CLASSROOM_INVITATION_MODAL:
       return action.payload
     default:
       return state
@@ -21,21 +21,21 @@ export default (state = false, action) => {
 }
 
 /** ==================================================================================
- * @name showPostComponentsSelectorModal()
+ * @name showClassroomInvitationModal
  * @desc return TRUE, in order to show the modal
- * @return boolean
+ * @return Boolean
  ================================================================================== */
-export const showPostComponentsSelectorModal = () => ({
-  type: SHOW_POST_COMPONENTS_SELECTOR_MODAL,
+export const showClassroomInvitationModal = () => ({
+  type: SHOW_CLASSROOM_INVITATION_MODAL,
   payload: true
 })
 
 /** ==================================================================================
- * @name hidePostComponentsSelectorModal()
+ * @name hideClassroomInvitationModal
  * @desc return FALSE, in order to close the modal
- * @return boolean
+ * @return Boolean
  ================================================================================== */
-export const hidePostComponentsSelectorModal = () => ({
-  type: HIDE_POST_COMPONENTS_SELECTOR_MODAL,
+export const hideClassroomInvitationModal = () => ({
+  type: HIDE_CLASSROOM_INVITATION_MODAL,
   payload: false
 })

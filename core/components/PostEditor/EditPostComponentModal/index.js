@@ -1,30 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import EditPostComponentDetailForm from "./EditPostComponentDetailForm";
-import { ModalBackground, ModalPanel } from "../../Modal";
-import { editPostComponent } from "../../../actions/post-editor-actions";
+import { editPostComponent } from '../../../reducers/editing-post-receipe'
+
+import EditPostComponentDetailForm from './EditPostComponentDetailForm'
+import { ModalBackground, ModalPanel } from '../../Modal'
 
 /**
  * @name EditPostComponentModal
  * @desc Display a modal to edit a new post component
- * @prop [REDUX] hideEditPostComponentModal : f() to close EditPostComponentModal
- * @prop [REDUX] editPostComponent : f() to edit an existing post component in the receipe
- * @prop [REDUX] editPostComponentModal : Object contains information about EditPostComponentModal
+ * @prop { hideEditPostComponentModal } [REDUX] : f() to close EditPostComponentModal
+ * @prop { editPostComponent } [REDUX]  : f() to edit an existing post component in the receipe
+ * @prop { editPostComponentModal } [REDUX] : Object contains information about EditPostComponentModal
  */
 class EditPostComponentModal extends React.Component {
   render() {
-    const {
-      hideEditPostComponentModal,
-      editPostComponentModal,
-      editPostComponent
-    } = this.props;
+    const { hideEditPostComponentModal, editPostComponentModal, editPostComponent } = this.props
     return (
-      <ModalBackground
-        style={{ zIndex: "100" }}
-        show={editPostComponentModal.isShowing}
-      >
-        <ModalPanel style={{ maxWidth: "1200px" }}>
+      <ModalBackground style={{ zIndex: '100' }} show={editPostComponentModal.isShowing}>
+        <ModalPanel style={{ maxWidth: '1200px' }}>
           <EditPostComponentDetailForm
             order={editPostComponentModal.order}
             type={editPostComponentModal.type}
@@ -33,7 +27,7 @@ class EditPostComponentModal extends React.Component {
           />
         </ModalPanel>
       </ModalBackground>
-    );
+    )
   }
 }
 
@@ -42,6 +36,6 @@ EditPostComponentModal.propTypes = {
   editPostComponentModal: PropTypes.object.isRequired,
   editPostComponent: PropTypes.func.isRequired,
   receipe: PropTypes.array.isRequired
-};
+}
 
-export default EditPostComponentModal;
+export default EditPostComponentModal
