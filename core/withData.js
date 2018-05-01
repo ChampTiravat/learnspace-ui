@@ -1,8 +1,8 @@
-import React from 'react'
-import { Provider } from 'react-redux'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import React from 'react'
 
 import initApollo from './initApollo'
 import initRedux from './initRedux'
