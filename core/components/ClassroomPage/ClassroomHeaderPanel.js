@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import styled from "styled-components";
+import React from 'react'
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { CLASSROOM_PAGE } from "../../constants/endpoints/ui";
-import Card from "../Card";
+import { CLASSROOM_PAGE } from '../../constants/endpoints/ui'
+import Card from '../Card'
 
 const ClassroomHeaderCard = Card.extend`
   position: absolute;
@@ -12,21 +12,21 @@ const ClassroomHeaderCard = Card.extend`
   max-width: 100%;
   padding: 2em;
   text-align: center;
-`;
+`
 
 const ClassroomNameHeading = styled.h1`
   color: ${p => p.theme.PRIMARY_COLOR};
   font-size: 1.7em;
   font-weight: 400;
   cursor: pointer;
-`;
+`
 
 const Seperator = styled.div`
   width: 30%;
   height: 2px;
   background-color: ${p => p.theme.PRIMARY_COLOR};
   margin: 1em auto;
-`;
+`
 
 const ClassroomBreifInfo = styled.p`
   color: #777;
@@ -36,7 +36,7 @@ const ClassroomBreifInfo = styled.p`
     color: ${p => p.theme.PRIMARY_COLOR};
     font-weight: 400;
   }
-`;
+`
 
 /**
  * @name ClassroomHeaderPanel
@@ -46,20 +46,20 @@ const ClassroomBreifInfo = styled.p`
  */
 const ClassroomHeaderPanel = ({ classroomID, classroomName }) => (
   <ClassroomHeaderCard>
-    <Link href={CLASSROOM_PAGE} prefetch>
+    <Link href={{ pathname: CLASSROOM_PAGE, query: { id: classroomID } }} prefetch>
       <ClassroomNameHeading>{classroomName}</ClassroomNameHeading>
     </Link>
     <Seperator />
     <ClassroomBreifInfo>
-      จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน{" "}
-      <span>5</span> การสอบ <span>2</span>
+      จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน <span>5</span> การสอบ{' '}
+      <span>2</span>
     </ClassroomBreifInfo>
   </ClassroomHeaderCard>
-);
+)
 
 ClassroomHeaderPanel.propTypes = {
   classroomID: PropTypes.string.isRequired,
   classroomName: PropTypes.string.isRequired
-};
+}
 
-export default ClassroomHeaderPanel;
+export default ClassroomHeaderPanel
