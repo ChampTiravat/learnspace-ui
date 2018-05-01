@@ -20,24 +20,6 @@ const ClassroomNameHeading = styled.h1`
   font-weight: 400;
   cursor: pointer;
 `
-
-const Seperator = styled.div`
-  width: 30%;
-  height: 2px;
-  background-color: ${p => p.theme.PRIMARY_COLOR};
-  margin: 1em auto;
-`
-
-const ClassroomBreifInfo = styled.p`
-  color: #777;
-  font-size: 1.1em;
-  font-weight: 300;
-  span {
-    color: ${p => p.theme.PRIMARY_COLOR};
-    font-weight: 400;
-  }
-`
-
 /**
  * @name ClassroomHeaderPanel
  * @desc Display the details of the classroom
@@ -46,14 +28,10 @@ const ClassroomBreifInfo = styled.p`
  */
 const ClassroomHeaderPanel = ({ classroomID, classroomName }) => (
   <ClassroomHeaderCard>
+    ห้องเรียน
     <Link href={{ pathname: CLASSROOM_PAGE, query: { id: classroomID } }} prefetch>
       <ClassroomNameHeading>{classroomName}</ClassroomNameHeading>
     </Link>
-    <Seperator />
-    <ClassroomBreifInfo>
-      จำนวนสมาชิก <span>30</span> โพสทั้งหมด <span>10</span> การบ้าน <span>5</span> การสอบ{' '}
-      <span>2</span>
-    </ClassroomBreifInfo>
   </ClassroomHeaderCard>
 )
 
