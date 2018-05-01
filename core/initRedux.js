@@ -1,11 +1,12 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import reducers from "./reducers";
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import reducers from './reducers'
 
-let reduxStore = null;
+let reduxStore = null
 
-let devtools = f => f;
+let devtools = f => f
+
 if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
-  devtools = window.__REDUX_DEVTOOLS_EXTENSION__();
+  devtools = window.__REDUX_DEVTOOLS_EXTENSION__()
 }
 
 function create(initialState = {}) {
@@ -15,15 +16,17 @@ function create(initialState = {}) {
     }),
     initialState,
     devtools
-  );
+  )
 }
 
-export default function initRedux(initialState) {
+export default initialState => {
   if (!process.browser) {
-    return create(initialState);
+    return create(initialState)
   }
+
   if (!reduxStore) {
-    reduxStore = create(initialState);
+    reduxStore = create(initialState)
   }
-  return reduxStore;
+
+  return reduxStore
 }
