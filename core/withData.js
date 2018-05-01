@@ -1,42 +1,41 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { ApolloProvider, getDataFromTree } from "react-apollo";
-import PropTypes from "prop-types";
-import Head from "next/head";
+import React from 'react'
+import { Provider } from 'react-redux'
+import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import PropTypes from 'prop-types'
+import Head from 'next/head'
 
-import initApollo from "./initApollo";
-import initRedux from "./initRedux";
+import initApollo from './initApollo'
+import initRedux from './initRedux'
 
 // Gets the display name of a JSX component for dev tools
 function getComponentDisplayName(Component) {
-  return Component.displayName || Component.name || "Unknown";
+  return Component.displayName || Component.name || 'Unknown'
 }
 
 export default ComposedComponent => {
   return class WithData extends React.Component {
-    static displayName = `WithData(${getComponentDisplayName(
-      ComposedComponent
-    )})`;
+    static displayName = `WithData(${getComponentDisplayName(ComposedComponent)})`
     static propTypes = {
       serverState: PropTypes.object.isRequired
-    };
+    }
 
     static async getInitialProps(ctx) {
-      let serverState = {};
+      let serverState = {}
 
       // Evaluate the composed component's getInitialProps()
-      let composedInitialProps = {};
+      let composedInitialProps = {}
       if (ComposedComponent.getInitialProps) {
-        composedInitialProps = await ComposedComponent.getInitialProps(ctx);
+        composedInitialProps = await ComposedComponent.getInitialProps(ctx)
       }
 
       // Run all GraphQL queries in the component tree
       // and extract the resulting data
       if (!process.browser) {
-        const apollo = initApollo();
-        const redux = initRedux();
+        const apollo = initApollo()
+        const redux = initRedux()
+
         // Provide the `url` prop data in case a GraphQL query uses it
-        const url = { query: ctx.query, pathname: ctx.pathname };
+        const url = { query: ctx.query, pathname: ctx.pathname }
 
         try {
           // Run all GraphQL queries
@@ -46,13 +45,13 @@ export default ComposedComponent => {
                 <ComposedComponent url={url} {...composedInitialProps} />
               </Provider>
             </ApolloProvider>
-          );
+          )
         } catch (error) {}
 
-        Head.rewind();
+        Head.rewind()
 
         // Extract query data from the store
-        const state = redux.getState();
+        const state = redux.getState()
 
         // serverState = {
         //   apollo: {
@@ -64,13 +63,13 @@ export default ComposedComponent => {
       return {
         serverState,
         ...composedInitialProps
-      };
+      }
     }
 
     constructor(props) {
-      super(props);
-      this.apollo = initApollo();
-      this.redux = initRedux(this.props.serverState);
+      super(props)
+      this.apollo = initApollo()
+      this.redux = initRedux(this.props.serverState)
     }
 
     render() {
@@ -80,7 +79,7 @@ export default ComposedComponent => {
             <ComposedComponent {...this.props} />
           </Provider>
         </ApolloProvider>
-      );
+      )
     }
-  };
-};
+  }
+}
