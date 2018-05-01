@@ -92,7 +92,7 @@ class ClassroomMemberPage extends React.Component {
               classroomName={classroomMembers.classroom.name}
               classroomID={classroomMembers.classroom._id}
             />
-            <Container marginTop="10em">
+            <Container marginTop="7em">
               <Card fluidWidth textCenter padding="1em" marginTop="1em">
                 <Button primary onClick={showClassroomInvitationModal}>
                   เพิ่มสมาชิกใหม่

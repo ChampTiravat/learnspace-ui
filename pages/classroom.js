@@ -37,17 +37,10 @@ class ClassroomPage extends React.Component {
       ? null
       : [
           <Panel left width="40">
-            <ClassroomInfoPanel
-              thumbnail={classroom.thumbnail}
-              courseOutline={classroom.outline}
-            />
+            <ClassroomInfoPanel thumbnail={classroom.thumbnail} courseOutline={classroom.outline} />
           </Panel>,
           <Panel right height="850px" width="60">
-            <PostsList
-              classroomID={classroom._id}
-              posts={classroom.posts}
-              height="700px"
-            />
+            <PostsList classroomID={classroom._id} posts={classroom.posts} height="700px" />
           </Panel>,
           <ClassroomActivityPanel
             classroomID={classroom._id}
@@ -76,8 +69,7 @@ class ClassroomPage extends React.Component {
    * @param classroom : classroom data
    * @desc Render Classroom information corresponding to a given ID
    */
-  renderTitleText = classroom =>
-    !classroom ? 'ไม่พบข้อมูลของห้องเรียน' : classroom.name || ''
+  renderTitleText = classroom => (!classroom ? 'ไม่พบข้อมูลของห้องเรียน' : classroom.name || '')
 
   render() {
     const { loading, classroomProfile } = this.props.data
@@ -85,9 +77,7 @@ class ClassroomPage extends React.Component {
 
     return [
       <Head>
-        <title>
-          {loading ? 'loading ...' : this.renderTitleText(classroom)} | LEARNSPACE
-        </title>
+        <title>{loading ? 'loading ...' : this.renderTitleText(classroom)} | LEARNSPACE</title>
       </Head>,
       <AuthenticatedLayout>
         {loading ? (
@@ -99,7 +89,7 @@ class ClassroomPage extends React.Component {
         ) : (
           [
             this.renderClassroomHeaderPanel(classroom),
-            <Container marginTop="10em">
+            <Container marginTop="7em">
               {classroomProfile.isMember
                 ? this.renderClassroomProfile(classroom)
                 : this.renderClassroomPreview(classroom)}
