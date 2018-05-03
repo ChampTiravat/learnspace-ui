@@ -27,7 +27,7 @@ class CreateClassroomForm extends React.Component {
       const { success, classroomID } = result.data.createClassroom
 
       if (success) {
-        Router.push(`${CLASSROOM_PAGE}/?id=${classroomID}`)
+        Router.push(`${CLASSROOM_PAGE}?id=${classroomID}`)
       } else {
         alert('failed')
       }
@@ -41,24 +41,9 @@ class CreateClassroomForm extends React.Component {
         <Header>สร้างห้องเรียนใหม่</Header>
         <Body>
           <form onSubmit={handleSubmit(this.submitHandler)}>
-            <Field
-              name="name"
-              label="ชื่อห้องเรียน"
-              component={InputField}
-              type="text"
-            />
-            <Field
-              name="subject"
-              label="วิชาที่สอน"
-              component={InputField}
-              type="text"
-            />
-            <Field
-              name="description"
-              label="รายละเอียด"
-              component={InputField}
-              type="text"
-            />
+            <Field name="name" label="ชื่อห้องเรียน" component={InputField} type="text" />
+            <Field name="subject" label="วิชาที่สอน" component={InputField} type="text" />
+            <Field name="description" label="รายละเอียด" component={InputField} type="text" />
             <Button primary fluidWidth textCenter>
               สร้างห้องเรียน
             </Button>
@@ -75,11 +60,7 @@ CreateClassroomForm.propTypes = {
 }
 
 const CREATE_CLASSROOM_MUTATION = gql`
-  mutation createClassroom(
-    $name: String!
-    $description: String!
-    $subject: String!
-  ) {
+  mutation createClassroom($name: String!, $description: String!, $subject: String!) {
     createClassroom(name: $name, subject: $subject, description: $description) {
       success
       classroomID
