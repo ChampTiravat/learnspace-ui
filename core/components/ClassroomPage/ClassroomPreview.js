@@ -61,10 +61,6 @@ const ClassroomInfoItem = ({ topic, info }) => (
  * @prop { mutate } [APOLLO] : Apollo-client mutation controller function
  */
 class ClassroomPreview extends React.Component {
-  state = {
-    didSentJoinRequest: false
-  }
-
   sendClassroomJoinRequest = async classroomID => {
     const { showLoadingModal, hideLoadingModal, showErrorAlert, mutate } = this.props
 
@@ -82,11 +78,10 @@ class ClassroomPreview extends React.Component {
 
       if (success) {
         await hideLoadingModal()
-        this.setState({ didSentJoinRequest: true })
-        await alert('Done')
+        alert('Done')
       } else {
-        await hideLoadingModal()
-        await showErrorAlert(err.message)
+        hideLoadingModal()
+        showErrorAlert(err.message)
       }
     } catch (err) {
       hideLoadingModal()
@@ -95,15 +90,15 @@ class ClassroomPreview extends React.Component {
   }
 
   render() {
-    const { subject, instructor, description, classroomID } = this.props
-    const { didSentJoinRequest } = this.state
+    const { subject, instructor, description, classroomID, didJoinReqSent } = this.props
+    console.log(didJoinReqSent)
 
     return (
       <ClassroomPreviewWrapper>
         <ClassroomInfoItem topic="วิชาที่สอน" info={subject} />
         <ClassroomInfoItem topic="ผู้สอน" info={instructor} />
         <ClassroomInfoItem topic="คำอธิบาย" info={description} />
-        {!didSentJoinRequest ? (
+        {!didJoinReqSent ? (
           <Button primary onClick={() => this.sendClassroomJoinRequest(classroomID)}>
             ส่งคำขอเข้าห้องเรียนนี้
           </Button>

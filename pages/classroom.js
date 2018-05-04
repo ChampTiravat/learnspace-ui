@@ -49,11 +49,12 @@ class ClassroomPage extends React.Component {
           />
         ]
 
-  renderClassroomPreview = classroom =>
+  renderClassroomPreview = (classroom, didJoinReqSent) =>
     !classroom ? null : (
       <ClassroomPreview
         classroomID={classroom._id}
         subject={classroom.subject}
+        didJoinReqSent={didJoinReqSent}
         description={classroom.description}
         instructor={`${classroom.creator.fname} ${classroom.creator.lname || ''}`}
       />
@@ -92,7 +93,7 @@ class ClassroomPage extends React.Component {
             <Container marginTop="7em">
               {classroomProfile.isMember
                 ? this.renderClassroomProfile(classroom)
-                : this.renderClassroomPreview(classroom)}
+                : this.renderClassroomPreview(classroom, classroomProfile.didJoinReqSent)}
             </Container>
           ]
         )}
@@ -111,6 +112,7 @@ const CLASSROOM_PROFILE_QUERY = gql`
   query classroomProfile($_id: String!) {
     classroomProfile(_id: $_id) {
       isMember
+      didJoinReqSent
       classroom {
         _id
         name
